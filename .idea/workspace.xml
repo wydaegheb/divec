@@ -15,6 +15,7 @@
   <component name="ChangeListManager">
     <list default="true" id="3918f2fc-bcbd-45e9-8eee-31ec3bb033b1" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -126,6 +127,7 @@
       <workItem from="1604863263459" duration="1689000" />
       <workItem from="1604869101438" duration="325000" />
       <workItem from="1604870148617" duration="2161000" />
+      <workItem from="1604872399248" duration="890000" />
     </task>
     <task id="LOCAL-00001" summary="Updated readme">
       <created>1604870538629</created>
@@ -134,7 +136,14 @@
       <option name="project" value="LOCAL" />
       <updated>1604870538629</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="workspace update">
+      <created>1604872566812</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1604872566812</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -143,7 +152,8 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_NEW_TODO" value="false" />
     <MESSAGE value="Updated readme" />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated readme" />
+    <MESSAGE value="workspace update" />
+    <option name="LAST_COMMIT_MESSAGE" value="workspace update" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
@@ -172,18 +182,18 @@
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
     <state x="1450" y="446" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.3440.1400@0.0.3440.1400" timestamp="1599396345828" />
-    <state x="492" y="268" key="CommitChangelistDialog2" timestamp="1604870537023">
+    <state x="492" y="268" key="CommitChangelistDialog2" timestamp="1604872565729">
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
-    <state x="492" y="268" key="CommitChangelistDialog2/0.0.3440.1400@0.0.3440.1400" timestamp="1604870537023" />
+    <state x="492" y="268" key="CommitChangelistDialog2/0.0.3440.1400@0.0.3440.1400" timestamp="1604872565729" />
     <state x="92" y="92" width="3256" height="1216" key="DiffContextDialog" timestamp="1604349707031">
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
     <state x="92" y="92" width="3256" height="1216" key="DiffContextDialog/0.0.3440.1400@0.0.3440.1400" timestamp="1604349707031" />
-    <state x="889" y="412" key="FileChooserDialogImpl" timestamp="1604870748078">
+    <state x="889" y="412" key="FileChooserDialogImpl" timestamp="1604872809023">
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
-    <state x="889" y="412" key="FileChooserDialogImpl/0.0.3440.1400@0.0.3440.1400" timestamp="1604870748078" />
+    <state x="889" y="412" key="FileChooserDialogImpl/0.0.3440.1400@0.0.3440.1400" timestamp="1604872809023" />
     <state x="745" y="597" width="709" height="522" key="Github.ShareDialog" timestamp="1604868730929">
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
@@ -240,14 +250,14 @@
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
     <state width="3397" height="482" key="GridCell.Tab.2.right/0.0.3440.1400@0.0.3440.1400" timestamp="1602002270919" />
-    <state x="610" y="302" key="SettingsEditor" timestamp="1604870758325">
+    <state x="610" y="302" key="SettingsEditor" timestamp="1604872818644">
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
-    <state x="610" y="302" key="SettingsEditor/0.0.3440.1400@0.0.3440.1400" timestamp="1604870758325" />
-    <state x="459" y="432" key="Vcs.Push.Dialog.v2" timestamp="1604872358339">
+    <state x="610" y="302" key="SettingsEditor/0.0.3440.1400@0.0.3440.1400" timestamp="1604872818644" />
+    <state x="459" y="432" key="Vcs.Push.Dialog.v2" timestamp="1604873025615">
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
-    <state x="459" y="432" key="Vcs.Push.Dialog.v2/0.0.3440.1400@0.0.3440.1400" timestamp="1604872358339" />
+    <state x="459" y="432" key="Vcs.Push.Dialog.v2/0.0.3440.1400@0.0.3440.1400" timestamp="1604873025615" />
     <state x="92" y="92" width="3256" height="1216" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog" timestamp="1604349707031">
       <screen x="0" y="0" width="3440" height="1400" />
     </state>

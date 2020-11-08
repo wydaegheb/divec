@@ -35,7 +35,7 @@ Generic remark: available source code online is mainly for "deco planners" (Dive
 
 **-> CONCLUSION: DO NOT TRUST YOUR LIFE TO THIS SOFTWARE!!!**
 
-Development environment: using Clion with platformio as development environment.
+Development environment: Clion with PlatformIO.
 
 Algorithm heavily based on:
 

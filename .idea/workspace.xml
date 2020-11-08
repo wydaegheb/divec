@@ -13,7 +13,10 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3918f2fc-bcbd-45e9-8eee-31ec3bb033b1" name="Default Changelist" comment="" />
+    <list default="true" id="3918f2fc-bcbd-45e9-8eee-31ec3bb033b1" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -23,6 +26,9 @@
     <option name="formatViaClangd" value="false" />
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:adafruit_feather_m4" />
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="OCResolveContextSettings">
     <option name="configuration" value="0-adafruit_feather_m4-Z_DUMMY_TARGET" />
   </component>
@@ -59,6 +65,16 @@
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
+    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="GradleAppRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="com.jetbrains.cidr.cpp.gradle.execution.GradleNativeBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="PlatformIO Debug" type="platformio" factoryName="PlatformIO Debug" nameIsGenerated="true" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="divec" TARGET_NAME="Debug" CONFIG_NAME="adafruit_feather_m4">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
@@ -81,6 +97,7 @@
       <item itemvalue="PlatformIO.PlatformIO Upload" />
     </list>
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -106,18 +123,24 @@
       <workItem from="1604302652223" duration="8840000" />
       <workItem from="1604425372382" duration="2304000" />
       <workItem from="1604428006223" duration="78219000" />
-      <workItem from="1604863263459" duration="601000" />
+      <workItem from="1604863263459" duration="1689000" />
+      <workItem from="1604869101438" duration="325000" />
+      <workItem from="1604870148617" duration="89000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="2" />
+    <option name="version" value="3" />
   </component>
   <component name="WindowStateProjectService">
     <state x="1605" y="562" key="#Notifications" timestamp="1604251903596">
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
     <state x="1605" y="562" key="#Notifications/0.0.3440.1400@0.0.3440.1400" timestamp="1604251903596" />
+    <state x="459" y="340" key="#Plugins" timestamp="1604870237627">
+      <screen x="0" y="0" width="3440" height="1400" />
+    </state>
+    <state x="459" y="340" key="#Plugins/0.0.3440.1400@0.0.3440.1400" timestamp="1604870237627" />
     <state x="314" y="358" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1604252063869">
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
@@ -126,6 +149,10 @@
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
     <state x="1525" y="415" key="#com.intellij.ide.util.MemberChooser/0.0.3440.1400@0.0.3440.1400" timestamp="1604755796178" />
+    <state x="547" y="435" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1604869263313">
+      <screen x="0" y="0" width="3440" height="1400" />
+    </state>
+    <state x="547" y="435" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.0.3440.1400@0.0.3440.1400" timestamp="1604869263313" />
     <state x="1450" y="446" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1599396345828">
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
@@ -134,6 +161,14 @@
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
     <state x="92" y="92" width="3256" height="1216" key="DiffContextDialog/0.0.3440.1400@0.0.3440.1400" timestamp="1604349707031" />
+    <state x="745" y="597" width="709" height="522" key="Github.ShareDialog" timestamp="1604868730929">
+      <screen x="0" y="0" width="3440" height="1400" />
+    </state>
+    <state x="745" y="597" width="709" height="522" key="Github.ShareDialog/0.0.3440.1400@0.0.3440.1400" timestamp="1604868730929" />
+    <state x="643" y="404" key="Github.UntrackedFilesDialog" timestamp="1604868795950">
+      <screen x="0" y="0" width="3440" height="1400" />
+    </state>
+    <state x="643" y="404" key="Github.UntrackedFilesDialog/0.0.3440.1400@0.0.3440.1400" timestamp="1604868795950" />
     <state width="1674" height="541" key="GridCell.Tab.0.bottom" timestamp="1604863084558">
       <screen x="0" y="0" width="3440" height="1400" />
     </state>

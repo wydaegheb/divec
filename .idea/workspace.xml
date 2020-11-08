@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true">
+    <generated>
+      <config projectName="divec" targetName="Debug" />
+      <config projectName="divec" targetName="Production" />
+      <config projectName="divec" targetName="Z_DUMMY_TARGET" />
+    </generated>
+  </component>
+  <component name="CMakeSettings">
+    <configurations>
+      <configuration PROFILE_NAME="adafruit_feather_m4" CONFIG_NAME="adafruit_feather_m4" />
+    </configurations>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="3918f2fc-bcbd-45e9-8eee-31ec3bb033b1" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:adafruit_feather_m4" />
+  <component name="OCResolveContextSettings">
+    <option name="configuration" value="0-adafruit_feather_m4-Z_DUMMY_TARGET" />
+  </component>
+  <component name="ProjectId" id="1h8PeTzSrKsWo6V3SeD94WDTOwu" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="cf.advertisement.text.has.clang-format" value="true" />
+    <property name="cf.first.check.clang-format" value="false" />
+    <property name="ignore.virus.scanning.warn.message" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/bluetooth" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\ws\divec\src\bluetooth" />
+      <recent name="D:\ws\divec\lib\bluetooth" />
+      <recent name="D:\ws\divec\test" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\ws\divec\src" />
+    </key>
+  </component>
+  <component name="RunManager" selected="PlatformIO.PlatformIO Upload">
+    <configuration name="Z_DUMMY_TARGET" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="divec" TARGET_NAME="Z_DUMMY_TARGET" CONFIG_NAME="adafruit_feather_m4" RUN_TARGET_PROJECT_NAME="divec" RUN_TARGET_NAME="Z_DUMMY_TARGET">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PlatformIO Debug" type="platformio" factoryName="PlatformIO Debug" nameIsGenerated="true" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="divec" TARGET_NAME="Debug" CONFIG_NAME="adafruit_feather_m4">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PlatformIO Test" type="platformio" factoryName="PlatformIO Test" nameIsGenerated="true" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="divec" TARGET_NAME="Production" CONFIG_NAME="adafruit_feather_m4">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PlatformIO Upload" type="platformio" factoryName="PlatformIO Upload" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="divec" TARGET_NAME="Production" CONFIG_NAME="adafruit_feather_m4" RUN_TARGET_PROJECT_NAME="divec" RUN_TARGET_NAME="Production">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="CMake Application.Z_DUMMY_TARGET" />
+      <item itemvalue="PlatformIO.PlatformIO Debug" />
+      <item itemvalue="PlatformIO.PlatformIO Test" />
+      <item itemvalue="PlatformIO.PlatformIO Upload" />
+    </list>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="3918f2fc-bcbd-45e9-8eee-31ec3bb033b1" name="Default Changelist" comment="" />
+      <created>1599389840688</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1599389840688</updated>
+      <workItem from="1599389842002" duration="1292000" />
+      <workItem from="1599391159431" duration="6874000" />
+      <workItem from="1599398056670" duration="9632000" />
+      <workItem from="1599509188291" duration="20036000" />
+      <workItem from="1600617706407" duration="5073000" />
+      <workItem from="1601204312374" duration="20163000" />
+      <workItem from="1601796182708" duration="6638000" />
+      <workItem from="1602002421490" duration="5555000" />
+      <workItem from="1603390022203" duration="2164000" />
+      <workItem from="1603392201789" duration="10488000" />
+      <workItem from="1603895702416" duration="29654000" />
+      <workItem from="1604251888235" duration="1056000" />
+      <workItem from="1604302652223" duration="8840000" />
+      <workItem from="1604425372382" duration="2304000" />
+      <workItem from="1604428006223" duration="78219000" />
+      <workItem from="1604863263459" duration="601000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="1605" y="562" key="#Notifications" timestamp="1604251903596">
+      <screen x="0" y="0" width="3440" height="1400" />
+    </state>
+    <state x="1605" y="562" key="#Notifications/0.0.3440.1400@0.0.3440.1400" timestamp="1604251903596" />
+    <state x="314" y="358" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1604252063869">
+      <screen x="0" y="0" width="3440" height="1400" />
+    </state>
+    <state x="314" y="358" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.3440.1400@0.0.3440.1400" timestamp="1604252063869" />
+    <state x="1525" y="415" key="#com.intellij.ide.util.MemberChooser" timestamp="1604755796178">
+      <screen x="0" y="0" width="3440" height="1400" />
+    </state>
+    <state x="1525" y="415" key="#com.intellij.ide.util.MemberChooser/0.0.3440.1400@0.0.3440.1400" timestamp="1604755796178" />
+    <state x="1450" y="446" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1599396345828">
+      <screen x="0" y="0" width="3440" height="1400" />
+    </state>
+    <state x="1450" y="446" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.3440.1400@0.0.3440.1400" timestamp="1599396345828" />
+    <state x="92" y="92" width="3256" height="1216" key="DiffContextDialog" timestamp="1604349707031">
+      <screen x="0" y="0" width="3440" height="1400" />
+    </state>
+    <state x="92" y="92" width="3256" height="1216" key="DiffContextDialog/0.0.3440.1400@0.0.3440.1400" timestamp="1604349707031" />
+    <state width="1674" height="541" key="GridCell.Tab.0.bottom" timestamp="1604863084558">
+      <screen x="0" y="0" width="3440" height="1400" />
+    </state>
+    <state width="1674" height="541" key="GridCell.Tab.0.bottom/0.0.3440.1400@0.0.3440.1400" timestamp="1604863084558" />
+    <state width="1674" height="541" key="GridCell.Tab.0.center" timestamp="1604863084558">
+      <screen x="0" y="0" width="3440" height="1400" />
+    </state>
+    <state width="1674" height="541" key="GridCell.Tab.0.center/0.0.3440.1400@0.0.3440.1400" timestamp="1604863084558" />
+    <state width="1674" height="541" key="GridCell.Tab.0.left" timestamp="1604863084558">
+      <screen x="0" y="0" width="3440" height="1400" />
+    </state>
+    <state width="1674" height="541" key="GridCell.Tab.0.left/0.0.3440.1400@0.0.3440.1400" timestamp="1604863084558" />
+    <state width="1674" height="541" key="GridCell.Tab.0.right" timestamp="1604863084558">
+      <screen x="0" y="0" width="3440" height="1400" />
+    </state>
+    <state width="1674" height="541" key="GridCell.Tab.0.right/0.0.3440.1400@0.0.3440.1400" timestamp="1604863084558" />
+    <state width="3397" height="482" key="GridCell.Tab.1.bottom" timestamp="1602002270919">
+      <screen x="0" y="0" width="3440" height="1400" />
+    </state>
+    <state width="3397" height="482" key="GridCell.Tab.1.bottom/0.0.3440.1400@0.0.3440.1400" timestamp="1602002270919" />
+    <state width="3397" height="482" key="GridCell.Tab.1.center" timestamp="1602002270919">
+      <screen x="0" y="0" width="3440" height="1400" />
+    </state>
+    <state width="3397" height="482" key="GridCell.Tab.1.center/0.0.3440.1400@0.0.3440.1400" timestamp="1602002270919" />
+    <state width="3397" height="482" key="GridCell.Tab.1.left" timestamp="1602002270919">
+      <screen x="0" y="0" width="3440" height="1400" />
+    </state>
+    <state width="3397" height="482" key="GridCell.Tab.1.left/0.0.3440.1400@0.0.3440.1400" timestamp="1602002270919" />
+    <state width="3397" height="482" key="GridCell.Tab.1.right" timestamp="1602002270919">
+      <screen x="0" y="0" width="3440" height="1400" />
+    </state>
+    <state width="3397" height="482" key="GridCell.Tab.1.right/0.0.3440.1400@0.0.3440.1400" timestamp="1602002270919" />
+    <state width="3397" height="482" key="GridCell.Tab.2.bottom" timestamp="1602002270919">
+      <screen x="0" y="0" width="3440" height="1400" />
+    </state>
+    <state width="3397" height="482" key="GridCell.Tab.2.bottom/0.0.3440.1400@0.0.3440.1400" timestamp="1602002270919" />
+    <state width="3397" height="482" key="GridCell.Tab.2.center" timestamp="1602002270919">
+      <screen x="0" y="0" width="3440" height="1400" />
+    </state>
+    <state width="3397" height="482" key="GridCell.Tab.2.center/0.0.3440.1400@0.0.3440.1400" timestamp="1602002270919" />
+    <state width="3397" height="482" key="GridCell.Tab.2.left" timestamp="1602002270919">
+      <screen x="0" y="0" width="3440" height="1400" />
+    </state>
+    <state width="3397" height="482" key="GridCell.Tab.2.left/0.0.3440.1400@0.0.3440.1400" timestamp="1602002270919" />
+    <state width="3397" height="482" key="GridCell.Tab.2.right" timestamp="1602002270919">
+      <screen x="0" y="0" width="3440" height="1400" />
+    </state>
+    <state width="3397" height="482" key="GridCell.Tab.2.right/0.0.3440.1400@0.0.3440.1400" timestamp="1602002270919" />
+    <state x="1221" y="344" key="SettingsEditor" timestamp="1603896190781">
+      <screen x="0" y="0" width="3440" height="1400" />
+    </state>
+    <state x="1221" y="344" key="SettingsEditor/0.0.3440.1400@0.0.3440.1400" timestamp="1603896190781" />
+    <state x="92" y="92" width="3256" height="1216" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog" timestamp="1604349707031">
+      <screen x="0" y="0" width="3440" height="1400" />
+    </state>
+    <state x="92" y="92" width="3256" height="1216" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog/0.0.3440.1400@0.0.3440.1400" timestamp="1604349707031" />
+    <state x="177" y="141" width="3240" height="1200" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1604806003675">
+      <screen x="0" y="0" width="3440" height="1400" />
+    </state>
+    <state x="177" y="141" width="3240" height="1200" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.3440.1400@0.0.3440.1400" timestamp="1604806003675" />
+    <state x="1426" y="433" width="776" height="534" key="find.popup" timestamp="1604618089091">
+      <screen x="0" y="0" width="3440" height="1400" />
+    </state>
+    <state x="1426" y="433" width="776" height="534" key="find.popup/0.0.3440.1400@0.0.3440.1400" timestamp="1604618089091" />
+    <state x="516" y="334" key="run.anything.popup" timestamp="1604794922555">
+      <screen x="0" y="0" width="3440" height="1400" />
+    </state>
+    <state x="516" y="334" key="run.anything.popup/0.0.3440.1400@0.0.3440.1400" timestamp="1604794922555" />
+    <state x="523" y="320" width="672" height="678" key="search.everywhere.popup" timestamp="1604758892548">
+      <screen x="0" y="0" width="3440" height="1400" />
+    </state>
+    <state x="523" y="320" width="672" height="678" key="search.everywhere.popup/0.0.3440.1400@0.0.3440.1400" timestamp="1604758892548" />
+  </component>
+</project>

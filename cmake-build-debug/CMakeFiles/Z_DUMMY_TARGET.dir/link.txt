@@ -1,0 +1,1 @@
+C:\Users\admin\.platformio\packages\toolchain-gccarmnoneeabi\bin\arm-none-eabi-gcc.exe -std=gnu11 -mfloat-abi=hard -mfpu=fpv4-sp-d16 -Os -ffunction-sections -fdata-sections -Wall -mcpu=cortex-m4 -mthumb -nostdlib --param max-inline-insns-single=500 -Wno-expansion-to-defined -g   CMakeFiles/Z_DUMMY_TARGET.dir/src/main.c.obj  -o Z_DUMMY_TARGET 

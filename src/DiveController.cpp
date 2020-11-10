@@ -30,11 +30,15 @@ void DiveController::setup() {
     _display.init(&_fileSystem);
 
     //init deco manager
-    _decoManager.init(&_fileSystem,Time::getTime());
+    _decoManager.init(&_fileSystem, Time::getTime());
 
     // init menu
     _menu.init(&_display, &_decoManager);
 
+    // init bluetooth
+    //_bluetooth.init();
+
+    // reset last update time stamp (needs to happen after loading the decomanager to avoid errors in surface interval calculations)
     _lastUpdateTime = Time::getTime();
 
     Serial.println(F("DiveController ready"));
@@ -64,10 +68,14 @@ void DiveController::step() {
         // update menu
         _menu.update();
 
+
         _lastUpdateTime = currentTime;
     }
 
-    // handle button presses (every step! - don't wait for interval or a button press takes 5 seconds to be handled!)
+    // check bluetooth - don't wait for interval or a bluetooth command takes 5 seconds to be handled
+    //_bluetooth.receive();
+
+    // handle button presses - don't wait for interval or a button press takes 5 seconds to be handled
     if (_leftButton.isPressed()) {
         Serial.println(F("Left Button pressed "));
         _menu.handleLeftButtonPress();

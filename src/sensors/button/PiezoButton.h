@@ -6,7 +6,7 @@
 class PiezoButton {
 public:
 
-    void init(int buttonPin, void (*interrupt)());
+    void init(uint8_t buttonPin, void (*interrupt)());
 
     bool isPressed();
 
@@ -14,8 +14,8 @@ public:
 
 
 private:
+    uint8_t _buttonPin;
     bool _pressed = false;
-    uint32_t _lastPress = 0; // the time of the last button press
 
 };
 

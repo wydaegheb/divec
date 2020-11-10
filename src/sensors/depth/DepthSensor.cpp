@@ -12,8 +12,8 @@ void DepthSensor::init(bool isMocked) {
             Serial.println(F("!!! SYSTEM ERROR !!!\n[Depth sensor failed]"));
             exit(0);
         } else {
-            _depthSensor.setModel(DIVEC_MS5837::MS5837_02BA);
-            //_depthSensor.setModel(DIVEC_MS5837::MS5837_30BA);
+            //_depthSensor.setModel(DIVEC_MS5837::MS5837_02BA);
+            _depthSensor.setModel(DIVEC_MS5837::MS5837_30BA);
             Serial.println(F(" - depth sensor initialized"));
         }
     }

@@ -6,6 +6,7 @@
 #define VERBOSE_MODE                   false  // If set to 'true' enables debug output
 
 
+/*
 // SOFTWARE UART SETTINGS
 // ----------------------------------------------------------------------------------------------
 // The following macros declare the pins that will be used for 'SW' serial.
@@ -32,6 +33,7 @@
 // The following sets the optional Mode pin, its recommended but not required
 // ----------------------------------------------------------------------------------------------
 #define BLUEFRUIT_UART_MODE_PIN        -1    // Set to -1 if unused
+*/
 
 
 // SHARED SPI SETTINGS
@@ -41,9 +43,9 @@
 // using HW SPI.  This should be used with nRF51822 based Bluefruit LE modules
 // that use SPI (Bluefruit LE SPI Friend).
 // ----------------------------------------------------------------------------------------------
-#define BLUEFRUIT_SPI_CS               10
-#define BLUEFRUIT_SPI_IRQ              9
-#define BLUEFRUIT_SPI_RST              4    // Optional but recommended, set to -1 if unused
+#define BLUEFRUIT_SPI_CS               13
+#define BLUEFRUIT_SPI_IRQ              12
+#define BLUEFRUIT_SPI_RST              -1    // Optional but recommended, set to -1 if unused
 
 // SOFTWARE SPI SETTINGS
 // ----------------------------------------------------------------------------------------------
@@ -51,6 +53,6 @@
 // This should be used with nRF51822 based Bluefruit LE modules that use SPI
 // (Bluefruit LE SPI Friend).
 // ----------------------------------------------------------------------------------------------
-#define BLUEFRUIT_SPI_SCK              25
-#define BLUEFRUIT_SPI_MISO             23
-#define BLUEFRUIT_SPI_MOSI             24
+#define BLUEFRUIT_SPI_SCK              0 // pin 25 is hw pin but can't be used as the screen is using it already
+#define BLUEFRUIT_SPI_MISO             4 // pin 23 is hw pin but can't be used as the screen is using it already
+#define BLUEFRUIT_SPI_MOSI             1 // pin 24 is hw pin but can't be used as the screen is using it already

@@ -6,22 +6,24 @@
 
 class Page {
 public:
-    Page(char const* pageName, Display *display, DecoManager *decoManager);
+    Page(char const *pageName, Display *display, DecoManager *decoManager);
 
     virtual ~Page();
 
-    char const* getPageName();
+    char const *getPageName();
 
     virtual void update() = 0;
 
-    virtual char const* handleLeftButtonPress();
+    virtual void redraw() = 0;
 
-    virtual char const* handleRightButtonPress();
+    virtual char const *handleLeftButtonPress();
+
+    virtual char const *handleRightButtonPress();
 
 protected:
     virtual void clear();
 
-    char const* _pageName;
+    char const *_pageName;
     Display *_display;
     DecoManager *_decoManager;
     GasManager *_gasManager;

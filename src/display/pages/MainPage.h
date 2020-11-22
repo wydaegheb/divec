@@ -20,6 +20,11 @@ public:
 protected:
     void update() override;
 
+    void redraw() override;
+
+    char const *handleRightButtonPress() override;
+
+
 private:
     NumberValueWidget *_currentDepth;
     NumberValueWidget *_diveTime;

@@ -10,8 +10,8 @@
 #include <sensors/button/PiezoButton.h>
 #include <bluetooth/Bluetooth.h>
 
-#define LEFT_BUTTON_PIN A1
 #define RIGHT_BUTTON_PIN A2
+#define LEFT_BUTTON_PIN A3
 #define WET_CONTACT_PIN 11
 
 #define USE_MOCK_DEPTH_SENSOR false
@@ -24,23 +24,7 @@ public:
 
     void step();
 
-    const FileSystem &getFileSystem() const;
-
     const DecoManager &getDecoManager() const;
-
-    const Settings &getSettings() const;
-
-    const Time &getTime() const;
-
-    const DepthSensor &getDepthSensor() const;
-
-    const Display &getDisplay() const;
-
-    const Menu &getMenu() const;
-
-    const DateTime &getLastUpdateTime() const;
-
-    static const WetContact &getWetContact();
 
 private:
     FileSystem _fileSystem;

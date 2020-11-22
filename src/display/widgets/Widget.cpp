@@ -24,10 +24,15 @@ void Widget::show() {
 }
 
 void Widget::update() {
-    if (!_hidden){
+    if (!_hidden) {
         draw();
     }
 }
+
+void Widget::redraw() {
+    // default - do nothing - not every widget needs a redraw
+}
+
 
 
 

@@ -2,15 +2,14 @@
 #define DIVEC_BLUETOOTH_H
 
 #include "Adafruit_BluefruitLE_SPI.h"
-#include "bluetooth/BluefruitConfig.h"
+#include "BluefruitConfig.h"
 
 class Bluetooth {
 public:
-    ~Bluetooth();
 
     bool init();
 
-    void receive();
+    int receive() const;
 
 private:
     Adafruit_BluefruitLE_SPI *_bleSpiFriend;

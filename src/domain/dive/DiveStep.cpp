@@ -32,7 +32,7 @@ void DiveStep::setTemperatureInCelsius(double temperatureInCelsius) {
     _temperatureInCelsius = temperatureInCelsius;
 }
 
-char const* DiveStep::getGasName() {
+char const *DiveStep::getGasName() {
     return _gasName;
 }
 
@@ -41,13 +41,17 @@ void DiveStep::setGasName(Gas *gas) {
 }
 
 void DiveStep::log() {
-    Serial.print(_endTime.timestamp(DateTime::TIMESTAMP_TIME));
-    Serial.print(F("\t\t"));
-    Serial.print(DiveEquations::barToDepthInMeters(_pressureInBar));
-    Serial.print(F("\t\t"));
-    Serial.print(_gasName);
-    Serial.print(F("\t\t"));
-    Serial.println(_temperatureInCelsius);
+    log(&Serial);
+}
+
+void DiveStep::log(Print *print) {
+    print->print(_endTime.timestamp(DateTime::TIMESTAMP_TIME));
+    print->print(F("\t\t"));
+    print->print(DiveEquations::barToDepthInMeters(_pressureInBar));
+    print->print(F("\t\t"));
+    print->print(_gasName);
+    print->print(F("\t\t"));
+    print->println(_temperatureInCelsius);
 }
 
 

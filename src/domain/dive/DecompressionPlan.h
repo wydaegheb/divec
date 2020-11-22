@@ -22,8 +22,9 @@ public:
     uint32_t getTtsInSeconds();
 
     void log();
-
     void log(Dive *dive);
+
+    void log(Print *print, Dive *dive);
 
 
 private:

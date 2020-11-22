@@ -13,6 +13,7 @@ void Menu::init(Display *display, DecoManager *decoManager) {
     _currentPage = new MainPage(display, decoManager);
     _pages.emplace_back(_currentPage);
     _pages.emplace_back(new SettingsPage(display, decoManager));
+    _display = display;
     update();
     Serial.println(F(" - main menu initialized."));
 }
@@ -32,7 +33,11 @@ void Menu::update() {
 void Menu::setCurrentPage(char const* pageName) {
     for (Page *page:_pages) {
         if (strcmp(page->getPageName(),pageName) == 0) {
-            _currentPage = page;
+            if (strcmp(_currentPage->getPageName(), pageName) != 0) { // page transition - clear previous page
+                _display->clear();
+                _currentPage = page;
+                _currentPage->redraw();
+            }
             break;
         }
     }

@@ -11,9 +11,11 @@ void Display::init(FileSystem* fileSystem) {
     _tft.setRotation(1);
     _tft.fillScreen(BLACK);
 
+/*
     _titleFont = &arial12pt7b;
     _smallValueFont = &arialbd10pt7b;
     _bigValueFont = &arialn24pt7b;
+*/
 
     _titleFont = &NotoSans_Condensed12pt7b;
     _smallValueFont = &NotoSans_Condensed9pt7b;
@@ -21,18 +23,14 @@ void Display::init(FileSystem* fileSystem) {
 
     _bgImage = fileSystem->loadBgImage();
 
-
-    _tft.setCursor(0, 0);
-    _tft.setFont(_titleFont);
-    _tft.setTextColor(Settings::TITLE_COLOR);
     clear();
-    drawTitleString("DEPTH",5,21,50);
     Serial.println(F(" - display initialized."));
 
 }
 
 void Display::clear() {
     fillWithBackground(0, 0, DISPLAY_WIDTH, DISPLAY_HEIGHT);
+
 }
 
 void Display::drawTitleString(char const* title, uint16_t leftX, uint16_t bottomY, uint16_t width) {
@@ -106,14 +104,16 @@ void Display::drawAlignedString(char const* s, uint16_t leftX, uint16_t bottomY,
 void Display::fillWithBackground(uint16_t leftX, uint16_t topY, uint16_t width, uint16_t height) {
     // based on void Adafruit_GFX::drawRGBBitmap(int16_t x, int16_t y, uint16_t *bitmap, int16_t w, int16_t h)
     // BUT this is nearly 40 times! faster than calling writePixel for every pixel. Reduces "flickering" drastically!
+    // _tft.drawRGBBitmap(leftX,topY,_bgImage,width,height);
     _tft.startWrite();
     _tft.setAddrWindow(leftX, topY, width, height);
-    for (uint16_t j = topY; j < (topY + height); j++) {
-        for (uint16_t i = leftX; i < (leftX + width); i++) {
-            _tft.SPI_WRITE16(_bgImage[j * DISPLAY_WIDTH + i]);
+    for (uint16_t y = topY; y < (topY + height); y++) {
+        for (uint16_t x = leftX; x < (leftX + width); x++) {
+            _tft.SPI_WRITE16(_bgImage[y * DISPLAY_WIDTH + x]);
         }
     }
     _tft.endWrite();
+
 }
 
 void Display::drawBattery(uint8_t percentage, uint16_t leftX, uint16_t topY, uint16_t width, uint16_t height) {

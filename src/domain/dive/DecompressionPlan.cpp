@@ -46,15 +46,20 @@ void DecompressionPlan::log() {
 }
 
 void DecompressionPlan::log(Dive *dive) {
-    Serial.println(F("\n=============================================="));
-    Serial.print(F("Decompression Plan"));
-    Serial.print(" (GF:");
-    Serial.print(round(Settings::GF_LOW * 100));
-    Serial.print(F("/"));
-    Serial.print(round(Settings::GF_HIGH * 100));
-    Serial.println(F(")"));
-    Serial.println(F("=============================================="));
-    Serial.println(F("Depth\tStop\t\tRun\t\tMix"));
+    log(&Serial, dive);
+}
+
+void DecompressionPlan::log(Print *print, Dive *dive) {
+    uint32_t planTime = 0;
+    print->println(F("\n=============================================="));
+    print->print(F("Decompression Plan"));
+    print->print(" (GF:");
+    print->print(round(Settings::GF_LOW * 100));
+    print->print(F("/"));
+    print->print(round(Settings::GF_HIGH * 100));
+    print->println(F(")"));
+    print->println(F("=============================================="));
+    print->println(F("Depth\tStop\t\tRun\t\tMix"));
 
     if (dive != nullptr) {
         uint32_t startTimeDiveInSeconds = dive->getStartTime().secondstime();
@@ -62,31 +67,31 @@ void DecompressionPlan::log(Dive *dive) {
         int16_t previousDepthInMeters = 0;
         for (DiveStep *step:dive->getSteps()) {
             int16_t stepEndDepthInMeters = DiveEquations::barToDepthInMeters(step->getPressureInBar());
-            Serial.print(stepEndDepthInMeters);
-            Serial.print(F("\t\t"));
+            print->print(stepEndDepthInMeters);
+            print->print(F("\t\t"));
             if (previousDepthInMeters == stepEndDepthInMeters) {
                 char timeStr[9] = "";
-                Serial.print(Formatter::formatTime(timeStr, step->getEndTime().secondstime() - previousStepTimeInSeconds, true));
-                Serial.print(F("\t\t"));
+                print->print(Formatter::formatTime(timeStr, step->getEndTime().secondstime() - previousStepTimeInSeconds, true));
+                print->print(F("\t\t"));
             } else {
-                Serial.print(F(" - "));
-                Serial.print(F("\t\t\t"));
+                print->print(F(" - "));
+                print->print(F("\t\t\t"));
             }
             char timeStr[6] = "";
-            Serial.print(Formatter::formatTimeInMinutes(timeStr, step->getEndTime().secondstime() - startTimeDiveInSeconds, Settings::MIN_STOP_TIME >= 60));
-            Serial.print(F("\t\t"));
-            Serial.println(step->getGasName());
+            print->print(Formatter::formatTimeInMinutes(timeStr, step->getEndTime().secondstime() - startTimeDiveInSeconds, Settings::MIN_STOP_TIME >= 60));
+            print->print(F("\t\t"));
+            print->println(step->getGasName());
             previousStepTimeInSeconds = step->getEndTime().secondstime();
             previousDepthInMeters = stepEndDepthInMeters;
         }
-        Serial.println();
+        print->println();
+        planTime = dive->getDiveTimeInSeconds();
     }
 
-    uint32_t time = dive->getDiveTimeInSeconds();
     for (DecompressionStep *stop:_stops) {
-        time = stop->log(time);
+        planTime = stop->log(print, planTime);
     }
-    Serial.println(F("=============================================="));
+    print->println(F("=============================================="));
 }
 
 

@@ -37,6 +37,8 @@ public:
 
     void log();
 
+    void log(Print *print);
+
 
 private:
     bool _started;

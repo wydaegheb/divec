@@ -25,8 +25,8 @@ private:
     Page *_currentPage;
     std::list<Page*> _pages;
 
-    DecoManager* _decoManager;
-    Dive* _currentDive;
+    DecoManager *_decoManager;
+    Display *_display;
 };
 
 

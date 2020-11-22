@@ -11,6 +11,11 @@ NumberValueWidget::NumberValueWidget(Display *display, char const* title, uint8_
     update();
 }
 
+void NumberValueWidget::redraw() {
+    _drawTitle = true; // make sure that if the widget is updated the title will be redrawn too.
+    Widget::update();
+}
+
 void NumberValueWidget::updateValue(double value) {
     if (_hidden) {
         _value = value;

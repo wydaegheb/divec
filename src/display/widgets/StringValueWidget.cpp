@@ -36,6 +36,12 @@ void StringValueWidget::draw() {
 }
 
 
+void StringValueWidget::redraw() {
+    _drawTitle = true; // make sure that if the widget is updated the title will be redrawn too.
+    Widget::update();
+}
+
+
 
 
 

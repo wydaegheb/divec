@@ -4,6 +4,7 @@
 #include "Page.h"
 
 #include <display/widgets/NumberValueWidget.h>
+#include <display/widgets/EditableDigitWidget.h>
 #include <display/widgets/StringValueWidget.h>
 #include <display/widgets/BatteryWidget.h>
 
@@ -17,7 +18,13 @@ public:
 protected:
     void update() override;
 
+    void redraw() override;
+
+    char const *handleLeftButtonPress() override;
+
+
 private:
+    EditableDigitWidget *_testNr;
 
 };
 

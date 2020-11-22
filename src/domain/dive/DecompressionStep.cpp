@@ -53,20 +53,24 @@ bool DecompressionStep::isFlat() const {
 }
 
 uint32_t DecompressionStep::log(uint32_t time) {
-    Serial.print(getEndDepthInMeters());
-    Serial.print(F("\t\t"));
+    return log(&Serial, time);
+}
+
+uint32_t DecompressionStep::log(Print *print, uint32_t time) {
+    print->print(getEndDepthInMeters());
+    print->print(F("\t\t"));
     if (isFlat()) {
         char timeStr[9] = "";
-        Serial.print(Formatter::formatTime(timeStr, getDurationInSeconds(), true));
-        Serial.print(F("\t\t"));
+        print->print(Formatter::formatTime(timeStr, getDurationInSeconds(), true));
+        print->print(F("\t\t"));
     } else {
-        Serial.print(F(" - "));
-        Serial.print(F("\t\t\t"));
+        print->print(F(" - "));
+        print->print(F("\t\t\t"));
     }
     char timeStr[6] = "";
-    Serial.print(Formatter::formatTimeInMinutes(timeStr, time + getDurationInSeconds(), Settings::MIN_STOP_TIME >= 60));
-    Serial.print(F("\t\t"));
-    Serial.println((getDiveGas()->getName()));
+    print->print(Formatter::formatTimeInMinutes(timeStr, time + getDurationInSeconds(), Settings::MIN_STOP_TIME >= 60));
+    print->print(F("\t\t"));
+    print->println((getDiveGas()->getName()));
 
     return (time + getDurationInSeconds());
 

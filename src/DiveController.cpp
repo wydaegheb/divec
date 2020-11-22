@@ -36,7 +36,7 @@ void DiveController::setup() {
     _menu.init(&_display, &_decoManager);
 
     // init bluetooth
-    //_bluetooth.init();
+    _bluetooth.init();
 
     // reset last update time stamp (needs to happen after loading the decomanager to avoid errors in surface interval calculations)
     _lastUpdateTime = Time::getTime();
@@ -68,25 +68,28 @@ void DiveController::step() {
         // update menu
         _menu.update();
 
-
         _lastUpdateTime = currentTime;
     }
 
     // check bluetooth - don't wait for interval or a bluetooth command takes 5 seconds to be handled
-    //_bluetooth.receive();
+    int command = _bluetooth.receive();
 
     // handle button presses - don't wait for interval or a button press takes 5 seconds to be handled
-    if (_leftButton.isPressed()) {
+    if (_leftButton.isPressed() || command == '8') {
         Serial.println(F("Left Button pressed "));
         _menu.handleLeftButtonPress();
     }
-    if (_rightButton.isPressed()) {
+    if (_rightButton.isPressed() || command == '9') {
         Serial.println(F("Right Button pressed "));
         _menu.handleRightButtonPress();
     }
 
-}
+    if (command > 0 && (command < 8 || command > 9)) {
+        Serial.println(F("You stupid (wo)men!!!!!"));
+    }
 
+
+}
 
 void DiveController::onLeftButtonClicked() {
     _leftButton.onButtonClicked();
@@ -100,37 +103,12 @@ void DiveController::onWetContactChanged() {
     _wetContact.onChange();
 }
 
-const FileSystem &DiveController::getFileSystem() const {
-    return _fileSystem;
-}
-
 const DecoManager &DiveController::getDecoManager() const {
     return _decoManager;
 }
 
-const Settings &DiveController::getSettings() const {
-    return _settings;
-}
 
-const DepthSensor &DiveController::getDepthSensor() const {
-    return _depthSensor;
-}
 
-const Display &DiveController::getDisplay() const {
-    return _display;
-}
-
-const Menu &DiveController::getMenu() const {
-    return _menu;
-}
-
-const DateTime &DiveController::getLastUpdateTime() const {
-    return _lastUpdateTime;
-}
-
-const WetContact &DiveController::getWetContact() {
-    return _wetContact;
-}
 
 
 

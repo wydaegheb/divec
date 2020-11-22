@@ -9,7 +9,7 @@ void setup() {
     while (!Serial.available() && ((millis() - t) < 5000)); // wait max 5 seconds
     delay(5000);
 
-    //diveController.setup();
+    diveController.setup();
 
 
 /*
@@ -46,13 +46,15 @@ void setup() {
 
 }
 
-bool pressed;
+/*bool pressed;
 uint32_t prevPiezoValue = 0;
 uint32_t minV = 100000;
-uint32_t maxV = 0;
+uint32_t maxV = 0;*/
 
 void loop() {
-    uint32_t piezoValue = analogRead(RIGHT_BUTTON_PIN);
+    diveController.step();
+
+/*    uint32_t piezoValue = analogRead(RIGHT_BUTTON_PIN);
     if (piezoValue < minV) {
         minV = piezoValue;
         Serial.print(F("MIN > "));
@@ -67,7 +69,7 @@ void loop() {
     if (piezoValue > 300) {
         Serial.print(F("P> "));
         Serial.println(piezoValue);
-    }
+    }*/
 
     //diveController.step();
 }

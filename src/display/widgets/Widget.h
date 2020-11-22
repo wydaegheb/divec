@@ -14,7 +14,11 @@ public:
 
     virtual void hide();
     virtual void show();
+
+    virtual void redraw();
+
     virtual void draw() = 0;
+
 
 protected:
     Display *_display;

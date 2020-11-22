@@ -16,7 +16,6 @@ public:
 
     int16_t getValue();
 
-protected:
     void draw() override;
 
 private:

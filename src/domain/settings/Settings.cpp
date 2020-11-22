@@ -42,6 +42,7 @@ double Settings::getWaterPressure() { // bar/m
     return Constants::SALT_WATER_PRESSURE; // default salt (most conservative)
 }
 
+
 size_t Settings::serialize(File* file) {
     DynamicJsonDocument doc(getFileSize());
     doc["GF_LOW"] = GF_LOW;
@@ -98,43 +99,47 @@ DeserializationError Settings::deserialize(File* file) {
 }
 
 void Settings::logSettings() {
-    Serial.println(F("\nSETTINGS"));
-    Serial.println(F("======================================"));
-    Serial.print(F("GF_LOW: \t\t\t\t"));
-    Serial.println(GF_LOW);
-    Serial.print(F("GF_HIGH: \t\t\t\t"));
-    Serial.println(GF_HIGH);
-    Serial.print(F("BUHLMANN_USE_1B: \t\t"));
-    Serial.println(BUHLMANN_USE_1B);
-    Serial.print(F("DECO_STEP_SIZE: \t\t"));
-    Serial.println(DECO_STEP_SIZE);
-    Serial.print(F("LAST_STOP: \t\t\t\t"));
-    Serial.println(LAST_STOP);
-    Serial.print(F("SALINITY: \t\t\t\t"));
-    Serial.println(SALINITY);
-    Serial.print(F("MAX_PPO2: \t\t\t\t"));
-    Serial.println(MAX_PPO2);
-    Serial.print(F("MAX_END: \t\t\t\t"));
-    Serial.println(MAX_END);
-    Serial.print(F("O2_NARCOTIC: \t\t\t"));
-    Serial.println(O2_NARCOTIC);
-    Serial.print(F("STEP_INTERVAL: \t\t\t"));
-    Serial.println(STEP_INTERVAL);
-    Serial.print(F("START_OF_DIVE_PRESSURE:"));
-    Serial.println(START_OF_DIVE_PRESSURE);
-    Serial.print(F("END_OF_DIVE_PRESSURE: \t"));
-    Serial.println(END_OF_DIVE_PRESSURE);
-    Serial.print(F("END_OF_DIVE_DELAY: \t\t"));
-    Serial.println(END_OF_DIVE_DELAY);
-    Serial.print(F("TITLE_COLOR: \t\t\t"));
-    Serial.println(TITLE_COLOR);
-    Serial.print(F("VALUE_COLOR: \t\t\t"));
-    Serial.println(VALUE_COLOR);
-    Serial.print(F("ERROR_COLOR: \t\t\t"));
-    Serial.println(ERROR_COLOR);
-    Serial.print(F("WARNING_COLOR: \t\t\t"));
-    Serial.println(WARNING_COLOR);
-    Serial.println(F("======================================"));
+    logSettings(&Serial);
+}
+
+void Settings::logSettings(Print *print) {
+    print->println(F("\nSETTINGS"));
+    print->println(F("======================================"));
+    print->print(F("GF_LOW: \t\t\t\t"));
+    print->println(GF_LOW);
+    print->print(F("GF_HIGH: \t\t\t\t"));
+    print->println(GF_HIGH);
+    print->print(F("BUHLMANN_USE_1B: \t\t"));
+    print->println(BUHLMANN_USE_1B);
+    print->print(F("DECO_STEP_SIZE: \t\t"));
+    print->println(DECO_STEP_SIZE);
+    print->print(F("LAST_STOP: \t\t\t\t"));
+    print->println(LAST_STOP);
+    print->print(F("SALINITY: \t\t\t\t"));
+    print->println(SALINITY);
+    print->print(F("MAX_PPO2: \t\t\t\t"));
+    print->println(MAX_PPO2);
+    print->print(F("MAX_END: \t\t\t\t"));
+    print->println(MAX_END);
+    print->print(F("O2_NARCOTIC: \t\t\t"));
+    print->println(O2_NARCOTIC);
+    print->print(F("STEP_INTERVAL: \t\t\t"));
+    print->println(STEP_INTERVAL);
+    print->print(F("START_OF_DIVE_PRESSURE:"));
+    print->println(START_OF_DIVE_PRESSURE);
+    print->print(F("END_OF_DIVE_PRESSURE: \t"));
+    print->println(END_OF_DIVE_PRESSURE);
+    print->print(F("END_OF_DIVE_DELAY: \t\t"));
+    print->println(END_OF_DIVE_DELAY);
+    print->print(F("TITLE_COLOR: \t\t\t"));
+    print->println(TITLE_COLOR);
+    print->print(F("VALUE_COLOR: \t\t\t"));
+    print->println(VALUE_COLOR);
+    print->print(F("ERROR_COLOR: \t\t\t"));
+    print->println(ERROR_COLOR);
+    print->print(F("WARNING_COLOR: \t\t\t"));
+    print->println(WARNING_COLOR);
+    print->println(F("======================================"));
 }
 
 size_t Settings::getFileSize() {

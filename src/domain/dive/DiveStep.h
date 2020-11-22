@@ -26,6 +26,8 @@ public:
 
     void log();
 
+    void log(Print *print);
+
 private:
     DateTime _endTime;
     double _pressureInBar;

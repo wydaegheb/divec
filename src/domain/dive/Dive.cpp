@@ -19,21 +19,21 @@ void Dive::clearEntries() {
 }
 
 
-void Dive::start(const DateTime& startTime) {
+void Dive::start(const DateTime &startTime) {
     _started = true;
     _ended = false;
     _surfaced = false;
     _startTime = startTime;
 }
 
-void Dive::update(const DateTime& time, Gas *gas, double pressureInBar, double tempInCelsius) {
+void Dive::update(const DateTime &time, Gas *gas, double pressureInBar, double tempInCelsius) {
     // add dive setp and update last time stamp
     _steps.emplace_back(new DiveStep(time, gas, pressureInBar, tempInCelsius));
     _lastTimeStamp = time;
 
     // check if surfaced or end of dive
     if (pressureInBar < (Settings::SURFACE_PRESSURE + Settings::END_OF_DIVE_PRESSURE)) {
-        if (!_surfaced){
+        if (!_surfaced) {
             Serial.print(F(" - surfaced - time: "));
             Serial.println(time.secondstime());
             _surfaced = true;
@@ -68,14 +68,14 @@ bool Dive::isInProgress() const {
 }
 
 uint16_t Dive::getCurrentDepthInMeters() {
-    if (_steps.empty()){
+    if (_steps.empty()) {
         return Settings::SURFACE_PRESSURE;
     }
     return DiveEquations::barToDepthInMeters(_steps.back()->getPressureInBar());
 }
 
 uint32_t Dive::getDiveTimeInSeconds() const {
-    if (!isStarted()){
+    if (!isStarted()) {
         return 0;
     }
     return (_lastTimeStamp.secondstime() - _startTime.secondstime());
@@ -94,24 +94,29 @@ const DateTime &Dive::getLastTimeStamp() const {
 }
 
 void Dive::log() {
-    Serial.println(F("\n\n=============================================="));
-    Serial.print(F("Dive - "));
-    Serial.println(_startTime.timestamp());
-    Serial.println(F("=============================================="));
-    Serial.println(F("Time\t\t\tDepth\tMix\t\tTemp"));
-    for (DiveStep* step:_steps) {
-        step->log();
-    }
-    Serial.println(F("=============================================="));
-    Serial.print(F("Dive time: "));
-    TimeSpan timeSpan = TimeSpan(getDiveTimeInSeconds());
-    Serial.print(timeSpan.hours());
-    Serial.print(F(":"));
-    Serial.print(timeSpan.minutes());
-    Serial.print(F(":"));
-    Serial.println(timeSpan.seconds());
-    Serial.println(F("=============================================="));
+    log(&Serial);
 }
+
+void Dive::log(Print *print) {
+    print->println(F("\n\n=============================================="));
+    print->print(F("Dive - "));
+    print->println(_startTime.timestamp());
+    print->println(F("=============================================="));
+    print->println(F("Time\t\t\tDepth\tMix\t\tTemp"));
+    for (DiveStep *step:_steps) {
+        step->log(print);
+    }
+    print->println(F("=============================================="));
+    print->print(F("Dive time: "));
+    TimeSpan timeSpan = TimeSpan(getDiveTimeInSeconds());
+    print->print(timeSpan.hours());
+    print->print(F(":"));
+    print->print(timeSpan.minutes());
+    print->print(F(":"));
+    print->println(timeSpan.seconds());
+    print->println(F("=============================================="));
+}
+
 
 
 

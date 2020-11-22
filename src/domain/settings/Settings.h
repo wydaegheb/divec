@@ -46,6 +46,8 @@ public:
     // log
     static void logSettings();
 
+    static void logSettings(Print *print);
+
     // loading and saving
     size_t serialize(File* file) override;
 

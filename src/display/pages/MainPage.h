@@ -9,7 +9,7 @@
 
 #define TOP_ROW_Y 1
 #define MIDDLE_ROW_Y 85
-#define BOTTOM_ROW_Y 155
+#define BOTTOM_ROW_Y 170
 
 class MainPage : public Page {
 public:

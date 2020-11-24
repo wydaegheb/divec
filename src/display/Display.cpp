@@ -5,7 +5,7 @@ Display::~Display() {
     _bgImage = nullptr;
 }
 
-void Display::init(FileSystem* fileSystem) {
+void Display::init(FileSystem *fileSystem) {
     Serial.println(F("Initializing display."));
     _tft.begin();
     _tft.setRotation(1);
@@ -29,11 +29,12 @@ void Display::init(FileSystem* fileSystem) {
 }
 
 void Display::clear() {
-    fillWithBackground(0, 0, DISPLAY_WIDTH, DISPLAY_HEIGHT);
-
+    // TODO: very weird effect. Leavin away the minus 1 for width and height you get very small artifacts at the bottom of your screen.
+    // fillWithBackground(0, 0, DISPLAY_WIDTH, DISPLAY_HEIGHT);
+    fillWithBackground(0, 0, DISPLAY_WIDTH - 1, DISPLAY_HEIGHT - 1);
 }
 
-void Display::drawTitleString(char const* title, uint16_t leftX, uint16_t bottomY, uint16_t width) {
+void Display::drawTitleString(char const *title, uint16_t leftX, uint16_t bottomY, uint16_t width) {
     _tft.setFont(_titleFont);
     _tft.setTextColor(Settings::TITLE_COLOR);
     drawAlignedString(title, leftX, bottomY, width, ALIGN_LEFT);
@@ -53,11 +54,11 @@ void Display::drawBigValueNumber(double value, uint8_t numberOfDecimals, uint16_
     drawAlignedString(valStr, leftX, bottomY, width, align);
 }
 
-void Display::drawBigValueString(char const* value, uint16_t leftX, uint16_t bottomY, uint16_t width) {
+void Display::drawBigValueString(char const *value, uint16_t leftX, uint16_t bottomY, uint16_t width) {
     drawBigValueString(value, leftX, bottomY, width, ALIGN_RIGHT);
 }
 
-void Display::drawBigValueString(char const* value, uint16_t leftX, uint16_t bottomY, uint16_t width, uint8_t align) {
+void Display::drawBigValueString(char const *value, uint16_t leftX, uint16_t bottomY, uint16_t width, uint8_t align) {
     _tft.setFont(_bigValueFont);
     _tft.setTextColor(Settings::VALUE_COLOR);
     drawAlignedString(value, leftX, bottomY, width, align);
@@ -84,20 +85,22 @@ void Display::drawEditableDigit(int currentValue, uint16_t leftX, uint16_t botto
 }
 
 
-void Display::drawAlignedString(char const* s, uint16_t leftX, uint16_t bottomY, uint16_t width, uint16_t align) {
+void Display::drawAlignedString(char const *s, uint16_t leftX, uint16_t bottomY, uint16_t width, uint16_t align) {
+    uint16_t calculatedLeft;
+    uint16_t calculatedBottom = bottomY - 2; // keep 2px margins
     if (align == ALIGN_LEFT) {
-        _tft.setCursor(leftX, bottomY);
+        calculatedLeft = leftX + 2; // keep 2px margins
     } else {
         int16_t x1, y1;
         uint16_t w, h;
         _tft.getTextBounds(s, leftX, bottomY, &x1, &y1, &w, &h); //calc width of new string
         if (align == ALIGN_CENTER) {
-            _tft.setCursor(leftX + width / 2 - w / 2, bottomY);
+            calculatedLeft = leftX + width / 2 - w / 2;
         } else if (align == ALIGN_RIGHT) {
-            _tft.setCursor(leftX + width - w - 4, bottomY);
+            calculatedLeft = leftX + width - w - 4 - 2; // keep 2px margins
         }
     }
-
+    _tft.setCursor(calculatedLeft, calculatedBottom);
     _tft.print(s);
 }
 
@@ -113,7 +116,6 @@ void Display::fillWithBackground(uint16_t leftX, uint16_t topY, uint16_t width, 
         }
     }
     _tft.endWrite();
-
 }
 
 void Display::drawBattery(uint8_t percentage, uint16_t leftX, uint16_t topY, uint16_t width, uint16_t height) {
@@ -123,6 +125,10 @@ void Display::drawBattery(uint8_t percentage, uint16_t leftX, uint16_t topY, uin
     _tft.drawFastHLine(leftX + (width / 2) - 4, topY + 1, 8, Settings::TITLE_COLOR);
     _tft.drawRoundRect(leftX, topY + 2, width, height - 2, 1, Settings::TITLE_COLOR);
     _tft.fillRoundRect(leftX + 2, topY + (height - 2 - batH), width - 4, batH, 1, Settings::TITLE_COLOR);
+}
+
+void Display::drawRectangle(uint16_t leftX, uint16_t topY, uint16_t width, uint16_t height) {
+    _tft.drawRect(leftX, topY, width, height, Settings::TITLE_COLOR);
 }
 
 

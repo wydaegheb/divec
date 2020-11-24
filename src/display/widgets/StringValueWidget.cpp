@@ -31,8 +31,9 @@ void StringValueWidget::draw() {
         _drawTitle = false;
     }
 
-    _display->fillWithBackground(_leftX - 1, _topY + 22, _width + 2, (_height - 20)); // clear background for the value only as it is the only part that is redrawn
+    _display->fillWithBackground(_leftX - 1, _topY + 20, _width, (_height - 20)); // clear background for the value only as it is the only part that is redrawn
     _display->drawBigValueString(_value, _leftX, _topY + _height, _width, _align);
+    //_display->drawRectangle(_leftX,_topY,_width, _height); // shows bounding box for debugging
 }
 
 

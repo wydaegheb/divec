@@ -33,15 +33,20 @@ public:
 
     void drawTitleString(char const* s, uint16_t leftX, uint16_t bottomY, uint16_t width);
 
-    void drawBigValueString(char const* value, uint16_t leftX, uint16_t bottomY, uint16_t width);
-    void drawBigValueString(char const* value, uint16_t leftX, uint16_t bottomY, uint16_t width, uint8_t align);
+    void drawBigValueString(char const *value, uint16_t leftX, uint16_t bottomY, uint16_t width);
+
+    void drawBigValueString(char const *value, uint16_t leftX, uint16_t bottomY, uint16_t width, uint8_t align);
 
     void drawBigValueNumber(double value, uint8_t numberOfDecimals, uint16_t leftX, uint16_t bottomY, uint16_t width);
+
     void drawBigValueNumber(double value, uint8_t numberOfDecimals, uint16_t leftX, uint16_t bottomY, uint16_t width, uint8_t align);
 
     void drawEditableDigit(int currentValue, uint16_t leftX, uint16_t bottomY, uint16_t width, uint16_t height, bool selected);
 
     void drawBattery(uint8_t percentage, uint16_t leftX, uint16_t topY, uint16_t width, uint16_t height);
+
+    void drawRectangle(uint16_t leftX, uint16_t topY, uint16_t width, uint16_t height);
+
 
     void fillWithBackground(uint16_t leftX, uint16_t topY, uint16_t width, uint16_t height);
 
@@ -50,7 +55,7 @@ public:
 
 private:
 
-    void drawAlignedString(char const* s, uint16_t leftX, uint16_t bottomY, uint16_t width, uint16_t align);
+    void drawAlignedString(char const *s, uint16_t leftX, uint16_t bottomY, uint16_t width, uint16_t align);
 
     Adafruit_ILI9341 _tft = Adafruit_ILI9341(TFT_CS, TFT_DC);
 

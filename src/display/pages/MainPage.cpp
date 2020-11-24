@@ -17,10 +17,10 @@ MainPage::MainPage(Display *display, DecoManager *decoManager) : Page("MAIN_PAGE
 
     _gasPO2 = new NumberValueWidget(_display, "GasPO2", 2, 120, MIDDLE_ROW_Y, 90, 65, ALIGN_CENTER);
 
-    _mode = new StringValueWidget(_display, "", 15, BOTTOM_ROW_Y, 40, 65);
-    _gasMix = new StringValueWidget(_display, "O2/HE", 95, BOTTOM_ROW_Y, 70, 65);
+    _mode = new StringValueWidget(_display, "", 5, BOTTOM_ROW_Y, 65, 65);
+    _gasMix = new StringValueWidget(_display, "O2/HE", 90, BOTTOM_ROW_Y, 75, 65);
     _ndl = new NumberValueWidget(_display, "NDL", 0, 190, BOTTOM_ROW_Y, 50, 65);
-    _tts = new NumberValueWidget(_display, "TTS", 0, 250, BOTTOM_ROW_Y, 60, 65);
+    _tts = new NumberValueWidget(_display, "TTS", 0, 250, BOTTOM_ROW_Y, 70, 65);
 }
 
 MainPage::~MainPage() {
@@ -30,7 +30,9 @@ MainPage::~MainPage() {
     delete _surfaceInterval;
     delete _decoStopDepth;
     delete _decoStopTime;
+
     delete _gasPO2;
+
     delete _mode;
     delete _gasMix;
     delete _ndl;
@@ -42,7 +44,9 @@ MainPage::~MainPage() {
     _surfaceInterval = nullptr;
     _decoStopDepth = nullptr;
     _decoStopTime = nullptr;
+
     _gasPO2 = nullptr;
+
     _mode = nullptr;
     _gasMix = nullptr;
     _ndl = nullptr;
@@ -56,7 +60,9 @@ void MainPage::redraw() {
     _surfaceInterval->redraw();
     _decoStopDepth->redraw();
     _decoStopTime->redraw();
+
     _gasPO2->redraw();
+
     _mode->redraw();
     _gasMix->redraw();
     _ndl->redraw();

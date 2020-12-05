@@ -3,10 +3,14 @@
 
 #include <ArduinoJson.h>
 
-class JsonSerializable{
+class JsonSerializable {
 public:
-    virtual size_t serialize(File* file) = 0;
-    virtual DeserializationError deserialize(File* file) = 0;
+    virtual ~JsonSerializable() = default;
+
+    virtual size_t serialize(File *file) = 0;
+
+    virtual DeserializationError deserialize(File *file) = 0;
+
     virtual size_t getFileSize() = 0;
 };
 

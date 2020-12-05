@@ -1,7 +1,7 @@
 #ifndef DIVEC_BATTERYWIDGET_H
 #define DIVEC_BATTERYWIDGET_H
 
-#include "Widget.h"
+#include <display/widgets/Widget.h>
 
 #define BATTERY_PIN A6
 

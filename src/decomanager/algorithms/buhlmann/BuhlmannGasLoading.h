@@ -1,13 +1,10 @@
 #ifndef DIVEC_BUHLMANN_GAS_LOADING_H
 #define DIVEC_BUHLMANN_GAS_LOADING_H
 
-#include <memory>
-#include <utility>
 #include <domain/dive/DecompressionPlan.h>
 #include <gasmanager/GasManager.h>
-#include "BuhlmannTable.h"
-#include "BuhlmannTissue.h"
-
+#include <decomanager/algorithms/buhlmann/BuhlmannTable.h>
+#include <decomanager/algorithms/buhlmann/BuhlmannTissue.h>
 
 class BuhlmannGasLoading {
 public:

@@ -3,13 +3,18 @@
 
 #include <Adafruit_GFX.h>  // Core graphics library
 #include <Adafruit_ILI9341.h> // Hardware-specific library for ILI9341
+#include <display/bgimage/jellyfish.h>
 
-#include <display/fonts/arial12pt7.h>
-#include <display/fonts/arialbd10pt7.h>
-#include <display/fonts/arialn24pt7b.h>
+//#include <display/fonts/arial12pt7.h>
+//#include <display/fonts/arialbd10pt7.h>
+//#include <display/fonts/arialnb12pt7.h>
+//#include <display/fonts/arialn24pt7b.h>
 
-#include <display/fonts/NotoSans_Condensed12pt7b.h>
 #include <display/fonts/NotoSans_Condensed9pt7b.h>
+//#include <display/fonts/NotoSans_Condensed12pt7b.h>
+#include <display/fonts/NotoSans_Condensed14pt7b.h>
+//#include <display/fonts/NotoSans_Condensed16pt7b.h>
+//#include <display/fonts/JetBrainsMono_Regular16pt7b.h>
 #include <display/fonts/NotoSans_Condensed24pt7b.h>
 
 #include <domain/settings/Settings.h>
@@ -29,9 +34,11 @@ class Display {
 public:
     virtual ~Display();
 
-    void init(FileSystem* fileSystem);
+    void init(FileSystem *fileSystem);
 
-    void drawTitleString(char const* s, uint16_t leftX, uint16_t bottomY, uint16_t width);
+    void drawTitleString(char const *s, uint16_t leftX, uint16_t bottomY, uint16_t width);
+
+    void drawTitleString(char const *s, uint16_t leftX, uint16_t bottomY, uint16_t width, uint8_t align);
 
     void drawBigValueString(char const *value, uint16_t leftX, uint16_t bottomY, uint16_t width);
 
@@ -41,17 +48,15 @@ public:
 
     void drawBigValueNumber(double value, uint8_t numberOfDecimals, uint16_t leftX, uint16_t bottomY, uint16_t width, uint8_t align);
 
-    void drawEditableDigit(int currentValue, uint16_t leftX, uint16_t bottomY, uint16_t width, uint16_t height, bool selected);
+    void drawEditableDigit(uint8_t currentValue, uint8_t numberOfDigits, uint16_t leftX, uint16_t bottomY, uint16_t width, uint16_t height, bool selected);
 
     void drawBattery(uint8_t percentage, uint16_t leftX, uint16_t topY, uint16_t width, uint16_t height);
 
     void drawRectangle(uint16_t leftX, uint16_t topY, uint16_t width, uint16_t height);
 
-
     void fillWithBackground(uint16_t leftX, uint16_t topY, uint16_t width, uint16_t height);
 
     void clear();
-
 
 private:
 
@@ -59,7 +64,7 @@ private:
 
     Adafruit_ILI9341 _tft = Adafruit_ILI9341(TFT_CS, TFT_DC);
 
-    uint16_t *_bgImage;
+    //uint16_t *_bgImage;
 
     const GFXfont *_titleFont;
     const GFXfont *_smallValueFont;

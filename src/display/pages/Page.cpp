@@ -1,8 +1,8 @@
 #include "Page.h"
 
 
-Page::Page(char const* pageName, Display *display, DecoManager *decoManager) {
-    _pageName = pageName;
+Page::Page(uint8_t pageNr, Display *display, DecoManager *decoManager) {
+    _pageNr = pageNr;
     _display = display;
     _dive = decoManager->getCurrentDive();
     _gasManager = decoManager->getGasManager();
@@ -11,24 +11,24 @@ Page::Page(char const* pageName, Display *display, DecoManager *decoManager) {
 
 Page::~Page() = default;
 
-char const* Page::getPageName() {
-    return _pageName;
+uint8_t Page::getPageNr() {
+    return _pageNr;
 }
 
 void Page::clear() {
     _display->clear();
 }
 
-char const* Page::handleLeftButtonPress() {
+uint8_t Page::handleLeftButtonPress() {
     Serial.print(F("OVERIDE ME! Left button pressed in page: "));
-    Serial.println(_pageName);
-    return _pageName;
+    Serial.println(_pageNr);
+    return _pageNr;
 }
 
-char const* Page::handleRightButtonPress() {
+uint8_t Page::handleRightButtonPress() {
     Serial.print(F("OVERIDE ME! Right button pressed in page: "));
-    Serial.println(_pageName);
-    return _pageName;
+    Serial.println(_pageNr);
+    return _pageNr;
 }
 
 

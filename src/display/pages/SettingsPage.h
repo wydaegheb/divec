@@ -1,7 +1,7 @@
 #ifndef DIVEC_SETTINGSPAGE_H
 #define DIVEC_SETTINGSPAGE_H
 
-#include "Page.h"
+#include <display/pages/Page.h>
 
 #include <display/widgets/NumberValueWidget.h>
 #include <display/widgets/EditableDigitWidget.h>
@@ -20,7 +20,9 @@ protected:
 
     void redraw() override;
 
-    char const *handleLeftButtonPress() override;
+    uint8_t handleLeftButtonPress() override;
+
+    uint8_t handleRightButtonPress() override;
 
 
 private:

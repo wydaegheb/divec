@@ -10,6 +10,7 @@
 
 class DecoManager : public JsonSerializable {
 public:
+    ~DecoManager() override = default;
 
     void init(FileSystem *fileSystem, const DateTime &currentTime);
 
@@ -38,8 +39,6 @@ public:
 
     double getPreviousPressureInBar() const;
 
-    uint32_t getNoFlyTimeInMinutes() const;
-
     // persistence
     size_t serialize(File *file) override;
 
@@ -48,6 +47,8 @@ public:
     size_t getFileSize() override;
 
 private:
+    FileSystem *_fileSystem;
+
     Dive *_currentDive;
     DiveAlgorithm *_currentAlgorithm;
     std::list<DiveAlgorithm *> _algorithms;
@@ -55,7 +56,6 @@ private:
 
     DateTime _previousUpdateTime;
     double _previousPressureInBar;
-    uint32_t _noFlyTimeInMinutes;
 
 };
 

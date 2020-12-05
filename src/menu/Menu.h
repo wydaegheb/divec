@@ -20,7 +20,7 @@ public:
     void handleRightButtonPress();
 
 private:
-    void setCurrentPage(char const* pageName);
+    void setCurrentPage(uint8_t pageName);
 
     Page *_currentPage;
     std::list<Page*> _pages;

@@ -2,9 +2,9 @@
 #define DECOMPRESSION_PLAN_H
 
 #include <list>
-#include "DecompressionStep.h"
-#include "Dive.h"
-#include "display/utils/Formatter.h"
+#include <domain/dive/DecompressionStep.h>
+#include <domain/dive/Dive.h>
+#include <display/utils/Formatter.h>
 
 
 class DecompressionPlan {

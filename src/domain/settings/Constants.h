@@ -13,7 +13,8 @@
 #define DARKGREY 0x7BEF    ///< 123, 125, 123
 #define BLUE 0x001F        ///<   0,   0, 255
 #define GREEN 0x07E0       ///<   0, 255,   0
-#define CYAN 0x07FF        ///<   0, 255, 255
+//#define CYAN 0x07FF        ///<   0, 255, 255
+#define CYAN 0x05BD        ///<   0, 183, 235
 #define RED 0xF800         ///< 255,   0,   0
 #define MAGENTA 0xF81F     ///< 255,   0, 255
 #define YELLOW 0xFFE0      ///< 255, 255,   0

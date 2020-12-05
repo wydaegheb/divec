@@ -1,43 +1,51 @@
 #include "Display.h"
 
-Display::~Display() {
-    delete[] _bgImage;
-    _bgImage = nullptr;
-}
+Display::~Display() = default;
 
 void Display::init(FileSystem *fileSystem) {
     Serial.println(F("Initializing display."));
+
     _tft.begin();
     _tft.setRotation(1);
     _tft.fillScreen(BLACK);
 
-/*
-    _titleFont = &arial12pt7b;
-    _smallValueFont = &arialbd10pt7b;
-    _bigValueFont = &arialn24pt7b;
-*/
-
-    _titleFont = &NotoSans_Condensed12pt7b;
+    //_titleFont = &NotoSans_Condensed12pt7b;
+    _titleFont = &NotoSans_Condensed14pt7b;
+    //_titleFont = &NotoSans_Condensed16pt7b;
+    //_titleFont = &JetBrainsMono_Regular14pt7b;
     _smallValueFont = &NotoSans_Condensed9pt7b;
     _bigValueFont = &NotoSans_Condensed24pt7b;
 
-    _bgImage = fileSystem->loadBgImage();
-
     clear();
     Serial.println(F(" - display initialized."));
-
 }
 
 void Display::clear() {
-    // TODO: very weird effect. Leavin away the minus 1 for width and height you get very small artifacts at the bottom of your screen.
-    // fillWithBackground(0, 0, DISPLAY_WIDTH, DISPLAY_HEIGHT);
-    fillWithBackground(0, 0, DISPLAY_WIDTH - 1, DISPLAY_HEIGHT - 1);
+    fillWithBackground(0, 0, DISPLAY_WIDTH, DISPLAY_HEIGHT);
+}
+
+void Display::fillWithBackground(uint16_t leftX, uint16_t topY, uint16_t width, uint16_t height) {
+    // based on void Adafruit_GFX::drawRGBBitmap(int16_t x, int16_t y, uint16_t *bitmap, int16_t w, int16_t h)
+    // BUT this is nearly 40 times! faster than calling writePixel for every pixel. Reduces "flickering" drastically!
+    // background is also stored in progmem (see display/bgimage/jellyfish) to avoid out of memory issues
+    _tft.startWrite();
+    _tft.setAddrWindow(leftX, topY, width, height);
+    for (uint16_t y = topY; y < (topY + height); y++) {
+        for (uint16_t x = leftX; x < (leftX + width); x++) {
+            _tft.SPI_WRITE16(pgm_read_word(jellyFishBitmap + x + y * DISPLAY_WIDTH));
+        }
+    }
+    _tft.endWrite();
 }
 
 void Display::drawTitleString(char const *title, uint16_t leftX, uint16_t bottomY, uint16_t width) {
+    drawTitleString(title, leftX, bottomY, width, ALIGN_LEFT);
+}
+
+void Display::drawTitleString(char const *title, uint16_t leftX, uint16_t bottomY, uint16_t width, uint8_t align) {
     _tft.setFont(_titleFont);
     _tft.setTextColor(Settings::TITLE_COLOR);
-    drawAlignedString(title, leftX, bottomY, width, ALIGN_LEFT);
+    drawAlignedString(title, leftX, bottomY, width, align);
 }
 
 void Display::drawBigValueNumber(double value, uint8_t numberOfDecimals, uint16_t leftX, uint16_t bottomY, uint16_t width) {
@@ -64,9 +72,21 @@ void Display::drawBigValueString(char const *value, uint16_t leftX, uint16_t bot
     drawAlignedString(value, leftX, bottomY, width, align);
 }
 
-void Display::drawEditableDigit(int currentValue, uint16_t leftX, uint16_t bottomY, uint16_t width, uint16_t height, bool selected) {
-    String valueStr = String(currentValue);
-
+void Display::drawEditableDigit(uint8_t currentValue, uint8_t numberOfDigits, uint16_t leftX, uint16_t bottomY, uint16_t width, uint16_t height, bool selected) {
+    Serial.print("numberOfDigits:");
+    Serial.print(numberOfDigits);
+    Serial.print(" currentValue:");
+    Serial.println(currentValue);
+    char valueStr[numberOfDigits + 1];
+    if (numberOfDigits == 2) {
+        snprintf(valueStr, numberOfDigits + 1, "%02d", currentValue);
+    } else if (numberOfDigits == 3) {
+        snprintf(valueStr, numberOfDigits + 1, "%03d", currentValue);
+    } else {
+        snprintf(valueStr, numberOfDigits + 1, "%d", currentValue);
+    }
+    Serial.print(" currentValueStr:");
+    Serial.println(valueStr);
     _tft.setFont(_smallValueFont);
     _tft.setTextColor(Settings::VALUE_COLOR);
     uint16_t adjustedBottomY = bottomY - 5; // -5 to leave room for the underline for selected values
@@ -79,8 +99,8 @@ void Display::drawEditableDigit(int currentValue, uint16_t leftX, uint16_t botto
         int16_t x1, y1;
         uint16_t w, h;
         _tft.getTextBounds(valueStr, leftX, adjustedBottomY, &x1, &y1, &w, &h); //calc boundingbox of new string
-        _tft.drawFastHLine(leftX + 1, y1 + h + 1, width - 2, Settings::VALUE_COLOR);
-        _tft.drawFastHLine(leftX + 1, y1 + h + 2, width - 2, Settings::VALUE_COLOR);
+        _tft.drawFastHLine(leftX, y1 + h + 2, w, Settings::VALUE_COLOR);
+        _tft.drawFastHLine(leftX, y1 + h + 3, w, Settings::VALUE_COLOR);
     }
 }
 
@@ -102,20 +122,6 @@ void Display::drawAlignedString(char const *s, uint16_t leftX, uint16_t bottomY,
     }
     _tft.setCursor(calculatedLeft, calculatedBottom);
     _tft.print(s);
-}
-
-void Display::fillWithBackground(uint16_t leftX, uint16_t topY, uint16_t width, uint16_t height) {
-    // based on void Adafruit_GFX::drawRGBBitmap(int16_t x, int16_t y, uint16_t *bitmap, int16_t w, int16_t h)
-    // BUT this is nearly 40 times! faster than calling writePixel for every pixel. Reduces "flickering" drastically!
-    // _tft.drawRGBBitmap(leftX,topY,_bgImage,width,height);
-    _tft.startWrite();
-    _tft.setAddrWindow(leftX, topY, width, height);
-    for (uint16_t y = topY; y < (topY + height); y++) {
-        for (uint16_t x = leftX; x < (leftX + width); x++) {
-            _tft.SPI_WRITE16(_bgImage[y * DISPLAY_WIDTH + x]);
-        }
-    }
-    _tft.endWrite();
 }
 
 void Display::drawBattery(uint8_t percentage, uint16_t leftX, uint16_t topY, uint16_t width, uint16_t height) {

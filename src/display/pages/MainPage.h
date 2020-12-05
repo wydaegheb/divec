@@ -1,7 +1,7 @@
 #ifndef DIVEC_MAINPAGE_H
 #define DIVEC_MAINPAGE_H
 
-#include "Page.h"
+#include <display/pages/Page.h>
 
 #include <display/widgets/NumberValueWidget.h>
 #include <display/widgets/StringValueWidget.h>
@@ -22,7 +22,7 @@ protected:
 
     void redraw() override;
 
-    char const *handleRightButtonPress() override;
+    uint8_t handleRightButtonPress() override;
 
 
 private:

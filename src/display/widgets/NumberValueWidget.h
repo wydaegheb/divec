@@ -1,7 +1,7 @@
 #ifndef DIVEC_NUMBER_VALUE_WIDGET_H
 #define DIVEC_NUMBER_VALUE_WIDGET_H
 
-#include "Widget.h"
+#include <display/widgets/Widget.h>
 
 class NumberValueWidget : public Widget {
 public:

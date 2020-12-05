@@ -1,7 +1,7 @@
 #ifndef DIVEC_WETCONTACT_H
 #define DIVEC_WETCONTACT_H
 
-#include "Arduino.h"
+#include <Arduino.h>
 
 #define WET_CONTACT_ACTIVATION_TRESHOLD 15000 // WETCONTACT IS CONSIDERED "ACTIVE" AFTER 15 seconds in the water
 

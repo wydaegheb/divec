@@ -1,8 +1,9 @@
 #ifndef DIVEC_DEPTHSENSOR_H
 #define DIVEC_DEPTHSENSOR_H
 
-#include "domain/settings/Settings.h"
-#include "DIVEC_MS5837.h"
+#include <domain/settings/Settings.h>
+#include <sensors/depth/DIVEC_MS5837.h>
+#include <time/Time.h>
 
 class DepthSensor {
 public:
@@ -17,7 +18,9 @@ public:
 private:
     DIVEC_MS5837 _depthSensor;
     bool _isMocked;
+    DateTime _lastUpdated;
     double _currentPressure;
+    double _currentTemp;
 
 };
 

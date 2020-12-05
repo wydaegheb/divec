@@ -42,7 +42,7 @@ THE SOFTWARE.
 #define MS5837_H_BLUEROBOTICS
 
 #include <Wire.h>
-#include "Arduino.h"
+#include <Arduino.h>
 
 class DIVEC_MS5837 {
 public:

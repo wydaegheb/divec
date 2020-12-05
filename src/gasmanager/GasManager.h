@@ -21,6 +21,7 @@ public:
     static Gas NX50;
     static Gas TX18_35;
 
+    ~GasManager() override = default;
 
     void init(FileSystem* fileSystem);
 
@@ -67,7 +68,6 @@ private:
     Gas *getBestGas(double pressureInBars, std::list<Gas *> *gasList);
 
     void loadDefaultGasses();
-
 
     Gas *_currentOcGas;
     Gas *_currentCcGas;

@@ -1,9 +1,9 @@
 #ifndef DIVEC_DECOMPRESSIONSTEP_H
 #define DIVEC_DECOMPRESSIONSTEP_H
 
-#include "time/Time.h"
-#include "display/utils/Formatter.h"
-#include "Gas.h"
+#include <time/Time.h>
+#include <display/utils/Formatter.h>
+#include <domain/dive/Gas.h>
 
 class DecompressionStep {
 public:

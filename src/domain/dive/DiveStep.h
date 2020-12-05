@@ -1,28 +1,36 @@
 #ifndef DIVEC_DIVESTEP_H
 #define DIVEC_DIVESTEP_H
 
-#include "Arduino.h"
-#include "Gas.h"
+#include <Arduino.h>
+#include <domain/dive/Gas.h>
 
-class DiveStep {
+class DiveStep : public JsonSerializable {
 public:
-    DiveStep(DateTime endTime, Gas *gas, double pressureInBar, double temperature);
+    DiveStep(const DateTime &endTime, Gas *gas, double pressureInBar, double temperature);
+
+    ~DiveStep() override = default;
 
     DateTime getEndTime();
 
-    void setEndTime(DateTime endTime);
+    void setEndTime(const DateTime &endTime);
 
-    double getPressureInBar();
+    double getPressureInBar() const;
 
     void setPressureInBar(double pressureInBar);
 
-    double getTemperatureInCelsius();
+    double getTemperatureInCelsius() const;
 
     void setTemperatureInCelsius(double temperatureInCelsius);
 
-    char const* getGasName();
+    char const *getGasName();
 
     void setGasName(Gas *gas);
+
+    size_t serialize(File *file) override;
+
+    DeserializationError deserialize(File *file) override;
+
+    size_t getFileSize() override;
 
     void log();
 
@@ -32,7 +40,7 @@ private:
     DateTime _endTime;
     double _pressureInBar;
     double _temperatureInCelsius;
-    char const* _gasName;
+    char const *_gasName;
 };
 
 

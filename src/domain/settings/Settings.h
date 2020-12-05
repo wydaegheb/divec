@@ -2,8 +2,8 @@
 #define DIVEC_SETTINGS_H
 
 #include <filesystem/FileSystem.h>
-#include "Arduino.h"
-#include "Constants.h"
+#include <Arduino.h>
+#include <domain/settings/Constants.h>
 
 #define SALT 1
 #define FRESH 2
@@ -11,8 +11,10 @@
 class Settings : public JsonSerializable {
 public:
 
+    ~Settings() override = default;
+
     // init
-    void init(FileSystem* fileSystem);
+    void init(FileSystem *fileSystem);
 
     // buhlmann settings
     static double GF_LOW;                     // gradient factor low

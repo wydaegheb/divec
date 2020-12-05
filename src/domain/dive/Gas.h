@@ -18,23 +18,23 @@ public:
 
     char const* getName();
 
-    double getO2();
+    double getO2() const;
 
     void setO2(double o2);
 
-    double getN2();
+    double getN2() const;
 
     void setN2(double n2);
 
-    double getHe();
+    double getHe() const;
 
     void setHe(double he);
 
-    bool isUsable(double pressureInBars);
+    bool isUsable(double pressureInBars) const;
 
-    uint16_t calcMODInMeters();
+    uint16_t calcMODInMeters() const;
 
-    uint16_t calcENDInMeters(double pressureInBars);
+    uint16_t calcENDInMeters(double pressureInBars) const;
 
 
 private:
@@ -43,8 +43,8 @@ private:
 
     bool _active;
 
-    char const* _name;
-    char _mix[8];
+    char const *_name;
+    char _mix[8]{};
 
     // stored as fractions (e.g. 20% o2 -> _o2 = 0.2). Total must be 1.
     double _o2;

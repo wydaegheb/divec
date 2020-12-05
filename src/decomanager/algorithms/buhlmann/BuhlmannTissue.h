@@ -2,7 +2,7 @@
 #define DIVEC_BUHLMANN_TISSUE_H
 
 #include <decomanager/algorithms/equations/DiveEquations.h>
-#include "BuhlmannTable.h"
+#include <decomanager/algorithms/buhlmann/BuhlmannTable.h>
 
 class BuhlmannTissue {
 public:

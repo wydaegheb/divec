@@ -4,18 +4,17 @@
 double DiveEquations::schreinerEquation(double pBegin, double pGas, double durationInMinutes, double halfTimeInMinutes, double gasRate) {
     double timeConstant = log(2.0) / halfTimeInMinutes;
 //    return (pGas + (gasRate * (durationInMinutes - (1.0 / timeConstant))) - ((pGas - pBegin - (gasRate / timeConstant)) * pow(2.0,-durationInMinutes / halfTimeInMinutes )));
-    return (pGas + (gasRate * (durationInMinutes - (1.0 / timeConstant))) - ((pGas - pBegin - (gasRate / timeConstant)) * exp(-timeConstant * durationInMinutes)));
-
+    return pGas + gasRate * (durationInMinutes - 1.0 / timeConstant) - (pGas - pBegin - gasRate / timeConstant) * exp(-timeConstant * durationInMinutes);
 }
 
 double DiveEquations::instantaneousEquation(double pBegin, double pGas, double durationInMinutes, double halfTimeInMinutes) {
     double timeConstant = log(2.0) / halfTimeInMinutes;
     //return (pBegin + (pGas - pBegin) * (1.0 - pow(2.0, (-durationInMinutes / halfTimeInMinutes))));
-    return (pBegin + (pGas - pBegin) * (1.0 - exp(-timeConstant * durationInMinutes)));
+    return pBegin + (pGas - pBegin) * (1.0 - exp(-timeConstant * durationInMinutes));
 }
 
 double DiveEquations::gasPressureBreathingInBars(double pressureInBars, double fGas) {
-    return pressureInBars * fGas;
+    return (pressureInBars - Constants::WATER_VAPOR) * fGas;
 }
 
 double DiveEquations::gasPressureInBars(double pressureInBars, double fGas) {
@@ -32,14 +31,14 @@ double DiveEquations::gasRateInBarsPerMinute(double startPressureInBars, double 
 }
 
 double DiveEquations::depthInMetersToBars(uint16_t depthInMeters) {
-    if (depthInMeters < 0){
+    if (depthInMeters < 0) {
         return Settings::SURFACE_PRESSURE;
     }
     return (depthInMeters * Settings::getWaterPressure()) + Settings::SURFACE_PRESSURE;
 }
 
 uint16_t DiveEquations::barToDepthInMeters(double presureInBars) {
-    if (presureInBars <= Settings::SURFACE_PRESSURE){
+    if (presureInBars <= Settings::SURFACE_PRESSURE) {
         return 0;
     }
     return round((presureInBars - Settings::SURFACE_PRESSURE) / Settings::getWaterPressure());

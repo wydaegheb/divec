@@ -1,15 +1,18 @@
 #ifndef DIVEC_BLUETOOTH_H
 #define DIVEC_BLUETOOTH_H
 
-#include "Adafruit_BluefruitLE_SPI.h"
-#include "BluefruitConfig.h"
+#include <Adafruit_BluefruitLE_SPI.h>
+#include <bluetooth/BluefruitConfig.h>
+
+#define BLE_PRESS_LEFT_BUTTON '8'
+#define BLE_PRESS_RIGHT_BUTTON '9'
 
 class Bluetooth {
 public:
 
     bool init();
 
-    int receive() const;
+    int8_t receive() const;
 
 private:
     Adafruit_BluefruitLE_SPI *_bleSpiFriend;

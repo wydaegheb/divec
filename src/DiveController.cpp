@@ -47,20 +47,10 @@ void DiveController::setup() {
 void DiveController::step() {
     DateTime currentTime = Time::getTime();
 
-    if ((currentTime.secondstime() - _lastUpdateTime.secondstime()) >= Settings::STEP_INTERVAL) { // add a step every STEP_INTERVAL
+    if ((currentTime.secondstime() - _lastUpdateTime.secondstime()) >= Settings::STEP_INTERVAL) { // add a step every STEP_INTERVAL seconds
         // read current pressure and temperature
-        _depthSensor.read();
         double pressureInBar = _depthSensor.pressureInBar();
         double tempInCelsius = _depthSensor.tempInCelsius();
-
-        // log
-        Serial.print(F("DiveController step. Time:"));
-        Serial.print(currentTime.timestamp(DateTime::TIMESTAMP_TIME));
-        Serial.print(F(" - Pressure:"));
-        Serial.print(pressureInBar);
-        Serial.print(F(" bar - Temp:"));
-        Serial.print(tempInCelsius);
-        Serial.println(F(" celsius"));
 
         // update deco manager (dive, tissues, gasses, ...)
         _decoManager.update(currentTime, pressureInBar, tempInCelsius, _wetContact.isActivated());
@@ -72,22 +62,18 @@ void DiveController::step() {
     }
 
     // check bluetooth - don't wait for interval or a bluetooth command takes 5 seconds to be handled
-    int command = _bluetooth.receive();
+    int8_t bleCommand = _bluetooth.receive();
+
 
     // handle button presses - don't wait for interval or a button press takes 5 seconds to be handled
-    if (_leftButton.isPressed() || command == '8') {
+    if (_leftButton.isPressed() || bleCommand == BLE_PRESS_LEFT_BUTTON) {
         Serial.println(F("Left Button pressed "));
         _menu.handleLeftButtonPress();
     }
-    if (_rightButton.isPressed() || command == '9') {
+    if (_rightButton.isPressed() || bleCommand == BLE_PRESS_RIGHT_BUTTON) {
         Serial.println(F("Right Button pressed "));
         _menu.handleRightButtonPress();
     }
-
-    if (command > 0 && (command < 8 || command > 9)) {
-        Serial.println(F("You stupid (wo)men!!!!!"));
-    }
-
 
 }
 

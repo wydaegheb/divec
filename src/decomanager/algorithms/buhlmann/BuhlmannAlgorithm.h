@@ -2,8 +2,7 @@
 #define DIVEC_BUHLMANN_ALGORITHM_H
 
 #include <decomanager/algorithms/DiveAlgorithm.h>
-#include "BuhlmannTable.h"
-#include "BuhlmannGasLoading.h"
+#include <decomanager/algorithms/buhlmann/BuhlmannGasLoading.h>
 
 
 class BuhlmannAlgorithm : public DiveAlgorithm {

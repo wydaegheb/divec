@@ -47,7 +47,7 @@ char const* Gas::getName() {
     return _name;
 }
 
-double Gas::getO2() {
+double Gas::getO2() const {
     return _o2;
 }
 
@@ -55,7 +55,7 @@ void Gas::setO2(double o2) {
     _o2 = o2;
 }
 
-double Gas::getN2() {
+double Gas::getN2() const {
     return _n2;
 }
 
@@ -63,7 +63,7 @@ void Gas::setN2(double n2) {
     _n2 = n2;
 }
 
-double Gas::getHe() {
+double Gas::getHe() const {
     return _he;
 }
 
@@ -71,11 +71,11 @@ void Gas::setHe(double he) {
     _he = he;
 }
 
-uint16_t Gas::calcMODInMeters() { // result is max depth in meters before O2 becomes toxic
+uint16_t Gas::calcMODInMeters() const { // result is max depth in meters before O2 becomes toxic
     return DiveEquations::barToDepthInMeters(Settings::MAX_PPO2 / _o2);
 }
 
-uint16_t Gas::calcENDInMeters(double pressureInBars) { // result is equivalent narcotic depth in meters at the given actual pressure (input given in bars)
+uint16_t Gas::calcENDInMeters(double pressureInBars) const { // result is equivalent narcotic depth in meters at the given actual pressure (input given in bars)
     double narcIndex = _n2;
     if (Settings::O2_NARCOTIC) {
         narcIndex += _o2;
@@ -83,7 +83,7 @@ uint16_t Gas::calcENDInMeters(double pressureInBars) { // result is equivalent n
     return DiveEquations::barToDepthInMeters(pressureInBars * narcIndex);
 }
 
-bool Gas::isUsable(double pressureInBars) {
+bool Gas::isUsable(double pressureInBars) const {
     return (pressureInBars * _o2 < Settings::MAX_PPO2) && (calcENDInMeters(pressureInBars) < Settings::MAX_END);
 }
 

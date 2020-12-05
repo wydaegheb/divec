@@ -1,7 +1,7 @@
 #ifndef DIVEC_STRING_VALUE_WIDGET_H
 #define DIVEC_STRING_VALUE_WIDGET_H
 
-#include "Widget.h"
+#include <display/widgets/Widget.h>
 
 class StringValueWidget : public Widget {
 public:

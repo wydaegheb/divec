@@ -3,7 +3,7 @@
 
 #define DEBOUNCE_TIME 500 // avoid more than 2 presses per second (debounce)
 
-#include "Arduino.h"
+#include <Arduino.h>
 
 class PiezoButton {
 public:

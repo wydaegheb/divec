@@ -1,14 +1,15 @@
 #ifndef DIVEC_TIME_H
 #define DIVEC_TIME_H
 
-#include "Arduino.h"
-#include "RTClib.h"
+#include <Arduino.h>
+#include <RTClib.h>
 
 class Time {
 public:
     static bool init(bool isMocked);
 
     static DateTime getTime();
+
     static void setTime();
 
 private:

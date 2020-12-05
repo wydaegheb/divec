@@ -4,26 +4,30 @@
 #include <display/Display.h>
 #include <decomanager/DecoManager.h>
 
+#define MAIN_PAGE 1
+#define SETTINGS_PAGE 2
+
+
 class Page {
 public:
-    Page(char const *pageName, Display *display, DecoManager *decoManager);
+    Page(uint8_t pageNr, Display *display, DecoManager *decoManager);
 
     virtual ~Page();
 
-    char const *getPageName();
+    uint8_t getPageNr();
 
     virtual void update() = 0;
 
     virtual void redraw() = 0;
 
-    virtual char const *handleLeftButtonPress();
+    virtual uint8_t handleLeftButtonPress();
 
-    virtual char const *handleRightButtonPress();
+    virtual uint8_t handleRightButtonPress();
 
 protected:
     virtual void clear();
 
-    char const *_pageName;
+    uint8_t _pageNr;
     Display *_display;
     DecoManager *_decoManager;
     GasManager *_gasManager;

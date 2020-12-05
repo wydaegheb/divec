@@ -30,10 +30,10 @@ void Menu::update() {
     _currentPage->update();
 }
 
-void Menu::setCurrentPage(char const* pageName) {
+void Menu::setCurrentPage(uint8_t pageNr) {
     for (Page *page:_pages) {
-        if (strcmp(page->getPageName(),pageName) == 0) {
-            if (strcmp(_currentPage->getPageName(), pageName) != 0) { // page transition - clear previous page
+        if (page->getPageNr() == pageNr) {
+            if (_currentPage->getPageNr() != pageNr) { // page transition - clear previous page
                 _display->clear();
                 _currentPage = page;
                 _currentPage->redraw();

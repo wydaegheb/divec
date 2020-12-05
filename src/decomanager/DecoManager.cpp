@@ -3,6 +3,8 @@
 void DecoManager::init(FileSystem *fileSystem, const DateTime &currentTime) {
     Serial.println(F("Initializing deco manager."));
 
+    _fileSystem = fileSystem;
+
     // init algorithms
     addAlgorithm(new BuhlmannAlgorithm("BUHLMANN_B_GF", BuhlmannTable(Constants::BUHLMANN_ZHL16_B_TABLE)));
     addAlgorithm(new BuhlmannAlgorithm("BUHLMANN_C_GF", BuhlmannTable(Constants::BUHLMANN_ZHL16_C_TABLE)));
@@ -15,7 +17,7 @@ void DecoManager::init(FileSystem *fileSystem, const DateTime &currentTime) {
 
     // init dive
     _currentDive = new Dive();
-    _currentDive->init();
+    _currentDive->init(fileSystem);
     Serial.println(F(" - dive initialized."));
 
     // init gasmanager
@@ -66,11 +68,11 @@ void DecoManager::update(const DateTime &currentTime, double currentPressureInBa
         for (DiveAlgorithm *diveAlgorithm:_algorithms) {
             diveAlgorithm->update(_previousUpdateTime.secondstime(), currentTime.secondstime(), _gasManager, _previousPressureInBar, currentPressureInBar);
         }
+
         // dive has just ended
         if (_currentDive->isEnded()) {
             Serial.println(F(" - dive ended!"));
-            // TODO: LOG DIVE
-            _currentDive->init(); // initializes a new dive (this new dive is not started yet. it is waiting till "start" is being called to start taking updates)
+            _fileSystem->saveDecoState(this);
         }
     }
 
@@ -124,15 +126,10 @@ double DecoManager::getPreviousPressureInBar() const {
     return _previousPressureInBar;
 }
 
-uint32_t DecoManager::getNoFlyTimeInMinutes() const {
-    return _noFlyTimeInMinutes;
-}
-
 size_t DecoManager::serialize(File *file) {
     DynamicJsonDocument doc(getFileSize());
 
-    doc["previousUpdateTime"] = _previousUpdateTime.secondstime();
-    doc["noFlyTimeInMinutes"] = _noFlyTimeInMinutes;
+    doc["previousUpdateTime"] = getPreviousUpdateTime().secondstime();
     doc["currentAlgorithm"] = _currentAlgorithm->getName();
     for (auto algorithm:_algorithms) {
         JsonObject algorithmJson = doc.createNestedObject(algorithm->getName());
@@ -151,8 +148,7 @@ DeserializationError DecoManager::deserialize(File *file) {
     }
 
     // load last deco state -> _previousUpdateTime, current algorithm, all algorithms state (mainly tissues)
-    uint32_t timeInSeconds = doc["previousUpdateTime"];
-    _previousUpdateTime = DateTime(timeInSeconds);
+    _previousUpdateTime = DateTime((uint32_t) doc["previousUpdateTime"]);
     setCurrentAlgorithm(doc["currentAlgorithm"]);
     for (auto algorithm:_algorithms) {
         JsonObject algorithmJson = doc[algorithm->getName()];
@@ -173,6 +169,7 @@ size_t DecoManager::getFileSize() {
     }
     return fileSize + 500; // TODO: why out of memory without +500??????????????
 }
+
 
 
 

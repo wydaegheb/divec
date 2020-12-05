@@ -1,6 +1,6 @@
 #include "MainPage.h"
 
-MainPage::MainPage(Display *display, DecoManager *decoManager) : Page("MAIN_PAGE", display, decoManager) {
+MainPage::MainPage(Display *display, DecoManager *decoManager) : Page(MAIN_PAGE, display, decoManager) {
     Serial.println(F(" - Initializing main page."));
     _currentDepth = new NumberValueWidget(_display, "DEPTH", 0, 5, TOP_ROW_Y, 80, 65);
     Serial.println(F("   - _currentDepth"));
@@ -98,8 +98,8 @@ void MainPage::update() {
     _tts->updateValue(plan->getTtsInSeconds() / 60.0);
 }
 
-char const *MainPage::handleRightButtonPress() {
-    return "SETTINGS_PAGE";
+uint8_t MainPage::handleRightButtonPress() {
+    return SETTINGS_PAGE;
 }
 
 

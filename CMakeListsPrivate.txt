@@ -20,7 +20,7 @@ SET(CMAKE_C_STANDARD 11)
 set(CMAKE_CXX_STANDARD 11)
 
 if (CMAKE_BUILD_TYPE MATCHES "adafruit_feather_m4")
-    add_definitions(-D'PLATFORMIO=50001')
+    add_definitions(-D'PLATFORMIO=50003')
     add_definitions(-D'ARDUINO_FEATHER_M4')
     add_definitions(-D'ADAFRUIT_FEATHER_M4_EXPRESS')
     add_definitions(-D'__SAMD51J19A__')

@@ -27,7 +27,7 @@ void Display::clear() {
 void Display::fillWithBackground(uint16_t leftX, uint16_t topY, uint16_t width, uint16_t height) {
     // based on void Adafruit_GFX::drawRGBBitmap(int16_t x, int16_t y, uint16_t *bitmap, int16_t w, int16_t h)
     // BUT this is nearly 40 times! faster than calling writePixel for every pixel. Reduces "flickering" drastically!
-    // background is also stored in progmem (see display/bgimage/jellyfish) to avoid out of memory issues
+    // background is also stored in progmem (see display/bgimage/jellyfish.h) to avoid out of memory issues
     _tft.startWrite();
     _tft.setAddrWindow(leftX, topY, width, height);
     for (uint16_t y = topY; y < (topY + height); y++) {

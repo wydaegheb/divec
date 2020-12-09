@@ -6,6 +6,8 @@
 
 class DiveStep : public JsonSerializable {
 public:
+    DiveStep() = default;
+
     DiveStep(const DateTime &endTime, Gas *gas, double pressureInBar, double temperature);
 
     ~DiveStep() override = default;
@@ -26,7 +28,12 @@ public:
 
     void setGasName(Gas *gas);
 
+    JsonObject serializeObject(JsonObject &doc);
+
     size_t serialize(File *file) override;
+
+
+    void deserializeObject(JsonObject &doc);
 
     DeserializationError deserialize(File *file) override;
 

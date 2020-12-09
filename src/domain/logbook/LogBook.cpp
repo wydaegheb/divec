@@ -1,9 +1,14 @@
 #include "LogBook.h"
 
-void LogBook::init(FileSystem *fileSystem) {
+LogBook::LogBook(FileSystem *fileSystem) {
     _fileSystem = fileSystem;
     _fileSystem->loadLogbook(this);
 }
+
+void LogBook::clearTmpDiveLog() {
+    _fileSystem->clearTmpDiveLog();
+}
+
 
 void LogBook::addDiveStep(JsonSerializable *step) {
     _fileSystem->writeTmpDiveLogStep(step);
@@ -55,7 +60,7 @@ DeserializationError LogBook::deserialize(File *file) {
 }
 
 size_t LogBook::getFileSize() {
-    return JSON_OBJECT_SIZE(4); // 4 properties
+    return JSON_OBJECT_SIZE(4) + BUFFER_FOR_STRINGS_DUPLICATION; // 4 properties
 }
 
 uint16_t LogBook::getNumberOfDives() const {
@@ -89,6 +94,9 @@ uint32_t LogBook::getLastDiveDate() const {
 void LogBook::setLastDiveDate(uint32_t lastDiveDate) {
     _lastDiveDate = lastDiveDate;
 }
+
+
+
 
 
 

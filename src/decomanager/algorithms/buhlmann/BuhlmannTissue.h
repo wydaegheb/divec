@@ -15,15 +15,11 @@ public:
 
     void addDepthChangingDiveStep(double endDepth, double speedInBar, double gasN2Fraction, double gasHeFraction, uint16_t durationInSeconds);
 
-    void addCcrConstantDepthDiveStep(double depth, double gasN2Fraction, double gasHeFraction, uint16_t durationInSeconds, double setPoint);
-
-    void addCcrDepthChangingDiveStep(double startDepth, double endDepth, double gasN2Fraction, double gasHeFraction, uint16_t durationInSeconds, double setPoint);
+    double calculateCeilingInMeter(double gradientFactor) const;
 
     void startSimulation();
 
     void undoSimulation();
-
-    uint16_t calculateCeilingInMeter(double gradientFactor) const;
 
     double getPN2() const;
 
@@ -38,23 +34,23 @@ public:
     void setPTotal(double pTotal);
 
 private:
-    uint8_t _compartment;
     double _pN2;
     double _pHe;
     double _pTotal;
 
-    double _previousPN2;
-    double _previousPHe;
-    double _previousPTotal;
-
-    double _pAtmosphere;
-    double _n2HalfTime;
+    double _n2TimeConstant; // log(2.0) / n2HalfLife for this compartment
     double _n2AValue;
     double _n2BValue;
 
-    double _heHalfTime;
+    double _heTimeConstant; // log(2.0) / n2HalfLife for this compartment
     double _heAValue;
     double _heBValue;
+
+    // temp storage while calculating decompressionplan/NDL/...
+    double _pN2AtSimulationStart;
+    double _pHeAtSimulationStart;
+    double _pTotalAtSimulationStart;
+
 };
 
 #endif

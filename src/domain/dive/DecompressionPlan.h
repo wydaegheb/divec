@@ -17,8 +17,6 @@ public:
 
     std::list<DecompressionStep *> getStops();
 
-    uint32_t getNdlInSeconds();
-
     uint32_t getTtsInSeconds();
 
     void log();

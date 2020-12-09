@@ -34,3 +34,176 @@
 # Project exclude paths
 /.pio/build/
 /cmake-build-adafruit_feather_m4/
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/AnalogBinLogger/.esp32.test.skip
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/LowLatencyLogger/.esp32.test.skip
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/LowLatencyLoggerADXL345/.esp32.test.skip
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/LowLatencyLoggerMPU6050/.esp32.test.skip
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/SoftwareSpi/.esp32.test.skip
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/STM32Test/.esp32.test.skip
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/TeensySdioDemo/.esp32.test.skip
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/.gitattributes
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/.gitignore
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/SoftwareSpi/.leonardo.test.skip
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/STM32Test/.leonardo.test.skip
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/TeensySdioDemo/.leonardo.test.skip
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/AnalogBinLogger/.m4.test.skip
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/LowLatencyLogger/.m4.test.skip
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/LowLatencyLoggerADXL345/.m4.test.skip
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/LowLatencyLoggerMPU6050/.m4.test.skip
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/SoftwareSpi/.m4.test.skip
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/STM32Test/.m4.test.skip
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/TeensySdioDemo/.m4.test.skip
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/.piopm
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/.travis.yml
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/AnalogBinLogger/.zero.test.skip
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/LowLatencyLogger/.zero.test.skip
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/LowLatencyLoggerMPU6050/.zero.test.skip
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/SoftwareSpi/.zero.test.skip
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/STM32Test/.zero.test.skip
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/TeensySdioDemo/.zero.test.skip
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/LongFileName/testFiles/A long name can be 255 characters.txt
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/AnalogBinLogger/AnalogBinLogger.h
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/AnalogBinLogger/AnalogBinLogger.ino
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/#attic/AnalogLogger/AnalogLogger.ino
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/#attic/append/append.ino
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/src/FatLib/ArduinoFiles.h
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/src/FatLib/ArduinoStream.h
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/#attic/average/average.ino
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/src/SpiDriver/boards/AvrDevelopersGpioPinMap.h
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/src/FatLib/BaseBlockDriver.h
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/#attic/BaseExtCaseTest/BaseExtCaseTest.ino
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/bench/bench.ino
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/#attic/benchSD/benchSD.ino
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/src/BlockDriver.h
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/src/SpiDriver/boards/BobuinoGpioPinMap.h
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/src/FatLib/bufstream.h
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/#attic/bufstream/bufstream.ino
+/.vscode/c_cpp_properties.json
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/#attic/cin_cout/cin_cout.ino
+/.pio/libdeps/adafruit_feather_m4/ArduinoJson/src/ArduinoJson/Serialization/CountingDecorator.hpp
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/dataLogger/dataLogger.ino
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/src/SpiDriver/DigitalPin.h
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/DirectoryFunctions/DirectoryFunctions.ino
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/#attic/eventlog/eventlog.ino
+/.vscode/extensions.json
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/src/FatLib/FatApiConstants.h
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/src/FatLib/FatFile.cpp
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/src/FatLib/FatFile.h
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/src/FatLib/FatFileLFN.cpp
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/src/FatLib/FatFilePrint.cpp
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/src/FatLib/FatFileSFN.cpp
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/src/FatLib/FatFileSystem.h
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/src/FatLib/FatLib.h
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/src/FatLib/FatLibConfig.h
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/src/FatLib/FatStructs.h
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/src/FatLib/FatVolume.cpp
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/src/FatLib/FatVolume.h
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/fgets/fgets.ino
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/#attic/fgetsRewrite/fgetsRewrite.ino
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/src/FatLib/FmtNumber.cpp
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/src/FatLib/FmtNumber.h
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/formatting/formatting.ino
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/src/FreeStack.h
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/src/FatLib/fstream.cpp
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/src/FatLib/fstream.h
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/getline/getline.ino
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/src/SpiDriver/boards/GpioPinMap.h
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/#attic/HelloWorld/HelloWorld.ino
+/.pio/libdeps/adafruit_feather_m4/ArduinoJson/src/ArduinoJson/Polyfills/integer.hpp
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/src/FatLib/ios.h
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/src/FatLib/iostream.h
+/.pio/libdeps/adafruit_feather_m4/ArduinoJson/src/ArduinoJson/Polyfills/type_traits/is_pointer.hpp
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/src/FatLib/istream.cpp
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/src/FatLib/istream.h
+/.vscode/launch.json
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/src/SpiDriver/boards/LeonardoGpioPinMap.h
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/LongFileName/testFiles/LFN,NAME.TXT
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/library.properties
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/LICENSE.md
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/LongFileName/LongFileName.ino
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/LongFileName/testFiles/lower.txt
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/LowLatencyLogger/LowLatencyLogger.ino
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/LowLatencyLoggerADXL345/LowLatencyLogger.ino
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/LowLatencyLoggerMPU6050/LowLatencyLogger.ino
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/LowLatencyLoggerADXL345/LowLatencyLoggerADXL345.ino
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/LowLatencyLoggerMPU6050/LowLatencyLoggerMPU6050.ino
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/src/SpiDriver/boards/MegaGpioPinMap.h
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/src/MinimumSerial.cpp
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/src/MinimumSerial.h
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/#attic/MiniSerial/MiniSerial.ino
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/LongFileName/testFiles/MIXCASE.txt
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/LongFileName/testFiles/mixed.TXT
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/LongFileName/testFiles/Not_8_3.txt
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/LongFileName/testFiles/OK%83.TXT
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/OpenNext/OpenNext.ino
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/src/FatLib/ostream.cpp
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/src/FatLib/ostream.h
+/.pio/libdeps/adafruit_feather_m4/RTClib/examples/pcf8563/pcf8563.ino
+/.pio/libdeps/adafruit_feather_m4/RTClib/examples/pcf8563_interrupt/pcf8563_interrupt.ino
+/.pio/libdeps/adafruit_feather_m4/ArduinoJson/src/ArduinoJson/Polyfills/pgmspace_generic.hpp
+/.pio/libdeps/adafruit_feather_m4/ArduinoJson/src/ArduinoJson/Polyfills/preprocessor.hpp
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/PrintBenchmark/PrintBenchmark.ino
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/#attic/PrintBenchmarkSD/PrintBenchmarkSD.ino
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/QuickStart/QuickStart.ino
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/RawWrite/RawWrite.ino
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/ReadCsv/ReadCsv.ino
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/ReadCsvArray/ReadCsvArray.ino
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/ReadCsvStream/ReadCsvStream.ino
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/#attic/readlog/readlog.ino
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/README.md
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/#attic/readme.txt
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/LowLatencyLoggerADXL345/readme.txt
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/ReadWrite/ReadWrite.ino
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/rename/rename.ino
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/#attic/SD_Size/SD_Size.ino
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/src/SdFat.h
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/src/SdFatConfig.h
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/#attic/SdFatSize/SdFatSize.ino
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/SdFormatter/SdFormatter.ino
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/src/SdCard/SdInfo.h
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/SdInfo/SdInfo.ino
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/src/SdCard/SdioCard.h
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/src/SdCard/SdioCardEX.cpp
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/src/sdios.h
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/src/SdCard/SdioTeensy.cpp
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/src/SpiDriver/SdSpiBaseDriver.h
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/src/SdCard/SdSpiCard.cpp
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/src/SdCard/SdSpiCard.h
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/src/SdCard/SdSpiCardEX.cpp
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/src/SpiDriver/SdSpiDriver.h
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/src/SpiDriver/SdSpiESP8266.cpp
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/src/SpiDriver/SdSpiParticle.cpp
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/src/SpiDriver/SdSpiSAM3X.cpp
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/src/SpiDriver/SdSpiSAMD.cpp
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/src/SpiDriver/SdSpiSTM32.cpp
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/src/SpiDriver/SdSpiTeensy3.cpp
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/src/SpiDriver/boards/SleepingBeautyGpioPinMap.h
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/src/SpiDriver/SoftSPI.h
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/SoftwareSpi/SoftwareSpi.ino
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/src/SpiDriver/boards/Standard1284GpioPinMap.h
+/.pio/libdeps/adafruit_feather_m4/ArduinoJson/src/ArduinoJson/Polyfills/static_array.hpp
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/LongFileName/testFiles/STD_8_3.TXT
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/StdioBench/StdioBench.ino
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/src/FatLib/StdioStream.cpp
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/src/FatLib/StdioStream.h
+/.pio/libdeps/adafruit_feather_m4/ArduinoJson/src/ArduinoJson/Strings/StdStringAdapter.hpp
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/STM32Test/STM32Test.ino
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/#attic/StreamParseInt/StreamParseInt.ino
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/src/SysCall.h
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/src/SpiDriver/boards/Teensy2GpioPinMap.h
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/src/SpiDriver/boards/Teensy2ppGpioPinMap.h
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/TeensySdioDemo/TeensySdioDemo.ino
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/Timestamp/Timestamp.ino
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/TwoCards/TwoCards.ino
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/src/SpiDriver/boards/UnoGpioPinMap.h
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/LowLatencyLogger/UserFunctions.cpp
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/LowLatencyLoggerADXL345/UserFunctions.cpp
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/LowLatencyLoggerMPU6050/UserFunctions.cpp
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/LowLatencyLogger/UserTypes.h
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/LowLatencyLoggerADXL345/UserTypes.h
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/LowLatencyLoggerMPU6050/UserTypes.h
+/.pio/libdeps/adafruit_feather_m4/ArduinoJson/src/ArduinoJson/Variant/VariantTag.hpp
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/VolumeFreeSpace/VolumeFreeSpace.ino
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/wipe/wipe.ino
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/LongFileName/testFiles/With.Two dots.txt
+/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/LongFileName/testFiles/With Blank.txt

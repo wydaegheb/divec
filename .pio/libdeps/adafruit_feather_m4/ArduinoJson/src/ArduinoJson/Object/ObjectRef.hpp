@@ -16,24 +16,24 @@ namespace ARDUINOJSON_NAMESPACE {
 
 template <typename TData>
 class ObjectRefBase {
- public:
-  operator VariantConstRef() const {
-    const void* data = _data;  // prevent warning cast-align
-    return VariantConstRef(reinterpret_cast<const VariantData*>(data));
-  }
+public:
+    operator VariantConstRef() const {
+      const void *data = _data;  // prevent warning cast-align
+      return VariantConstRef(reinterpret_cast<const VariantData *>(data));
+    }
 
-  template <typename Visitor>
-  FORCE_INLINE void accept(Visitor& visitor) const {
-    objectAccept(_data, visitor);
-  }
+    template<typename TVisitor>
+    typename TVisitor::result_type accept(TVisitor &visitor) const {
+      return objectAccept(_data, visitor);
+    }
 
-  FORCE_INLINE bool isNull() const {
-    return _data == 0;
-  }
+    FORCE_INLINE bool isNull() const {
+      return _data == 0;
+    }
 
-  FORCE_INLINE operator bool() const {
-    return _data != 0;
-  }
+    FORCE_INLINE operator bool() const {
+      return _data != 0;
+    }
 
   FORCE_INLINE size_t memoryUsage() const {
     return _data ? _data->memoryUsage() : 0;

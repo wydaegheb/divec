@@ -111,15 +111,18 @@ bool Adafruit_SPIDevice::begin(void) {
  */
 void Adafruit_SPIDevice::transfer(uint8_t *buffer, size_t len) {
   if (_spi) {
-    // hardware SPI is easy
+      // hardware SPI is easy
 
-#ifdef SPARK
-    _spi->transfer(buffer, buffer, len, NULL);
+#if defined(SPARK)
+      _spi->transfer(buffer, buffer, len, NULL);
+#elif defined(STM32)
+      for (size_t i = 0; i < len; i++) {
+        _spi->transfer(buffer[i]);
+      }
 #else
-    _spi->transfer(buffer, len);
+      _spi->transfer(buffer, len);
 #endif
-
-    return;
+      return;
   }
 
   uint8_t startbit;

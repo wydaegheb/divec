@@ -12,12 +12,13 @@ inline VariantData *arrayAdd(CollectionData *arr, MemoryPool *pool) {
   return arr ? arr->addElement(pool) : 0;
 }
 
-template <typename Visitor>
-inline void arrayAccept(const CollectionData *arr, Visitor &visitor) {
-  if (arr)
-    visitor.visitArray(*arr);
-  else
-    visitor.visitNull();
+template<typename TVisitor>
+inline typename TVisitor::result_type arrayAccept(const CollectionData *arr,
+                                                  TVisitor &visitor) {
+    if (arr)
+        return visitor.visitArray(*arr);
+    else
+        return visitor.visitNull();
 }
 
 inline bool arrayEquals(const CollectionData *lhs, const CollectionData *rhs) {

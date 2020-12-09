@@ -6,6 +6,8 @@
 #include <decomanager/algorithms/buhlmann/BuhlmannTable.h>
 #include <decomanager/algorithms/buhlmann/BuhlmannTissue.h>
 
+#define MAX_NDL 99*60
+
 class BuhlmannGasLoading {
 public:
 
@@ -13,13 +15,16 @@ public:
 
     void update(uint32_t beginTimeInSeconds, uint32_t endTimeInSeconds, double beginPressureInBar, double endPressureInBar, double gasN2Fraction, double gasHeFraction);
 
-    uint16_t getCeilingInMeters(double gradientFactor);
+    double getCeilingInMeters(double gradientFactor);
 
     uint16_t getCeilingRoundedToDecoStepSize(double gradientFactor);
 
-    DecompressionPlan *getDecoPlan(GasManager* gasManager);
+    DecompressionPlan *getDecoPlan(GasManager *gasManager);
+
+    uint32_t getNdlInSeconds(GasManager *gasManager);
 
     double getLastPressureInBar() const;
+
     void setLastPressureInBar(double lastPressureInBar);
 
     const std::list<BuhlmannTissue *> &getTissues() const;

@@ -1,8 +1,9 @@
 #include "FileSystem.h"
 
 void FileSystem::init() {
+    // SD Card initialization
     Serial.println(F("Initializing file system."));
-    if (_sdFat.begin(SD_CS)) {
+    if (_sdFat.begin(SD_CS, SPI_HALF_SPEED)) {
         Serial.println(F(" - file system initialized."));
     } else {
         Serial.println(F("!!! SYSTEM ERROR !!!\n[Filesystem failed]"));
@@ -52,29 +53,22 @@ void FileSystem::saveLogbook(JsonSerializable *logbook) {
 
 void FileSystem::loadDiveLog(JsonSerializable *dive, uint16_t diveNr) {
     char fileName[100];
-    snprintf(fileName, 100, "dive_%d.json", diveNr);
+    snprintf(fileName, 100, "dv_%d.json", diveNr);
     loadFromJsonFile(fileName, dive);
 }
 
 void FileSystem::saveDiveLog(JsonSerializable *dive, uint16_t diveNr) {
     char fileName[100];
-    snprintf(fileName, 100, "dive_%d.json", diveNr);
+    snprintf(fileName, 100, "dv_%d.jsn", diveNr);
     if (_diveLogFile) { // if a log exists -> close it first.
-        Serial.println(F("This should not be possible!. Log for this dive already exists! - Removing previous file."));
+        Serial.println(F("This should not be possible! Log for this dive already exists! - Removing previous file."));
         _diveLogFile.remove();
     }
     saveToJsonFile(fileName, dive);
 }
 
 void FileSystem::writeTmpDiveLogStep(JsonSerializable *diveLogStep) {
-    File tmpLogFile = _sdFat.open(TMP_LOG_FILE, FILE_WRITE);
-
-    if (diveLogStep->serialize(&tmpLogFile) == 0) {
-        Serial.println(F("FAILED to write dive step (0 bytes written)"));
-    } else {
-        Serial.println(F("Success writing dive step."));
-    }
-    tmpLogFile.close();
+    saveToJsonFile(TMP_LOG_FILE, diveLogStep, true);
 }
 
 void FileSystem::clearTmpDiveLog() {
@@ -110,12 +104,20 @@ bool FileSystem::loadFromJsonFile(char const *fileName, JsonSerializable *jsonSe
 }
 
 bool FileSystem::saveToJsonFile(char const *fileName, JsonSerializable *jsonSerializable) {
+    return saveToJsonFile(fileName, jsonSerializable, false);
+}
+
+bool FileSystem::saveToJsonFile(const char *fileName, JsonSerializable *jsonSerializable, bool append) {
     bool result = false;
     Serial.print(F(" - saving file:"));
     Serial.print(fileName);
     Serial.print(F(" - "));
-    // Delete existing file, otherwise the jsonSerializable is appended to the file
-    _sdFat.remove(fileName);
+
+
+    if (!append) {
+        // Not appending. deleting existing file (if it exists)
+        _sdFat.remove(fileName);
+    }
 
     // Open file for writing
     File file = _sdFat.open(fileName, FILE_WRITE);
@@ -126,6 +128,9 @@ bool FileSystem::saveToJsonFile(char const *fileName, JsonSerializable *jsonSeri
         if (jsonSerializable->serialize(&file) == 0) {
             Serial.println(F("FAILED (0 bytes written)."));
         } else {
+            if (append) {
+                file.write("\n");
+            }
             Serial.println(F("Success"));
             result = true;
         }

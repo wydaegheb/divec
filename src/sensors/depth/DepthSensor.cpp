@@ -1,7 +1,7 @@
 #include "DepthSensor.h"
 
 void DepthSensor::init(bool isMocked) {
-    Serial.println(F("Initializing clock."));
+    Serial.println(F("Initializing depth sensor."));
     _isMocked = isMocked;
     if (isMocked) {
         Serial.println(F(" - using mock depth sensor."));
@@ -23,6 +23,8 @@ void DepthSensor::init(bool isMocked) {
         _currentPressure = _depthSensor.pressure();
         _currentTemp = _depthSensor.temperature();
     }
+    _lastUpdated = Time::getTime();
+
 
 }
 
@@ -38,15 +40,15 @@ double DepthSensor::tempInCelsius() {
 
 void DepthSensor::read() {
     DateTime currentTime = Time::getTime();
-    if ((currentTime.secondstime() - _lastUpdated.secondstime()) >
-        500) { // reading the depth sensor takes time - this way we avoid more than 2 readings very second - ideally application readings of the depthsensor should happen as few as possible
+    // reading the depth sensor takes time - this way we avoid more than 2 readings every second - ideally application readings of the depthsensor should happen as few as possible
+    if ((currentTime.secondstime() - _lastUpdated.secondstime()) > 500) {
         if (_isMocked) {
             _currentPressure = _currentPressure + 100.0;
             _currentTemp = 2000.0;
         } else {
             _depthSensor.read();
             //Check for sensor error - difference has to be less than 20 meters (otherwise keep previous pressure) -> copied from DiveIno.ino)
-            if (abs(_currentPressure - _depthSensor.pressure()) < 2000) {
+            if (abs(_currentPressure - _depthSensor.pressure()) < 20000) {
                 _currentPressure = _depthSensor.pressure();
             }
 
@@ -55,6 +57,6 @@ void DepthSensor::read() {
                 _currentTemp = _depthSensor.temperature();
             }
         }
-        _lastUpdated = Time::getTime();
+        _lastUpdated = currentTime;
     }
 }

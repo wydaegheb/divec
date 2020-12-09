@@ -15,7 +15,7 @@ public:
      * @param gasRate Rate of descent/ascent in bar times the fraction of inert gas.
      * @return The end compartment inert gas pressure in bar.
      */
-    static double schreinerEquation(double pBegin, double pGas, double durationInMinutes, double halfTimeInMinutes, double gasRate);
+    static double schreinerEquation(double pBegin, double pGas, double durationInMinutes, double timeConstant, double gasRate);
 
 
     /**
@@ -27,7 +27,7 @@ public:
      * @param halfTime Halftime of inhert gas (minutes)
      * @return End compartment inert gas pressure (bar)
      */
-    static double instantaneousEquation(double pBegin, double pGas, double durationInMinutes, double halfTimeInMinutes);
+    static double instantaneousEquation(double pBegin, double pGas, double durationInMinutes, double timeConstant);
 
     /**
      * Calculates the approximate pressure of the fraction of gas for each breath taken.
@@ -56,7 +56,7 @@ public:
      * @param setPoint The setPoint used.
      * @return The diluent gas pressure in bars taken in with each breath (accounting for water vapour pressure in the lungs).
      */
-    static double gasCcrPressureBreathingInBars(uint16_t depthInMeters, double fGas, double fO2, double setPoint);
+    static double gasCcrPressureBreathingInBars(double depthInMeters, double fGas, double fO2, double setPoint);
 
     /**
      * Calculates the gas loading rate for the given pressure change in terms of bars inert gas.
@@ -75,7 +75,7 @@ public:
      * @param depth The depth in meters below the surface for 1 cubic meter volume of water.
      * @return The depth change in bars per minute.
      */
-    static double depthInMetersToBars(uint16_t depthInMeters);
+    static double depthInMetersToBars(double depthInMeters);
 
     /**
      * Calculates the depth (in meters) for the given atmosphere (bar).
@@ -83,7 +83,7 @@ public:
      * @param presureInBars The number of atmospheric pressure (in presureInBars) to convert.
      * @return The depth (in meters) for the given number of atmospheres.
      */
-    static uint16_t barToDepthInMeters(double presureInBars);
+    static double barToDepthInMeters(double presureInBars);
 
 
     static double ccrSchreinerEquation(double pBegin, double inertFraction, double o2Fraction, double halfTime, double duration, double beginDepth, double endDepth, double setPoint);

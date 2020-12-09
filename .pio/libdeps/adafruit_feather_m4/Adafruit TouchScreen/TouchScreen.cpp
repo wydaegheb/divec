@@ -21,7 +21,8 @@
 
 #define NUMSAMPLES 2
 
-TSPoint::TSPoint(void) { x = y = 0; }
+TSPoint::TSPoint(void) { x = y = z = 0; }
+
 /**
  * @brief Construct a new TSPoint::TSPoint object
  *
@@ -30,8 +31,8 @@ TSPoint::TSPoint(void) { x = y = 0; }
  * @param z0 The point's Z value
  */
 TSPoint::TSPoint(int16_t x0, int16_t y0, int16_t z0) {
-  x = x0;
-  y = y0;
+    x = x0;
+    y = y0;
   z = z0;
 }
 /**

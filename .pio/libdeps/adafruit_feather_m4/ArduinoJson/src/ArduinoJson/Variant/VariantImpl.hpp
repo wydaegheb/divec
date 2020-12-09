@@ -4,27 +4,28 @@
 
 #pragma once
 
+#include <ArduinoJson/Array/ArrayRef.hpp>
 #include <ArduinoJson/Configuration.hpp>
 #include <ArduinoJson/Numbers/convertNumber.hpp>
-#include <ArduinoJson/Numbers/parseFloat.hpp>
-#include <ArduinoJson/Numbers/parseInteger.hpp>
+#include <ArduinoJson/Numbers/parseNumber.hpp>
+#include <ArduinoJson/Object/ObjectRef.hpp>
 #include <ArduinoJson/Variant/VariantRef.hpp>
 
 #include <string.h>  // for strcmp
 
 namespace ARDUINOJSON_NAMESPACE {
 
-template <typename T>
-inline T VariantData::asIntegral() const {
-  switch (type()) {
-    case VALUE_IS_POSITIVE_INTEGER:
+    template<typename T>
+    inline T VariantData::asIntegral() const {
+        switch (type()) {
+            case VALUE_IS_POSITIVE_INTEGER:
     case VALUE_IS_BOOLEAN:
       return convertPositiveInteger<T>(_content.asInteger);
     case VALUE_IS_NEGATIVE_INTEGER:
       return convertNegativeInteger<T>(_content.asInteger);
     case VALUE_IS_LINKED_STRING:
     case VALUE_IS_OWNED_STRING:
-      return parseInteger<T>(_content.asString);
+        return parseNumber<T>(_content.asString);
     case VALUE_IS_FLOAT:
       return convertFloat<T>(_content.asFloat);
     default:
@@ -58,7 +59,7 @@ inline T VariantData::asFloat() const {
       return -static_cast<T>(_content.asInteger);
     case VALUE_IS_LINKED_STRING:
     case VALUE_IS_OWNED_STRING:
-      return parseFloat<T>(_content.asString);
+        return parseNumber<T>(_content.asString);
     case VALUE_IS_FLOAT:
       return static_cast<T>(_content.asFloat);
     default:
@@ -129,13 +130,18 @@ VariantRef::getMember(const TString &key) const {
   return VariantRef(_pool, _data != 0 ? _data->getMember(adaptString(key)) : 0);
 }
 
-template <typename TChar>
-inline VariantRef VariantRef::getOrAddMember(TChar *key) const {
-  return VariantRef(_pool, variantGetOrAddMember(_data, key, _pool));
-}
+    template<typename TChar>
+    inline VariantRef VariantRef::getOrAddMember(TChar *key) const {
+        return VariantRef(_pool, variantGetOrAddMember(_data, key, _pool));
+    }
 
-template <typename TString>
-inline VariantRef VariantRef::getOrAddMember(const TString &key) const {
-  return VariantRef(_pool, variantGetOrAddMember(_data, key, _pool));
-}
+    template<typename TString>
+    inline VariantRef VariantRef::getOrAddMember(const TString &key) const {
+        return VariantRef(_pool, variantGetOrAddMember(_data, key, _pool));
+    }
+
+    inline VariantConstRef operator|(VariantConstRef preferedValue,
+                                     VariantConstRef defaultValue) {
+        return preferedValue ? preferedValue : defaultValue;
+    }
 }  // namespace ARDUINOJSON_NAMESPACE

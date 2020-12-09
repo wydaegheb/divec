@@ -29,6 +29,8 @@ public:
 
     GasManager *getGasManager();
 
+    Gas *getCurrentGas();
+
     uint32_t getNdlInSeconds();
 
     void addSurfaceInterval(const DateTime &beginTime, const DateTime &endTime);

@@ -1,16 +1,16 @@
 
 #include "Dive.h"
 
-Dive::~Dive() {
-    clearEntries();
-}
-
-void Dive::init(FileSystem *fileSystem) {
+Dive::Dive(FileSystem *fileSystem) {
     _started = false;
     _ended = false;
     _surfaced = false;
-    _logBook = new LogBook();
-    fileSystem->loadLogbook(_logBook); // TODO: handle failure to open the file
+    clearEntries();
+
+    _logBook = new LogBook(fileSystem); // loads the existing logbook or creates a new one if it didn't exist
+}
+
+Dive::~Dive() {
     clearEntries();
 }
 
@@ -30,6 +30,8 @@ void Dive::start(const DateTime &startTime) {
     _ended = false;
     _surfaced = false;
     _startTime = startTime;
+
+    _logBook->clearTmpDiveLog();
 }
 
 void Dive::end() {
@@ -48,7 +50,7 @@ void Dive::update(const DateTime &time, Gas *gas, double pressureInBar, double t
     _lastTimeStamp = time;
 
     // update maxDepth, avgDepth, maxTemp, minTemp
-    uint16_t currentDepth = DiveEquations::barToDepthInMeters(pressureInBar);
+    double currentDepth = DiveEquations::barToDepthInMeters(pressureInBar);
     if (_maxDepthInMeter < currentDepth) {
         _maxDepthInMeter = currentDepth;
     }
@@ -95,7 +97,7 @@ bool Dive::isInProgress() const {
     return (isStarted() && !isEnded());
 }
 
-uint16_t Dive::getCurrentDepthInMeters() {
+double Dive::getCurrentDepthInMeters() {
     if (_steps.empty()) {
         return Settings::SURFACE_PRESSURE;
     }
@@ -140,21 +142,19 @@ int8_t Dive::getMaxTemperatureInCelsius() const {
 size_t Dive::serialize(File *file) {
     DynamicJsonDocument doc(getFileSize());
 
-    doc["startTime"] = _startTime.secondstime();
-    doc["lastTimeStamp"] = _lastTimeStamp.secondstime();
-    doc["avgDepthInMeter"] = _avgDepthInMeter;
-    doc["maxDepthInMeter"] = _maxDepthInMeter;
-    doc["minTemperatureInCelsius"] = _minTemperatureInCelsius;
-    doc["maxTemperatureInCelsius"] = _maxTemperatureInCelsius;
-    doc["nrOfSteps"] = _steps.size();
+    doc["start_time"] = _startTime.secondstime();
+    doc["end_time"] = _lastTimeStamp.secondstime();
+    doc["avg_depth"] = _avgDepthInMeter;
+    doc["max_depth"] = _maxDepthInMeter;
+    doc["min_temp"] = _minTemperatureInCelsius;
+    doc["max_temp"] = _maxTemperatureInCelsius;
+    doc["nr_of_steps"] = _steps.size();
 
     JsonArray stepJson = doc.createNestedArray("steps");
     uint16_t i = 0;
     for (auto step:_steps) {
-        stepJson[i]["endTime"] = step->getEndTime().secondstime();
-        stepJson[i]["lastTimeStamp"] = step->getPressureInBar();
-        stepJson[i]["temperatureInCelsius"] = step->getTemperatureInCelsius();
-        stepJson[i]["gasName"] = step->getGasName();
+        JsonObject stepJsonObject = stepJson[i].createNestedObject();
+        stepJson[i] = step->serializeObject(stepJsonObject);
         i++;
     }
 
@@ -162,6 +162,11 @@ size_t Dive::serialize(File *file) {
 }
 
 DeserializationError Dive::deserialize(File *file) {
+    _started = false;
+    _ended = true;
+    _surfaced = true;
+    clearEntries();
+
     DynamicJsonDocument doc(getFileSize());
 
     DeserializationError error = deserializeJson(doc, *file);
@@ -169,29 +174,31 @@ DeserializationError Dive::deserialize(File *file) {
         return error;
     }
 
-    _startTime = DateTime((uint32_t) doc["startTime"]);
-    _lastTimeStamp = DateTime((uint32_t) doc["lastTimeStamp"]);
-    _avgDepthInMeter = doc["avgDepthInMeter"];
-    _maxDepthInMeter = doc["maxDepthInMeter"];
-    _minTemperatureInCelsius = doc["minTemperatureInCelsius"];
-    _maxTemperatureInCelsius = doc["maxTemperatureInCelsius"];
-    uint16_t nrOfSteps = doc["nrOfSteps"];
+    _startTime = DateTime((uint32_t) doc["start_time"]);
+    _lastTimeStamp = DateTime((uint32_t) doc["end_time"]);
+    _avgDepthInMeter = doc["avg_depth"];
+    _maxDepthInMeter = doc["max_depth"];
+    _minTemperatureInCelsius = doc["min_temp"];
+    _maxTemperatureInCelsius = doc["max_temp"];
+    uint16_t nrOfSteps = doc["nr_of_steps"];
 
-
-    _started = false;
-    _ended = true;
-    _surfaced = true;
-    clearEntries();
-    for (uint16_t stepIdx; stepIdx < nrOfSteps; stepIdx++) {
-
-
+    JsonArray stepJson = doc["steps"];
+    for (uint16_t i; i < nrOfSteps; i++) {
+        auto *step = new DiveStep();
+        JsonObject stepJsonObject = stepJson.getElement(i);
+        step->deserializeObject(stepJsonObject);
+        addStep(step);
     }
 
     return error;
 }
 
 size_t Dive::getFileSize() {
-    return JSON_OBJECT_SIZE(6); // 6 properties
+    size_t stepsFileSize = 0;
+    for (auto step:_steps) {
+        stepsFileSize += step->getFileSize();
+    }
+    return JSON_OBJECT_SIZE(6) + stepsFileSize + BUFFER_FOR_STRINGS_DUPLICATION; // 6 properties + steps
 }
 
 void Dive::log() {
@@ -217,6 +224,8 @@ void Dive::log(Print *print) {
     print->println(timeSpan.seconds());
     print->println(F("=============================================="));
 }
+
+
 
 
 

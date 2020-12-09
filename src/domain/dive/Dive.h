@@ -8,11 +8,11 @@
 
 class Dive : public JsonSerializable {
 public:
+    explicit Dive(FileSystem *fileSystem);
+
     ~Dive() override;
 
     void update(const DateTime &time, Gas *gas, double pressureInBar, double tempInCelsius);
-
-    void init(FileSystem *fileSystem);
 
     void clearEntries();
 
@@ -30,7 +30,7 @@ public:
 
     bool isEnded() const;
 
-    uint16_t getCurrentDepthInMeters();
+    double getCurrentDepthInMeters();
 
     uint32_t getDiveTimeInSeconds() const;
 
@@ -71,8 +71,8 @@ private:
     DateTime _lastTimeStamp;
     uint32_t _surfacedTimeInSeconds; // time when we surfaced after the dive (i.e. surface time as seconds since Jan 1 1970)
 
-    uint16_t _avgDepthInMeter = 0;
-    uint16_t _maxDepthInMeter = 0; // we should at least get in the water
+    double _avgDepthInMeter = 0.0;
+    double _maxDepthInMeter = 0.0; // we should at least get in the water
     int8_t _minTemperatureInCelsius = 100; // diving in boiling water seems somewhat extreme
     int8_t _maxTemperatureInCelsius = 0; // water temp will always be above 0 or it would be ice which makes it somewhat hard to dive
 

@@ -47,13 +47,11 @@ void DiveController::setup() {
 void DiveController::step() {
     DateTime currentTime = Time::getTime();
 
-    if ((currentTime.secondstime() - _lastUpdateTime.secondstime()) >= Settings::STEP_INTERVAL) { // add a step every STEP_INTERVAL seconds
-        // read current pressure and temperature
-        double pressureInBar = _depthSensor.pressureInBar();
-        double tempInCelsius = _depthSensor.tempInCelsius();
+    // only add a step every STEP_INTERVAL seconds
+    if ((currentTime.secondstime() - _lastUpdateTime.secondstime()) >= Settings::STEP_INTERVAL) {
 
         // update deco manager (dive, tissues, gasses, ...)
-        _decoManager.update(currentTime, pressureInBar, tempInCelsius, _wetContact.isActivated());
+        _decoManager.update(currentTime, _depthSensor.pressureInBar(), _depthSensor.tempInCelsius(), _wetContact.isActivated());
 
         // update menu
         _menu.update();
@@ -92,6 +90,11 @@ void DiveController::onWetContactChanged() {
 const DecoManager &DiveController::getDecoManager() const {
     return _decoManager;
 }
+
+const FileSystem &DiveController::getFileSystem() const {
+    return _fileSystem;
+}
+
 
 
 

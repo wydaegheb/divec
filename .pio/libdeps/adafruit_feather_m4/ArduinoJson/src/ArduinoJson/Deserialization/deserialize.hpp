@@ -30,12 +30,13 @@ template <template <typename, typename> class TDeserializer, typename TString,
 typename enable_if<!is_array<TString>::value, DeserializationError>::type
 deserialize(JsonDocument &doc, const TString &input, NestingLimit nestingLimit,
             TFilter filter) {
-  Reader<TString> reader(input);
-  doc.clear();
-  return makeDeserializer<TDeserializer>(doc.memoryPool(), reader,
-                                         makeStringStorage(input))
-      .parse(doc.data(), filter, nestingLimit);
-}
+        Reader<TString> reader(input);
+        doc.clear();
+        return makeDeserializer<TDeserializer>(
+                doc.memoryPool(), reader,
+                makeStringStorage(input, doc.memoryPool()))
+                .parse(doc.data(), filter, nestingLimit);
+    }
 //
 // deserialize(JsonDocument&, char*, size_t, NestingLimit, Filter);
 // deserialize(JsonDocument&, const char*, size_t, NestingLimit, Filter);
@@ -45,12 +46,13 @@ template <template <typename, typename> class TDeserializer, typename TChar,
 DeserializationError deserialize(JsonDocument &doc, TChar *input,
                                  size_t inputSize, NestingLimit nestingLimit,
                                  TFilter filter) {
-  BoundedReader<TChar *> reader(input, inputSize);
-  doc.clear();
-  return makeDeserializer<TDeserializer>(doc.memoryPool(), reader,
-                                         makeStringStorage(input))
-      .parse(doc.data(), filter, nestingLimit);
-}
+        BoundedReader<TChar *> reader(input, inputSize);
+        doc.clear();
+        return makeDeserializer<TDeserializer>(
+                doc.memoryPool(), reader,
+                makeStringStorage(input, doc.memoryPool()))
+                .parse(doc.data(), filter, nestingLimit);
+    }
 //
 // deserialize(JsonDocument&, std::istream&, NestingLimit, Filter);
 // deserialize(JsonDocument&, Stream&, NestingLimit, Filter);
@@ -58,11 +60,12 @@ template <template <typename, typename> class TDeserializer, typename TStream,
           typename TFilter>
 DeserializationError deserialize(JsonDocument &doc, TStream &input,
                                  NestingLimit nestingLimit, TFilter filter) {
-  Reader<TStream> reader(input);
-  doc.clear();
-  return makeDeserializer<TDeserializer>(doc.memoryPool(), reader,
-                                         makeStringStorage(input))
-      .parse(doc.data(), filter, nestingLimit);
-}
+        Reader<TStream> reader(input);
+        doc.clear();
+        return makeDeserializer<TDeserializer>(
+                doc.memoryPool(), reader,
+                makeStringStorage(input, doc.memoryPool()))
+                .parse(doc.data(), filter, nestingLimit);
+    }
 
 }  // namespace ARDUINOJSON_NAMESPACE

@@ -14,15 +14,18 @@ BuhlmannAlgorithm::~BuhlmannAlgorithm() {
 void BuhlmannAlgorithm::update(uint32_t beginTimeInSeconds, uint32_t endTimeInSeconds, GasManager *gasManager, double beginPressureInBar, double endPressureInBar) {
     Gas *gas = gasManager->getCurrentOcGas();
     _buhlmannGasLoading->update(beginTimeInSeconds, endTimeInSeconds, beginPressureInBar, endPressureInBar, gas->getN2(), gas->getHe());
+    _decoPlan = _buhlmannGasLoading->getDecoPlan(gasManager);
 }
 
 DecompressionPlan *BuhlmannAlgorithm::getDecoPlan(GasManager *gasManager) {
-    return _buhlmannGasLoading->getDecoPlan(gasManager);
+    if (_decoPlan == nullptr) {
+        _decoPlan = _buhlmannGasLoading->getDecoPlan(gasManager);
+    }
+    return _decoPlan;
 }
 
-uint32_t BuhlmannAlgorithm::getNdlInSeconds() {
-    // TODO: really implement this
-    return 99 * 60;
+uint32_t BuhlmannAlgorithm::getNdlInSeconds(GasManager *gasManager) {
+    return _buhlmannGasLoading->getNdlInSeconds(gasManager);
 }
 
 char const* BuhlmannAlgorithm::getName() {

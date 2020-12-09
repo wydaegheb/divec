@@ -36,6 +36,13 @@ class TimeSpan;
 #define PCF8523_OFFSET 0x0E        ///< Offset register
 #define PCF8523_STATUSREG 0x03     ///< Status register
 
+#define PCF8563_ADDRESS 0x51       ///< I2C address for PCF8563
+#define PCF8563_CLKOUTCONTROL 0x0D ///< CLKOUT control register
+#define PCF8563_CONTROL_1 0x00     ///< Control and status register 1
+#define PCF8563_CONTROL_2 0x01     ///< Control and status register 2
+#define PCF8563_VL_SECONDS 0x02    ///< register address for VL_SECONDS
+#define PCF8563_CLKOUT_MASK 0x83   ///< bitmask for SqwPinMode on CLKOUT pin
+
 #define DS1307_ADDRESS 0x68 ///< I2C address for DS1307
 #define DS1307_CONTROL 0x07 ///< Control register
 #define DS1307_NVRAM 0x08   ///< Start of RAM registers - 56 bytes, 0x08 to 0x3f
@@ -83,16 +90,17 @@ public:
   bool isValid() const;
   char *toString(char *buffer);
 
-  /*!
-      @brief  Return the year.
-      @return Year (range: 2000--2099).
-  */
-  uint16_t year() const { return 2000 + yOff; }
-  /*!
-      @brief  Return the month.
-      @return Month number (1--12).
-  */
-  uint8_t month() const { return m; }
+    /*!
+        @brief  Return the year.
+        @return Year (range: 2000--2099).
+    */
+    uint16_t year() const { return 2000U + yOff; }
+
+    /*!
+        @brief  Return the month.
+        @return Month number (1--12).
+    */
+    uint8_t month() const { return m; }
   /*!
       @brief  Return the day of the month.
       @return Day of the month (1--31).
@@ -280,11 +288,11 @@ public:
 
 /** DS3231 SQW pin mode settings */
 enum Ds3231SqwPinMode {
-  DS3231_OFF = 0x01,            /**< Off */
-  DS3231_SquareWave1Hz = 0x00,  /**<  1Hz square wave */
-  DS3231_SquareWave1kHz = 0x08, /**<  1kHz square wave */
-  DS3231_SquareWave4kHz = 0x10, /**<  4kHz square wave */
-  DS3231_SquareWave8kHz = 0x18  /**<  8kHz square wave */
+    DS3231_OFF = 0x1C,            /**< Off */
+    DS3231_SquareWave1Hz = 0x00,  /**<  1Hz square wave */
+    DS3231_SquareWave1kHz = 0x08, /**<  1kHz square wave */
+    DS3231_SquareWave4kHz = 0x10, /**<  4kHz square wave */
+    DS3231_SquareWave8kHz = 0x18  /**<  8kHz square wave */
 };
 
 /** DS3231 Alarm modes for alarm 1 */
@@ -393,14 +401,57 @@ public:
   uint8_t isrunning();
   Pcf8523SqwPinMode readSqwPinMode();
   void writeSqwPinMode(Pcf8523SqwPinMode mode);
-  void enableSecondTimer(void);
-  void disableSecondTimer(void);
-  void enableCountdownTimer(PCF8523TimerClockFreq clkFreq, uint8_t numPeriods,
-                            uint8_t lowPulseWidth);
-  void enableCountdownTimer(PCF8523TimerClockFreq clkFreq, uint8_t numPeriods);
-  void disableCountdownTimer(void);
-  void deconfigureAllTimers(void);
-  void calibrate(Pcf8523OffsetMode mode, int8_t offset);
+
+    void enableSecondTimer(void);
+
+    void disableSecondTimer(void);
+
+    void enableCountdownTimer(PCF8523TimerClockFreq clkFreq, uint8_t numPeriods,
+                              uint8_t lowPulseWidth);
+
+    void enableCountdownTimer(PCF8523TimerClockFreq clkFreq, uint8_t numPeriods);
+
+    void disableCountdownTimer(void);
+
+    void deconfigureAllTimers(void);
+
+    void calibrate(Pcf8523OffsetMode mode, int8_t offset);
+};
+
+/** PCF8563 CLKOUT pin mode settings */
+enum Pcf8563SqwPinMode {
+    PCF8563_SquareWaveOFF = 0x00,  /**< Off */
+    PCF8563_SquareWave1Hz = 0x83,  /**< 1Hz square wave */
+    PCF8563_SquareWave32Hz = 0x82, /**< 32Hz square wave */
+    PCF8563_SquareWave1kHz = 0x81, /**< 1kHz square wave */
+    PCF8563_SquareWave32kHz = 0x80 /**< 32kHz square wave */
+};
+
+/**************************************************************************/
+/*!
+    @brief  RTC based on the PCF8563 chip connected via I2C and the Wire library
+*/
+/**************************************************************************/
+
+class RTC_PCF8563 {
+public:
+    boolean begin(void);
+
+    boolean lostPower(void);
+
+    void adjust(const DateTime &dt);
+
+    static DateTime now();
+
+    void start(void);
+
+    void stop(void);
+
+    uint8_t isrunning();
+
+    Pcf8563SqwPinMode readSqwPinMode();
+
+    void writeSqwPinMode(Pcf8563SqwPinMode mode);
 };
 
 /**************************************************************************/
@@ -411,10 +462,10 @@ public:
 /**************************************************************************/
 class RTC_Millis {
 public:
-  /*!
-      @brief  Start the RTC
-      @param dt DateTime object with the date/time to set
-  */
+    /*!
+        @brief  Start the RTC
+        @param dt DateTime object with the date/time to set
+    */
   static void begin(const DateTime &dt) { adjust(dt); }
   static void adjust(const DateTime &dt);
   static DateTime now();

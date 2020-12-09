@@ -11,8 +11,6 @@ void setup() {
 
     diveController.setup();
 
-
-/*
     // test - setup
     DecoManager decoManager = diveController.getDecoManager();
     Serial.print(F("Using algorithm: "));
@@ -22,10 +20,10 @@ void setup() {
     for (auto gas: decoManager.getGasManager()->getOcGasses()) {
         gas->setActive(strcmp(gas->getName(), "AIR") == 0);
     }
-    Settings::GF_HIGH=0.85;
-    Settings::GF_LOW=0.35;
-    Settings::MIN_STOP_TIME=1;
-    Settings::O2_NARCOTIC=false;
+    Settings::GF_HIGH = 0.85;
+    Settings::GF_LOW = 0.30;
+    Settings::MIN_STOP_TIME = 1;
+    Settings::O2_NARCOTIC = false;
 
 
     // test decoplan
@@ -35,42 +33,28 @@ void setup() {
     Serial.println(F("\nsensor update - 4.0 bar (30 m) - 180 sec (3 min) (= descent to 30 meter)"));
     time = time + TimeSpan(180);
     decoManager.update(time, 4.0, 20.0, true);
-    decoManager.getDecoPlan()->log(decoManager.getCurrentDive());
 
-    Serial.println(F("\nsensor update - 4.0 bar (30 m) - 2820 sec (47 min) (= stay 47 minutes on 30 meter)"));
-    time = time + TimeSpan(3000);
+    Serial.println(F("\nsensor update - 4.0 bar (30 m) - 1200 sec (16 min) (= stay 20 min 30 meter)"));
+    time = time + TimeSpan(960);
     decoManager.update(time, 4.0, 20.0, true);
+
+    Serial.println(F("\nsensor update - 2.0 bar (10 m) - 180 sec (3 min) (= ascent to 10 meter)"));
+    time = time + TimeSpan(180);
+    decoManager.update(time, 2.0, 20.0, true);
+
+    Serial.println(F("\nsensor update - 1.0 bar (0 m) - 180 sec (3 min) (= ascent to surface)"));
+    time = time + TimeSpan(180);
+    decoManager.update(time, 1.0, 20.0, true);
+
+    Serial.println(F("\nsensor update - 1.0 bar (0 m) - 180 sec (3 min) (= stay on surface for 3 min)"));
+    time = time + TimeSpan(180);
+    decoManager.update(time, 1.0, 20.0, true);
+
     decoManager.getDecoPlan()->log(decoManager.getCurrentDive());
-*/
-
-
+    decoManager.getNdlInSeconds();
 }
 
-/*bool pressed;
-uint32_t prevPiezoValue = 0;
-uint32_t minV = 100000;
-uint32_t maxV = 0;*/
-
 void loop() {
-    diveController.step();
-
-/*    uint32_t piezoValue = analogRead(RIGHT_BUTTON_PIN);
-    if (piezoValue < minV) {
-        minV = piezoValue;
-        Serial.print(F("MIN > "));
-        Serial.println(piezoValue);
-    }
-    if (piezoValue > maxV) {
-        maxV = piezoValue;
-        Serial.print(F("MAX > "));
-        Serial.println(piezoValue);
-    }
-
-    if (piezoValue > 300) {
-        Serial.print(F("P> "));
-        Serial.println(piezoValue);
-    }*/
-
     //diveController.step();
 }
 

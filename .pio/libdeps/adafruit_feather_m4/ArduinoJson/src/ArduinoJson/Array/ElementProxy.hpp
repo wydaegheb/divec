@@ -19,19 +19,22 @@ namespace ARDUINOJSON_NAMESPACE {
 template <typename TArray>
 class ElementProxy : public VariantOperators<ElementProxy<TArray> >,
                      public VariantShortcuts<ElementProxy<TArray> >,
-                     public Visitable {
-  typedef ElementProxy<TArray> this_type;
+                     public Visitable,
+                     public VariantTag {
+    typedef ElementProxy<TArray> this_type;
 
- public:
-  FORCE_INLINE ElementProxy(TArray array, size_t index)
-      : _array(array), _index(index) {}
+public:
+    typedef VariantRef variant_type;
 
-  FORCE_INLINE ElementProxy(const ElementProxy& src)
-      : _array(src._array), _index(src._index) {}
+    FORCE_INLINE ElementProxy(TArray array, size_t index)
+            : _array(array), _index(index) {}
 
-  FORCE_INLINE this_type& operator=(const this_type& src) {
-    getOrAddUpstreamElement().set(src.as<VariantConstRef>());
-    return *this;
+    FORCE_INLINE ElementProxy(const ElementProxy &src)
+            : _array(src._array), _index(src._index) {}
+
+    FORCE_INLINE this_type &operator=(const this_type &src) {
+        getOrAddUpstreamElement().set(src.as<VariantConstRef>());
+        return *this;
   }
 
   // Replaces the value
@@ -88,28 +91,29 @@ class ElementProxy : public VariantOperators<ElementProxy<TArray> >,
   //          std::string, String, ArrayRef, ObjectRef
   template <typename TValue>
   FORCE_INLINE bool set(const TValue& value) const {
-    return getOrAddUpstreamElement().set(value);
-  }
-  //
-  // bool set(TValue)
-  // TValue = char*, const char*, const __FlashStringHelper*
-  template <typename TValue>
-  FORCE_INLINE bool set(TValue* value) const {
-    return getOrAddUpstreamElement().set(value);
+      return getOrAddUpstreamElement().set(value);
   }
 
-  template <typename Visitor>
-  void accept(Visitor& visitor) const {
-    return getUpstreamElement().accept(visitor);
-  }
+    //
+    // bool set(TValue)
+    // TValue = char*, const char*, const __FlashStringHelper*
+    template<typename TValue>
+    FORCE_INLINE bool set(TValue *value) const {
+        return getOrAddUpstreamElement().set(value);
+    }
 
-  FORCE_INLINE size_t size() const {
-    return getUpstreamElement().size();
-  }
+    template<typename TVisitor>
+    typename TVisitor::result_type accept(TVisitor &visitor) const {
+        return getUpstreamElement().accept(visitor);
+    }
 
-  template <typename TNestedKey>
-  VariantRef getMember(TNestedKey* key) const {
-    return getUpstreamElement().getMember(key);
+    FORCE_INLINE size_t size() const {
+        return getUpstreamElement().size();
+    }
+
+    template<typename TNestedKey>
+    VariantRef getMember(TNestedKey *key) const {
+        return getUpstreamElement().getMember(key);
   }
 
   template <typename TNestedKey>

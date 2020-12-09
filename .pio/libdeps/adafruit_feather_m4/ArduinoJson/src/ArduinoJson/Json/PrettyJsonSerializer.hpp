@@ -18,45 +18,49 @@ class PrettyJsonSerializer : public JsonSerializer<TWriter> {
  public:
   PrettyJsonSerializer(TWriter &writer) : base(writer), _nesting(0) {}
 
-  void visitArray(const CollectionData &array) {
-    VariantSlot *slot = array.head();
-    if (!slot)
-      return base::write("[]");
+  size_t visitArray(const CollectionData &array) {
+      VariantSlot *slot = array.head();
+      if (slot) {
+          base::write("[\r\n");
+          _nesting++;
+          while (slot != 0) {
+              indent();
+              slot->data()->accept(*this);
 
-    base::write("[\r\n");
-    _nesting++;
-    while (slot != 0) {
-      indent();
-      slot->data()->accept(*this);
-
-      slot = slot->next();
-      base::write(slot ? ",\r\n" : "\r\n");
-    }
-    _nesting--;
-    indent();
-    base::write("]");
+              slot = slot->next();
+              base::write(slot ? ",\r\n" : "\r\n");
+          }
+          _nesting--;
+          indent();
+          base::write("]");
+      } else {
+          base::write("[]");
+      }
+      return this->bytesWritten();
   }
 
-  void visitObject(const CollectionData &object) {
-    VariantSlot *slot = object.head();
-    if (!slot)
-      return base::write("{}");
+    size_t visitObject(const CollectionData &object) {
+        VariantSlot *slot = object.head();
+        if (slot) {
+            base::write("{\r\n");
+            _nesting++;
+            while (slot != 0) {
+                indent();
+                base::visitString(slot->key());
+                base::write(": ");
+                slot->data()->accept(*this);
 
-    base::write("{\r\n");
-    _nesting++;
-    while (slot != 0) {
-      indent();
-      base::visitString(slot->key());
-      base::write(": ");
-      slot->data()->accept(*this);
-
-      slot = slot->next();
-      base::write(slot ? ",\r\n" : "\r\n");
+                slot = slot->next();
+                base::write(slot ? ",\r\n" : "\r\n");
+            }
+            _nesting--;
+            indent();
+            base::write("}");
+        } else {
+            base::write("{}");
+        }
+        return this->bytesWritten();
     }
-    _nesting--;
-    indent();
-    base::write("}");
-  }
 
  private:
   void indent() {

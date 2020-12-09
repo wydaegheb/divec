@@ -18,121 +18,597 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3918f2fc-bcbd-45e9-8eee-31ec3bb033b1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/display/bgimage/jellyfish.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/display/fonts/JetBrainsMono_Regular16pt7b.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/display/fonts/NotoSans_Condensed14pt7b.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/display/fonts/NotoSans_Condensed16pt7b.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/domain/logbook/LogBook.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/domain/logbook/LogBook.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit BusIO/.piopm" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit BusIO/.piopm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit BusIO/Adafruit_I2CDevice.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit BusIO/Adafruit_I2CDevice.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit BusIO/Adafruit_I2CDevice.h" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit BusIO/Adafruit_I2CDevice.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit BusIO/Adafruit_SPIDevice.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit BusIO/Adafruit_SPIDevice.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit BusIO/Adafruit_SPIDevice.h" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit BusIO/Adafruit_SPIDevice.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit BusIO/library.properties" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit BusIO/library.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit GFX Library/.piopm" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit GFX Library/.piopm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit GFX Library/Adafruit_GFX.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit GFX Library/Adafruit_GFX.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit GFX Library/Adafruit_GFX.h" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit GFX Library/Adafruit_GFX.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit GFX Library/examples/GFXcanvas/GFXcanvas.ino" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit GFX Library/examples/GFXcanvas/GFXcanvas.ino" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit GFX Library/examples/GFXcanvas/GFXcanvasSerialDemo.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit GFX Library/examples/GFXcanvas/GFXcanvasSerialDemo.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit GFX Library/examples/GFXcanvas/GFXcanvasSerialDemo.h" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit GFX Library/examples/GFXcanvas/GFXcanvasSerialDemo.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit GFX Library/library.properties" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit GFX Library/library.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit HX8357 Library/.github/ISSUE_TEMPLATE.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit HX8357 Library/.github/PULL_REQUEST_TEMPLATE.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit HX8357 Library/.github/workflows/githubci.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit HX8357 Library/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit HX8357 Library/.piopm" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit HX8357 Library/Adafruit_HX8357.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit HX8357 Library/Adafruit_HX8357.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit HX8357 Library/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit HX8357 Library/examples/bitmapdraw_featherwing/.mega2560.test.skip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit HX8357 Library/examples/bitmapdraw_featherwing/bitmapdraw_featherwing.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit HX8357 Library/examples/breakouttouchpaint/.esp8266.test.skip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit HX8357 Library/examples/breakouttouchpaint/breakouttouchpaint.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit HX8357 Library/examples/gfxbuttontest_featherwing/.mega2560.test.skip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit HX8357 Library/examples/gfxbuttontest_featherwing/gfxbuttontest_featherwing.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit HX8357 Library/examples/graphicstest/graphicstest.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit HX8357 Library/examples/graphicstest_featherwing/.mega2560.test.skip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit HX8357 Library/examples/graphicstest_featherwing/graphicstest_featherwing.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit HX8357 Library/examples/spitftbitmap/spitftbitmap.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit HX8357 Library/examples/touchpaint_featherwing/.mega2560.test.skip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit HX8357 Library/examples/touchpaint_featherwing/touchpaint_featherwing.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit HX8357 Library/jumpers.bmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit HX8357 Library/library.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit ImageReader Library/.github/ISSUE_TEMPLATE.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit ImageReader Library/.github/PULL_REQUEST_TEMPLATE.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit ImageReader Library/.github/workflows/githubci.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit ImageReader Library/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit ImageReader Library/.piopm" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit ImageReader Library/Adafruit_ImageReader.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit ImageReader Library/Adafruit_ImageReader.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit ImageReader Library/Adafruit_ImageReader_EPD.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit ImageReader Library/Adafruit_ImageReader_EPD.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit ImageReader Library/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit ImageReader Library/examples/BreakoutSSD1331/BreakoutSSD1331.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit ImageReader Library/examples/BreakoutSSD1351/.leonardo.test.skip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit ImageReader Library/examples/BreakoutSSD1351/BreakoutSSD1351.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit ImageReader Library/examples/BreakoutST7735-128x128/.cplayClassic.test.skip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit ImageReader Library/examples/BreakoutST7735-128x128/.leonardo.test.skip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit ImageReader Library/examples/BreakoutST7735-128x128/BreakoutST7735-128x128.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit ImageReader Library/examples/BreakoutST7735-160x128/.cplayClassic.test.skip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit ImageReader Library/examples/BreakoutST7735-160x128/.leonardo.test.skip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit ImageReader Library/examples/BreakoutST7735-160x128/BreakoutST7735-160x128.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit ImageReader Library/examples/BreakoutST7735-160x80/.cplayClassic.test.skip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit ImageReader Library/examples/BreakoutST7735-160x80/.leonardo.test.skip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit ImageReader Library/examples/BreakoutST7735-160x80/BreakoutST7735-160x80.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit ImageReader Library/examples/BreakoutST7789-320x240/.leonardo.test.skip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit ImageReader Library/examples/BreakoutST7789-320x240/BreakoutST7789-320x240.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit ImageReader Library/examples/EInkBreakouts/.leonardo.test.skip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit ImageReader Library/examples/EInkBreakouts/EInkBreakouts.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit ImageReader Library/examples/EInkFeatherWing/.cplayBluefruit.test.skip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit ImageReader Library/examples/EInkFeatherWing/.cplayExpress.test.skip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit ImageReader Library/examples/EInkFeatherWing/.cplayExpressAda.test.skip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit ImageReader Library/examples/EInkFeatherWing/.due.test.skip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit ImageReader Library/examples/EInkFeatherWing/.leonardo.test.skip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit ImageReader Library/examples/EInkFeatherWing/.mega2560.test.skip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit ImageReader Library/examples/EInkFeatherWing/.uno.test.skip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit ImageReader Library/examples/EInkFeatherWing/.zero.test.skip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit ImageReader Library/examples/EInkFeatherWing/EInkFeatherWing.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit ImageReader Library/examples/EInkGizmo/.cplayClassic.test.skip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit ImageReader Library/examples/EInkGizmo/.due.test.skip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit ImageReader Library/examples/EInkGizmo/.esp32.test.skip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit ImageReader Library/examples/EInkGizmo/.esp8266.test.skip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit ImageReader Library/examples/EInkGizmo/.leonardo.test.skip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit ImageReader Library/examples/EInkGizmo/.mega2560.test.skip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit ImageReader Library/examples/EInkGizmo/.uno.test.skip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit ImageReader Library/examples/EInkGizmo/EInkGizmo.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit ImageReader Library/examples/FeatherWingHX8357/.leonardo.test.skip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit ImageReader Library/examples/FeatherWingHX8357/FeatherWingHX8357.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit ImageReader Library/examples/FeatherWingILI9341/.leonardo.test.skip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit ImageReader Library/examples/FeatherWingILI9341/FeatherWingILI9341.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit ImageReader Library/examples/FeatherWingST7735/.cplayClassic.test.skip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit ImageReader Library/examples/FeatherWingST7735/.leonardo.test.skip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit ImageReader Library/examples/FeatherWingST7735/FeatherWingST7735.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit ImageReader Library/examples/PyPortal/.leonardo.test.skip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit ImageReader Library/examples/PyPortal/PyPortal.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit ImageReader Library/examples/ShieldILI9341/.leonardo.test.skip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit ImageReader Library/examples/ShieldILI9341/ShieldILI9341.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit ImageReader Library/examples/ShieldST7735/.cplayClassic.test.skip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit ImageReader Library/examples/ShieldST7735/.leonardo.test.skip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit ImageReader Library/examples/ShieldST7735/ShieldST7735.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit ImageReader Library/examples/TFTGizmo/.cplayClassic.test.skip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit ImageReader Library/examples/TFTGizmo/.due.test.skip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit ImageReader Library/examples/TFTGizmo/.esp32.test.skip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit ImageReader Library/examples/TFTGizmo/.esp8266.test.skip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit ImageReader Library/examples/TFTGizmo/.leonardo.test.skip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit ImageReader Library/examples/TFTGizmo/.mega2560.test.skip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit ImageReader Library/examples/TFTGizmo/.uno.test.skip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit ImageReader Library/examples/TFTGizmo/TFTGizmo.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit ImageReader Library/images/adabot.bmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit ImageReader Library/images/adabot240.bmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit ImageReader Library/images/blinka-1bit-213.bmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit ImageReader Library/images/blinka-1bit.bmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit ImageReader Library/images/blinka.bmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit ImageReader Library/images/daffodil.bmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit ImageReader Library/images/lily128.bmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit ImageReader Library/images/minerva.bmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit ImageReader Library/images/minibot.bmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit ImageReader Library/images/miniwoof.bmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit ImageReader Library/images/parrot.bmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit ImageReader Library/images/purple.bmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit ImageReader Library/images/rgbwheel.bmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit ImageReader Library/images/tricolor-blinka-213.bmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit ImageReader Library/images/tricolor-blinka.bmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit ImageReader Library/images/wales.bmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit ImageReader Library/images/woof.bmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit ImageReader Library/library.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit NeoPixel/.github/ISSUE_TEMPLATE.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit NeoPixel/.github/PULL_REQUEST_TEMPLATE.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit NeoPixel/.github/workflows/githubci.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit NeoPixel/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit NeoPixel/.piopm" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit NeoPixel/Adafruit_NeoPixel.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit NeoPixel/Adafruit_NeoPixel.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit NeoPixel/CONTRIBUTING.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit NeoPixel/COPYING" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit NeoPixel/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit NeoPixel/esp8266.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit NeoPixel/examples/RGBWstrandtest/.esp8266.test.skip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit NeoPixel/examples/RGBWstrandtest/.trinket.test.skip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit NeoPixel/examples/RGBWstrandtest/RGBWstrandtest.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit NeoPixel/examples/StrandtestArduinoBLE/.arduinoble.test.only" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit NeoPixel/examples/StrandtestArduinoBLE/.test.skip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit NeoPixel/examples/StrandtestArduinoBLE/StrandtestArduinoBLE.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit NeoPixel/examples/StrandtestArduinoBLECallback/.arduinoble.test.only" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit NeoPixel/examples/StrandtestArduinoBLECallback/.test.skip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit NeoPixel/examples/StrandtestArduinoBLECallback/StrandtestArduinoBLECallback.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit NeoPixel/examples/StrandtestBLE/.arduinoble.test.only" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit NeoPixel/examples/StrandtestBLE/.test.skip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit NeoPixel/examples/StrandtestBLE/BLESerial.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit NeoPixel/examples/StrandtestBLE/BLESerial.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit NeoPixel/examples/StrandtestBLE/StrandtestBLE.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit NeoPixel/examples/buttoncycler/.esp8266.test.skip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit NeoPixel/examples/buttoncycler/buttoncycler.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit NeoPixel/examples/simple/.esp8266.test.skip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit NeoPixel/examples/simple/simple.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit NeoPixel/examples/simple_new_operator/.esp8266.test.skip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit NeoPixel/examples/simple_new_operator/simple_new_operator.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit NeoPixel/examples/strandtest/.esp8266.test.skip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit NeoPixel/examples/strandtest/strandtest.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit NeoPixel/examples/strandtest_wheel/.esp8266.test.skip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit NeoPixel/examples/strandtest_wheel/strandtest_wheel.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit NeoPixel/kendyte_k210.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit NeoPixel/keywords.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit NeoPixel/library.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit SPIFlash/.github/ISSUE_TEMPLATE/bug_report.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit SPIFlash/.github/ISSUE_TEMPLATE/feature_request.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit SPIFlash/.github/ISSUE_TEMPLATE/questions-please-use-our-forum-support.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit SPIFlash/.github/workflows/githubci.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit SPIFlash/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit SPIFlash/.piopm" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit SPIFlash/.travis.yml.bck" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit SPIFlash/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit SPIFlash/examples/SdFat_OpenNext/SdFat_OpenNext.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit SPIFlash/examples/SdFat_ReadWrite/SdFat_ReadWrite.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit SPIFlash/examples/SdFat_circuitpython/SdFat_circuitpython.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit SPIFlash/examples/SdFat_datalogging/SdFat_datalogging.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit SPIFlash/examples/SdFat_format/SdFat_format.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit SPIFlash/examples/SdFat_format/diskio.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit SPIFlash/examples/SdFat_format/ff.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit SPIFlash/examples/SdFat_format/ff.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit SPIFlash/examples/SdFat_format/ffconf.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit SPIFlash/examples/SdFat_full_usage/SdFat_full_usage.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit SPIFlash/examples/SdFat_print_file/SdFat_print_file.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit SPIFlash/examples/circuitpython_backupFiles/circuitpython_backupFiles.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit SPIFlash/examples/flash_erase/flash_erase.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit SPIFlash/examples/flash_erase_express/flash_erase_express.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit SPIFlash/examples/flash_info/flash_info.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit SPIFlash/examples/flash_manipulator/flash_manipulator.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit SPIFlash/examples/flash_sector_dump/flash_sector_dump.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit SPIFlash/library.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit SPIFlash/src/Adafruit_FlashCache.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit SPIFlash/src/Adafruit_FlashCache.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit SPIFlash/src/Adafruit_FlashTransport.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit SPIFlash/src/Adafruit_SPIFlash.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit SPIFlash/src/Adafruit_SPIFlash.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit SPIFlash/src/Adafruit_SPIFlashBase.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit SPIFlash/src/Adafruit_SPIFlashBase.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit SPIFlash/src/flash_devices.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit SPIFlash/src/qspi/Adafruit_FlashTransport_QSPI.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit SPIFlash/src/qspi/Adafruit_FlashTransport_QSPI_NRF.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit SPIFlash/src/qspi/Adafruit_FlashTransport_QSPI_SAMD.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit SPIFlash/src/spi/Adafruit_FlashTransport_SPI.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit SPIFlash/src/spi/Adafruit_FlashTransport_SPI.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit SSD1351 library/.github/ISSUE_TEMPLATE.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit SSD1351 library/.github/PULL_REQUEST_TEMPLATE.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit SSD1351 library/.github/workflows/githubci.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit SSD1351 library/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit SSD1351 library/.piopm" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit SSD1351 library/Adafruit_SSD1351.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit SSD1351 library/Adafruit_SSD1351.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit SSD1351 library/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit SSD1351 library/examples/displayOnOffTest/displayOnOffTest.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit SSD1351 library/examples/test/test.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit SSD1351 library/library.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit SSD1351 library/license.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit ST7735 and ST7789 Library/.github/ISSUE_TEMPLATE.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit ST7735 and ST7789 Library/.github/PULL_REQUEST_TEMPLATE.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit ST7735 and ST7789 Library/.github/workflows/githubci.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit ST7735 and ST7789 Library/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit ST7735 and ST7789 Library/.piopm" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit ST7735 and ST7789 Library/Adafruit_ST7735.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit ST7735 and ST7789 Library/Adafruit_ST7735.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit ST7735 and ST7789 Library/Adafruit_ST7789.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit ST7735 and ST7789 Library/Adafruit_ST7789.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit ST7735 and ST7789 Library/Adafruit_ST77xx.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit ST7735 and ST7789 Library/Adafruit_ST77xx.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit ST7735 and ST7789 Library/README.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit ST7735 and ST7789 Library/examples/displayOnOffTest/displayOnOffTest.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit ST7735 and ST7789 Library/examples/graphicstest/.cpb.test.skip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit ST7735 and ST7789 Library/examples/graphicstest/graphicstest.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit ST7735 and ST7789 Library/examples/graphicstest_hallowing_m0/.hallowing_m0.test.only" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit ST7735 and ST7789 Library/examples/graphicstest_hallowing_m0/graphicstest_hallowing_m0.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit ST7735 and ST7789 Library/examples/graphicstest_hallowing_m4/.hallowing_m4.test.only" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit ST7735 and ST7789 Library/examples/graphicstest_hallowing_m4/graphicstest_hallowing_m4.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit ST7735 and ST7789 Library/examples/graphicstest_pybadge_pygamer/.pybadge.test.only" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit ST7735 and ST7789 Library/examples/graphicstest_pybadge_pygamer/.pygamer.test.only" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit ST7735 and ST7789 Library/examples/graphicstest_pybadge_pygamer/graphicstest_pybadge_pygamer.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit ST7735 and ST7789 Library/examples/graphicstest_tft_gizmo/.cplayClassic.test.skip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit ST7735 and ST7789 Library/examples/graphicstest_tft_gizmo/.due.test.skip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit ST7735 and ST7789 Library/examples/graphicstest_tft_gizmo/.esp32.test.skip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit ST7735 and ST7789 Library/examples/graphicstest_tft_gizmo/.esp8266.test.skip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit ST7735 and ST7789 Library/examples/graphicstest_tft_gizmo/.leonardo.test.skip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit ST7735 and ST7789 Library/examples/graphicstest_tft_gizmo/.mega2560.test.skip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit ST7735 and ST7789 Library/examples/graphicstest_tft_gizmo/.uno.test.skip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit ST7735 and ST7789 Library/examples/graphicstest_tft_gizmo/graphicstest_tft_gizmo.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit ST7735 and ST7789 Library/examples/miniTFTWing/basic/.cpb.test.skip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit ST7735 and ST7789 Library/examples/miniTFTWing/basic/.mega2560.test.skip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit ST7735 and ST7789 Library/examples/miniTFTWing/basic/basic.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit ST7735 and ST7789 Library/examples/miniTFTWing/graphicstest/.cpb.test.skip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit ST7735 and ST7789 Library/examples/miniTFTWing/graphicstest/.mega2560.test.skip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit ST7735 and ST7789 Library/examples/miniTFTWing/graphicstest/graphicstest.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit ST7735 and ST7789 Library/examples/rotationtest/rotationtest.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit ST7735 and ST7789 Library/examples/seesaw_shield18_test/.leonardo.test.skip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit ST7735 and ST7789 Library/examples/seesaw_shield18_test/seesaw_shield18_test.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit ST7735 and ST7789 Library/examples/shieldtest/shieldtest.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit ST7735 and ST7789 Library/library.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit STMPE610/assets/board.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit TouchScreen/.piopm" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit TouchScreen/.piopm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit TouchScreen/TouchScreen.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit TouchScreen/TouchScreen.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit TouchScreen/TouchScreen.h" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit TouchScreen/TouchScreen.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit TouchScreen/library.properties" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit TouchScreen/library.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit seesaw Library/.github/ISSUE_TEMPLATE.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit seesaw Library/.github/PULL_REQUEST_TEMPLATE.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit seesaw Library/.github/workflows/githubci.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit seesaw Library/.piopm" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit seesaw Library/Adafruit_Crickit.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit seesaw Library/Adafruit_Crickit.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit seesaw Library/Adafruit_NeoTrellis.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit seesaw Library/Adafruit_NeoTrellis.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit seesaw Library/Adafruit_TFTShield18.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit seesaw Library/Adafruit_TFTShield18.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit seesaw Library/Adafruit_miniTFTWing.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit seesaw Library/Adafruit_miniTFTWing.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit seesaw Library/Adafruit_seesaw.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit seesaw Library/Adafruit_seesaw.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit seesaw Library/Doxyfile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit seesaw Library/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit seesaw Library/examples/Crickit/basic/basic.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit seesaw Library/examples/Crickit/cap_touch_demo/cap_touch_demo.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit seesaw Library/examples/Crickit/drive/more_drivers/more_drivers.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit seesaw Library/examples/Crickit/drive/test_drive/test_drive.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit seesaw Library/examples/Crickit/fulltest/fulltest.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit seesaw Library/examples/Crickit/motor/dual_motor/dual_motor.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit seesaw Library/examples/Crickit/servo/more_servos/more_servos.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit seesaw Library/examples/Crickit/servo/test_servo/test_servo.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit seesaw Library/examples/Crickit/signal/test_signal/test_signal.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit seesaw Library/examples/EEPROM/EEPROM.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit seesaw Library/examples/NeoPixel/NeoPixel_strandtest/NeoPixel_strandtest.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit seesaw Library/examples/NeoTrellis/basic/basic.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit seesaw Library/examples/NeoTrellis/interrupt/interrupt.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit seesaw Library/examples/NeoTrellis/multitrellis/basic/basic.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit seesaw Library/examples/NeoTrellis/ripples/ripples.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit seesaw Library/examples/analog/Fade/Fade.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit seesaw Library/examples/analog/analogRead/analogRead.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit seesaw Library/examples/communication/UART_loopback/UART_loopback.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit seesaw Library/examples/digital/blink/blink.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit seesaw Library/examples/digital/gpio_interrupts/gpio_interrupts.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit seesaw Library/examples/digital/multiblink/multiblink.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit seesaw Library/examples/digital/multiread/multiread.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit seesaw Library/examples/encoder/encoder_basic/encoder_basic.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit seesaw Library/examples/encoder/rgb_encoder/rgb_encoder.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit seesaw Library/examples/joy_featherwing/joy_featherwing_example/joy_featherwing_example.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit seesaw Library/examples/joy_featherwing/joy_wing_oled/joy_wing_oled.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit seesaw Library/examples/soil_sensor/soilsensor_example/soilsensor_example.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit seesaw Library/library.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit seesaw Library/seesaw_motor.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit seesaw Library/seesaw_neopixel.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit seesaw Library/seesaw_neopixel.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit seesaw Library/seesaw_servo.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/Adafruit seesaw Library/seesaw_servo.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/ArduinoJson/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/ArduinoJson/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/ArduinoJson/.piopm" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/ArduinoJson/.piopm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/ArduinoJson/.travis.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/ArduinoJson/.travis.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/ArduinoJson/CHANGELOG.md" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/ArduinoJson/CHANGELOG.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/ArduinoJson/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/ArduinoJson/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/ArduinoJson/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/ArduinoJson/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/ArduinoJson/appveyor.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/ArduinoJson/appveyor.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/ArduinoJson/examples/JsonHttpClient/JsonHttpClient.ino" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/ArduinoJson/examples/JsonHttpClient/JsonHttpClient.ino" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/ArduinoJson/examples/JsonParserExample/JsonParserExample.ino" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/ArduinoJson/examples/JsonParserExample/JsonParserExample.ino" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/ArduinoJson/examples/MsgPackParser/MsgPackParser.ino" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/ArduinoJson/examples/MsgPackParser/MsgPackParser.ino" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/ArduinoJson/keywords.txt" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/ArduinoJson/keywords.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/ArduinoJson/library.json" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/ArduinoJson/library.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/ArduinoJson/library.properties" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/ArduinoJson/library.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/ArduinoJson/src/ArduinoJson/Array/ArrayFunctions.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/ArduinoJson/src/ArduinoJson/Array/ArrayFunctions.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/ArduinoJson/src/ArduinoJson/Array/ArrayRef.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/ArduinoJson/src/ArduinoJson/Array/ArrayRef.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/ArduinoJson/src/ArduinoJson/Array/ElementProxy.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/ArduinoJson/src/ArduinoJson/Array/ElementProxy.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/ArduinoJson/src/ArduinoJson/Array/Utilities.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/ArduinoJson/src/ArduinoJson/Array/Utilities.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/ArduinoJson/src/ArduinoJson/Configuration.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/ArduinoJson/src/ArduinoJson/Configuration.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/ArduinoJson/src/ArduinoJson/Deserialization/DeserializationError.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/ArduinoJson/src/ArduinoJson/Deserialization/DeserializationError.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/ArduinoJson/src/ArduinoJson/Deserialization/Filter.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/ArduinoJson/src/ArduinoJson/Deserialization/Filter.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/ArduinoJson/src/ArduinoJson/Deserialization/Readers/ArduinoStreamReader.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/ArduinoJson/src/ArduinoJson/Deserialization/Readers/ArduinoStreamReader.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/ArduinoJson/src/ArduinoJson/Deserialization/deserialize.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/ArduinoJson/src/ArduinoJson/Deserialization/deserialize.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/ArduinoJson/src/ArduinoJson/Document/JsonDocument.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/ArduinoJson/src/ArduinoJson/Document/JsonDocument.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/ArduinoJson/src/ArduinoJson/Json/JsonDeserializer.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/ArduinoJson/src/ArduinoJson/Json/JsonDeserializer.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/ArduinoJson/src/ArduinoJson/Json/JsonSerializer.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/ArduinoJson/src/ArduinoJson/Json/JsonSerializer.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/ArduinoJson/src/ArduinoJson/Json/PrettyJsonSerializer.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/ArduinoJson/src/ArduinoJson/Json/PrettyJsonSerializer.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/ArduinoJson/src/ArduinoJson/Json/TextFormatter.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/ArduinoJson/src/ArduinoJson/Json/TextFormatter.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/ArduinoJson/src/ArduinoJson/Memory/MemoryPool.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/ArduinoJson/src/ArduinoJson/Memory/MemoryPool.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/ArduinoJson/src/ArduinoJson/Memory/StringSlot.hpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/ArduinoJson/src/ArduinoJson/Misc/Visitable.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/ArduinoJson/src/ArduinoJson/Misc/Visitable.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/ArduinoJson/src/ArduinoJson/MsgPack/MsgPackDeserializer.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/ArduinoJson/src/ArduinoJson/MsgPack/MsgPackDeserializer.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/ArduinoJson/src/ArduinoJson/MsgPack/MsgPackSerializer.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/ArduinoJson/src/ArduinoJson/MsgPack/MsgPackSerializer.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/ArduinoJson/src/ArduinoJson/Namespace.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/ArduinoJson/src/ArduinoJson/Namespace.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/ArduinoJson/src/ArduinoJson/Numbers/FloatTraits.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/ArduinoJson/src/ArduinoJson/Numbers/FloatTraits.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/ArduinoJson/src/ArduinoJson/Numbers/parseFloat.hpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/ArduinoJson/src/ArduinoJson/Numbers/parseInteger.hpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/ArduinoJson/src/ArduinoJson/Numbers/parseNumber.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/ArduinoJson/src/ArduinoJson/Numbers/parseNumber.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/ArduinoJson/src/ArduinoJson/Object/MemberProxy.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/ArduinoJson/src/ArduinoJson/Object/MemberProxy.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/ArduinoJson/src/ArduinoJson/Object/ObjectFunctions.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/ArduinoJson/src/ArduinoJson/Object/ObjectFunctions.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/ArduinoJson/src/ArduinoJson/Object/ObjectRef.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/ArduinoJson/src/ArduinoJson/Object/ObjectRef.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/ArduinoJson/src/ArduinoJson/Polyfills/gsl/not_null.hpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/ArduinoJson/src/ArduinoJson/Polyfills/pgmspace.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/ArduinoJson/src/ArduinoJson/Polyfills/pgmspace.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/ArduinoJson/src/ArduinoJson/Polyfills/type_traits.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/ArduinoJson/src/ArduinoJson/Polyfills/type_traits.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/ArduinoJson/src/ArduinoJson/Serialization/Writers/ArduinoStringWriter.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/ArduinoJson/src/ArduinoJson/Serialization/Writers/ArduinoStringWriter.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/ArduinoJson/src/ArduinoJson/Serialization/measure.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/ArduinoJson/src/ArduinoJson/Serialization/measure.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/ArduinoJson/src/ArduinoJson/Serialization/serialize.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/ArduinoJson/src/ArduinoJson/Serialization/serialize.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/ArduinoJson/src/ArduinoJson/StringStorage/StringCopier.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/ArduinoJson/src/ArduinoJson/StringStorage/StringCopier.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/ArduinoJson/src/ArduinoJson/StringStorage/StringMover.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/ArduinoJson/src/ArduinoJson/StringStorage/StringMover.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/ArduinoJson/src/ArduinoJson/StringStorage/StringStorage.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/ArduinoJson/src/ArduinoJson/StringStorage/StringStorage.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/ArduinoJson/src/ArduinoJson/Strings/ArduinoStringAdapter.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/ArduinoJson/src/ArduinoJson/Strings/ArduinoStringAdapter.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/ArduinoJson/src/ArduinoJson/Strings/IsWriteableString.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/ArduinoJson/src/ArduinoJson/Strings/IsWriteableString.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/ArduinoJson/src/ArduinoJson/Strings/StlStringAdapter.hpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/ArduinoJson/src/ArduinoJson/Strings/StringAdapters.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/ArduinoJson/src/ArduinoJson/Strings/StringAdapters.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/ArduinoJson/src/ArduinoJson/Variant/VariantCompare.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/ArduinoJson/src/ArduinoJson/Variant/VariantCompare.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/ArduinoJson/src/ArduinoJson/Variant/VariantData.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/ArduinoJson/src/ArduinoJson/Variant/VariantData.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/ArduinoJson/src/ArduinoJson/Variant/VariantFunctions.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/ArduinoJson/src/ArduinoJson/Variant/VariantFunctions.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/ArduinoJson/src/ArduinoJson/Variant/VariantImpl.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/ArduinoJson/src/ArduinoJson/Variant/VariantImpl.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/ArduinoJson/src/ArduinoJson/Variant/VariantOperators.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/ArduinoJson/src/ArduinoJson/Variant/VariantOperators.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/ArduinoJson/src/ArduinoJson/Variant/VariantRef.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/ArduinoJson/src/ArduinoJson/Variant/VariantRef.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/ArduinoJson/src/ArduinoJson/Variant/VariantSlot.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/ArduinoJson/src/ArduinoJson/Variant/VariantSlot.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/ArduinoJson/src/ArduinoJson/version.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/ArduinoJson/src/ArduinoJson/version.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/RTClib/.piopm" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/RTClib/.piopm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/RTClib/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/RTClib/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/RTClib/RTClib.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/RTClib/RTClib.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/RTClib/RTClib.h" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/RTClib/RTClib.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/RTClib/examples/DS3231_alarm/DS3231_alarm.ino" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/RTClib/examples/DS3231_alarm/DS3231_alarm.ino" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/RTClib/examples/ds3231/ds3231.ino" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/RTClib/examples/ds3231/ds3231.ino" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/RTClib/examples/pcf8523/pcf8523.ino" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/RTClib/examples/pcf8523/pcf8523.ino" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/RTClib/keywords.txt" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/RTClib/keywords.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/RTClib/library.properties" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/RTClib/library.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SD/.github/ISSUE_TEMPLATE.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SD/.github/PULL_REQUEST_TEMPLATE.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SD/.piopm" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SD/File.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SD/README.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SD/SD.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SD/SD.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SD/examples/CardInfo/CardInfo.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SD/examples/Datalogger/Datalogger.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SD/examples/DumpFile/DumpFile.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SD/examples/Files/Files.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SD/examples/ReadWrite/ReadWrite.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SD/examples/listfiles/listfiles.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SD/keywords.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SD/library.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SD/utility/FatStructs.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SD/utility/Sd2Card.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SD/utility/Sd2Card.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SD/utility/Sd2PinMap.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SD/utility/SdFat.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SD/utility/SdFatUtil.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SD/utility/SdFatmainpage.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SD/utility/SdFile.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SD/utility/SdInfo.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SD/utility/SdVolume.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/.gitattributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/.piopm" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/.travis.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/LICENSE.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/#attic/AnalogLogger/AnalogLogger.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/#attic/BaseExtCaseTest/BaseExtCaseTest.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/#attic/HelloWorld/HelloWorld.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/#attic/MiniSerial/MiniSerial.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/#attic/PrintBenchmarkSD/PrintBenchmarkSD.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/#attic/SD_Size/SD_Size.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/#attic/SdFatSize/SdFatSize.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/#attic/StreamParseInt/StreamParseInt.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/#attic/append/append.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/#attic/average/average.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/#attic/benchSD/benchSD.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/#attic/bufstream/bufstream.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/#attic/cin_cout/cin_cout.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/#attic/eventlog/eventlog.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/#attic/fgetsRewrite/fgetsRewrite.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/#attic/readlog/readlog.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/#attic/readme.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/AnalogBinLogger/.esp32.test.skip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/AnalogBinLogger/.m4.test.skip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/AnalogBinLogger/.zero.test.skip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/AnalogBinLogger/AnalogBinLogger.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/AnalogBinLogger/AnalogBinLogger.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/DirectoryFunctions/DirectoryFunctions.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/LongFileName/LongFileName.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/LongFileName/testFiles/A long name can be 255 characters.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/LongFileName/testFiles/LFN,NAME.TXT" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/LongFileName/testFiles/MIXCASE.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/LongFileName/testFiles/Not_8_3.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/LongFileName/testFiles/OK%83.TXT" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/LongFileName/testFiles/STD_8_3.TXT" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/LongFileName/testFiles/With Blank.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/LongFileName/testFiles/With.Two dots.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/LongFileName/testFiles/lower.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/LongFileName/testFiles/mixed.TXT" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/LowLatencyLogger/.esp32.test.skip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/LowLatencyLogger/.m4.test.skip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/LowLatencyLogger/.zero.test.skip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/LowLatencyLogger/LowLatencyLogger.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/LowLatencyLogger/UserFunctions.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/LowLatencyLogger/UserTypes.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/LowLatencyLoggerADXL345/.esp32.test.skip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/LowLatencyLoggerADXL345/.m4.test.skip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/LowLatencyLoggerADXL345/LowLatencyLogger.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/LowLatencyLoggerADXL345/LowLatencyLoggerADXL345.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/LowLatencyLoggerADXL345/UserFunctions.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/LowLatencyLoggerADXL345/UserTypes.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/LowLatencyLoggerADXL345/readme.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/LowLatencyLoggerMPU6050/.esp32.test.skip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/LowLatencyLoggerMPU6050/.m4.test.skip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/LowLatencyLoggerMPU6050/.zero.test.skip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/LowLatencyLoggerMPU6050/LowLatencyLogger.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/LowLatencyLoggerMPU6050/LowLatencyLoggerMPU6050.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/LowLatencyLoggerMPU6050/UserFunctions.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/LowLatencyLoggerMPU6050/UserTypes.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/OpenNext/OpenNext.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/PrintBenchmark/PrintBenchmark.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/QuickStart/QuickStart.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/RawWrite/RawWrite.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/ReadCsv/ReadCsv.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/ReadCsvArray/ReadCsvArray.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/ReadCsvStream/ReadCsvStream.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/ReadWrite/ReadWrite.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/STM32Test/.esp32.test.skip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/STM32Test/.leonardo.test.skip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/STM32Test/.m4.test.skip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/STM32Test/.zero.test.skip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/STM32Test/STM32Test.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/SdFormatter/SdFormatter.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/SdInfo/SdInfo.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/SoftwareSpi/.esp32.test.skip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/SoftwareSpi/.leonardo.test.skip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/SoftwareSpi/.m4.test.skip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/SoftwareSpi/.zero.test.skip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/SoftwareSpi/SoftwareSpi.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/StdioBench/StdioBench.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/TeensySdioDemo/.esp32.test.skip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/TeensySdioDemo/.leonardo.test.skip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/TeensySdioDemo/.m4.test.skip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/TeensySdioDemo/.zero.test.skip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/TeensySdioDemo/TeensySdioDemo.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/Timestamp/Timestamp.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/TwoCards/TwoCards.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/VolumeFreeSpace/VolumeFreeSpace.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/bench/bench.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/dataLogger/dataLogger.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/fgets/fgets.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/formatting/formatting.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/getline/getline.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/rename/rename.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/wipe/wipe.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/library.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/src/BlockDriver.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/src/FatLib/ArduinoFiles.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/src/FatLib/ArduinoStream.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/src/FatLib/BaseBlockDriver.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/src/FatLib/FatApiConstants.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/src/FatLib/FatFile.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/src/FatLib/FatFile.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/src/FatLib/FatFileLFN.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/src/FatLib/FatFilePrint.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/src/FatLib/FatFileSFN.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/src/FatLib/FatFileSystem.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/src/FatLib/FatLib.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/src/FatLib/FatLibConfig.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/src/FatLib/FatStructs.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/src/FatLib/FatVolume.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/src/FatLib/FatVolume.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/src/FatLib/FmtNumber.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/src/FatLib/FmtNumber.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/src/FatLib/StdioStream.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/src/FatLib/StdioStream.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/src/FatLib/bufstream.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/src/FatLib/fstream.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/src/FatLib/fstream.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/src/FatLib/ios.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/src/FatLib/iostream.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/src/FatLib/istream.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/src/FatLib/istream.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/src/FatLib/ostream.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/src/FatLib/ostream.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/src/FreeStack.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/src/MinimumSerial.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/src/MinimumSerial.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/src/SdCard/SdInfo.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/src/SdCard/SdSpiCard.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/src/SdCard/SdSpiCard.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/src/SdCard/SdSpiCardEX.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/src/SdCard/SdioCard.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/src/SdCard/SdioCardEX.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/src/SdCard/SdioTeensy.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/src/SdFat.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/src/SdFatConfig.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/src/SpiDriver/DigitalPin.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/src/SpiDriver/SdSpiBaseDriver.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/src/SpiDriver/SdSpiDriver.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/src/SpiDriver/SdSpiESP8266.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/src/SpiDriver/SdSpiParticle.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/src/SpiDriver/SdSpiSAM3X.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/src/SpiDriver/SdSpiSAMD.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/src/SpiDriver/SdSpiSTM32.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/src/SpiDriver/SdSpiTeensy3.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/src/SpiDriver/SoftSPI.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/src/SpiDriver/boards/AvrDevelopersGpioPinMap.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/src/SpiDriver/boards/BobuinoGpioPinMap.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/src/SpiDriver/boards/GpioPinMap.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/src/SpiDriver/boards/LeonardoGpioPinMap.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/src/SpiDriver/boards/MegaGpioPinMap.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/src/SpiDriver/boards/SleepingBeautyGpioPinMap.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/src/SpiDriver/boards/Standard1284GpioPinMap.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/src/SpiDriver/boards/Teensy2GpioPinMap.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/src/SpiDriver/boards/Teensy2ppGpioPinMap.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/src/SpiDriver/boards/UnoGpioPinMap.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/src/SysCall.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/src/sdios.h" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeListsPrivate.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeListsPrivate.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/platformio.ini" beforeDir="false" afterPath="$PROJECT_DIR$/platformio.ini" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/DiveController.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/DiveController.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/bluetooth/Bluetooth.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/bluetooth/Bluetooth.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/bluetooth/Bluetooth.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/bluetooth/Bluetooth.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DiveController.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/DiveController.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/decomanager/DecoManager.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/decomanager/DecoManager.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/decomanager/DecoManager.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/decomanager/DecoManager.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/decomanager/algorithms/DiveAlgorithm.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/decomanager/algorithms/DiveAlgorithm.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/decomanager/algorithms/buhlmann/BuhlmannAlgorithm.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/decomanager/algorithms/buhlmann/BuhlmannAlgorithm.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/decomanager/algorithms/buhlmann/BuhlmannAlgorithm.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/decomanager/algorithms/buhlmann/BuhlmannAlgorithm.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/decomanager/algorithms/buhlmann/BuhlmannGasLoading.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/decomanager/algorithms/buhlmann/BuhlmannGasLoading.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/decomanager/algorithms/buhlmann/BuhlmannGasLoading.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/decomanager/algorithms/buhlmann/BuhlmannGasLoading.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/decomanager/algorithms/buhlmann/BuhlmannTissue.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/decomanager/algorithms/buhlmann/BuhlmannTissue.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/decomanager/algorithms/buhlmann/BuhlmannTissue.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/decomanager/algorithms/buhlmann/BuhlmannTissue.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/decomanager/algorithms/equations/DiveEquations.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/decomanager/algorithms/equations/DiveEquations.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/decomanager/algorithms/equations/DiveEquations.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/decomanager/algorithms/equations/DiveEquations.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/display/Display.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/display/Display.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/display/Display.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/display/Display.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/display/fonts/FreeMono12pt7b.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/display/fonts/FreeMono18pt7b.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/display/fonts/FreeMono24pt7b.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/display/fonts/FreeMono9pt7b.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/display/fonts/FreeMonoBold12pt7b.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/display/fonts/FreeMonoBold18pt7b.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/display/fonts/FreeMonoBold24pt7b.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/display/fonts/FreeMonoBold9pt7b.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/display/fonts/FreeMonoBoldOblique12pt7b.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/display/fonts/FreeMonoBoldOblique18pt7b.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/display/fonts/FreeMonoBoldOblique24pt7b.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/display/fonts/FreeMonoBoldOblique9pt7b.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/display/fonts/FreeMonoOblique12pt7b.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/display/fonts/FreeMonoOblique18pt7b.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/display/fonts/FreeMonoOblique24pt7b.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/display/fonts/FreeMonoOblique9pt7b.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/display/fonts/FreeSans12pt7b.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/display/fonts/FreeSans18pt7b.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/display/fonts/FreeSans24pt7b.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/display/fonts/FreeSans9pt7b.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/display/fonts/FreeSansBold12pt7b.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/display/fonts/FreeSansBold18pt7b.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/display/fonts/FreeSansBold24pt7b.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/display/fonts/FreeSansBold9pt7b.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/display/fonts/FreeSansBoldOblique12pt7b.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/display/fonts/FreeSansBoldOblique18pt7b.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/display/fonts/FreeSansBoldOblique24pt7b.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/display/fonts/FreeSansBoldOblique9pt7b.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/display/fonts/FreeSansOblique12pt7b.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/display/fonts/FreeSansOblique18pt7b.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/display/fonts/FreeSansOblique24pt7b.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/display/fonts/FreeSansOblique9pt7b.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/display/fonts/FreeSerif12pt7b.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/display/fonts/FreeSerif18pt7b.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/display/fonts/FreeSerif24pt7b.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/display/fonts/FreeSerif9pt7b.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/display/fonts/FreeSerifBold12pt7b.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/display/fonts/FreeSerifBold18pt7b.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/display/fonts/FreeSerifBold24pt7b.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/display/fonts/FreeSerifBold9pt7b.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/display/fonts/FreeSerifBoldItalic12pt7b.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/display/fonts/FreeSerifBoldItalic18pt7b.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/display/fonts/FreeSerifBoldItalic24pt7b.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/display/fonts/FreeSerifBoldItalic9pt7b.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/display/fonts/FreeSerifItalic12pt7b.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/display/fonts/FreeSerifItalic18pt7b.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/display/fonts/FreeSerifItalic24pt7b.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/display/fonts/FreeSerifItalic9pt7b.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/display/fonts/Org_01.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/display/fonts/Picopixel.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/display/fonts/Tiny3x3a2pt7b.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/display/fonts/TomThumb.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/display/fonts/arial10pt7.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/display/fonts/arial12pt7.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/display/fonts/arialbd10pt7.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/display/fonts/arialbd12pt7.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/display/fonts/arialbd24pt7.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/display/fonts/arialn24pt7b.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/display/fonts/arialnb10pt7.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/display/fonts/arialnb22pt7.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/display/fonts/arialnb24pt7.h" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/display/pages/MainPage.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/display/pages/MainPage.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/display/pages/MainPage.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/display/pages/MainPage.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/display/pages/Page.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/display/pages/Page.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/display/pages/Page.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/display/pages/Page.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/display/pages/SettingsPage.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/display/pages/SettingsPage.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/display/pages/SettingsPage.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/display/pages/SettingsPage.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/display/widgets/BatteryWidget.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/display/widgets/BatteryWidget.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/display/widgets/EditableDigitWidget.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/display/widgets/EditableDigitWidget.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/display/widgets/EditableDigitWidget.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/display/widgets/EditableDigitWidget.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/display/widgets/NumberValueWidget.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/display/widgets/NumberValueWidget.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/display/widgets/StringValueWidget.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/display/widgets/StringValueWidget.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/domain/dive/DecompressionPlan.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/dive/DecompressionPlan.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/domain/dive/DecompressionPlan.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/dive/DecompressionPlan.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/domain/dive/DecompressionStep.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/dive/DecompressionStep.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/domain/dive/Dive.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/dive/Dive.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/domain/dive/Dive.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/dive/Dive.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/domain/dive/DiveStep.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/dive/DiveStep.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/domain/dive/DiveStep.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/dive/DiveStep.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/domain/dive/Gas.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/dive/Gas.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/domain/dive/Gas.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/dive/Gas.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/domain/settings/Constants.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/settings/Constants.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/domain/logbook/LogBook.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/logbook/LogBook.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/domain/logbook/LogBook.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/logbook/LogBook.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/domain/settings/Settings.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/settings/Settings.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/domain/settings/Settings.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/settings/Settings.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/filesystem/FileSystem.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/filesystem/FileSystem.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/filesystem/FileSystem.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/filesystem/FileSystem.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/filesystem/JsonSerializable.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/filesystem/JsonSerializable.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/gasmanager/GasManager.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/gasmanager/GasManager.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gasmanager/GasManager.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/gasmanager/GasManager.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/menu/Menu.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/menu/Menu.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/menu/Menu.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/menu/Menu.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sensors/button/PiezoButton.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/sensors/button/PiezoButton.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sensors/depth/DIVEC_MS5837.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/sensors/depth/DIVEC_MS5837.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sensors/depth/DepthSensor.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/sensors/depth/DepthSensor.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sensors/depth/DepthSensor.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/sensors/depth/DepthSensor.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sensors/wetcontact/WetContact.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/sensors/wetcontact/WetContact.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/time/Time.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/time/Time.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -168,24 +644,35 @@
     <property name="cf.advertisement.text.has.clang-format" value="true" />
     <property name="cf.first.check.clang-format" value="false" />
     <property name="ignore.virus.scanning.warn.message" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/display/bgimage" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="CPPToolchains" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\ws\divec\src" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\ws\divec\.pio\libdeps\adafruit_feather_m4\SdFat - Adafruit Fork" />
       <recent name="D:\ws\divec\src\display\bgimage" />
       <recent name="D:\ws\divec\src\display\fonts" />
       <recent name="D:\ws\divec\src\bluetooth" />
       <recent name="D:\ws\divec\lib\bluetooth" />
-      <recent name="D:\ws\divec\test" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\ws\divec\.pio\libdeps\adafruit_feather_m4\SdFat - Adafruit Fork" />
+      <recent name="D:\ws\divec\src" />
     </key>
   </component>
   <component name="RunManager" selected="PlatformIO.PlatformIO Upload">
+    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Z_DUMMY_TARGET" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="divec" TARGET_NAME="Z_DUMMY_TARGET" CONFIG_NAME="adafruit_feather_m4" RUN_TARGET_PROJECT_NAME="divec" RUN_TARGET_NAME="Z_DUMMY_TARGET">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
@@ -249,7 +736,8 @@
       <workItem from="1605909688028" duration="44136000" />
       <workItem from="1606838713012" duration="19789000" />
       <workItem from="1607102589499" duration="20364000" />
-      <workItem from="1607174443310" duration="1538000" />
+      <workItem from="1607174443310" duration="39062000" />
+      <workItem from="1607464583037" duration="15572000" />
     </task>
     <task id="LOCAL-00001" summary="Updated readme">
       <created>1604870538629</created>
@@ -300,11 +788,28 @@
       <option name="project" value="LOCAL" />
       <updated>1606229249916</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="added dive logging - fix bg image (using progmem now)">
+      <created>1607186693525</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1607186693525</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ORDER">
+      <list>
+        <option value="0" />
+        <option value="2" />
+        <option value="3" />
+        <option value="1" />
+      </list>
+    </option>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -347,7 +852,8 @@
     <MESSAGE value="Experiments with piezo sensors - moved bleutooth module tp software spi (hw spi taken by screen)" />
     <MESSAGE value="piezo buttons working - Bluetooth module working with android app" />
     <MESSAGE value="Fix little artifact issue on bottom of screen" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix little artifact issue on bottom of screen" />
+    <MESSAGE value="added dive logging - fix bg image (using progmem now)" />
+    <option name="LAST_COMMIT_MESSAGE" value="added dive logging - fix bg image (using progmem now)" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
@@ -364,10 +870,10 @@
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
     <state x="314" y="358" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.3440.1400@0.0.3440.1400" timestamp="1604252063869" />
-    <state x="1525" y="415" key="#com.intellij.ide.util.MemberChooser" timestamp="1606849224445">
+    <state x="1525" y="415" key="#com.intellij.ide.util.MemberChooser" timestamp="1607513130930">
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
-    <state x="1525" y="415" key="#com.intellij.ide.util.MemberChooser/0.0.3440.1400@0.0.3440.1400" timestamp="1606849224445" />
+    <state x="1525" y="415" key="#com.intellij.ide.util.MemberChooser/0.0.3440.1400@0.0.3440.1400" timestamp="1607513130930" />
     <state x="547" y="435" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1604869263313">
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
@@ -376,14 +882,14 @@
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
     <state x="1450" y="446" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.3440.1400@0.0.3440.1400" timestamp="1606849019532" />
-    <state x="492" y="268" key="CommitChangelistDialog2" timestamp="1606229248011">
+    <state x="492" y="268" key="CommitChangelistDialog2" timestamp="1607186688032">
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
-    <state x="492" y="268" key="CommitChangelistDialog2/0.0.3440.1400@0.0.3440.1400" timestamp="1606229248011" />
-    <state x="92" y="92" width="3256" height="1216" key="DiffContextDialog" timestamp="1606229244005">
+    <state x="492" y="268" key="CommitChangelistDialog2/0.0.3440.1400@0.0.3440.1400" timestamp="1607186688032" />
+    <state x="92" y="92" width="3256" height="1216" key="DiffContextDialog" timestamp="1607467778852">
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
-    <state x="92" y="92" width="3256" height="1216" key="DiffContextDialog/0.0.3440.1400@0.0.3440.1400" timestamp="1606229244005" />
+    <state x="92" y="92" width="3256" height="1216" key="DiffContextDialog/0.0.3440.1400@0.0.3440.1400" timestamp="1607467778852" />
     <state x="889" y="412" key="FileChooserDialogImpl" timestamp="1605046679073">
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
@@ -396,22 +902,22 @@
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
     <state x="643" y="404" key="Github.UntrackedFilesDialog/0.0.3440.1400@0.0.3440.1400" timestamp="1604868795950" />
-    <state width="1674" height="346" key="GridCell.Tab.0.bottom" timestamp="1607186086805">
+    <state width="3397" height="450" key="GridCell.Tab.0.bottom" timestamp="1607535228278">
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
-    <state width="1674" height="346" key="GridCell.Tab.0.bottom/0.0.3440.1400@0.0.3440.1400" timestamp="1607186086805" />
-    <state width="1674" height="346" key="GridCell.Tab.0.center" timestamp="1607186086804">
+    <state width="3397" height="450" key="GridCell.Tab.0.bottom/0.0.3440.1400@0.0.3440.1400" timestamp="1607535228278" />
+    <state width="3397" height="450" key="GridCell.Tab.0.center" timestamp="1607535228278">
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
-    <state width="1674" height="346" key="GridCell.Tab.0.center/0.0.3440.1400@0.0.3440.1400" timestamp="1607186086804" />
-    <state width="1674" height="346" key="GridCell.Tab.0.left" timestamp="1607186086804">
+    <state width="3397" height="450" key="GridCell.Tab.0.center/0.0.3440.1400@0.0.3440.1400" timestamp="1607535228278" />
+    <state width="3397" height="450" key="GridCell.Tab.0.left" timestamp="1607535228278">
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
-    <state width="1674" height="346" key="GridCell.Tab.0.left/0.0.3440.1400@0.0.3440.1400" timestamp="1607186086804" />
-    <state width="1674" height="346" key="GridCell.Tab.0.right" timestamp="1607186086805">
+    <state width="3397" height="450" key="GridCell.Tab.0.left/0.0.3440.1400@0.0.3440.1400" timestamp="1607535228278" />
+    <state width="3397" height="450" key="GridCell.Tab.0.right" timestamp="1607535228278">
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
-    <state width="1674" height="346" key="GridCell.Tab.0.right/0.0.3440.1400@0.0.3440.1400" timestamp="1607186086805" />
+    <state width="3397" height="450" key="GridCell.Tab.0.right/0.0.3440.1400@0.0.3440.1400" timestamp="1607535228278" />
     <state width="3397" height="482" key="GridCell.Tab.1.bottom" timestamp="1602002270919">
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
@@ -452,29 +958,29 @@
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
     <state x="610" y="302" key="SettingsEditor/0.0.3440.1400@0.0.3440.1400" timestamp="1605196397649" />
-    <state x="459" y="432" key="Vcs.Push.Dialog.v2" timestamp="1606229252027">
+    <state x="459" y="432" key="Vcs.Push.Dialog.v2" timestamp="1607186697865">
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
-    <state x="459" y="432" key="Vcs.Push.Dialog.v2/0.0.3440.1400@0.0.3440.1400" timestamp="1606229252027" />
+    <state x="459" y="432" key="Vcs.Push.Dialog.v2/0.0.3440.1400@0.0.3440.1400" timestamp="1607186697865" />
     <state x="92" y="92" width="3256" height="1216" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog" timestamp="1605722283583">
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
     <state x="92" y="92" width="3256" height="1216" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog/0.0.3440.1400@0.0.3440.1400" timestamp="1605722283583" />
-    <state x="177" y="141" width="3240" height="1200" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1607110214257">
+    <state x="177" y="141" width="3240" height="1200" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1607533887729">
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
-    <state x="177" y="141" width="3240" height="1200" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.3440.1400@0.0.3440.1400" timestamp="1607110214257" />
-    <state x="1426" y="433" width="776" height="534" key="find.popup" timestamp="1607102928350">
+    <state x="177" y="141" width="3240" height="1200" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.3440.1400@0.0.3440.1400" timestamp="1607533887729" />
+    <state x="1426" y="433" width="776" height="534" key="find.popup" timestamp="1607466503104">
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
-    <state x="1426" y="433" width="776" height="534" key="find.popup/0.0.3440.1400@0.0.3440.1400" timestamp="1607102928350" />
-    <state x="516" y="334" key="run.anything.popup" timestamp="1607172953967">
+    <state x="1426" y="433" width="776" height="534" key="find.popup/0.0.3440.1400@0.0.3440.1400" timestamp="1607466503104" />
+    <state x="516" y="334" key="run.anything.popup" timestamp="1607358940967">
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
-    <state x="516" y="334" key="run.anything.popup/0.0.3440.1400@0.0.3440.1400" timestamp="1607172953967" />
-    <state x="523" y="320" width="672" height="678" key="search.everywhere.popup" timestamp="1607119239691">
+    <state x="516" y="334" key="run.anything.popup/0.0.3440.1400@0.0.3440.1400" timestamp="1607358940967" />
+    <state x="523" y="320" width="672" height="678" key="search.everywhere.popup" timestamp="1607508904441">
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
-    <state x="523" y="320" width="672" height="678" key="search.everywhere.popup/0.0.3440.1400@0.0.3440.1400" timestamp="1607119239691" />
+    <state x="523" y="320" width="672" height="678" key="search.everywhere.popup/0.0.3440.1400@0.0.3440.1400" timestamp="1607508904441" />
   </component>
 </project>

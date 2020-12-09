@@ -85,7 +85,7 @@ Gas *GasManager::getBestGas(double pressureInBars, std::list<Gas *> *gasList) {
     Gas *bestGas = nullptr;
     for (Gas *diveGas:*gasList) {
         if (diveGas->isActive() && diveGas->isUsable(pressureInBars) &&
-                (bestGas == nullptr || (diveGas->getO2() > bestGas->getO2()))) {
+            (bestGas == nullptr || (diveGas->getO2() > bestGas->getO2()))) {
             bestGas = diveGas;
         }
     }
@@ -204,7 +204,8 @@ DeserializationError GasManager::deserialize(File *file) {
 size_t GasManager::getFileSize() {
     return JSON_OBJECT_SIZE(4) + // 2 properties (nrOf oc/cc gasses) + 2 arrays
            JSON_ARRAY_SIZE(MAX_OC_GASSES) + MAX_OC_GASSES * JSON_OBJECT_SIZE(5) + // OC gasses array contains MAX_OC_GASSES elements and each element has 4 properties
-           JSON_ARRAY_SIZE(MAX_CC_GASSES) + MAX_CC_GASSES * JSON_OBJECT_SIZE(5); // CC gasses array contains MAX_CC_GASSES elements and each element has 4 properties
+           JSON_ARRAY_SIZE(MAX_CC_GASSES) + MAX_CC_GASSES * JSON_OBJECT_SIZE(5) + // CC gasses array contains MAX_CC_GASSES elements and each element has 4 properties
+           BUFFER_FOR_STRINGS_DUPLICATION;
 }
 
 

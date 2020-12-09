@@ -14,19 +14,19 @@
 namespace ARDUINOJSON_NAMESPACE {
 
 class JsonDocument : public Visitable {
- public:
-  template <typename Visitor>
-  void accept(Visitor& visitor) const {
-    return getVariant().accept(visitor);
-  }
+public:
+    template<typename TVisitor>
+    typename TVisitor::result_type accept(TVisitor &visitor) const {
+      return getVariant().accept(visitor);
+    }
 
-  template <typename T>
-  typename VariantAs<T>::type as() {
-    return getVariant().template as<T>();
-  }
+    template<typename T>
+    typename VariantAs<T>::type as() {
+      return getVariant().template as<T>();
+    }
 
-  template <typename T>
-  typename VariantConstAs<T>::type as() const {
+    template<typename T>
+    typename VariantConstAs<T>::type as() const {
     return getVariant().template as<T>();
   }
 
@@ -40,23 +40,27 @@ class JsonDocument : public Visitable {
     return getVariant().template is<T>();
   }
 
-  bool isNull() const {
-    return getVariant().isNull();
-  }
+    bool isNull() const {
+      return getVariant().isNull();
+    }
 
-  size_t memoryUsage() const {
-    return _pool.size();
-  }
+    size_t memoryUsage() const {
+      return _pool.size();
+    }
 
-  size_t nesting() const {
-    return _data.nesting();
-  }
+    bool overflowed() const {
+      return _pool.overflowed();
+    }
 
-  size_t capacity() const {
-    return _pool.capacity();
-  }
+    size_t nesting() const {
+      return _data.nesting();
+    }
 
-  size_t size() const {
+    size_t capacity() const {
+      return _pool.capacity();
+    }
+
+    size_t size() const {
     return _data.size();
   }
 
@@ -81,9 +85,10 @@ class JsonDocument : public Visitable {
     return _pool;
   }
 
-  VariantData& data() {
-    return _data;
-  }
+    // for internal use only
+    VariantData& data() {
+      return _data;
+    }
 
   ArrayRef createNestedArray() {
     return addElement().to<ArrayRef>();

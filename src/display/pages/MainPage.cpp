@@ -70,8 +70,7 @@ void MainPage::redraw() {
 }
 
 void MainPage::update() {
-    Gas *currentGas = _gasManager->getCurrentOcGas();
-    DecompressionPlan *plan = _decoManager->getCurrentAlgorithm()->getDecoPlan(_gasManager);
+    DecompressionPlan *plan = _decoManager->getDecoPlan();
 
     // top row
     _currentDepth->updateValue(_dive->getCurrentDepthInMeters());
@@ -82,18 +81,18 @@ void MainPage::update() {
         _surfaceInterval->hide();
         _decoStopTime->updateValue(decoStop->getDurationInSeconds() / 60.0);
         _decoStopDepth->updateValue(decoStop->getEndDepthInMeters());
-    } else {
+    } else { // else show surface interval
         _decoStopDepth->hide();
         _decoStopTime->hide();
         _surfaceInterval->updateValue(_decoManager->getSurfaceIntervalInSeconds() / 60.0);
     }
 
     // middle row
-    _gasPO2->updateValue(DiveEquations::gasPressureInBars(_dive->getCurrentDepthInMeters(), currentGas->getO2()));
+    _gasPO2->updateValue(DiveEquations::gasPressureInBars(_dive->getCurrentDepthInMeters(), _decoManager->getCurrentGas()->getO2()));
 
     // bottom row
     _mode->updateValue("OC");
-    _gasMix->updateValue(currentGas->getName());
+    _gasMix->updateValue(_decoManager->getCurrentGas()->getName());
     _ndl->updateValue(_decoManager->getNdlInSeconds() / 60.0);
     _tts->updateValue(plan->getTtsInSeconds() / 60.0);
 }

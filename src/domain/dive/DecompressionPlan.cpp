@@ -66,7 +66,7 @@ void DecompressionPlan::log(Print *print, Dive *dive) {
         uint32_t previousStepTimeInSeconds = startTimeDiveInSeconds;
         int16_t previousDepthInMeters = 0;
         for (DiveStep *step:dive->getSteps()) {
-            int16_t stepEndDepthInMeters = DiveEquations::barToDepthInMeters(step->getPressureInBar());
+            double stepEndDepthInMeters = DiveEquations::barToDepthInMeters(step->getPressureInBar());
             print->print(stepEndDepthInMeters);
             print->print(F("\t\t"));
             if (previousDepthInMeters == stepEndDepthInMeters) {

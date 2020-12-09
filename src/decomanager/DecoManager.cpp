@@ -16,8 +16,7 @@ void DecoManager::init(FileSystem *fileSystem, const DateTime &currentTime) {
     Serial.println(F(" - decostate initialized."));
 
     // init dive
-    _currentDive = new Dive();
-    _currentDive->init(fileSystem);
+    _currentDive = new Dive(fileSystem);
     Serial.println(F(" - dive initialized."));
 
     // init gasmanager
@@ -81,10 +80,7 @@ void DecoManager::update(const DateTime &currentTime, double currentPressureInBa
 }
 
 DecompressionPlan *DecoManager::getDecoPlan() {
-    DecompressionPlan *plan = getCurrentAlgorithm()->getDecoPlan(_gasManager);
-    // add dive steps
-
-    return plan;
+    return getCurrentAlgorithm()->getDecoPlan(_gasManager);
 }
 
 void DecoManager::addSurfaceInterval(const DateTime &beginTime, const DateTime &endTime) {
@@ -103,12 +99,16 @@ GasManager *DecoManager::getGasManager() {
     return _gasManager;
 }
 
+Gas *DecoManager::getCurrentGas() {
+    return getGasManager()->getCurrentOcGas();
+}
+
 Dive *DecoManager::getCurrentDive() {
     return _currentDive;
 }
 
 uint32_t DecoManager::getNdlInSeconds() {
-    return _currentAlgorithm->getNdlInSeconds();
+    return _currentAlgorithm->getNdlInSeconds(_gasManager);
 }
 
 uint32_t DecoManager::getSurfaceIntervalInSeconds() {
@@ -167,8 +167,10 @@ size_t DecoManager::getFileSize() {
     for (auto algorithm:_algorithms) {
         fileSize += algorithm->getObjectSize(); // add sizes of algorithm states
     }
-    return fileSize + 500; // TODO: why out of memory without +500??????????????
+    return fileSize + BUFFER_FOR_STRINGS_DUPLICATION;
 }
+
+
 
 
 

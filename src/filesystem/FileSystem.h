@@ -1,6 +1,9 @@
 #ifndef DIVEC_FILESYSTEM_H
 #define DIVEC_FILESYSTEM_H
 
+#include <SdFat.h>
+#include <filesystem/JsonSerializable.h>
+
 #define SD_CS  5 // SD card select pin
 
 // SD card FAT filenames -> must use the 8.3 format
@@ -10,8 +13,7 @@
 #define LOGBOOK_FILE "logbook.jsn"
 #define TMP_LOG_FILE "tmplog.jsn"
 
-#include <SdFat.h>
-#include <filesystem/JsonSerializable.h>
+
 
 class FileSystem {
 public:
@@ -47,6 +49,8 @@ private:
     bool loadFromJsonFile(char const *fileName, JsonSerializable *jsonSerializable);
 
     bool saveToJsonFile(char const *fileName, JsonSerializable *jsonSerializable);
+
+    bool saveToJsonFile(char const *fileName, JsonSerializable *jsonSerializable, bool append);
 
     File _diveLogFile;
     SdFat _sdFat;

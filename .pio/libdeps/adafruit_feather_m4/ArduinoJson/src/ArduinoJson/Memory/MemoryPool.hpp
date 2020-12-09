@@ -5,12 +5,13 @@
 #pragma once
 
 #include <ArduinoJson/Memory/Alignment.hpp>
-#include <ArduinoJson/Memory/StringSlot.hpp>
 #include <ArduinoJson/Polyfills/assert.hpp>
 #include <ArduinoJson/Polyfills/mpl/max.hpp>
 #include <ArduinoJson/Variant/VariantSlot.hpp>
 
 #include <string.h>  // memmove
+
+#define JSON_STRING_SIZE(SIZE) (SIZE + 1)
 
 namespace ARDUINOJSON_NAMESPACE {
 
@@ -24,37 +25,42 @@ namespace ARDUINOJSON_NAMESPACE {
 
 class MemoryPool {
  public:
-  MemoryPool(char* buf, size_t capa)
-      : _begin(buf),
-        _left(buf),
-        _right(buf ? buf + capa : 0),
-        _end(buf ? buf + capa : 0) {
-    ARDUINOJSON_ASSERT(isAligned(_begin));
-    ARDUINOJSON_ASSERT(isAligned(_right));
-    ARDUINOJSON_ASSERT(isAligned(_end));
-  }
+    MemoryPool(char *buf, size_t capa)
+            : _begin(buf),
+              _left(buf),
+              _right(buf ? buf + capa : 0),
+              _end(buf ? buf + capa : 0),
+              _overflowed(false) {
+        ARDUINOJSON_ASSERT(isAligned(_begin));
+        ARDUINOJSON_ASSERT(isAligned(_right));
+        ARDUINOJSON_ASSERT(isAligned(_end));
+    }
 
   void* buffer() {
     return _begin;
   }
 
-  // Gets the capacity of the memoryPool in bytes
-  size_t capacity() const {
-    return size_t(_end - _begin);
-  }
+    // Gets the capacity of the memoryPool in bytes
+    size_t capacity() const {
+        return size_t(_end - _begin);
+    }
 
-  size_t size() const {
-    return size_t(_left - _begin + _end - _right);
-  }
+    size_t size() const {
+        return size_t(_left - _begin + _end - _right);
+    }
 
-  VariantSlot* allocVariant() {
-    return allocRight<VariantSlot>();
-  }
+    bool overflowed() const {
+        return _overflowed;
+    }
 
-  template <typename TAdaptedString>
-  const char* saveString(const TAdaptedString& str) {
-    if (str.isNull())
-      return 0;
+    VariantSlot *allocVariant() {
+        return allocRight<VariantSlot>();
+    }
+
+    template<typename TAdaptedString>
+    const char *saveString(const TAdaptedString &str) {
+        if (str.isNull())
+            return 0;
 
 #if ARDUINOJSON_ENABLE_STRING_DEDUPLICATION
     const char* existingCopy = findString(str.begin());
@@ -80,24 +86,29 @@ class MemoryPool {
   const char* saveStringFromFreeZone(size_t len) {
 #if ARDUINOJSON_ENABLE_STRING_DEDUPLICATION
     const char* dup = findString(_left);
-    if (dup)
-      return dup;
+      if (dup)
+          return dup;
 #endif
 
-    const char* str = _left;
-    _left += len;
-    checkInvariants();
-    return str;
+      const char *str = _left;
+      _left += len;
+      checkInvariants();
+      return str;
   }
 
-  void clear() {
-    _left = _begin;
-    _right = _end;
-  }
+    void markAsOverflowed() {
+        _overflowed = true;
+    }
 
-  bool canAlloc(size_t bytes) const {
-    return _left + bytes <= _right;
-  }
+    void clear() {
+        _left = _begin;
+        _right = _end;
+        _overflowed = false;
+    }
+
+    bool canAlloc(size_t bytes) const {
+        return _left + bytes <= _right;
+    }
 
   bool owns(void* p) const {
     return _begin <= p && p < _end;
@@ -143,10 +154,6 @@ class MemoryPool {
   }
 
  private:
-  StringSlot* allocStringSlot() {
-    return allocRight<StringSlot>();
-  }
-
   void checkInvariants() {
     ARDUINOJSON_ASSERT(_begin <= _left);
     ARDUINOJSON_ASSERT(_left <= _right);
@@ -174,12 +181,14 @@ class MemoryPool {
 #endif
 
   char* allocString(size_t n) {
-    if (!canAlloc(n))
-      return 0;
-    char* s = _left;
-    _left += n;
-    checkInvariants();
-    return s;
+      if (!canAlloc(n)) {
+          _overflowed = true;
+          return 0;
+      }
+      char *s = _left;
+      _left += n;
+      checkInvariants();
+      return s;
   }
 
   template <typename T>
@@ -188,13 +197,16 @@ class MemoryPool {
   }
 
   void* allocRight(size_t bytes) {
-    if (!canAlloc(bytes))
-      return 0;
-    _right -= bytes;
-    return _right;
+      if (!canAlloc(bytes)) {
+          _overflowed = true;
+          return 0;
+      }
+      _right -= bytes;
+      return _right;
   }
 
-  char *_begin, *_left, *_right, *_end;
+        char *_begin, *_left, *_right, *_end;
+        bool _overflowed;
 };
 
 }  // namespace ARDUINOJSON_NAMESPACE

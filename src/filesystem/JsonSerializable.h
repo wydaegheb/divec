@@ -3,6 +3,8 @@
 
 #include <ArduinoJson.h>
 
+#define BUFFER_FOR_STRINGS_DUPLICATION 500
+
 class JsonSerializable {
 public:
     virtual ~JsonSerializable() = default;

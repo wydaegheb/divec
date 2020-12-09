@@ -15,7 +15,7 @@ public:
 
     DecompressionPlan *getDecoPlan(GasManager *gasManager) override;
 
-    uint32_t getNdlInSeconds() override;
+    uint32_t getNdlInSeconds(GasManager *gasManager) override;
 
     char const* getName() override;
 
@@ -27,7 +27,8 @@ public:
 
 private:
     BuhlmannGasLoading *_buhlmannGasLoading;
-    char const* _name;
+    DecompressionPlan *_decoPlan;
+    char const *_name;
 };
 
 #endif

@@ -7,9 +7,11 @@
 class LogBook : public JsonSerializable {
 public:
 
+    explicit LogBook(FileSystem *fileSystem);
+
     ~LogBook() override = default;
 
-    void init(FileSystem *fileSystem);
+    void clearTmpDiveLog();
 
     void addDiveStep(JsonSerializable *diveStep);
 

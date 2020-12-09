@@ -17,6 +17,7 @@
 #define USE_MOCK_DEPTH_SENSOR false
 #define USE_MOCK_TIME false
 
+
 class DiveController {
 public:
 
@@ -25,6 +26,8 @@ public:
     void step();
 
     const DecoManager &getDecoManager() const;
+
+    const FileSystem &getFileSystem() const;
 
 private:
     FileSystem _fileSystem;

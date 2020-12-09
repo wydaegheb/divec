@@ -21,24 +21,24 @@ class ElementProxy;
 
 template <typename TData>
 class ArrayRefBase {
- public:
-  operator VariantConstRef() const {
-    const void* data = _data;  // prevent warning cast-align
-    return VariantConstRef(reinterpret_cast<const VariantData*>(data));
-  }
+public:
+    operator VariantConstRef() const {
+        const void *data = _data;  // prevent warning cast-align
+        return VariantConstRef(reinterpret_cast<const VariantData *>(data));
+    }
 
-  template <typename Visitor>
-  FORCE_INLINE void accept(Visitor& visitor) const {
-    arrayAccept(_data, visitor);
-  }
+    template<typename TVisitor>
+    FORCE_INLINE typename TVisitor::result_type accept(TVisitor &visitor) const {
+        return arrayAccept(_data, visitor);
+    }
 
-  FORCE_INLINE bool isNull() const {
-    return _data == 0;
-  }
+    FORCE_INLINE bool isNull() const {
+        return _data == 0;
+    }
 
-  FORCE_INLINE operator bool() const {
-    return _data != 0;
-  }
+    FORCE_INLINE operator bool() const {
+        return _data != 0;
+    }
 
   FORCE_INLINE size_t memoryUsage() const {
     return _data ? _data->memoryUsage() : 0;

@@ -12,39 +12,40 @@
 namespace ARDUINOJSON_NAMESPACE {
 
 template <typename TWriter>
-class JsonSerializer {
- public:
-  JsonSerializer(TWriter writer) : _formatter(writer) {}
+class JsonSerializer : public Visitor<size_t> {
+public:
+    JsonSerializer(TWriter writer) : _formatter(writer) {}
 
-  FORCE_INLINE void visitArray(const CollectionData &array) {
-    write('[');
+    FORCE_INLINE size_t visitArray(const CollectionData &array) {
+        write('[');
 
-    VariantSlot *slot = array.head();
+        VariantSlot *slot = array.head();
 
-    while (slot != 0) {
-      slot->data()->accept(*this);
+        while (slot != 0) {
+            slot->data()->accept(*this);
 
-      slot = slot->next();
-      if (slot == 0)
-        break;
+            slot = slot->next();
+            if (slot == 0)
+                break;
 
       write(',');
     }
 
     write(']');
+        return bytesWritten();
   }
 
-  void visitObject(const CollectionData &object) {
-    write('{');
+    size_t visitObject(const CollectionData &object) {
+        write('{');
 
-    VariantSlot *slot = object.head();
+        VariantSlot *slot = object.head();
 
-    while (slot != 0) {
-      _formatter.writeString(slot->key());
-      write(':');
-      slot->data()->accept(*this);
+        while (slot != 0) {
+            _formatter.writeString(slot->key());
+            write(':');
+            slot->data()->accept(*this);
 
-      slot = slot->next();
+            slot = slot->next();
       if (slot == 0)
         break;
 
@@ -52,47 +53,55 @@ class JsonSerializer {
     }
 
     write('}');
+        return bytesWritten();
   }
 
-  void visitFloat(Float value) {
-    _formatter.writeFloat(value);
-  }
+    size_t visitFloat(Float value) {
+        _formatter.writeFloat(value);
+        return bytesWritten();
+    }
 
-  void visitString(const char *value) {
-    _formatter.writeString(value);
-  }
+    size_t visitString(const char *value) {
+        _formatter.writeString(value);
+        return bytesWritten();
+    }
 
-  void visitRawJson(const char *data, size_t n) {
-    _formatter.writeRaw(data, n);
-  }
+    size_t visitRawJson(const char *data, size_t n) {
+        _formatter.writeRaw(data, n);
+        return bytesWritten();
+    }
 
-  void visitNegativeInteger(UInt value) {
-    _formatter.writeNegativeInteger(value);
-  }
+    size_t visitNegativeInteger(UInt value) {
+        _formatter.writeNegativeInteger(value);
+        return bytesWritten();
+    }
 
-  void visitPositiveInteger(UInt value) {
-    _formatter.writePositiveInteger(value);
-  }
+    size_t visitPositiveInteger(UInt value) {
+        _formatter.writePositiveInteger(value);
+        return bytesWritten();
+    }
 
-  void visitBoolean(bool value) {
-    _formatter.writeBoolean(value);
-  }
+    size_t visitBoolean(bool value) {
+        _formatter.writeBoolean(value);
+        return bytesWritten();
+    }
 
-  void visitNull() {
-    _formatter.writeRaw("null");
-  }
+    size_t visitNull() {
+        _formatter.writeRaw("null");
+        return bytesWritten();
+    }
 
-  size_t bytesWritten() const {
-    return _formatter.bytesWritten();
-  }
+protected:
+    size_t bytesWritten() const {
+        return _formatter.bytesWritten();
+    }
 
- protected:
-  void write(char c) {
-    _formatter.writeRaw(c);
-  }
+    void write(char c) {
+        _formatter.writeRaw(c);
+    }
 
-  void write(const char *s) {
-    _formatter.writeRaw(s);
+    void write(const char *s) {
+        _formatter.writeRaw(s);
   }
 
  private:

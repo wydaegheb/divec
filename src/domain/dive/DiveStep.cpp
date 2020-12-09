@@ -1,6 +1,7 @@
 #include <RTClib.h>
 #include "DiveStep.h"
 
+
 DiveStep::DiveStep(const DateTime &endTime, Gas *gas, double pressureInBar, double temperatureInCelsius) {
     setEndTime(endTime);
     setGasName(gas);
@@ -42,15 +43,31 @@ void DiveStep::setGasName(Gas *gas) {
     _gasName = gas->getName();
 }
 
+JsonObject DiveStep::serializeObject(JsonObject &doc) {
+    doc["end_time"] = _endTime.secondstime();
+    doc["pres"] = _pressureInBar;
+    doc["temp"] = _temperatureInCelsius;
+    doc["gas"] = _gasName;
+    return doc;
+}
+
 size_t DiveStep::serialize(File *file) {
     DynamicJsonDocument doc(getFileSize());
+    JsonObject docObject = doc.to<JsonObject>();
+    doc = serializeObject(docObject);
+/*    doc["end_time"] = _endTime.secondstime();
+    doc["pres"] = _pressureInBar;
+    doc["temp"] = _temperatureInCelsius;
+    doc["gas"] = _gasName;*/
 
-    doc["endTime"] = _endTime.secondstime();
-    doc["lastTimeStamp"] = _pressureInBar;
-    doc["temperatureInCelsius"] = _temperatureInCelsius;
-    doc["maxDepthInMeter"] = _gasName;
+    return serializeJson(doc, *file);
+}
 
-    return serializeJsonPretty(doc, *file);
+void DiveStep::deserializeObject(JsonObject &doc) {
+    _endTime = DateTime((uint32_t) doc["end_time"]);
+    _pressureInBar = doc["pres"];
+    _temperatureInCelsius = doc["temp"];
+    _gasName = doc["gas"];
 }
 
 DeserializationError DiveStep::deserialize(File *file) {
@@ -61,16 +78,19 @@ DeserializationError DiveStep::deserialize(File *file) {
         return error;
     }
 
-    _endTime = DateTime((uint32_t) doc["endTime"]);
-    _pressureInBar = doc["lastTimeStamp"];
-    _temperatureInCelsius = doc["temperatureInCelsius"];
-    _gasName = doc["maxDepthInMeter"];
+    JsonObject docObject = doc.to<JsonObject>();
+    deserializeObject(docObject);
+
+/*    _endTime = DateTime((uint32_t) doc["end_time"]);
+    _pressureInBar = doc["pres"];
+    _temperatureInCelsius = doc["temp"];
+    _gasName = doc["gas"];*/
 
     return error;
 }
 
 size_t DiveStep::getFileSize() {
-    return JSON_OBJECT_SIZE(4); // 4 properties
+    return JSON_OBJECT_SIZE(4) + BUFFER_FOR_STRINGS_DUPLICATION; // 4 properties
 }
 
 void DiveStep::log() {
@@ -86,6 +106,7 @@ void DiveStep::log(Print *print) {
     print->print(F("\t\t"));
     print->println(_temperatureInCelsius);
 }
+
 
 
 

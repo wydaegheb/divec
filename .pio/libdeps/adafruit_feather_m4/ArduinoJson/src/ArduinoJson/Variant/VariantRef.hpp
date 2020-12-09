@@ -16,6 +16,7 @@
 #include <ArduinoJson/Variant/VariantOperators.hpp>
 #include <ArduinoJson/Variant/VariantRef.hpp>
 #include <ArduinoJson/Variant/VariantShortcuts.hpp>
+#include <ArduinoJson/Variant/VariantTag.hpp>
 
 namespace ARDUINOJSON_NAMESPACE {
 
@@ -23,22 +24,19 @@ namespace ARDUINOJSON_NAMESPACE {
 class ArrayRef;
 class ObjectRef;
 
-template <typename, typename>
-class MemberProxy;
-
 // Contains the methods shared by VariantRef and VariantConstRef
 template <typename TData>
-class VariantRefBase {
- public:
-  // Tells wether the variant has the specified type.
-  // Returns true if the variant has type type T, false otherwise.
-  //
-  // bool is<char>() const;
-  // bool is<signed char>() const;
-  // bool is<signed short>() const;
-  // bool is<signed int>() const;
-  // bool is<signed long>() const;
-  // bool is<unsigned char>() const;
+    class VariantRefBase : public VariantTag {
+    public:
+        // Tells wether the variant has the specified type.
+        // Returns true if the variant has type type T, false otherwise.
+        //
+        // bool is<char>() const;
+        // bool is<signed char>() const;
+        // bool is<signed short>() const;
+        // bool is<signed int>() const;
+        // bool is<signed long>() const;
+        // bool is<unsigned char>() const;
   // bool is<unsigned short>() const;
   // bool is<unsigned int>() const;
   // bool is<unsigned long>() const;
@@ -251,29 +249,30 @@ class VariantRef : public VariantRefBase<VariantData>,
   }
 #endif
 
-  template <typename T>
-  FORCE_INLINE typename VariantAs<T>::type as() const {
-    return variantAs<typename VariantAs<T>::type>(_data, _pool);
-  }
+        template<typename T>
+        FORCE_INLINE typename VariantAs<T>::type as() const {
+            return variantAs<typename VariantAs<T>::type>(_data, _pool);
+        }
 
-  template <typename T>
-  FORCE_INLINE operator T() const {
-    return variantAs<T>(_data, _pool);
-  }
+        template<typename T>
+        FORCE_INLINE operator T() const {
+            return variantAs<T>(_data, _pool);
+        }
 
-  template <typename Visitor>
-  void accept(Visitor &visitor) const {
-    variantAccept(_data, visitor);
-  }
+        template<typename TVisitor>
+        typename TVisitor::result_type accept(TVisitor &visitor) const {
+            return variantAccept(_data, visitor);
+        }
 
-  // Change the type of the variant
-  //
-  // ArrayRef to<ArrayRef>()
-  template <typename T>
-  typename enable_if<is_same<T, ArrayRef>::value, ArrayRef>::type to() const;
-  //
-  // ObjectRef to<ObjectRef>()
-  template <typename T>
+        // Change the type of the variant
+        //
+        // ArrayRef to<ArrayRef>()
+        template<typename T>
+        typename enable_if<is_same<T, ArrayRef>::value, ArrayRef>::type to() const;
+
+        //
+        // ObjectRef to<ObjectRef>()
+        template<typename T>
   typename enable_if<is_same<T, ObjectRef>::value, ObjectRef>::type to() const;
   //
   // ObjectRef to<VariantRef>()
@@ -339,27 +338,30 @@ class VariantConstRef : public VariantRefBase<const VariantData>,
                         public VariantOperators<VariantConstRef>,
                         public VariantShortcuts<VariantConstRef>,
                         public Visitable {
-  typedef VariantRefBase<const VariantData> base_type;
-  friend class VariantRef;
+    typedef VariantRefBase<const VariantData> base_type;
 
- public:
-  VariantConstRef() : base_type(0) {}
-  VariantConstRef(const VariantData *data) : base_type(data) {}
-  VariantConstRef(VariantRef var) : base_type(var._data) {}
+    friend class VariantRef;
 
-  template <typename Visitor>
-  void accept(Visitor &visitor) const {
-    variantAccept(_data, visitor);
-  }
+public:
+    VariantConstRef() : base_type(0) {}
 
-  template <typename T>
-  FORCE_INLINE typename VariantConstAs<T>::type as() const {
-    return variantAs<typename VariantConstAs<T>::type>(_data);
-  }
+    VariantConstRef(const VariantData *data) : base_type(data) {}
 
-  template <typename T>
-  FORCE_INLINE operator T() const {
-    return variantAs<T>(_data);
+    VariantConstRef(VariantRef var) : base_type(var._data) {}
+
+    template<typename TVisitor>
+    typename TVisitor::result_type accept(TVisitor &visitor) const {
+        return variantAccept(_data, visitor);
+    }
+
+    template<typename T>
+    FORCE_INLINE typename VariantConstAs<T>::type as() const {
+        return variantAs<typename VariantConstAs<T>::type>(_data);
+    }
+
+    template<typename T>
+    FORCE_INLINE operator T() const {
+        return variantAs<T>(_data);
   }
 
   FORCE_INLINE VariantConstRef getElement(size_t) const;

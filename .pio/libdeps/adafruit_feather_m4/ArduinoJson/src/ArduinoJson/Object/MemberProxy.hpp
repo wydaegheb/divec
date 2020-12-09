@@ -21,19 +21,22 @@ namespace ARDUINOJSON_NAMESPACE {
 template <typename TObject, typename TStringRef>
 class MemberProxy : public VariantOperators<MemberProxy<TObject, TStringRef> >,
                     public VariantShortcuts<MemberProxy<TObject, TStringRef> >,
-                    public Visitable {
-  typedef MemberProxy<TObject, TStringRef> this_type;
+                    public Visitable,
+                    public VariantTag {
+    typedef MemberProxy<TObject, TStringRef> this_type;
 
- public:
-  FORCE_INLINE MemberProxy(TObject variant, TStringRef key)
-      : _object(variant), _key(key) {}
+public:
+    typedef VariantRef variant_type;
 
-  FORCE_INLINE MemberProxy(const MemberProxy &src)
-      : _object(src._object), _key(src._key) {}
+    FORCE_INLINE MemberProxy(TObject variant, TStringRef key)
+            : _object(variant), _key(key) {}
 
-  FORCE_INLINE operator VariantConstRef() const {
-    return getUpstreamMember();
-  }
+    FORCE_INLINE MemberProxy(const MemberProxy &src)
+            : _object(src._object), _key(src._key) {}
+
+    FORCE_INLINE operator VariantConstRef() const {
+        return getUpstreamMember();
+    }
 
   FORCE_INLINE this_type &operator=(const this_type &src) {
     getOrAddUpstreamMember().set(src);
@@ -112,26 +115,26 @@ class MemberProxy : public VariantOperators<MemberProxy<TObject, TStringRef> >,
     return getOrAddUpstreamMember().set(value);
   }
 
-  // set(char*) const
-  // set(const char*) const
-  // set(const __FlashStringHelper*) const
-  template <typename TChar>
-  FORCE_INLINE bool set(TChar *value) {
-    return getOrAddUpstreamMember().set(value);
-  }
+    // set(char*) const
+    // set(const char*) const
+    // set(const __FlashStringHelper*) const
+    template<typename TChar>
+    FORCE_INLINE bool set(TChar *value) {
+        return getOrAddUpstreamMember().set(value);
+    }
 
-  template <typename Visitor>
-  void accept(Visitor &visitor) const {
-    return getUpstreamMember().accept(visitor);
-  }
+    template<typename TVisitor>
+    typename TVisitor::result_type accept(TVisitor &visitor) const {
+        return getUpstreamMember().accept(visitor);
+    }
 
-  FORCE_INLINE VariantRef addElement() const {
-    return getOrAddUpstreamMember().addElement();
-  }
+    FORCE_INLINE VariantRef addElement() const {
+        return getOrAddUpstreamMember().addElement();
+    }
 
-  FORCE_INLINE VariantRef getElement(size_t index) const {
-    return getUpstreamMember().getElement(index);
-  }
+    FORCE_INLINE VariantRef getElement(size_t index) const {
+        return getUpstreamMember().getElement(index);
+    }
 
   FORCE_INLINE VariantRef getOrAddElement(size_t index) const {
     return getOrAddUpstreamMember().getOrAddElement(index);

@@ -143,7 +143,7 @@ void Settings::logSettings(Print *print) {
 }
 
 size_t Settings::getFileSize() {
-    return JSON_OBJECT_SIZE(17) + 250; // 250 extra needed for string duplication (see https://arduinojson.org/v6/assistant/)
+    return JSON_OBJECT_SIZE(17) + BUFFER_FOR_STRINGS_DUPLICATION;
 }
 
 

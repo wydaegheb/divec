@@ -1,13 +1,11 @@
 
 #include "Dive.h"
 
-Dive::Dive(FileSystem *fileSystem) {
+Dive::Dive() {
     _started = false;
     _ended = false;
     _surfaced = false;
     clearEntries();
-
-    _logBook = new LogBook(fileSystem); // loads the existing logbook or creates a new one if it didn't exist
 }
 
 Dive::~Dive() {
@@ -25,28 +23,24 @@ void Dive::addStep(DiveStep *diveStep) {
     _steps.emplace_back(diveStep);
 }
 
-void Dive::start(const DateTime &startTime) {
+void Dive::start(uint32_t startTime) {
     _started = true;
     _ended = false;
     _surfaced = false;
     _startTime = startTime;
-
-    _logBook->clearTmpDiveLog();
 }
 
 void Dive::end() {
     _started = false;
     _ended = true;
-
-    // close and update the dive log
-    _logBook->saveDiveLog(this, getDiveTimeInSeconds(), _lastTimeStamp.secondstime(), getMaxDepthInMeter());
 }
 
-void Dive::update(const DateTime &time, Gas *gas, double pressureInBar, double tempInCelsius) {
+DiveStep *Dive::update(uint32_t time, Gas *gas, double pressureInBar, double tempInCelsius) {
     // add dive step, log it and update last time stamp
     auto *step = new DiveStep(time, gas, pressureInBar, tempInCelsius);
-    addStep(step);
-    _logBook->addDiveStep(step);
+    if (!isSurfaced()) {
+        addStep(step);
+    }
     _lastTimeStamp = time;
 
     // update maxDepth, avgDepth, maxTemp, minTemp
@@ -66,19 +60,19 @@ void Dive::update(const DateTime &time, Gas *gas, double pressureInBar, double t
     if (pressureInBar < (Settings::SURFACE_PRESSURE + Settings::END_OF_DIVE_PRESSURE)) {
         if (!_surfaced) {
             Serial.print(F(" - surfaced - time: "));
-            Serial.println(time.secondstime());
+            Serial.println(time);
             _surfaced = true;
-            _surfacedTimeInSeconds = time.secondstime();
-        } else if ((time.secondstime() - _surfacedTimeInSeconds) > Settings::END_OF_DIVE_DELAY) {
+            _surfacedTimeInSeconds = time;
+        } else if ((time - _surfacedTimeInSeconds) > Settings::END_OF_DIVE_DELAY) {
             Serial.print(F(" - dive ended. time on surface:"));
-            Serial.println(time.secondstime() - _surfacedTimeInSeconds);
+            Serial.println(time - _surfacedTimeInSeconds);
             end();
         }
     } else {
         Serial.println(F(" - diving (not on surface) "));
         _surfaced = false;
     }
-
+    return step;
 }
 
 bool Dive::isStarted() const {
@@ -105,13 +99,13 @@ double Dive::getCurrentDepthInMeters() {
 }
 
 uint32_t Dive::getDiveTimeInSeconds() const {
-    if (!isStarted()) {
-        return 0;
+    if (isStarted() || isEnded()) {
+        return (_lastTimeStamp - _startTime);
     }
-    return (_lastTimeStamp.secondstime() - _startTime.secondstime());
+    return 0;
 }
 
-const DateTime &Dive::getStartTime() const {
+uint32_t Dive::getStartTime() const {
     return _startTime;
 }
 
@@ -119,7 +113,7 @@ std::list<DiveStep *> Dive::getSteps() {
     return _steps;
 }
 
-const DateTime &Dive::getLastTimeStamp() const {
+uint32_t Dive::getLastTimeStamp() const {
     return _lastTimeStamp;
 }
 
@@ -139,11 +133,11 @@ int8_t Dive::getMaxTemperatureInCelsius() const {
     return _maxTemperatureInCelsius;
 }
 
-size_t Dive::serialize(File *file) {
-    DynamicJsonDocument doc(getFileSize());
+JsonObject Dive::serializeObject(JsonObject &doc) {
+    compressSteps(); // compress steps before saving (avoid going out of memory) - TODO: refactor to be able to stream the steps
 
-    doc["start_time"] = _startTime.secondstime();
-    doc["end_time"] = _lastTimeStamp.secondstime();
+    doc["start_time"] = _startTime;
+    doc["end_time"] = _lastTimeStamp;
     doc["avg_depth"] = _avgDepthInMeter;
     doc["max_depth"] = _maxDepthInMeter;
     doc["min_temp"] = _minTemperatureInCelsius;
@@ -158,24 +152,17 @@ size_t Dive::serialize(File *file) {
         i++;
     }
 
-    return serializeJsonPretty(doc, *file);
+    return doc;
 }
 
-DeserializationError Dive::deserialize(File *file) {
+void Dive::deserializeObject(JsonObject &doc) {
     _started = false;
     _ended = true;
     _surfaced = true;
     clearEntries();
 
-    DynamicJsonDocument doc(getFileSize());
-
-    DeserializationError error = deserializeJson(doc, *file);
-    if (error) { // stop deserializing if json parse failed
-        return error;
-    }
-
-    _startTime = DateTime((uint32_t) doc["start_time"]);
-    _lastTimeStamp = DateTime((uint32_t) doc["end_time"]);
+    _startTime = doc["start_time"];
+    _lastTimeStamp = doc["end_time"];
     _avgDepthInMeter = doc["avg_depth"];
     _maxDepthInMeter = doc["max_depth"];
     _minTemperatureInCelsius = doc["min_temp"];
@@ -189,16 +176,11 @@ DeserializationError Dive::deserialize(File *file) {
         step->deserializeObject(stepJsonObject);
         addStep(step);
     }
-
-    return error;
 }
 
 size_t Dive::getFileSize() {
-    size_t stepsFileSize = 0;
-    for (auto step:_steps) {
-        stepsFileSize += step->getFileSize();
-    }
-    return JSON_OBJECT_SIZE(6) + stepsFileSize + BUFFER_FOR_STRINGS_DUPLICATION; // 6 properties + steps
+    return JSON_OBJECT_SIZE(8) + // 7 properties + 1 array
+           JSON_ARRAY_SIZE(MAX_NR_OF_STEPS) + MAX_NR_OF_STEPS * JSON_OBJECT_SIZE(4); // steps array contains MAX_NR_OF_STEPS elements and each element has 4 properties
 }
 
 void Dive::log() {
@@ -208,9 +190,11 @@ void Dive::log() {
 void Dive::log(Print *print) {
     print->println(F("\n\n=============================================="));
     print->print(F("Dive - "));
-    print->println(_startTime.timestamp());
+    print->print(DateTime(_startTime).timestamp(DateTime::TIMESTAMP_DATE));
+    print->print(" - ");
+    print->println(DateTime(_startTime).timestamp(DateTime::TIMESTAMP_TIME));
     print->println(F("=============================================="));
-    print->println(F("Time\t\t\tDepth\tMix\t\tTemp"));
+    print->println(F("Time\t\t\tDepth\t\tMix\t\tTemp"));
     for (DiveStep *step:_steps) {
         step->log(print);
     }
@@ -222,7 +206,58 @@ void Dive::log(Print *print) {
     print->print(timeSpan.minutes());
     print->print(F(":"));
     print->println(timeSpan.seconds());
+    print->print(F("Max depth: "));
+    print->println(_maxDepthInMeter);
+    print->print(F("Avg depth: "));
+    print->println(_avgDepthInMeter);
+    print->print(F("Min temp: "));
+    print->println(_minTemperatureInCelsius);
+    print->print(F("Max temp: "));
+    print->println(_maxTemperatureInCelsius);
     print->println(F("=============================================="));
+}
+
+// every step contains the end time and the end pressure
+// therefore we can just delete all even numbered steps without breaking something.
+// e.g.
+// step 1: endTime: 3 sec, endPressure: 0.5 bar
+// step 2: endTime: 6 sec, endPressure: 1.0 bar
+// step 3: endTime: 9 sec, endPressure: 1.5 bar
+// step 4: endTime: 12 sec, endPressure: 2.0 bar
+// step 5: endTime: 15 sec, endPressure: 2.5 bar
+// step 6: endTime: 18 sec, endPressure: 2.5 bar
+// step 7: endTime: 21 sec, endPressure: 2.0 bar
+// step 8: endTime: 24 sec, endPressure: 1.5 bar
+// step 9: endTime: 27 sec, endPressure: 1.0 bar
+// step 10: endTime: 30 sec, endPressure: 0.5 bar
+// step 11: endTime: 33 sec, endPressure: 0 bar
+//
+// becomes
+//
+// step 1: endTime: 3 sec, endPressure: 0.5 bar
+// step 3: endTime: 9 sec, endPressure: 1.5 bar
+// step 5: endTime: 15 sec, endPressure: 2.5 bar
+// step 7: endTime: 21 sec, endPressure: 2.0 bar
+// step 9: endTime: 27 sec, endPressure: 1.0 bar
+// step 11: endTime: 33 sec, endPressure: 0 bar
+//
+// which is a less accurate but still correct description of the dive. Only "resolution" is lost.
+void Dive::compressSteps() {
+    // steps size small enough -> do nothing
+    // otherwise remove every even step
+    while (_steps.size() > MAX_NR_OF_STEPS) {
+        Serial.println(F(" - Compressing steps."));
+        // remove every even step
+        bool evenStep = false;
+
+        auto it = _steps.begin();
+        while (it != _steps.end()) {
+            if (evenStep) {
+                it = _steps.erase(it);
+            }
+            evenStep = !evenStep;
+        }
+    }
 }
 
 

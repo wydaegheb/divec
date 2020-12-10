@@ -2,7 +2,7 @@
 #include "DiveStep.h"
 
 
-DiveStep::DiveStep(const DateTime &endTime, Gas *gas, double pressureInBar, double temperatureInCelsius) {
+DiveStep::DiveStep(uint32_t endTime, Gas *gas, double pressureInBar, double temperatureInCelsius) {
     setEndTime(endTime);
     setGasName(gas);
     setPressureInBar(pressureInBar);
@@ -10,12 +10,11 @@ DiveStep::DiveStep(const DateTime &endTime, Gas *gas, double pressureInBar, doub
 }
 
 
-
-DateTime DiveStep::getEndTime() {
+uint32_t DiveStep::getEndTime() {
     return _endTime;
 }
 
-void DiveStep::setEndTime(const DateTime &endTime) {
+void DiveStep::setEndTime(uint32_t endTime) {
     _endTime = endTime;
 }
 
@@ -44,53 +43,22 @@ void DiveStep::setGasName(Gas *gas) {
 }
 
 JsonObject DiveStep::serializeObject(JsonObject &doc) {
-    doc["end_time"] = _endTime.secondstime();
+    doc["end_time"] = _endTime;
     doc["pres"] = _pressureInBar;
     doc["temp"] = _temperatureInCelsius;
     doc["gas"] = _gasName;
     return doc;
 }
 
-size_t DiveStep::serialize(File *file) {
-    DynamicJsonDocument doc(getFileSize());
-    JsonObject docObject = doc.to<JsonObject>();
-    doc = serializeObject(docObject);
-/*    doc["end_time"] = _endTime.secondstime();
-    doc["pres"] = _pressureInBar;
-    doc["temp"] = _temperatureInCelsius;
-    doc["gas"] = _gasName;*/
-
-    return serializeJson(doc, *file);
-}
-
 void DiveStep::deserializeObject(JsonObject &doc) {
-    _endTime = DateTime((uint32_t) doc["end_time"]);
+    _endTime = doc["end_time"];
     _pressureInBar = doc["pres"];
     _temperatureInCelsius = doc["temp"];
     _gasName = doc["gas"];
 }
 
-DeserializationError DiveStep::deserialize(File *file) {
-    DynamicJsonDocument doc(getFileSize());
-
-    DeserializationError error = deserializeJson(doc, *file);
-    if (error) { // stop deserializing if json parse failed
-        return error;
-    }
-
-    JsonObject docObject = doc.to<JsonObject>();
-    deserializeObject(docObject);
-
-/*    _endTime = DateTime((uint32_t) doc["end_time"]);
-    _pressureInBar = doc["pres"];
-    _temperatureInCelsius = doc["temp"];
-    _gasName = doc["gas"];*/
-
-    return error;
-}
-
 size_t DiveStep::getFileSize() {
-    return JSON_OBJECT_SIZE(4) + BUFFER_FOR_STRINGS_DUPLICATION; // 4 properties
+    return JSON_OBJECT_SIZE(4); // 4 properties
 }
 
 void DiveStep::log() {
@@ -98,7 +66,7 @@ void DiveStep::log() {
 }
 
 void DiveStep::log(Print *print) {
-    print->print(_endTime.timestamp(DateTime::TIMESTAMP_TIME));
+    print->print(DateTime(_endTime).timestamp(DateTime::TIMESTAMP_TIME));
     print->print(F("\t\t"));
     print->print(DiveEquations::barToDepthInMeters(_pressureInBar));
     print->print(F("\t\t"));

@@ -4,21 +4,22 @@
 #include <list>
 #include <time/Time.h>
 #include <domain/dive/DiveStep.h>
-#include <domain/logbook/LogBook.h>
+
+#define MAX_NR_OF_STEPS 240 // used for arduino json allocation
 
 class Dive : public JsonSerializable {
 public:
-    explicit Dive(FileSystem *fileSystem);
+    Dive();
 
     ~Dive() override;
 
-    void update(const DateTime &time, Gas *gas, double pressureInBar, double tempInCelsius);
+    DiveStep *update(uint32_t time, Gas *gas, double pressureInBar, double tempInCelsius);
 
     void clearEntries();
 
     void addStep(DiveStep *diveStep);
 
-    void start(const DateTime &startTime);
+    void start(uint32_t startTime);
 
     void end();
 
@@ -34,9 +35,9 @@ public:
 
     uint32_t getDiveTimeInSeconds() const;
 
-    const DateTime &getLastTimeStamp() const;
+    uint32_t getLastTimeStamp() const;
 
-    const DateTime &getStartTime() const;
+    uint32_t getStartTime() const;
 
     uint16_t getAvgDepthInMeter() const;
 
@@ -48,9 +49,9 @@ public:
 
     std::list<DiveStep *> getSteps();
 
-    size_t serialize(File *file) override;
+    JsonObject serializeObject(JsonObject &doc) override;
 
-    DeserializationError deserialize(File *file) override;
+    void deserializeObject(JsonObject &doc) override;
 
     size_t getFileSize() override;
 
@@ -60,23 +61,22 @@ public:
 
 
 private:
-    FileSystem *_fileSystem;
-    LogBook *_logBook;
-
     bool _started;
     bool _surfaced;
     bool _ended; // not started doesn't necessarily mean it is ended. a dive can only be ended if it has been started before.
 
-    DateTime _startTime;
-    DateTime _lastTimeStamp;
+    uint32_t _startTime;
+    uint32_t _lastTimeStamp;
     uint32_t _surfacedTimeInSeconds; // time when we surfaced after the dive (i.e. surface time as seconds since Jan 1 1970)
 
     double _avgDepthInMeter = 0.0;
     double _maxDepthInMeter = 0.0; // we should at least get in the water
     int8_t _minTemperatureInCelsius = 100; // diving in boiling water seems somewhat extreme
-    int8_t _maxTemperatureInCelsius = 0; // water temp will always be above 0 or it would be ice which makes it somewhat hard to dive
+    int8_t _maxTemperatureInCelsius = 0; // water temp will (in practice) always be above 0C (otherwise it would be ice which makes it somewhat hard to dive)
 
     std::list<DiveStep *> _steps;
+
+    void compressSteps();
 
 };
 

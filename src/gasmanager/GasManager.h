@@ -55,9 +55,9 @@ public:
 
 
 
-    size_t serialize(File* file) override;
+    JsonObject serializeObject(JsonObject &doc) override;
 
-    DeserializationError deserialize(File* file) override;
+    void deserializeObject(JsonObject &doc) override;
 
     size_t getFileSize() override;
 

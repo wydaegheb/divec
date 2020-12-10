@@ -113,66 +113,53 @@ void GasManager::loadDefaultGasses() {
     _currentCcGas = &AIR;
 }
 
-size_t GasManager::serialize(File *file) {
-    DynamicJsonDocument doc(getFileSize());
-
+JsonObject GasManager::serializeObject(JsonObject &doc) {
     doc["nrOfOcGasses"] = _ocGasses.size();
     doc["nrOfCcGasses"] = _ccGasses.size();
     JsonArray ocGassesJson = doc.createNestedArray("ocGasses");
-
     uint8_t i = 0;
     for (auto gas:_ocGasses) {
-        ocGassesJson[i]["name"] = gas->getName();
-        ocGassesJson[i]["o2"] = gas->getO2();
-        ocGassesJson[i]["he"] = gas->getHe();
-        ocGassesJson[i]["active"] = gas->isActive();
+        JsonObject gasJsonObject = ocGassesJson[i].createNestedObject();
+        ocGassesJson[i] = gas->serializeObject(gasJsonObject);
         i++;
     }
+
     JsonArray ccGassesJson = doc.createNestedArray("ccGasses");
     i = 0;
     for (auto gas:_ccGasses) {
-        ccGassesJson[i]["name"] = gas->getName();
-        ccGassesJson[i]["o2"] = gas->getO2();
-        ccGassesJson[i]["he"] = gas->getHe();
-        ocGassesJson[i]["active"] = gas->isActive();
+        JsonObject gasJsonObject = ccGassesJson[i].createNestedObject();
+        ccGassesJson[i] = gas->serializeObject(gasJsonObject);
         i++;
     }
+
     Serial.println(F("Saving gasses."));
     serializeJsonPretty(doc, Serial);
     Serial.println();
-    return serializeJsonPretty(doc, *file);
+
+    return doc;
 }
 
-DeserializationError GasManager::deserialize(File *file) {
-    DynamicJsonDocument doc(getFileSize());
-
-    DeserializationError error = deserializeJson(doc, *file);
-    if (error) { // stop deserializing if json parse failed
-        return error;
-    }
-
+void GasManager::deserializeObject(JsonObject &doc) {
     // clear existing gasses (if any)
     clear();
 
     uint8_t nrOfOcGasses = doc["nrOfOcGasses"];
     uint8_t nrOfCcGasses = doc["nrOfCcGasses"];
-    JsonArray ocGassesJson = doc["ocGasses"];
 
+    JsonArray ocGassesJson = doc["ocGasses"];
     for (uint8_t i; i < nrOfOcGasses; i++) {
-        Gas *ocGas = new Gas(ocGassesJson[i]["o2"], ocGassesJson[i]["he"], ocGassesJson[i]["name"], ocGassesJson[i]["active"]);
+        Gas *ocGas = new Gas();
+        JsonObject gasJsonObject = ocGassesJson.getElement(i);
+        ocGas->deserializeObject(gasJsonObject);
         addOcGas(ocGas);
-        if (doc["current"]) {
-            _currentOcGas = ocGas;
-        }
     }
 
     JsonArray ccGassesJson = doc["ccGasses"];
     for (uint8_t i; i < nrOfCcGasses; i++) {
-        Gas *ccGas = new Gas(ccGassesJson[i]["o2"], ccGassesJson[i]["he"], ccGassesJson[i]["name"], ccGassesJson[i]["active"]);
+        Gas *ccGas = new Gas();
+        JsonObject gasJsonObject = ccGassesJson.getElement(i);
+        ccGas->deserializeObject(gasJsonObject);
         addCcGas(ccGas);
-        if (doc["current"]) {
-            _currentCcGas = ccGas;
-        }
     }
 
     Serial.print(F("[#oc gasses:"));
@@ -197,15 +184,12 @@ DeserializationError GasManager::deserialize(File *file) {
         }
     }
     Serial.print(F("] - "));
-
-    return error;
 }
 
 size_t GasManager::getFileSize() {
     return JSON_OBJECT_SIZE(4) + // 2 properties (nrOf oc/cc gasses) + 2 arrays
-           JSON_ARRAY_SIZE(MAX_OC_GASSES) + MAX_OC_GASSES * JSON_OBJECT_SIZE(5) + // OC gasses array contains MAX_OC_GASSES elements and each element has 4 properties
-           JSON_ARRAY_SIZE(MAX_CC_GASSES) + MAX_CC_GASSES * JSON_OBJECT_SIZE(5) + // CC gasses array contains MAX_CC_GASSES elements and each element has 4 properties
-           BUFFER_FOR_STRINGS_DUPLICATION;
+           JSON_ARRAY_SIZE(MAX_OC_GASSES) + MAX_OC_GASSES * JSON_OBJECT_SIZE(4) + // OC gasses array contains MAX_OC_GASSES elements and each element has 4 properties
+           JSON_ARRAY_SIZE(MAX_CC_GASSES) + MAX_CC_GASSES * JSON_OBJECT_SIZE(4);  // CC gasses array contains MAX_CC_GASSES elements and each element has 4 properties
 }
 
 

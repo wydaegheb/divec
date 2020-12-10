@@ -14,7 +14,8 @@ BuhlmannAlgorithm::~BuhlmannAlgorithm() {
 void BuhlmannAlgorithm::update(uint32_t beginTimeInSeconds, uint32_t endTimeInSeconds, GasManager *gasManager, double beginPressureInBar, double endPressureInBar) {
     Gas *gas = gasManager->getCurrentOcGas();
     _buhlmannGasLoading->update(beginTimeInSeconds, endTimeInSeconds, beginPressureInBar, endPressureInBar, gas->getN2(), gas->getHe());
-    _decoPlan = _buhlmannGasLoading->getDecoPlan(gasManager);
+    delete _decoPlan;
+    _decoPlan = nullptr;
 }
 
 DecompressionPlan *BuhlmannAlgorithm::getDecoPlan(GasManager *gasManager) {

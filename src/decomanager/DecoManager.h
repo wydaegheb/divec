@@ -7,56 +7,77 @@
 #include <decomanager/algorithms/buhlmann/BuhlmannAlgorithm.h>
 #include <filesystem/JsonSerializable.h>
 #include <filesystem/FileSystem.h>
+#include <domain/logbook/LogBook.h>
 
 class DecoManager : public JsonSerializable {
 public:
     ~DecoManager() override = default;
 
-    void init(FileSystem *fileSystem, const DateTime &currentTime);
+    void init(FileSystem *fileSystem, uint32_t currentTime);
 
-
-    void update(const DateTime &currentTime, double currentPressureInBar, double tempInCelsius, bool wetContactActivated);
+    void update(uint32_t currentTime, double currentPressureInBar, double tempInCelsius, bool wetContactActivated);
 
     DecompressionPlan *getDecoPlan();
 
+
+    // dive
+    Dive *getCurrentDive();
+
+    Dive *loadDive(uint16_t diveNr);
+
+    void startDive(uint32_t currentTime);
+
+    void endDive();
+
+    const LogBook *getLogBook() const;
+
+
+    // algorithm
     void setCurrentAlgorithm(char const *namename);
 
     DiveAlgorithm *getCurrentAlgorithm();
 
     void addAlgorithm(DiveAlgorithm *diveAlgorithm);
 
-    Dive *getCurrentDive();
 
+    // gas
     GasManager *getGasManager();
 
     Gas *getCurrentGas();
 
+
+    // state
     uint32_t getNdlInSeconds();
 
-    void addSurfaceInterval(const DateTime &beginTime, const DateTime &endTime);
-
-    uint32_t getSurfaceIntervalInSeconds();
-
-    const DateTime &getPreviousUpdateTime() const;
+    uint32_t getPreviousUpdateTime() const;
 
     double getPreviousPressureInBar() const;
 
-    // persistence
-    size_t serialize(File *file) override;
 
-    DeserializationError deserialize(File *file) override;
+    // surface interval
+    void addSurfaceInterval(uint32_t beginTime, uint32_t endTime);
+
+    uint32_t getSurfaceIntervalInSeconds();
+
+
+    // persistence
+    JsonObject serializeObject(JsonObject &doc) override;
+
+    void deserializeObject(JsonObject &doc) override;
 
     size_t getFileSize() override;
 
 private:
     FileSystem *_fileSystem;
 
+    LogBook *_logBook;
+
     Dive *_currentDive;
     DiveAlgorithm *_currentAlgorithm;
     std::list<DiveAlgorithm *> _algorithms;
     GasManager *_gasManager;
 
-    DateTime _previousUpdateTime;
+    uint32_t _previousUpdateTime;
     double _previousPressureInBar;
 
 };

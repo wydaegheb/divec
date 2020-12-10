@@ -16,6 +16,10 @@ DecompressionStep::DecompressionStep(Gas *diveGas, uint16_t durationInSeconds, u
 }
 
 
+DecompressionStep::~DecompressionStep() {
+    _diveGas = nullptr; // This step just contains the pointer. the gasmanager is master of the pool of gasses. so do not delete _divegas here.
+}
+
 Gas *DecompressionStep::getDiveGas() {
     return _diveGas;
 }
@@ -75,6 +79,8 @@ uint32_t DecompressionStep::log(Print *print, uint32_t time) {
     return (time + getDurationInSeconds());
 
 }
+
+
 
 
 

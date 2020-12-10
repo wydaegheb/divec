@@ -43,59 +43,52 @@ double Settings::getWaterPressure() { // bar/m
 }
 
 
-size_t Settings::serialize(File* file) {
-    DynamicJsonDocument doc(getFileSize());
-    doc["GF_LOW"] = GF_LOW;
-    doc["GF_HIGH"] = GF_HIGH;
-    doc["BUHLMANN_USE_1B"] = BUHLMANN_USE_1B;
-    doc["DECO_STEP_SIZE"] = DECO_STEP_SIZE;
-    doc["LAST_STOP"] = LAST_STOP;
-    doc["SALINITY"] = SALINITY;
-    doc["SURFACE_PRESSURE"] = SURFACE_PRESSURE;
-    doc["MAX_PPO2"] = MAX_PPO2;
-    doc["MAX_END"] = MAX_END;
-    doc["O2_NARCOTIC"] = O2_NARCOTIC;
-    doc["STEP_INTERVAL"] = STEP_INTERVAL;
-    doc["START_OF_DIVE_PRESSURE"] = START_OF_DIVE_PRESSURE;
-    doc["END_OF_DIVE_PRESSURE"] = END_OF_DIVE_PRESSURE;
-    doc["END_OF_DIVE_DELAY"] = END_OF_DIVE_DELAY;
-    doc["TITLE_COLOR"] = TITLE_COLOR;
-    doc["ERROR_COLOR"] = ERROR_COLOR;
-    doc["WARNING_COLOR"] = WARNING_COLOR;
+JsonObject Settings::serializeObject(JsonObject &doc) {
+    doc["gf_low"] = GF_LOW;
+    doc["gf_high"] = GF_HIGH;
+    doc["buhlmann_use_1b"] = BUHLMANN_USE_1B;
+    doc["deco_step_size"] = DECO_STEP_SIZE;
+    doc["last_stop"] = LAST_STOP;
+    doc["salinity"] = SALINITY;
+    doc["surface_pressure"] = SURFACE_PRESSURE;
+    doc["max_ppo2"] = MAX_PPO2;
+    doc["max_end"] = MAX_END;
+    doc["o2_narcotic"] = O2_NARCOTIC;
+    doc["step_interval"] = STEP_INTERVAL;
+    doc["start_of_dive_pressure"] = START_OF_DIVE_PRESSURE;
+    doc["end_of_dive_pressure"] = END_OF_DIVE_PRESSURE;
+    doc["end_of_dive_delay"] = END_OF_DIVE_DELAY;
+    doc["title_color"] = TITLE_COLOR;
+    doc["error_color"] = ERROR_COLOR;
+    doc["warning_color"] = WARNING_COLOR;
+
     Serial.println("Saving settings.");
-    serializeJsonPretty(doc,Serial);
+    serializeJsonPretty(doc, Serial);
     Serial.println();
-    return serializeJsonPretty(doc, *file);
+
+    return doc;
 }
 
-DeserializationError Settings::deserialize(File* file) {
-    DynamicJsonDocument doc(getFileSize());
-
-    DeserializationError error = deserializeJson(doc, *file);
-    if (error){ // stop deserializing if json parse failed
-        return error;
-    }
-
-    GF_LOW = doc["GF_LOW"];
-    GF_HIGH = doc["GF_HIGH"];
-    BUHLMANN_USE_1B = doc["BUHLMANN_USE_1B"];
-    DECO_STEP_SIZE = doc["DECO_STEP_SIZE"];
-    LAST_STOP = doc["LAST_STOP"];
-    SALINITY = doc["SALINITY"];
-    SURFACE_PRESSURE = doc["SURFACE_PRESSURE"];
-    MAX_PPO2 = doc["MAX_PPO2"];
-    MAX_END = doc["MAX_END"];
-    O2_NARCOTIC = doc["O2_NARCOTIC"];
-    STEP_INTERVAL = doc["STEP_INTERVAL"];
-    START_OF_DIVE_PRESSURE = doc["START_OF_DIVE_PRESSURE"];
-    END_OF_DIVE_PRESSURE = doc["END_OF_DIVE_PRESSURE"];
-    END_OF_DIVE_DELAY = doc["END_OF_DIVE_DELAY"];
-    TITLE_COLOR = doc["TITLE_COLOR"];
-    ERROR_COLOR = doc["ERROR_COLOR"];
-    WARNING_COLOR = doc["WARNING_COLOR"];
+void Settings::deserializeObject(JsonObject &doc) {
+    GF_LOW = doc["gf_low"];
+    GF_HIGH = doc["gf_high"];
+    BUHLMANN_USE_1B = doc["buhlmann_use_1b"];
+    DECO_STEP_SIZE = doc["deco_step_size"];
+    LAST_STOP = doc["last_stop"];
+    SALINITY = doc["salinity"];
+    SURFACE_PRESSURE = doc["surface_pressure"];
+    MAX_PPO2 = doc["max_ppo2"];
+    MAX_END = doc["max_end"];
+    O2_NARCOTIC = doc["o2_narcotic"];
+    STEP_INTERVAL = doc["step_interval"];
+    START_OF_DIVE_PRESSURE = doc["start_of_dive_pressure"];
+    END_OF_DIVE_PRESSURE = doc["end_of_dive_pressure"];
+    END_OF_DIVE_DELAY = doc["end_of_dive_delay"];
+    TITLE_COLOR = doc["title_color"];
+    ERROR_COLOR = doc["error_color"];
+    WARNING_COLOR = doc["warning_color"];
 
     //logSettings();
-    return error;
 }
 
 void Settings::logSettings() {

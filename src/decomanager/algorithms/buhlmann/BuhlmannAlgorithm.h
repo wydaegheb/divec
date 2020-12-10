@@ -27,7 +27,7 @@ public:
 
 private:
     BuhlmannGasLoading *_buhlmannGasLoading;
-    DecompressionPlan *_decoPlan;
+    DecompressionPlan *_decoPlan = nullptr;
     char const *_name;
 };
 

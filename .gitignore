@@ -207,3 +207,5 @@
 /.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/wipe/wipe.ino
 /.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/LongFileName/testFiles/With.Two dots.txt
 /.pio/libdeps/adafruit_feather_m4/SdFat - Adafruit Fork/examples/LongFileName/testFiles/With Blank.txt
+/.pio/libdeps/adafruit_feather_m4/
+/src/tst.json

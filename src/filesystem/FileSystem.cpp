@@ -53,9 +53,10 @@ void FileSystem::saveLogbook(JsonSerializable *logbook) {
 
 void FileSystem::loadDiveLog(JsonSerializable *dive, uint16_t diveNr) {
     char fileName[100];
-    snprintf(fileName, 100, "dv_%d.json", diveNr);
+    snprintf(fileName, 100, "dv_%d.jsn", diveNr);
     loadFromJsonFile(fileName, dive);
 }
+
 
 void FileSystem::saveDiveLog(JsonSerializable *dive, uint16_t diveNr) {
     char fileName[100];
@@ -88,7 +89,7 @@ bool FileSystem::loadFromJsonFile(char const *fileName, JsonSerializable *jsonSe
     // if the file opened okay, load from it:
     if (file && file.size() > 10) {
         // Deserialize the JSON document
-        DeserializationError error = jsonSerializable->deserialize(&file);
+        DeserializationError error = jsonSerializable->load(&file);
         file.close();
         if (error) {
             Serial.print(F("FAILED. error:"));
@@ -125,7 +126,7 @@ bool FileSystem::saveToJsonFile(const char *fileName, JsonSerializable *jsonSeri
     // if the filesystem opened okay, write to it:
     if (file) {
         // Serialize JSON to file
-        if (jsonSerializable->serialize(&file) == 0) {
+        if (jsonSerializable->save(&file) == 0) {
             Serial.println(F("FAILED (0 bytes written)."));
         } else {
             if (append) {

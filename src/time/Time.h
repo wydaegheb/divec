@@ -8,15 +8,12 @@ class Time {
 public:
     static bool init(bool isMocked);
 
-    static DateTime getTime();
-
-    static void setTime();
+    // in seconds
+    static uint32_t getTime();
 
 private:
-    static TimeSpan ONE_SECOND;
     static boolean _mocked;
-    static uint32_t _lastMillis;
-    static DateTime _mockedDateTime;
+    static uint32_t _lastUpdateInMillis;
 
     static RTC_DS3231 _rtc;
 

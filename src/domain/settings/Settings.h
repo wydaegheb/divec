@@ -50,10 +50,10 @@ public:
 
     static void logSettings(Print *print);
 
-    // loading and saving
-    size_t serialize(File* file) override;
+    // persistence
+    JsonObject serializeObject(JsonObject &doc) override;
 
-    DeserializationError deserialize(File* file) override;
+    void deserializeObject(JsonObject &doc) override;
 
     size_t getFileSize() override;
 

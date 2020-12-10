@@ -27,10 +27,9 @@ public:
 
     const DecoManager &getDecoManager() const;
 
-    const FileSystem &getFileSystem() const;
-
 private:
     FileSystem _fileSystem;
+
     DecoManager _decoManager;
 
     Settings _settings;
@@ -42,7 +41,7 @@ private:
     Display _display;
     Menu _menu;
 
-    DateTime _lastUpdateTime;
+    uint32_t _lastUpdateTime;
 
     // wet contact interrupt
     static WetContact _wetContact;

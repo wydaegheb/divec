@@ -1,21 +1,14 @@
 #include "Time.h"
 
 boolean  Time::_mocked;
-uint32_t Time::_lastMillis;
-DateTime Time::_mockedDateTime;
+uint32_t Time::_lastUpdateInMillis;
 RTC_DS3231 Time::_rtc;
 
-TimeSpan Time::ONE_SECOND = TimeSpan(1);
-
-DateTime Time::getTime() {
+uint32_t Time::getTime() {
     if (_mocked) {
-        if ((millis() - _lastMillis) > 1000){
-            _mockedDateTime = _mockedDateTime + Time::ONE_SECOND;
-            _lastMillis = millis();
-        }
-        return _mockedDateTime;
+        return (millis() - _lastUpdateInMillis) / 1000;
     }
-    return _rtc.now();
+    return _rtc.now().unixtime();
 }
 
 bool Time::init(bool isMocked) {
@@ -23,8 +16,7 @@ bool Time::init(bool isMocked) {
     _mocked = isMocked;
     if (_mocked) {
         Serial.println(F(" - using mock time."));
-        _mockedDateTime = DateTime();
-        _lastMillis = millis();
+        _lastUpdateInMillis = millis();
         return true;
     }
 
@@ -40,7 +32,10 @@ bool Time::init(bool isMocked) {
         Serial.println(F("WARNING: Real Time Clock lost power. Reset time to 1 jan 2020!"));
         _rtc.adjust(DateTime(2020, 1, 1, 12, 0, 0));
     }
+
+    //_rtc.adjust(DateTime(__DATE__, __TIME__));
+
     Serial.print(F(" - clock initialized: "));
-    Serial.println(getTime().timestamp());
+    Serial.println(DateTime(getTime()).timestamp());
     return true;
 }

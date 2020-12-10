@@ -59,10 +59,10 @@ void DecompressionPlan::log(Print *print, Dive *dive) {
     print->print(round(Settings::GF_HIGH * 100));
     print->println(F(")"));
     print->println(F("=============================================="));
-    print->println(F("Depth\tStop\t\tRun\t\tMix"));
+    print->println(F("Depth\t\tStop\t\tRun\t\tMix"));
 
     if (dive != nullptr) {
-        uint32_t startTimeDiveInSeconds = dive->getStartTime().secondstime();
+        uint32_t startTimeDiveInSeconds = dive->getStartTime();
         uint32_t previousStepTimeInSeconds = startTimeDiveInSeconds;
         int16_t previousDepthInMeters = 0;
         for (DiveStep *step:dive->getSteps()) {
@@ -71,17 +71,17 @@ void DecompressionPlan::log(Print *print, Dive *dive) {
             print->print(F("\t\t"));
             if (previousDepthInMeters == stepEndDepthInMeters) {
                 char timeStr[9] = "";
-                print->print(Formatter::formatTime(timeStr, step->getEndTime().secondstime() - previousStepTimeInSeconds, true));
+                print->print(Formatter::formatTime(timeStr, step->getEndTime() - previousStepTimeInSeconds, true));
                 print->print(F("\t\t"));
             } else {
                 print->print(F(" - "));
                 print->print(F("\t\t\t"));
             }
             char timeStr[6] = "";
-            print->print(Formatter::formatTimeInMinutes(timeStr, step->getEndTime().secondstime() - startTimeDiveInSeconds, Settings::MIN_STOP_TIME >= 60));
+            print->print(Formatter::formatTimeInMinutes(timeStr, step->getEndTime() - startTimeDiveInSeconds, Settings::MIN_STOP_TIME >= 60));
             print->print(F("\t\t"));
             print->println(step->getGasName());
-            previousStepTimeInSeconds = step->getEndTime().secondstime();
+            previousStepTimeInSeconds = step->getEndTime();
             previousDepthInMeters = stepEndDepthInMeters;
         }
         print->println();

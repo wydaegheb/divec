@@ -5,7 +5,7 @@
 
 // Note to self: do not ever, ever put Serial.print in static constructors!!!!
 // Gets called before Serial is initialised -> crashes the board and takes ages to deduce what happened
-Gas::Gas(double o2, char const* name) {
+Gas::Gas(double o2, char const *name) {
     _o2 = o2;
     _n2 = 1.0 - _o2;
     _he = 0.0;
@@ -15,7 +15,7 @@ Gas::Gas(double o2, char const* name) {
     resolveName();
 }
 
-Gas::Gas(double o2, double he, char const* name) {
+Gas::Gas(double o2, double he, char const *name) {
     _o2 = o2;
     _he = he;
     _n2 = 1.0 - _o2 - _he;
@@ -25,7 +25,7 @@ Gas::Gas(double o2, double he, char const* name) {
     resolveName();
 }
 
-Gas::Gas(double o2, double he, char const* name, bool active) {
+Gas::Gas(double o2, double he, char const *name, bool active) {
     _o2 = o2;
     _he = he;
     _n2 = 1.0 - _o2 - _he;
@@ -43,7 +43,7 @@ void Gas::setActive(bool active) {
     _active = active;
 }
 
-char const* Gas::getName() {
+char const *Gas::getName() {
     return _name;
 }
 
@@ -96,14 +96,35 @@ void Gas::resolveName() {
     char heStr[3];
     utoa(num, heStr, 10);
 
-    strcat(_mix,o2Str);
-    strcat(_mix,"/");
-    strcat(_mix,heStr);
+    strcat(_mix, o2Str);
+    strcat(_mix, "/");
+    strcat(_mix, heStr);
 
     if (!_name) {
         _name = _mix;
     }
 }
+
+JsonObject Gas::serializeObject(JsonObject &doc) {
+    doc["name"] = getName();
+    doc["o2"] = getO2();
+    doc["he"] = getHe();
+    doc["active"] = isActive();
+    return doc;
+}
+
+void Gas::deserializeObject(JsonObject &doc) {
+    _name = doc["name"];
+    _o2 = doc["o2"];
+    _he = doc["he"];
+    _active = doc["active"];
+    resolveName();
+}
+
+size_t Gas::getFileSize() {
+    return JSON_OBJECT_SIZE(4); // 4 properties
+}
+
 
 
 

@@ -18,7 +18,7 @@ public:
 private:
     DIVEC_MS5837 _depthSensor;
     bool _isMocked;
-    DateTime _lastUpdated;
+    uint32_t _lastUpdated;
     double _currentPressure;
     double _currentTemp;
 

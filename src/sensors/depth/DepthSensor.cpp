@@ -39,9 +39,9 @@ double DepthSensor::tempInCelsius() {
 }
 
 void DepthSensor::read() {
-    DateTime currentTime = Time::getTime();
-    // reading the depth sensor takes time - this way we avoid more than 2 readings every second - ideally application readings of the depthsensor should happen as few as possible
-    if ((currentTime.secondstime() - _lastUpdated.secondstime()) > 500) {
+    uint32_t currentTime = Time::getTime();
+    // reading the depth sensor takes time - this way we avoid more than 2 readings every second - readings of the depth sensor should happen as few as possible
+    if ((currentTime - _lastUpdated) > 500) {
         if (_isMocked) {
             _currentPressure = _currentPressure + 100.0;
             _currentTemp = 2000.0;

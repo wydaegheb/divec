@@ -3,20 +3,26 @@
 
 #include <filesystem/FileSystem.h>
 #include <RTClib.h>
+#include <domain/dive/Dive.h>
 
 class LogBook : public JsonSerializable {
 public:
 
-    explicit LogBook(FileSystem *fileSystem);
-
     ~LogBook() override = default;
 
-    void clearTmpDiveLog();
+    void init(FileSystem *fileSystem);
 
-    void addDiveStep(JsonSerializable *diveStep);
+    // logging dives
+    Dive *loadDive(uint16_t diveNr);
 
-    void saveDiveLog(JsonSerializable *dive, uint32_t diveTimeInSeconds, uint32_t lastDiveDate, uint16_t diveMaxDepth);
+    void saveDive(Dive *dive);
 
+    void initTmpDiveLog();
+
+    void addDiveStep(DiveStep *diveStep);
+
+
+    // accessors
     uint16_t getNumberOfDives() const;
 
     void setNumberOfDives(uint16_t numberOfDives);
@@ -33,9 +39,12 @@ public:
 
     void setLastDiveDate(uint32_t lastDiveDate);
 
-    size_t serialize(File *file) override;
 
-    DeserializationError deserialize(File *file) override;
+    // persistence
+
+    JsonObject serializeObject(JsonObject &doc) override;
+
+    void deserializeObject(JsonObject &doc) override;
 
     size_t getFileSize() override;
 

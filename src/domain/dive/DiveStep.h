@@ -8,13 +8,13 @@ class DiveStep : public JsonSerializable {
 public:
     DiveStep() = default;
 
-    DiveStep(const DateTime &endTime, Gas *gas, double pressureInBar, double temperature);
+    DiveStep(uint32_t endTime, Gas *gas, double pressureInBar, double temperature);
 
     ~DiveStep() override = default;
 
-    DateTime getEndTime();
+    uint32_t getEndTime();
 
-    void setEndTime(const DateTime &endTime);
+    void setEndTime(uint32_t endTime);
 
     double getPressureInBar() const;
 
@@ -28,14 +28,9 @@ public:
 
     void setGasName(Gas *gas);
 
-    JsonObject serializeObject(JsonObject &doc);
+    JsonObject serializeObject(JsonObject &doc) override;
 
-    size_t serialize(File *file) override;
-
-
-    void deserializeObject(JsonObject &doc);
-
-    DeserializationError deserialize(File *file) override;
+    void deserializeObject(JsonObject &doc) override;
 
     size_t getFileSize() override;
 
@@ -44,7 +39,7 @@ public:
     void log(Print *print);
 
 private:
-    DateTime _endTime;
+    uint32_t _endTime;
     double _pressureInBar;
     double _temperatureInCelsius;
     char const *_gasName;

@@ -1,12 +1,11 @@
 #include "Time.h"
 
 boolean  Time::_mocked;
-uint32_t Time::_lastUpdateInMillis;
 RTC_DS3231 Time::_rtc;
 
 uint32_t Time::getTime() {
     if (_mocked) {
-        return (millis() - _lastUpdateInMillis) / 1000;
+        return millis() / 1000;
     }
     return _rtc.now().unixtime();
 }
@@ -16,7 +15,6 @@ bool Time::init(bool isMocked) {
     _mocked = isMocked;
     if (_mocked) {
         Serial.println(F(" - using mock time."));
-        _lastUpdateInMillis = millis();
         return true;
     }
 

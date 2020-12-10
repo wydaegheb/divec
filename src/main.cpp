@@ -11,7 +11,7 @@ void setup() {
 
     diveController.setup();
 
-    // test - setup
+/*    // test - setup
     DecoManager decoManager = diveController.getDecoManager();
     Serial.print(F("Using algorithm: "));
     Serial.println(decoManager.getCurrentAlgorithm()->getName());
@@ -59,12 +59,12 @@ void setup() {
 
     Serial.println(F("\nre-loading dive"));
     uint16_t diveNr = decoManager.getLogBook()->getNumberOfDives();
-    decoManager.loadDive(diveNr)->log();
+    decoManager.loadDive(diveNr)->log();*/
 
 }
 
 void loop() {
-    //diveController.step();
+    diveController.step();
 }
 
 

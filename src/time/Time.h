@@ -13,7 +13,6 @@ public:
 
 private:
     static boolean _mocked;
-    static uint32_t _lastUpdateInMillis;
 
     static RTC_DS3231 _rtc;
 

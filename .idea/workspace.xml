@@ -18,33 +18,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3918f2fc-bcbd-45e9-8eee-31ec3bb033b1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/filesystem/JsonSerializable.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DiveController.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/DiveController.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/DiveController.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/DiveController.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/decomanager/DecoManager.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/decomanager/DecoManager.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/decomanager/DecoManager.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/decomanager/DecoManager.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/decomanager/algorithms/buhlmann/BuhlmannAlgorithm.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/decomanager/algorithms/buhlmann/BuhlmannAlgorithm.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/decomanager/algorithms/buhlmann/BuhlmannAlgorithm.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/decomanager/algorithms/buhlmann/BuhlmannAlgorithm.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/domain/dive/DecompressionPlan.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/dive/DecompressionPlan.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/domain/dive/DecompressionStep.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/dive/DecompressionStep.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/domain/dive/Dive.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/dive/Dive.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/domain/dive/Dive.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/dive/Dive.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/domain/dive/DiveStep.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/dive/DiveStep.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/domain/dive/DiveStep.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/dive/DiveStep.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/domain/dive/Gas.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/dive/Gas.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/domain/dive/Gas.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/dive/Gas.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/domain/logbook/LogBook.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/logbook/LogBook.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/domain/logbook/LogBook.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/logbook/LogBook.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/domain/settings/Settings.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/settings/Settings.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/domain/settings/Settings.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/settings/Settings.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/filesystem/FileSystem.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/filesystem/FileSystem.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/filesystem/JsonSerializable.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/filesystem/JsonSerializable.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gasmanager/GasManager.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/gasmanager/GasManager.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gasmanager/GasManager.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/gasmanager/GasManager.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/display/pages/MainPage.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/display/pages/MainPage.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sensors/depth/DepthSensor.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/sensors/depth/DepthSensor.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sensors/depth/DepthSensor.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/sensors/depth/DepthSensor.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/time/Time.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/time/Time.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/time/Time.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/time/Time.h" afterDir="false" />
     </list>
@@ -177,7 +156,7 @@
       <workItem from="1607174443310" duration="39062000" />
       <workItem from="1607464583037" duration="16334000" />
       <workItem from="1607536428961" duration="7309000" />
-      <workItem from="1607589273625" duration="17249000" />
+      <workItem from="1607589273625" duration="19626000" />
     </task>
     <task id="LOCAL-00001" summary="Updated readme">
       <created>1604870538629</created>
@@ -249,7 +228,14 @@
       <option name="project" value="LOCAL" />
       <updated>1607536736698</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Dive log working - refactored json save and load">
+      <created>1607640134626</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1607640134626</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -309,7 +295,8 @@
     <MESSAGE value="added dive logging - fix bg image (using progmem now)" />
     <MESSAGE value="further fixing dive log" />
     <MESSAGE value="clean up git" />
-    <option name="LAST_COMMIT_MESSAGE" value="clean up git" />
+    <MESSAGE value="Dive log working - refactored json save and load" />
+    <option name="LAST_COMMIT_MESSAGE" value="Dive log working - refactored json save and load" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
@@ -338,10 +325,10 @@
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
     <state x="1450" y="446" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.3440.1400@0.0.3440.1400" timestamp="1606849019532" />
-    <state x="492" y="268" key="CommitChangelistDialog2" timestamp="1607536734311">
+    <state x="492" y="268" key="CommitChangelistDialog2" timestamp="1607640130797">
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
-    <state x="492" y="268" key="CommitChangelistDialog2/0.0.3440.1400@0.0.3440.1400" timestamp="1607536734311" />
+    <state x="492" y="268" key="CommitChangelistDialog2/0.0.3440.1400@0.0.3440.1400" timestamp="1607640130797" />
     <state x="92" y="92" width="3256" height="1216" key="DiffContextDialog" timestamp="1607467778852">
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
@@ -358,22 +345,22 @@
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
     <state x="643" y="404" key="Github.UntrackedFilesDialog/0.0.3440.1400@0.0.3440.1400" timestamp="1604868795950" />
-    <state width="3397" height="382" key="GridCell.Tab.0.bottom" timestamp="1607639842886">
+    <state width="3397" height="382" key="GridCell.Tab.0.bottom" timestamp="1607641920323">
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
-    <state width="3397" height="382" key="GridCell.Tab.0.bottom/0.0.3440.1400@0.0.3440.1400" timestamp="1607639842886" />
-    <state width="3397" height="382" key="GridCell.Tab.0.center" timestamp="1607639842886">
+    <state width="3397" height="382" key="GridCell.Tab.0.bottom/0.0.3440.1400@0.0.3440.1400" timestamp="1607641920323" />
+    <state width="3397" height="382" key="GridCell.Tab.0.center" timestamp="1607641920323">
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
-    <state width="3397" height="382" key="GridCell.Tab.0.center/0.0.3440.1400@0.0.3440.1400" timestamp="1607639842886" />
-    <state width="3397" height="382" key="GridCell.Tab.0.left" timestamp="1607639842886">
+    <state width="3397" height="382" key="GridCell.Tab.0.center/0.0.3440.1400@0.0.3440.1400" timestamp="1607641920323" />
+    <state width="3397" height="382" key="GridCell.Tab.0.left" timestamp="1607641920323">
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
-    <state width="3397" height="382" key="GridCell.Tab.0.left/0.0.3440.1400@0.0.3440.1400" timestamp="1607639842886" />
-    <state width="3397" height="382" key="GridCell.Tab.0.right" timestamp="1607639842886">
+    <state width="3397" height="382" key="GridCell.Tab.0.left/0.0.3440.1400@0.0.3440.1400" timestamp="1607641920323" />
+    <state width="3397" height="382" key="GridCell.Tab.0.right" timestamp="1607641920323">
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
-    <state width="3397" height="382" key="GridCell.Tab.0.right/0.0.3440.1400@0.0.3440.1400" timestamp="1607639842886" />
+    <state width="3397" height="382" key="GridCell.Tab.0.right/0.0.3440.1400@0.0.3440.1400" timestamp="1607641920323" />
     <state width="3397" height="482" key="GridCell.Tab.1.bottom" timestamp="1602002270919">
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
@@ -414,10 +401,10 @@
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
     <state x="610" y="302" key="SettingsEditor/0.0.3440.1400@0.0.3440.1400" timestamp="1605196397649" />
-    <state x="459" y="432" key="Vcs.Push.Dialog.v2" timestamp="1607536752840">
+    <state x="459" y="432" key="Vcs.Push.Dialog.v2" timestamp="1607640137986">
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
-    <state x="459" y="432" key="Vcs.Push.Dialog.v2/0.0.3440.1400@0.0.3440.1400" timestamp="1607536752840" />
+    <state x="459" y="432" key="Vcs.Push.Dialog.v2/0.0.3440.1400@0.0.3440.1400" timestamp="1607640137986" />
     <state x="92" y="92" width="3256" height="1216" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog" timestamp="1605722283583">
       <screen x="0" y="0" width="3440" height="1400" />
     </state>

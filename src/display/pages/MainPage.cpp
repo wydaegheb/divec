@@ -88,7 +88,7 @@ void MainPage::update() {
     }
 
     // middle row
-    _gasPO2->updateValue(DiveEquations::gasPressureInBars(_dive->getCurrentDepthInMeters(), _decoManager->getCurrentGas()->getO2()));
+    _gasPO2->updateValue(DiveEquations::gasPressureInBars(DiveEquations::depthInMetersToBars(_dive->getCurrentDepthInMeters()), _decoManager->getCurrentGas()->getO2()));
 
     // bottom row
     _mode->updateValue("OC");

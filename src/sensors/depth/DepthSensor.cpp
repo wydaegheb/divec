@@ -5,7 +5,7 @@ void DepthSensor::init(bool isMocked) {
     _isMocked = isMocked;
     if (isMocked) {
         Serial.println(F(" - using mock depth sensor."));
-        _currentPressure = 0.0;
+        _currentPressure = 1000.0;
         _currentTemp = 2000.0;
     } else {
         Wire.begin();
@@ -24,8 +24,6 @@ void DepthSensor::init(bool isMocked) {
         _currentTemp = _depthSensor.temperature();
     }
     _lastUpdated = Time::getTime();
-
-
 }
 
 double DepthSensor::pressureInBar() {
@@ -39,9 +37,10 @@ double DepthSensor::tempInCelsius() {
 }
 
 void DepthSensor::read() {
-    uint32_t currentTime = Time::getTime();
+    uint32_t currentTime = millis();
     // reading the depth sensor takes time - this way we avoid more than 2 readings every second - readings of the depth sensor should happen as few as possible
     if ((currentTime - _lastUpdated) > 500) {
+        Serial.println(F(" - reading depth sensor."));
         if (_isMocked) {
             _currentPressure = _currentPressure + 100.0;
             _currentTemp = 2000.0;
@@ -57,6 +56,8 @@ void DepthSensor::read() {
                 _currentTemp = _depthSensor.temperature();
             }
         }
-        _lastUpdated = currentTime;
+        _lastUpdated = millis();
+    } else {
+        Serial.println(F(" - skipped reading depth sensor."));
     }
 }

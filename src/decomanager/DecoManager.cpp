@@ -57,6 +57,14 @@ void DecoManager::addAlgorithm(DiveAlgorithm *diveAlgorithm) {
 }
 
 void DecoManager::update(uint32_t currentTime, double currentPressureInBar, double tempInCelsius, bool wetContactActivated) {
+    Serial.print(F("  - update: time: "));
+    Serial.print(DateTime(currentTime).timestamp());
+    Serial.print(F(", bar:"));
+    Serial.print(currentPressureInBar);
+    Serial.print(F(", temp:"));
+    Serial.print(tempInCelsius);
+    Serial.print(F(", wet contact active:"));
+    Serial.println(wetContactActivated);
     // auto start dive on activation of the wet contact or if we are below our dive pressure threshold
     if (!_currentDive->isStarted() && (wetContactActivated || (currentPressureInBar > (Settings::SURFACE_PRESSURE + Settings::START_OF_DIVE_PRESSURE)))) {
         startDive(currentTime);

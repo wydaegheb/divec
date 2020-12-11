@@ -1,6 +1,16 @@
 #include "DecompressionPlan.h"
 
-DecompressionPlan::~DecompressionPlan() {
+DecompressionPlan &DecompressionPlan::getInstance() {
+    static DecompressionPlan instance; // Guaranteed to be destroyed.
+    // Instantiated on first use.
+    return instance;
+}
+
+DecompressionPlan::DecompressionPlan() {
+    init();
+}
+
+void DecompressionPlan::init() {
     for (DecompressionStep *stop:_stops) {
         delete stop;
     }
@@ -36,6 +46,13 @@ void DecompressionPlan::addDecoDepthChange(Gas *gas, uint32_t timeInSeconds, uin
     _stops.emplace_back(new DecompressionStep(gas, timeInSeconds, startDepthInMeter, endDepthInMeter));
 }
 
+uint32_t DecompressionPlan::getTtsInSeconds() {
+    double time = 0.0;
+    for (DecompressionStep *stop:_stops) {
+        time += stop->getDurationInSeconds();
+    }
+    return time;
+}
 
 std::list<DecompressionStep *> DecompressionPlan::getStops() {
     return _stops;
@@ -95,13 +112,11 @@ void DecompressionPlan::log(Print *print, Dive *dive) {
 }
 
 
-uint32_t DecompressionPlan::getTtsInSeconds() {
-    double time = 0.0;
-    for (DecompressionStep *stop:_stops) {
-        time += stop->getDurationInSeconds();
-    }
-    return time;
-}
+
+
+
+
+
 
 
 

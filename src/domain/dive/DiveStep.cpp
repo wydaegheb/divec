@@ -57,7 +57,7 @@ void DiveStep::deserializeObject(JsonObject &doc) {
     _gasName = doc["gas"];
 }
 
-size_t DiveStep::getFileSize() {
+size_t DiveStep::getJsonSize() {
     return JSON_OBJECT_SIZE(4); // 4 properties
 }
 

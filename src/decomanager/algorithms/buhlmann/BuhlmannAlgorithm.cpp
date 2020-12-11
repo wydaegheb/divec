@@ -14,15 +14,10 @@ BuhlmannAlgorithm::~BuhlmannAlgorithm() {
 void BuhlmannAlgorithm::update(uint32_t beginTimeInSeconds, uint32_t endTimeInSeconds, GasManager *gasManager, double beginPressureInBar, double endPressureInBar) {
     Gas *gas = gasManager->getCurrentOcGas();
     _buhlmannGasLoading->update(beginTimeInSeconds, endTimeInSeconds, beginPressureInBar, endPressureInBar, gas->getN2(), gas->getHe());
-    delete _decoPlan;
-    _decoPlan = nullptr;
 }
 
 DecompressionPlan *BuhlmannAlgorithm::getDecoPlan(GasManager *gasManager) {
-    if (_decoPlan == nullptr) {
-        _decoPlan = _buhlmannGasLoading->getDecoPlan(gasManager);
-    }
-    return _decoPlan;
+    return _buhlmannGasLoading->getDecoPlan(gasManager);
 }
 
 uint32_t BuhlmannAlgorithm::getNdlInSeconds(GasManager *gasManager) {
@@ -33,7 +28,7 @@ char const* BuhlmannAlgorithm::getName() {
     return _name;
 }
 
-JsonObject BuhlmannAlgorithm::serialize(JsonObject &algorithmJson) {
+JsonObject BuhlmannAlgorithm::serializeObject(JsonObject &algorithmJson) {
     algorithmJson["lastPressureInBars"] = _buhlmannGasLoading->getLastPressureInBar();
     JsonArray tissueJson = algorithmJson.createNestedArray("tissues");
     uint8_t i = 0;
@@ -46,7 +41,7 @@ JsonObject BuhlmannAlgorithm::serialize(JsonObject &algorithmJson) {
     return algorithmJson;
 }
 
-void BuhlmannAlgorithm::deserialize(JsonObject &algorithmJson) {
+void BuhlmannAlgorithm::deserializeObject(JsonObject &algorithmJson) {
     _buhlmannGasLoading->setLastPressureInBar(algorithmJson["lastPressureInBars"]);
     uint8_t i = 0;
     for (auto tissue:_buhlmannGasLoading->getTissues()) {
@@ -57,10 +52,9 @@ void BuhlmannAlgorithm::deserialize(JsonObject &algorithmJson) {
     }
 }
 
-size_t BuhlmannAlgorithm::getObjectSize() {
+size_t BuhlmannAlgorithm::getJsonSize() {
     return JSON_OBJECT_SIZE(2) + // lastPressureInBars property + array entry
            JSON_ARRAY_SIZE(_buhlmannGasLoading->getTissues().size()) +
-           _buhlmannGasLoading->getTissues().size() * JSON_OBJECT_SIZE(3) + // tissues array and each tissue has 3 properties
-           39; // Additional bytes for strings duplication
+           _buhlmannGasLoading->getTissues().size() * JSON_OBJECT_SIZE(3); // tissues array and each tissue has 3 properties
 }
 

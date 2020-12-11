@@ -60,3 +60,7 @@ https://thetheoreticaldiver.org/wordpress/index.php/2018/07/23/can-we-calculate-
 
 
 The Bluetooth app (Android) was forked from: https://github.com/adafruit/Bluefruit_LE_Connect_Android_V2/find/master
+
+TODO! Check for potential memory leaks:
+- Starting a new dive -> old dive dangling? -> make dive a singleton instead
+- Calculating deco plan -> previous plan dangling? -> make deco plan a singleton instead

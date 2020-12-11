@@ -5,10 +5,8 @@
 #include <RTClib.h>
 #include <domain/dive/Dive.h>
 
-class LogBook : public JsonSerializable {
+class LogBook final : public JsonSerializable {
 public:
-
-    ~LogBook() override = default;
 
     void init(FileSystem *fileSystem);
 
@@ -42,11 +40,11 @@ public:
 
     // persistence
 
-    JsonObject serializeObject(JsonObject &doc) override;
+    JsonObject serializeObject(JsonObject &doc) final;
 
-    void deserializeObject(JsonObject &doc) override;
+    void deserializeObject(JsonObject &doc) final;
 
-    size_t getFileSize() override;
+    size_t getJsonSize() final;
 
 private:
     uint16_t _numberOfDives = 0;

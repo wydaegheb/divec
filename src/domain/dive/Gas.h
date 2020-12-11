@@ -4,7 +4,7 @@
 #include <decomanager/algorithms/equations/DiveEquations.h>
 
 
-class Gas : public JsonSerializable {
+class Gas final : public JsonSerializable {
 public:
     Gas() = default;
 
@@ -38,16 +38,13 @@ public:
 
     uint16_t calcENDInMeters(double pressureInBars) const;
 
-    JsonObject serializeObject(JsonObject &doc) override;
+    JsonObject serializeObject(JsonObject &doc) final;
 
-    void deserializeObject(JsonObject &doc) override;
+    void deserializeObject(JsonObject &doc) final;
 
-    size_t getFileSize() override;
+    size_t getJsonSize() final;
 
 private:
-
-    void resolveName();
-
     bool _active;
 
     char const *_name;
@@ -57,6 +54,9 @@ private:
     double _o2;
     double _n2;
     double _he;
+
+    void resolveName();
+
 };
 
 #endif

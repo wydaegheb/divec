@@ -5,29 +5,28 @@
 #include <decomanager/algorithms/buhlmann/BuhlmannGasLoading.h>
 
 
-class BuhlmannAlgorithm : public DiveAlgorithm {
+class BuhlmannAlgorithm final : public DiveAlgorithm {
 public:
-    BuhlmannAlgorithm(char const* name, BuhlmannTable buhlmannTable);
+    BuhlmannAlgorithm(char const *name, BuhlmannTable buhlmannTable);
 
     ~BuhlmannAlgorithm();
 
-    void update(uint32_t beginTimeInSeconds, uint32_t endTimeInSeconds, GasManager *gasManager, double beginPressureInBar, double endPressureInBar) override;
+    void update(uint32_t beginTimeInSeconds, uint32_t endTimeInSeconds, GasManager *gasManager, double beginPressureInBar, double endPressureInBar) final;
 
-    DecompressionPlan *getDecoPlan(GasManager *gasManager) override;
+    DecompressionPlan *getDecoPlan(GasManager *gasManager) final;
 
-    uint32_t getNdlInSeconds(GasManager *gasManager) override;
+    uint32_t getNdlInSeconds(GasManager *gasManager) final;
 
-    char const* getName() override;
+    char const *getName() final;
 
-    JsonObject serialize(JsonObject &doc) override;
+    JsonObject serializeObject(JsonObject &doc) final;
 
-    void deserialize(JsonObject &doc) override;
+    void deserializeObject(JsonObject &doc) final;
 
-    size_t getObjectSize() override;
+    size_t getJsonSize() final;
 
 private:
     BuhlmannGasLoading *_buhlmannGasLoading;
-    DecompressionPlan *_decoPlan = nullptr;
     char const *_name;
 };
 

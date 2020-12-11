@@ -7,15 +7,17 @@
 
 #define MAX_NR_OF_STEPS 240 // used for arduino json allocation
 
-class Dive : public JsonSerializable {
+class Dive final : public JsonSerializable {
 public:
-    Dive();
+    static Dive &getInstance();
 
-    ~Dive() override;
+    Dive(Dive const &) = delete;
+
+    void operator=(Dive const &) = delete;
 
     DiveStep *update(uint32_t time, Gas *gas, double pressureInBar, double tempInCelsius);
 
-    void clearEntries();
+    void init();
 
     void addStep(DiveStep *diveStep);
 
@@ -49,11 +51,11 @@ public:
 
     std::list<DiveStep *> getSteps();
 
-    JsonObject serializeObject(JsonObject &doc) override;
+    JsonObject serializeObject(JsonObject &doc) final;
 
-    void deserializeObject(JsonObject &doc) override;
+    void deserializeObject(JsonObject &doc) final;
 
-    size_t getFileSize() override;
+    size_t getJsonSize() final;
 
     void log();
 
@@ -76,7 +78,13 @@ private:
 
     std::list<DiveStep *> _steps;
 
+
+    Dive();
+
+    void clearEntries();
+
     void compressSteps();
+
 
 };
 

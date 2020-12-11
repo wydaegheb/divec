@@ -4,13 +4,11 @@
 #include <Arduino.h>
 #include <domain/dive/Gas.h>
 
-class DiveStep : public JsonSerializable {
+class DiveStep final : public JsonSerializable {
 public:
     DiveStep() = default;
 
     DiveStep(uint32_t endTime, Gas *gas, double pressureInBar, double temperature);
-
-    ~DiveStep() override = default;
 
     uint32_t getEndTime();
 
@@ -28,11 +26,11 @@ public:
 
     void setGasName(Gas *gas);
 
-    JsonObject serializeObject(JsonObject &doc) override;
+    JsonObject serializeObject(JsonObject &doc) final;
 
-    void deserializeObject(JsonObject &doc) override;
+    void deserializeObject(JsonObject &doc) final;
 
-    size_t getFileSize() override;
+    size_t getJsonSize() final;
 
     void log();
 

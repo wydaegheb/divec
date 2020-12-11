@@ -8,10 +8,8 @@
 #define SALT 1
 #define FRESH 2
 
-class Settings : public JsonSerializable {
+class Settings final : public JsonSerializable {
 public:
-
-    ~Settings() override = default;
 
     // init
     void init(FileSystem *fileSystem);
@@ -51,11 +49,11 @@ public:
     static void logSettings(Print *print);
 
     // persistence
-    JsonObject serializeObject(JsonObject &doc) override;
+    JsonObject serializeObject(JsonObject &doc) final;
 
-    void deserializeObject(JsonObject &doc) override;
+    void deserializeObject(JsonObject &doc) final;
 
-    size_t getFileSize() override;
+    size_t getJsonSize() final;
 
 };
 

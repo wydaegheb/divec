@@ -4,7 +4,7 @@
 Page::Page(uint8_t pageNr, Display *display, DecoManager *decoManager) {
     _pageNr = pageNr;
     _display = display;
-    _dive = decoManager->getCurrentDive();
+    _dive = decoManager->getDive();
     _gasManager = decoManager->getGasManager();
     _decoManager = decoManager;
 }

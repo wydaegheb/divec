@@ -10,7 +10,7 @@ Gas GasManager::TX18_35 = Gas(0.18, 0.35, "TX18_35");
 
 void GasManager::init(FileSystem *fileSystem) {
     loadDefaultGasses(); // initialise with default gasses
-    fileSystem->loadGasses(this); // override if gasses are stored. save defaults otherwise.
+    fileSystem->loadGasses(this); // overrides default gasses if gas file exists. save defaults otherwise.
 }
 
 void GasManager::clear() {
@@ -186,7 +186,7 @@ void GasManager::deserializeObject(JsonObject &doc) {
     Serial.print(F("] - "));
 }
 
-size_t GasManager::getFileSize() {
+size_t GasManager::getJsonSize() {
     return JSON_OBJECT_SIZE(4) + // 2 properties (nrOf oc/cc gasses) + 2 arrays
            JSON_ARRAY_SIZE(MAX_OC_GASSES) + MAX_OC_GASSES * JSON_OBJECT_SIZE(4) + // OC gasses array contains MAX_OC_GASSES elements and each element has 4 properties
            JSON_ARRAY_SIZE(MAX_CC_GASSES) + MAX_CC_GASSES * JSON_OBJECT_SIZE(4);  // CC gasses array contains MAX_CC_GASSES elements and each element has 4 properties

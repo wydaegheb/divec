@@ -11,6 +11,12 @@ void setup() {
 
     diveController.setup();
 
+    // mark every gas that's not air as not active
+    DecoManager decoManager = diveController.getDecoManager();
+    for (auto gas: decoManager.getGasManager()->getOcGasses()) {
+        gas->setActive(strcmp(gas->getName(), "AIR") == 0);
+    }
+
 /*    // test - setup
     DecoManager decoManager = diveController.getDecoManager();
     Serial.print(F("Using algorithm: "));
@@ -53,7 +59,7 @@ void setup() {
     time += 180;
     decoManager.update(time, 1.0, 20.0, true);
 
-    decoManager.getDecoPlan()->log(decoManager.getCurrentDive());
+    decoManager.getDecoPlan()->log(decoManager.getDive());
     decoManager.getNdlInSeconds();
 
 

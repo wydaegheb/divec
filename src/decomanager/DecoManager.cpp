@@ -6,6 +6,7 @@ void DecoManager::init(FileSystem *fileSystem, uint32_t currentTime) {
     _fileSystem = fileSystem;
 
     // init algorithms
+    //addAlgorithm(new BuhlmannAlgorithm("BUHLMANN_A_GF", BuhlmannTable(Constants::BUHLMANN_ZHL16_A_TABLE)));
     addAlgorithm(new BuhlmannAlgorithm("BUHLMANN_B_GF", BuhlmannTable(Constants::BUHLMANN_ZHL16_B_TABLE)));
     addAlgorithm(new BuhlmannAlgorithm("BUHLMANN_C_GF", BuhlmannTable(Constants::BUHLMANN_ZHL16_C_TABLE)));
     setCurrentAlgorithm("BUHLMANN_C_GF");
@@ -20,7 +21,7 @@ void DecoManager::init(FileSystem *fileSystem, uint32_t currentTime) {
     _logBook->init(_fileSystem); //loads the existing logbook or creates a new one if it didn't exist
 
     // init dive
-    _currentDive = new Dive();
+    _dive = &Dive::getInstance();
     Serial.println(F(" - dive initialized."));
 
     // init gasmanager
@@ -66,18 +67,18 @@ void DecoManager::update(uint32_t currentTime, double currentPressureInBar, doub
     Serial.print(F(", wet contact active:"));
     Serial.println(wetContactActivated);
     // auto start dive on activation of the wet contact or if we are below our dive pressure threshold
-    if (!_currentDive->isStarted() && (wetContactActivated || (currentPressureInBar > (Settings::SURFACE_PRESSURE + Settings::START_OF_DIVE_PRESSURE)))) {
+    if (!_dive->isStarted() && (wetContactActivated || (currentPressureInBar > (Settings::SURFACE_PRESSURE + Settings::START_OF_DIVE_PRESSURE)))) {
         startDive(currentTime);
         Serial.println(F(" -> dive started!"));
     }
 
     // only update dive and algorithms if the dive is in progress
-    if (_currentDive->isInProgress()) {
+    if (_dive->isInProgress()) {
         // update dive
-        auto step = _currentDive->update(currentTime, _gasManager->getCurrentOcGas(), currentPressureInBar, tempInCelsius);
+        auto step = _dive->update(currentTime, _gasManager->getCurrentOcGas(), currentPressureInBar, tempInCelsius);
 
         // update logbook (avoid logging steps when we are on the surface - dive could be in progress as we continue the dive if the diver goes under again within the time limit)
-        if (!_currentDive->isSurfaced()) {
+        if (!_dive->isSurfaced()) {
             _logBook->addDiveStep(step);
         }
 
@@ -87,7 +88,7 @@ void DecoManager::update(uint32_t currentTime, double currentPressureInBar, doub
         }
 
         // dive has just ended
-        if (_currentDive->isEnded()) {
+        if (_dive->isEnded()) {
             Serial.println(F(" - dive ended!"));
             endDive();
         }
@@ -121,18 +122,18 @@ Gas *DecoManager::getCurrentGas() {
     return getGasManager()->getCurrentOcGas();
 }
 
-Dive *DecoManager::getCurrentDive() {
-    return _currentDive;
+Dive *DecoManager::getDive() {
+    return _dive;
 }
 
 void DecoManager::startDive(uint32_t currentTime) {
-    _currentDive->start(currentTime);
+    _dive->start(currentTime);
     _logBook->initTmpDiveLog();
 }
 
 void DecoManager::endDive() {
     // save the dive log
-    _logBook->saveDive(_currentDive);
+    _logBook->saveDive(_dive);
 
     // save current decostate
     _fileSystem->saveDecoState(this);
@@ -147,7 +148,7 @@ uint32_t DecoManager::getNdlInSeconds() {
 }
 
 uint32_t DecoManager::getSurfaceIntervalInSeconds() {
-    if (!_currentDive->isInProgress()) {
+    if (!_dive->isInProgress()) {
         return Time::getTime() - _previousUpdateTime;
     }
     return 0;
@@ -171,7 +172,7 @@ JsonObject DecoManager::serializeObject(JsonObject &doc) {
     doc["currentAlgorithm"] = _currentAlgorithm->getName();
     for (auto algorithm:_algorithms) {
         JsonObject algorithmJson = doc.createNestedObject(algorithm->getName());
-        algorithm->serialize(algorithmJson);
+        algorithm->serializeObject(algorithmJson);
     }
 
     return doc;
@@ -181,16 +182,17 @@ void DecoManager::deserializeObject(JsonObject &doc) {
     // load last deco state -> _previousUpdateTime, current algorithm, all algorithms state (mainly tissues)
     _previousUpdateTime = doc["previousUpdateTime"];
     setCurrentAlgorithm(doc["currentAlgorithm"]);
+
     for (auto algorithm:_algorithms) {
         JsonObject algorithmJson = doc[algorithm->getName()];
-        algorithm->deserialize(algorithmJson);
+        algorithm->deserializeObject(algorithmJson);
     }
 }
 
-size_t DecoManager::getFileSize() {
-    size_t fileSize = JSON_OBJECT_SIZE(3); // previousUpdateTimeInSeconds,noFlyTimeInMinutes and currentAlgorithm
+size_t DecoManager::getJsonSize() {
+    size_t fileSize = JSON_OBJECT_SIZE(2); // previousUpdateTimeInSeconds and currentAlgorithm
     for (auto algorithm:_algorithms) {
-        fileSize += algorithm->getObjectSize(); // add sizes of algorithm states
+        fileSize += algorithm->getJsonSize(); // add sizes of algorithm states
     }
     return fileSize;
 }

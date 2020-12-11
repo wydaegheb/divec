@@ -11,18 +11,18 @@
 #define MIDDLE_ROW_Y 85
 #define BOTTOM_ROW_Y 170
 
-class MainPage : public Page {
+class MainPage final : public Page {
 public:
     MainPage(Display *display, DecoManager *decoManager);
 
-    ~MainPage() override;
+    ~MainPage() final;
 
 protected:
-    void update() override;
+    void update() final;
 
-    void redraw() override;
+    void redraw() final;
 
-    uint8_t handleRightButtonPress() override;
+    uint8_t handleRightButtonPress() final;
 
 
 private:

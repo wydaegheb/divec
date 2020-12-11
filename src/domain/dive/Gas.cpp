@@ -121,7 +121,7 @@ void Gas::deserializeObject(JsonObject &doc) {
     resolveName();
 }
 
-size_t Gas::getFileSize() {
+size_t Gas::getJsonSize() {
     return JSON_OBJECT_SIZE(4); // 4 properties
 }
 

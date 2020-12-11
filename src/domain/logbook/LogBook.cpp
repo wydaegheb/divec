@@ -6,7 +6,7 @@ void LogBook::init(FileSystem *fileSystem) {
 }
 
 Dive *LogBook::loadDive(uint16_t diveNr) {
-    Dive *dive = new Dive();
+    Dive *dive = &Dive::getInstance();
     _fileSystem->loadDiveLog(dive, diveNr);
     return dive;
 }
@@ -86,7 +86,7 @@ void LogBook::deserializeObject(JsonObject &doc) {
     _lastDiveDate = doc["lastDiveDate"];
 }
 
-size_t LogBook::getFileSize() {
+size_t LogBook::getJsonSize() {
     return JSON_OBJECT_SIZE(4); // 4 properties
 }
 

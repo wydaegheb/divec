@@ -1,16 +1,23 @@
 
 #include "Dive.h"
 
+Dive &Dive::getInstance() {
+    static Dive instance; // Guaranteed to be destroyed.
+    // Instantiated on first use.
+    return instance;
+}
+
 Dive::Dive() {
+    init();
+}
+
+void Dive::init() {
     _started = false;
     _ended = false;
     _surfaced = false;
     clearEntries();
 }
 
-Dive::~Dive() {
-    clearEntries();
-}
 
 void Dive::clearEntries() {
     for (DiveStep *entry:_steps) {
@@ -24,14 +31,12 @@ void Dive::addStep(DiveStep *diveStep) {
 }
 
 void Dive::start(uint32_t startTime) {
+    init();
     _started = true;
-    _ended = false;
-    _surfaced = false;
     _startTime = startTime;
 }
 
 void Dive::end() {
-    _started = false;
     _ended = true;
 }
 
@@ -178,7 +183,7 @@ void Dive::deserializeObject(JsonObject &doc) {
     }
 }
 
-size_t Dive::getFileSize() {
+size_t Dive::getJsonSize() {
     return JSON_OBJECT_SIZE(8) + // 7 properties + 1 array
            JSON_ARRAY_SIZE(MAX_NR_OF_STEPS) + MAX_NR_OF_STEPS * JSON_OBJECT_SIZE(4); // steps array contains MAX_NR_OF_STEPS elements and each element has 4 properties
 }
@@ -259,6 +264,10 @@ void Dive::compressSteps() {
         }
     }
 }
+
+
+
+
 
 
 

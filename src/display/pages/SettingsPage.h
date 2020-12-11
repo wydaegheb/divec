@@ -9,20 +9,20 @@
 #include <display/widgets/BatteryWidget.h>
 
 
-class SettingsPage : public Page {
+class SettingsPage final : public Page {
 public:
     SettingsPage(Display *display, DecoManager *decoManager);
 
-    ~SettingsPage() override;
+    ~SettingsPage() final;
 
 protected:
-    void update() override;
+    void update() final;
 
-    void redraw() override;
+    void redraw() final;
 
-    uint8_t handleLeftButtonPress() override;
+    uint8_t handleLeftButtonPress() final;
 
-    uint8_t handleRightButtonPress() override;
+    uint8_t handleRightButtonPress() final;
 
 
 private:

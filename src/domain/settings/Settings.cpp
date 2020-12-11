@@ -135,8 +135,8 @@ void Settings::logSettings(Print *print) {
     print->println(F("======================================"));
 }
 
-size_t Settings::getFileSize() {
-    return JSON_OBJECT_SIZE(17) + BUFFER_FOR_STRINGS_DUPLICATION;
+size_t Settings::getJsonSize() {
+    return JSON_OBJECT_SIZE(17);
 }
 
 

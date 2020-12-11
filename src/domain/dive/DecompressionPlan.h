@@ -9,7 +9,13 @@
 
 class DecompressionPlan {
 public:
-    ~DecompressionPlan();
+    static DecompressionPlan &getInstance();
+
+    DecompressionPlan(DecompressionPlan const &) = delete;
+
+    void operator=(DecompressionPlan const &) = delete;
+
+    void init();
 
     void addStop(Gas *gas, uint32_t timeInSeconds, uint16_t depthInMeter);
 
@@ -20,6 +26,7 @@ public:
     uint32_t getTtsInSeconds();
 
     void log();
+
     void log(Dive *dive);
 
     void log(Print *print, Dive *dive);
@@ -27,6 +34,9 @@ public:
 
 private:
     std::list<DecompressionStep *> _stops;
+
+    DecompressionPlan();
+
 };
 
 #endif

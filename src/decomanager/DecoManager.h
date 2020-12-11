@@ -9,9 +9,8 @@
 #include <filesystem/FileSystem.h>
 #include <domain/logbook/LogBook.h>
 
-class DecoManager : public JsonSerializable {
+class DecoManager final : public JsonSerializable {
 public:
-    ~DecoManager() override = default;
 
     void init(FileSystem *fileSystem, uint32_t currentTime);
 
@@ -21,7 +20,7 @@ public:
 
 
     // dive
-    Dive *getCurrentDive();
+    Dive *getDive();
 
     Dive *loadDive(uint16_t diveNr);
 
@@ -61,18 +60,18 @@ public:
 
 
     // persistence
-    JsonObject serializeObject(JsonObject &doc) override;
+    JsonObject serializeObject(JsonObject &doc) final;
 
-    void deserializeObject(JsonObject &doc) override;
+    void deserializeObject(JsonObject &doc) final;
 
-    size_t getFileSize() override;
+    size_t getJsonSize() final;
 
 private:
     FileSystem *_fileSystem;
 
     LogBook *_logBook;
 
-    Dive *_currentDive;
+    Dive *_dive;
     DiveAlgorithm *_currentAlgorithm;
     std::list<DiveAlgorithm *> _algorithms;
     GasManager *_gasManager;

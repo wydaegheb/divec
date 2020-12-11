@@ -40,7 +40,8 @@ uint16_t BuhlmannGasLoading::getCeilingRoundedToDecoStepSize(double gradientFact
 
 DecompressionPlan *BuhlmannGasLoading::getDecoPlan(GasManager *gasManager) {
     Serial.println(F(" - calculating deco plan"));
-    auto *decoPlan = new DecompressionPlan();
+    auto *decoPlan = &DecompressionPlan::getInstance();
+    decoPlan->init();
 
     double currentDepthInMeters = DiveEquations::barToDepthInMeters(_lastPressureInBar);
     if (currentDepthInMeters == 0.0) {

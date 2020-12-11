@@ -8,8 +8,6 @@
 
 class JsonSerializable {
 public:
-    virtual ~JsonSerializable() = default;
-
 
     size_t save(File *file);
 
@@ -20,7 +18,7 @@ public:
 
     virtual void deserializeObject(JsonObject &doc) = 0;
 
-    virtual size_t getFileSize() = 0;
+    virtual size_t getJsonSize() = 0;
 
 
 };

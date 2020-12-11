@@ -5,13 +5,14 @@
 
 #define BATTERY_PIN A6
 
-class BatteryWidget : public Widget{
+class BatteryWidget final : public Widget {
 public:
     BatteryWidget(Display *display, uint16_t leftX, uint16_t topY, uint16_t width, uint16_t height);
 
     void updateValue();
+
 protected:
-    void draw() override;
+    void draw() final;
 
 private:
     void readBattery();

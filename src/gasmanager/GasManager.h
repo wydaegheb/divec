@@ -11,7 +11,7 @@
 #define MAX_OC_GASSES 30 // not a real limit - used to allocate json documents - increase if more are needed
 #define MAX_CC_GASSES 30 // not a real limit - used to allocate json documents - increase if more are needed
 
-class GasManager : public JsonSerializable {
+class GasManager final : public JsonSerializable {
 public:
     // default gasses
     static Gas AIR;
@@ -21,12 +21,7 @@ public:
     static Gas NX50;
     static Gas TX18_35;
 
-    ~GasManager() override = default;
-
-    void init(FileSystem* fileSystem);
-
-    void clear();
-
+    void init(FileSystem *fileSystem);
 
     void addOcGas(Gas *divegas);
 
@@ -54,12 +49,11 @@ public:
     std::list<Gas *> getCcGasses();
 
 
+    JsonObject serializeObject(JsonObject &doc) final;
 
-    JsonObject serializeObject(JsonObject &doc) override;
+    void deserializeObject(JsonObject &doc) final;
 
-    void deserializeObject(JsonObject &doc) override;
-
-    size_t getFileSize() override;
+    size_t getJsonSize() final;
 
 private:
 
@@ -74,6 +68,8 @@ private:
 
     std::list<Gas *> _ocGasses;
     std::list<Gas *> _ccGasses;
+
+    void clear();
 
 };
 

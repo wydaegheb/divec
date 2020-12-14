@@ -111,6 +111,16 @@ void DecompressionPlan::log(Print *print, Dive *dive) {
     print->println(F("=============================================="));
 }
 
+DecompressionStep *DecompressionPlan::getFirstStop() {
+    // return first "real" stop as the plan also contains the ascents between stops
+    for (DecompressionStep *stop:_stops) {
+        if (stop->isFlat()) {
+            return stop;
+        }
+    }
+    return nullptr;
+}
+
 
 
 

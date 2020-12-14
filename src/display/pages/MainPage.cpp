@@ -77,10 +77,16 @@ void MainPage::update() {
     _diveTime->updateValue(_dive->getDiveTimeInSeconds() / 60.0);
     _battery->updateValue();
     if (_dive->isInProgress()) { // when diving -> show deco stops
-        DecompressionStep *decoStop = plan->getStops().front();
         _surfaceInterval->hide();
-        _decoStopTime->updateValue(decoStop->getDurationInSeconds() / 60.0);
-        _decoStopDepth->updateValue(decoStop->getEndDepthInMeters());
+        DecompressionStep *decoStop = plan->getFirstStop();
+        if (decoStop != nullptr) {
+            _decoStopDepth->updateValue(decoStop->getEndDepthInMeters());
+            _decoStopTime->updateValue(decoStop->getDurationInSeconds() / 60.0);
+        } else {
+            _decoStopDepth->hideValue();
+            _decoStopTime->hideValue();
+        }
+
     } else { // else show surface interval
         _decoStopDepth->hide();
         _decoStopTime->hide();

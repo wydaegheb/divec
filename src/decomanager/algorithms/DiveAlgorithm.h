@@ -14,6 +14,8 @@ public:
     virtual DecompressionPlan *getDecoPlan(GasManager *gasManager) = 0;
 
     virtual uint32_t getNdlInSeconds(GasManager *gasManager) = 0;
+
+    virtual void reset() = 0;
 };
 
 

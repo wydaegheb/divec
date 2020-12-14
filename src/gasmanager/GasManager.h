@@ -21,6 +21,8 @@ public:
     static Gas NX50;
     static Gas TX18_35;
 
+    void clear();
+
     void init(FileSystem *fileSystem);
 
     void addOcGas(Gas *divegas);
@@ -56,20 +58,17 @@ public:
     size_t getJsonSize() final;
 
 private:
-
-    Gas *getGas(char const* name, std::list<Gas *> *gasList);
-
-    Gas *getBestGas(double pressureInBars, std::list<Gas *> *gasList);
-
-    void loadDefaultGasses();
-
     Gas *_currentOcGas;
     Gas *_currentCcGas;
 
     std::list<Gas *> _ocGasses;
     std::list<Gas *> _ccGasses;
 
-    void clear();
+    Gas *getGas(char const *name, std::list<Gas *> *gasList);
+
+    Gas *getBestGas(double pressureInBars, std::list<Gas *> *gasList);
+
+    void loadDefaultGasses();
 
 };
 

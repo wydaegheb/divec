@@ -10,6 +10,8 @@ public:
 
     void updateValue(double value);
 
+    void hideValue();
+
     void show() override;
 
     void draw() override;
@@ -19,6 +21,7 @@ public:
 private:
     uint8_t _align;
     bool _drawTitle = true;
+    bool _hideValue = false;
     char const *_title;
     uint8_t _numberOfDecimals;
     double _value;

@@ -15,7 +15,7 @@
 #define WET_CONTACT_PIN 11
 
 #define USE_MOCK_DEPTH_SENSOR true
-#define USE_MOCK_TIME false
+#define USE_MOCK_TIME true
 
 
 class DiveController {
@@ -41,7 +41,7 @@ private:
     Display _display;
     Menu _menu;
 
-    uint32_t _lastUpdateTime;
+    uint32_t _lastUpdateTimeInSeconds;
 
     // wet contact interrupt
     static WetContact _wetContact;

@@ -2,9 +2,7 @@
 
 
 BuhlmannTissue::BuhlmannTissue(BuhlmannTable buhlmannTable, int compartment) {
-    _pN2 = DiveEquations::gasPressureBreathingInBars(Settings::SURFACE_PRESSURE, 0.79);
-    _pHe = 0.0;
-    _pTotal = _pN2 + _pHe;
+    resetTissue();
 
     _n2TimeConstant = log(2.0) / buhlmannTable.getN2HalfLife(compartment);
     _n2AValue = buhlmannTable.getN2A(compartment);
@@ -13,6 +11,12 @@ BuhlmannTissue::BuhlmannTissue(BuhlmannTable buhlmannTable, int compartment) {
     _heTimeConstant = log(2.0) / buhlmannTable.getHeHalfLife(compartment);
     _heAValue = buhlmannTable.getHeA(compartment);
     _heBValue = buhlmannTable.getHeB(compartment);
+}
+
+void BuhlmannTissue::resetTissue() {
+    _pN2 = DiveEquations::gasPressureBreathingInBars(Settings::SURFACE_PRESSURE, 0.79);
+    _pHe = 0.0;
+    _pTotal = _pN2 + _pHe;
 }
 
 void BuhlmannTissue::update(uint32_t beginTimeInSeconds, uint32_t endTimeInSeconds, double beginPressureInBar, double endPressureInBar, double gasN2Fraction, double gasHeFraction) {
@@ -158,6 +162,8 @@ void BuhlmannTissue::setPHe(double pHe) {
 void BuhlmannTissue::setPTotal(double pTotal) {
     _pTotal = pTotal;
 }
+
+
 
 
 

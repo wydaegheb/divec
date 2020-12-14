@@ -17,6 +17,8 @@ public:
 
     double calculateCeilingInMeter(double gradientFactor) const;
 
+    void resetTissue();
+
     void startSimulation();
 
     void undoSimulation();
@@ -45,6 +47,9 @@ private:
     double _heTimeConstant; // log(2.0) / n2HalfLife for this compartment
     double _heAValue;
     double _heBValue;
+
+    // initial value before any gas loading
+    double _initial_pN2;
 
     // temp storage while calculating decompressionplan/NDL/...
     double _pN2AtSimulationStart;

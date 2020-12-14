@@ -21,6 +21,8 @@ public:
 
     void addDecoDepthChange(Gas *gas, uint32_t timeInSeconds, uint16_t startDepth, uint16_t endDepth);
 
+    DecompressionStep *getFirstStop();
+
     std::list<DecompressionStep *> getStops();
 
     uint32_t getTtsInSeconds();

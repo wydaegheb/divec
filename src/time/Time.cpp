@@ -1,13 +1,21 @@
 #include "Time.h"
 
+uint32_t  Time::_mockTime;
 boolean  Time::_mocked;
 RTC_DS3231 Time::_rtc;
 
 uint32_t Time::getTime() {
     if (_mocked) {
-        return millis() / 1000;
+        return _mockTime;
     }
     return _rtc.now().unixtime();
+}
+
+void Time::incMockTime() {
+    Serial.print(F("Inc time: "));
+    _mockTime += 60;
+    Serial.println(_mockTime);
+
 }
 
 bool Time::init(bool isMocked) {
@@ -15,6 +23,7 @@ bool Time::init(bool isMocked) {
     _mocked = isMocked;
     if (_mocked) {
         Serial.println(F(" - using mock time."));
+        _mockTime = 0;
         return true;
     }
 
@@ -37,3 +46,5 @@ bool Time::init(bool isMocked) {
     Serial.println(DateTime(getTime()).timestamp());
     return true;
 }
+
+

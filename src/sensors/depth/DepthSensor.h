@@ -15,10 +15,16 @@ public:
 
     double pressureInBar();
 
+    bool isMocked() const;
+
+    void increaseMockDepth();
+
+    void decreaseMockDepth();
+
 private:
     DIVEC_MS5837 _depthSensor;
-    bool _isMocked;
-    uint32_t _lastUpdated;
+    bool _mocked;
+    uint32_t _lastUpdatedInMillis;
     double _currentPressure;
     double _currentTemp;
 

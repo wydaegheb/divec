@@ -12,11 +12,14 @@
 class DecoManager final : public JsonSerializable {
 public:
 
-    void init(FileSystem *fileSystem, uint32_t currentTime);
+    void init(FileSystem *fileSystem, uint32_t currentTimeInSeconds);
 
-    void update(uint32_t currentTime, double currentPressureInBar, double tempInCelsius, bool wetContactActivated);
+    void update(uint32_t currentTimeInSeconds, double currentPressureInBar, double tempInCelsius, bool wetContactActivated);
 
     DecompressionPlan *getDecoPlan();
+
+    // reset all - CLEARS tissues!
+    void reset(uint32_t currentTimeInSeconds);
 
 
     // dive
@@ -24,7 +27,7 @@ public:
 
     Dive *loadDive(uint16_t diveNr);
 
-    void startDive(uint32_t currentTime);
+    void startDive(uint32_t currentTimeInSeconds);
 
     void endDive();
 
@@ -76,7 +79,7 @@ private:
     std::list<DiveAlgorithm *> _algorithms;
     GasManager *_gasManager;
 
-    uint32_t _previousUpdateTime;
+    uint32_t _previousUpdateTimeInSeconds;
     double _previousPressureInBar;
 
 };

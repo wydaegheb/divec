@@ -39,28 +39,42 @@ void DiveController::setup() {
     _bluetooth.init();
 
     // reset last update time stamp (needs to happen after loading the decomanager to avoid errors in surface interval calculations)
-    _lastUpdateTime = Time::getTime();
+    _lastUpdateTimeInSeconds = Time::getTime();
 
     Serial.println(F("DiveController ready"));
 }
 
 void DiveController::step() {
-    uint32_t currentTime = Time::getTime();
+    uint32_t currentTimeInSeconds = Time::getTime();
 
     // only add a step every STEP_INTERVAL seconds
-    if ((currentTime - _lastUpdateTime) >= Settings::STEP_INTERVAL) {
+    if ((currentTimeInSeconds - _lastUpdateTimeInSeconds) >= Settings::STEP_INTERVAL) {
+        Serial.println(F("Step"));
 
         // update deco manager (dive, tissues, gasses, ...)
-        _decoManager.update(currentTime, _depthSensor.pressureInBar(), _depthSensor.tempInCelsius(), _wetContact.isActivated());
+        _decoManager.update(currentTimeInSeconds, _depthSensor.pressureInBar(), _depthSensor.tempInCelsius(), _wetContact.isActivated());
 
         // update menu
         _menu.update();
 
-        _lastUpdateTime = currentTime;
+        _lastUpdateTimeInSeconds = currentTimeInSeconds;
     }
 
     // check bluetooth - don't wait for interval or a bluetooth command takes 5 seconds to be handled
     int8_t bleCommand = _bluetooth.receive();
+
+    if (_depthSensor.isMocked() && bleCommand == BLE_INC_TIME_ONE_MIN) {
+        Time::incMockTime();
+    }
+
+    if (_depthSensor.isMocked() && bleCommand == BLE_ASCENT_ONE_METER) {
+        _depthSensor.decreaseMockDepth();
+    }
+
+
+    if (_depthSensor.isMocked() && bleCommand == BLE_DESCENT_ONE_METER) {
+        _depthSensor.increaseMockDepth();
+    }
 
 
     // handle button presses - don't wait for interval or a button press takes 5 seconds to be handled

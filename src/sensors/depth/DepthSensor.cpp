@@ -2,7 +2,7 @@
 
 void DepthSensor::init(bool isMocked) {
     Serial.println(F("Initializing depth sensor."));
-    _isMocked = isMocked;
+    _mocked = isMocked;
     if (isMocked) {
         Serial.println(F(" - using mock depth sensor."));
         _currentPressure = 1000.0;
@@ -23,7 +23,7 @@ void DepthSensor::init(bool isMocked) {
         _currentPressure = _depthSensor.pressure();
         _currentTemp = _depthSensor.temperature();
     }
-    _lastUpdated = Time::getTime();
+    _lastUpdatedInMillis = millis();
 }
 
 double DepthSensor::pressureInBar() {
@@ -37,27 +37,39 @@ double DepthSensor::tempInCelsius() {
 }
 
 void DepthSensor::read() {
-    uint32_t currentTime = millis();
     // reading the depth sensor takes time - this way we avoid more than 2 readings every second - readings of the depth sensor should happen as few as possible
-    if ((currentTime - _lastUpdated) > 500) {
+    if ((millis() - _lastUpdatedInMillis) > 500) {
         Serial.println(F(" - reading depth sensor."));
-        if (_isMocked) {
-            _currentPressure = _currentPressure + 100.0;
-            _currentTemp = 2000.0;
-        } else {
+        if (!_mocked) {
             _depthSensor.read();
             //Check for sensor error - difference has to be less than 20 meters (otherwise keep previous pressure) -> copied from DiveIno.ino)
-            if (abs(_currentPressure - _depthSensor.pressure()) < 20000) {
+            if (abs(_currentPressure - _depthSensor.pressure()) < 20000.0) {
                 _currentPressure = _depthSensor.pressure();
             }
 
             //Check for sensor error - difference has to be less than 20 degrees celcius (otherwise keep previous temp)
-            if (abs(_currentTemp - _depthSensor.temperature()) < 2000) {
+            if (abs(_currentTemp - _depthSensor.temperature()) < 2000.0) {
                 _currentTemp = _depthSensor.temperature();
             }
         }
-        _lastUpdated = millis();
+        _lastUpdatedInMillis = millis();
     } else {
         Serial.println(F(" - skipped reading depth sensor."));
     }
 }
+
+bool DepthSensor::isMocked() const {
+    return _mocked;
+}
+
+void DepthSensor::increaseMockDepth() {
+
+    _currentPressure += 100.0;
+}
+
+void DepthSensor::decreaseMockDepth() {
+    if (_currentPressure > 99.0) {
+        _currentPressure -= 100.0;
+    }
+}
+

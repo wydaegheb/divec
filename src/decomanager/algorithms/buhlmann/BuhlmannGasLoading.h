@@ -13,6 +13,8 @@ public:
 
     explicit BuhlmannGasLoading(BuhlmannTable buhlmannTable);
 
+    void resetTissues();
+
     void update(uint32_t beginTimeInSeconds, uint32_t endTimeInSeconds, double beginPressureInBar, double endPressureInBar, double gasN2Fraction, double gasHeFraction);
 
     double getCeilingInMeters(double gradientFactor);

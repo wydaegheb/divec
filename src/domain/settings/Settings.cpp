@@ -10,9 +10,9 @@ uint8_t Settings::MIN_STOP_TIME = 60;               // minimum stop time interva
 uint8_t Settings::DECO_STEP_SIZE = 3;               // meters between decostops
 uint8_t Settings::LAST_STOP = 6;                    // meters. meters below surface to make the last decostop
 uint8_t Settings::SALINITY = SALT;                  // SALT/FRESH
-double Settings::SURFACE_PRESSURE = 1.0;            // bar. default is pressure on the surface. should be measured en updated at start of dive
-double Settings::MAX_PPO2 = 1.6;                    // bar.
-uint16_t Settings::MAX_END = 30;                    // meters. max depth while using standard air (79% N2)
+double Settings::SURFACE_PRESSURE = 1.0;            // bar. default is pressure on the surface. (TODO: should be measured and updated at start of dive)
+double Settings::MAX_PPO2 = 1.4;                    // bar. (Typically 1.4 for bottom minus 0.5 for each extra difficulty (cold, current, stress, age,...) and 1.6 while doing deco stops)
+uint16_t Settings::MAX_END = 40;                    // meters. max depth while using standard air (79% N2 - 0% He) - (the pO2 becomes > 1.4 below 56,6m but most dive organisations consider deeper than 40m as unsafe due to N2 narcosis)
 bool Settings::O2_NARCOTIC = true;                  // consider O2 as narcotic during END calculation.
 
 // controller settings

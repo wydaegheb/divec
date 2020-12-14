@@ -10,6 +10,9 @@ BuhlmannAlgorithm::~BuhlmannAlgorithm() {
     _buhlmannGasLoading = nullptr;
 }
 
+void BuhlmannAlgorithm::reset() {
+    _buhlmannGasLoading->resetTissues();
+}
 
 void BuhlmannAlgorithm::update(uint32_t beginTimeInSeconds, uint32_t endTimeInSeconds, GasManager *gasManager, double beginPressureInBar, double endPressureInBar) {
     Gas *gas = gasManager->getCurrentOcGas();
@@ -57,4 +60,6 @@ size_t BuhlmannAlgorithm::getJsonSize() {
            JSON_ARRAY_SIZE(_buhlmannGasLoading->getTissues().size()) +
            _buhlmannGasLoading->getTissues().size() * JSON_OBJECT_SIZE(3); // tissues array and each tissue has 3 properties
 }
+
+
 

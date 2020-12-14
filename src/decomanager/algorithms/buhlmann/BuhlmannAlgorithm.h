@@ -11,6 +11,8 @@ public:
 
     ~BuhlmannAlgorithm();
 
+    void reset() final;
+
     void update(uint32_t beginTimeInSeconds, uint32_t endTimeInSeconds, GasManager *gasManager, double beginPressureInBar, double endPressureInBar) final;
 
     DecompressionPlan *getDecoPlan(GasManager *gasManager) final;

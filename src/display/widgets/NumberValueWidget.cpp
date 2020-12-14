@@ -17,6 +17,7 @@ void NumberValueWidget::redraw() {
 }
 
 void NumberValueWidget::updateValue(double value) {
+    _hideValue = false;
     if (_hidden) {
         _value = value;
         show();
@@ -24,6 +25,10 @@ void NumberValueWidget::updateValue(double value) {
         _value = value;
         update();
     }
+}
+
+void NumberValueWidget::hideValue() {
+    _display->fillWithBackground(_leftX, _topY + 20, _width, (_height - 20)); // clear background for the value only as it is the only part that is redrawn
 }
 
 void NumberValueWidget::show() {

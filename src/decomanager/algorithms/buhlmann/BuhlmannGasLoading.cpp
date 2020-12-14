@@ -8,8 +8,14 @@ BuhlmannGasLoading::BuhlmannGasLoading(BuhlmannTable buhlmannTable) {
     _lastPressureInBar = Settings::SURFACE_PRESSURE;
 }
 
-void
-BuhlmannGasLoading::update(uint32_t beginTimeInSeconds, uint32_t endTimeInSeconds, double beginPressureInBar, double endPressureInBar, double gasN2Fraction, double gasHeFraction) {
+void BuhlmannGasLoading::resetTissues() {
+    for (auto tissue : _tissues) {
+        tissue->resetTissue();
+    }
+    _lastPressureInBar = Settings::SURFACE_PRESSURE;
+}
+
+void BuhlmannGasLoading::update(uint32_t beginTimeInSeconds, uint32_t endTimeInSeconds, double beginPressureInBar, double endPressureInBar, double gasN2Fraction, double gasHeFraction) {
     for (auto tissue : _tissues) {
         tissue->update(beginTimeInSeconds, endTimeInSeconds, beginPressureInBar, endPressureInBar, gasN2Fraction, gasHeFraction);
     }
@@ -48,12 +54,13 @@ DecompressionPlan *BuhlmannGasLoading::getDecoPlan(GasManager *gasManager) {
         return decoPlan;
     }
 
-    // Gradient factors
-    double distanceToSurfaceInMeters = currentDepthInMeters;
-    double gfChangePerMeter = (Settings::GF_HIGH - Settings::GF_LOW) / distanceToSurfaceInMeters;
-
     // First ceiling
     uint16_t ceilingInMeter = getCeilingRoundedToDecoStepSize(Settings::GF_LOW);
+
+    // Gradient factors
+    //double distanceToSurfaceInMeters = ceilingInMeter;
+    double distanceToSurfaceInMeters = (ceilingInMeter - Settings::DECO_STEP_SIZE);
+    double gfChangePerMeter = (Settings::GF_HIGH - Settings::GF_LOW) / distanceToSurfaceInMeters;
 
     startDecoCalculation(); // stores current state of tissues so we can revert to this state when our calculation is over
 
@@ -70,8 +77,8 @@ DecompressionPlan *BuhlmannGasLoading::getDecoPlan(GasManager *gasManager) {
         }
 
         decoStopTimeInSeconds = 0;
-        double gradientFactor = Settings::GF_LOW + (gfChangePerMeter * (distanceToSurfaceInMeters - ceilingInMeter));
-        //double gradientFactor = Settings::GF_LOW + (gfChangePerMeter * (distanceToSurfaceInMeters - nextDecompressionDepth));
+        //double gradientFactor = Settings::GF_LOW + (gfChangePerMeter * (distanceToSurfaceInMeters - ceilingInMeter));
+        double gradientFactor = Settings::GF_LOW + (gfChangePerMeter * (distanceToSurfaceInMeters - nextDecompressionDepth));
 
         while (ceilingInMeter > nextDecompressionDepth && decoStopTimeInSeconds < 600000) {
             addDecoStop(currentDepthInMeters, Settings::MIN_STOP_TIME, currentGas, decoPlan);
@@ -84,6 +91,7 @@ DecompressionPlan *BuhlmannGasLoading::getDecoPlan(GasManager *gasManager) {
 
     stopDecoCalculation(); // restores current state of tissues
 
+    //decoPlan->log();
     return decoPlan;
 }
 
@@ -215,6 +223,8 @@ const std::list<BuhlmannTissue *> &BuhlmannGasLoading::getTissues() const {
 void BuhlmannGasLoading::setTissues(const std::list<BuhlmannTissue *> &tissues) {
     _tissues = tissues;
 }
+
+
 
 
 

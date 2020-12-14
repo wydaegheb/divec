@@ -82,13 +82,29 @@ Gas *GasManager::getGas(char const *name, std::list<Gas *> *gasList) {
 }
 
 Gas *GasManager::getBestGas(double pressureInBars, std::list<Gas *> *gasList) {
+/*    Serial.print(F("get best gas for pressure: "));
+    Serial.print(pressureInBars);*/
     Gas *bestGas = nullptr;
     for (Gas *diveGas:*gasList) {
+/*        Serial.print(F(" # gas: "));
+        Serial.print(diveGas->getName());
+        Serial.print(F(" active: "));
+        Serial.print(diveGas->isActive());
+        Serial.print(F(" usable: "));
+        Serial.print(diveGas->isUsable(pressureInBars));
+        Serial.print(F(" #"));*/
         if (diveGas->isActive() && diveGas->isUsable(pressureInBars) &&
             (bestGas == nullptr || (diveGas->getO2() > bestGas->getO2()))) {
             bestGas = diveGas;
         }
     }
+/*    Serial.print(F(" -> "));
+    if (bestGas == nullptr){
+        Serial.println("NULL");
+
+    } else {
+        Serial.println(bestGas->getName());
+    }*/
     return bestGas;
 }
 

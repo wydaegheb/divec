@@ -1,6 +1,6 @@
 #include "DecoManager.h"
 
-void DecoManager::init(FileSystem *fileSystem, uint32_t currentTime) {
+void DecoManager::init(FileSystem *fileSystem, uint32_t currentTimeInSeconds) {
     Serial.println(F("Initializing deco manager."));
 
     _fileSystem = fileSystem;
@@ -30,13 +30,22 @@ void DecoManager::init(FileSystem *fileSystem, uint32_t currentTime) {
     Serial.println(F(" - gasses initialized."));
 
     // add surface interval if there was a previous state
-    if ((currentTime - _previousUpdateTime) > 5) {
-        addSurfaceInterval(_previousUpdateTime, currentTime);
+    if ((currentTimeInSeconds - _previousUpdateTimeInSeconds) > 5) {
+        addSurfaceInterval(_previousUpdateTimeInSeconds, currentTimeInSeconds);
     }
 
     _previousPressureInBar = Settings::SURFACE_PRESSURE;
-    _previousUpdateTime = currentTime;
+    _previousUpdateTimeInSeconds = currentTimeInSeconds;
     Serial.println(F(" - deco manager initialized."));
+}
+
+void DecoManager::reset(uint32_t currentTimeInSeconds) {
+    _previousPressureInBar = Settings::SURFACE_PRESSURE;
+    _previousUpdateTimeInSeconds = currentTimeInSeconds;
+    _dive->init();
+    for (auto algorithm:_algorithms) {
+        algorithm->reset();
+    }
 }
 
 
@@ -57,9 +66,9 @@ void DecoManager::addAlgorithm(DiveAlgorithm *diveAlgorithm) {
     _algorithms.push_back(diveAlgorithm);
 }
 
-void DecoManager::update(uint32_t currentTime, double currentPressureInBar, double tempInCelsius, bool wetContactActivated) {
+void DecoManager::update(uint32_t currentTimeInSeconds, double currentPressureInBar, double tempInCelsius, bool wetContactActivated) {
     Serial.print(F("  - update: time: "));
-    Serial.print(DateTime(currentTime).timestamp());
+    Serial.print(DateTime(currentTimeInSeconds).timestamp());
     Serial.print(F(", bar:"));
     Serial.print(currentPressureInBar);
     Serial.print(F(", temp:"));
@@ -68,14 +77,14 @@ void DecoManager::update(uint32_t currentTime, double currentPressureInBar, doub
     Serial.println(wetContactActivated);
     // auto start dive on activation of the wet contact or if we are below our dive pressure threshold
     if (!_dive->isStarted() && (wetContactActivated || (currentPressureInBar > (Settings::SURFACE_PRESSURE + Settings::START_OF_DIVE_PRESSURE)))) {
-        startDive(currentTime);
+        startDive(currentTimeInSeconds);
         Serial.println(F(" -> dive started!"));
     }
 
     // only update dive and algorithms if the dive is in progress
     if (_dive->isInProgress()) {
         // update dive
-        auto step = _dive->update(currentTime, _gasManager->getCurrentOcGas(), currentPressureInBar, tempInCelsius);
+        auto step = _dive->update(currentTimeInSeconds, _gasManager->getCurrentOcGas(), currentPressureInBar, tempInCelsius);
 
         // update logbook (avoid logging steps when we are on the surface - dive could be in progress as we continue the dive if the diver goes under again within the time limit)
         if (!_dive->isSurfaced()) {
@@ -84,7 +93,7 @@ void DecoManager::update(uint32_t currentTime, double currentPressureInBar, doub
 
         // update algorithms (all of them (not just the current one) or else we can't switch algorithms while tissues are still loaded)
         for (DiveAlgorithm *diveAlgorithm:_algorithms) {
-            diveAlgorithm->update(_previousUpdateTime, currentTime, _gasManager, _previousPressureInBar, currentPressureInBar);
+            diveAlgorithm->update(_previousUpdateTimeInSeconds, currentTimeInSeconds, _gasManager, _previousPressureInBar, currentPressureInBar);
         }
 
         // dive has just ended
@@ -94,7 +103,7 @@ void DecoManager::update(uint32_t currentTime, double currentPressureInBar, doub
         }
     }
 
-    _previousUpdateTime = currentTime;
+    _previousUpdateTimeInSeconds = currentTimeInSeconds;
     _previousPressureInBar = currentPressureInBar;
 }
 
@@ -126,8 +135,8 @@ Dive *DecoManager::getDive() {
     return _dive;
 }
 
-void DecoManager::startDive(uint32_t currentTime) {
-    _dive->start(currentTime);
+void DecoManager::startDive(uint32_t currentTimeInSeconds) {
+    _dive->start(currentTimeInSeconds);
     _logBook->initTmpDiveLog();
 }
 
@@ -149,13 +158,13 @@ uint32_t DecoManager::getNdlInSeconds() {
 
 uint32_t DecoManager::getSurfaceIntervalInSeconds() {
     if (!_dive->isInProgress()) {
-        return Time::getTime() - _previousUpdateTime;
+        return Time::getTime() - _previousUpdateTimeInSeconds;
     }
     return 0;
 }
 
 uint32_t DecoManager::getPreviousUpdateTime() const {
-    return _previousUpdateTime;
+    return _previousUpdateTimeInSeconds;
 }
 
 double DecoManager::getPreviousPressureInBar() const {
@@ -179,8 +188,8 @@ JsonObject DecoManager::serializeObject(JsonObject &doc) {
 }
 
 void DecoManager::deserializeObject(JsonObject &doc) {
-    // load last deco state -> _previousUpdateTime, current algorithm, all algorithms state (mainly tissues)
-    _previousUpdateTime = doc["previousUpdateTime"];
+    // load last deco state -> _previousUpdateTimeInSeconds, current algorithm, all algorithms state (mainly tissues)
+    _previousUpdateTimeInSeconds = doc["previousUpdateTime"];
     setCurrentAlgorithm(doc["currentAlgorithm"]);
 
     for (auto algorithm:_algorithms) {
@@ -196,6 +205,8 @@ size_t DecoManager::getJsonSize() {
     }
     return fileSize;
 }
+
+
 
 
 

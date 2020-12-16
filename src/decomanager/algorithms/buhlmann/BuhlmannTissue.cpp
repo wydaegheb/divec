@@ -39,29 +39,6 @@ void BuhlmannTissue::addConstantDepthDiveStep(double pressureInBar, double gasN2
 
     //Calculate total loading
     _pTotal = _pN2 + _pHe;
-
-/*    Serial.print(F("ADDCONSTANTDEPTHDIVESTEP ["));
-    Serial.print(_compartment+1);
-    Serial.print(F("] pressureInBar:"));
-    Serial.print(pressureInBar);
-    Serial.print(F(", gasN2Fraction:"));
-    Serial.print(gasN2Fraction);
-    Serial.print(F(", gasHeFraction:"));
-    Serial.print(gasHeFraction);
-    Serial.print(F(", durationInSeconds:"));
-    Serial.print(durationInSeconds);
-    Serial.print(F(", pGasN2:"));
-    Serial.print(pGasN2);
-    Serial.print(F(", _pN2:"));
-    Serial.print(_pN2);
-    Serial.print(F(", pGasHe:"));
-    Serial.print(pGasHe);
-    Serial.print(F(", _n2HalfTime:"));
-    Serial.print(_n2HalfTime);
-    Serial.print(F(", _heHalfTime:"));
-    Serial.println(_heHalfTime);*/
-
-
 }
 
 void BuhlmannTissue::addDepthChangingDiveStep(double startPressureInBars, double endPressureInBars, double gasN2Fraction, double gasHeFraction, uint16_t durationInSeconds) {
@@ -80,35 +57,6 @@ void BuhlmannTissue::addDepthChangingDiveStep(double startPressureInBars, double
 
     //Calculate total loading
     _pTotal = _pN2 + _pHe;
-
-    /*   Serial.print(F("ADDDEPTHCHANGINGDIVESTEP ["));
-       Serial.print(_compartment+1);
-       Serial.print(F("] startPressureInBars:"));
-       Serial.print(startPressureInBars);
-       Serial.print(F(", endPressureInBars:"));
-       Serial.print(endPressureInBars);
-       Serial.print(F(", gasN2Fraction:"));
-       Serial.print(gasN2Fraction);
-       Serial.print(F(", gasHeFraction:"));
-       Serial.print(gasHeFraction);
-       Serial.print(F(", durationInSeconds:"));
-       Serial.print(durationInSeconds);
-       Serial.print(F(", gasRateN2:"));
-       Serial.print(gasRateN2);
-       Serial.print(F(", pGasN2:"));
-       Serial.print(pGasN2);
-       Serial.print(F(", _pN2:"));
-       Serial.print(_pN2);
-       Serial.print(F(", gasRateHe:"));
-       Serial.print(gasRateHe);
-       Serial.print(F(", pGasHe:"));
-       Serial.print(pGasHe);
-       Serial.print(F(", _pHe:"));
-       Serial.print(_pHe);
-       Serial.print(F(", _n2HalfTime:"));
-       Serial.print(_n2HalfTime);
-       Serial.print(F(", _heHalfTime:"));
-       Serial.println(_heHalfTime);*/
 }
 
 

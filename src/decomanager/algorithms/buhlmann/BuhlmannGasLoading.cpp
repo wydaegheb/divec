@@ -55,12 +55,12 @@ DecompressionPlan *BuhlmannGasLoading::getDecoPlan(GasManager *gasManager) {
     }
 
     // First ceiling
-    uint16_t ceilingInMeter = getCeilingRoundedToDecoStepSize(Settings::GF_LOW);
+    double ceilingInMeter = getCeilingRoundedToDecoStepSize(Settings::GF_LOW);
 
     // Gradient factors
     //double distanceToSurfaceInMeters = ceilingInMeter;
-    double distanceToSurfaceInMeters = (ceilingInMeter - Settings::DECO_STEP_SIZE);
-    double gfChangePerMeter = (Settings::GF_HIGH - Settings::GF_LOW) / distanceToSurfaceInMeters;
+    double distanceToSurfaceInMeters = ceilingInMeter;
+    double gfChangePerMeter = (Settings::GF_HIGH - Settings::GF_LOW) / -distanceToSurfaceInMeters;
 
     startDecoCalculation(); // stores current state of tissues so we can revert to this state when our calculation is over
 
@@ -69,6 +69,7 @@ DecompressionPlan *BuhlmannGasLoading::getDecoPlan(GasManager *gasManager) {
 
     uint16_t nextDecompressionDepth;
     uint32_t decoStopTimeInSeconds;
+    double gradientFactor;
     while (ceilingInMeter > 0) {
         currentDepthInMeters = ceilingInMeter;
         nextDecompressionDepth = (ceilingInMeter - Settings::DECO_STEP_SIZE);
@@ -77,21 +78,20 @@ DecompressionPlan *BuhlmannGasLoading::getDecoPlan(GasManager *gasManager) {
         }
 
         decoStopTimeInSeconds = 0;
-        //double gradientFactor = Settings::GF_LOW + (gfChangePerMeter * (distanceToSurfaceInMeters - ceilingInMeter));
-        double gradientFactor = Settings::GF_LOW + (gfChangePerMeter * (distanceToSurfaceInMeters - nextDecompressionDepth));
+        gradientFactor = Settings::GF_HIGH + (gfChangePerMeter * nextDecompressionDepth);
 
         while (ceilingInMeter > nextDecompressionDepth && decoStopTimeInSeconds < 600000) {
             addDecoStop(currentDepthInMeters, Settings::MIN_STOP_TIME, currentGas, decoPlan);
             decoStopTimeInSeconds += Settings::MIN_STOP_TIME;
-            ceilingInMeter = getCeilingRoundedToDecoStepSize(gradientFactor);
+            ceilingInMeter = getCeilingInMeters(gradientFactor);
         }
+        ceilingInMeter = nextDecompressionDepth;
 
-        currentGas = addDecoDepthChange(currentDepthInMeters, ceilingInMeter, gasManager, decoPlan);
+        currentGas = addDecoDepthChange(currentDepthInMeters, nextDecompressionDepth, gasManager, decoPlan);
     }
 
     stopDecoCalculation(); // restores current state of tissues
 
-    //decoPlan->log();
     return decoPlan;
 }
 

@@ -48,17 +48,6 @@ public:
     static double gasPressureInBars(double pressureInBars, double fGas);
 
     /**
-     * Calculates the approximate pressure of the fraction of gas for each breath taken.
-     *
-     * @param depth The depth in meters.
-     * @param fGas The fraction of the inert gas taken in.
-     * @param fO2 The fraction of the O2 gas taken in.
-     * @param setPoint The setPoint used.
-     * @return The diluent gas pressure in bars taken in with each breath (accounting for water vapour pressure in the lungs).
-     */
-    static double gasCcrPressureBreathingInBars(double depthInMeters, double fGas, double fO2, double setPoint);
-
-    /**
      * Calculates the gas loading rate for the given pressure change in terms of bars inert gas.
      *
      * @param startPressureInBars The starting depth in bars.
@@ -85,6 +74,17 @@ public:
      */
     static double barToDepthInMeters(double presureInBars);
 
+
+    /**
+    * Calculates the approximate pressure of the fraction of gas for each breath taken.
+    *
+    * @param depth The depth in meters.
+    * @param fGas The fraction of the inert gas taken in.
+    * @param fO2 The fraction of the O2 gas taken in.
+    * @param setPoint The setPoint used.
+    * @return The diluent gas pressure in bars taken in with each breath (accounting for water vapour pressure in the lungs).
+    */
+    static double gasCcrPressureBreathingInBars(double depthInMeters, double fGas, double fO2, double setPoint);
 
     static double ccrSchreinerEquation(double pBegin, double inertFraction, double o2Fraction, double halfTime, double duration, double beginDepth, double endDepth, double setPoint);
 

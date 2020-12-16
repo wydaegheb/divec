@@ -10,11 +10,18 @@ Software for my own dive computer using Buhlmann ZHL A/B/C algorithm with Gradie
 - AliExpress piezo buttons - 2x - (https://nl.aliexpress.com/item/33006671392.html?spm=a2g0s.9042311.0.0.2bd84c4dFkYtQg 2,60 x 2 = 5.2 €)
 - Banggood DS3231 real time clock (got 3 only need 1), (https://www.banggood.com/3pcs-DS3231-AT24C32-IIC-Precision-RTC-Real-Time-Clock-Memory-Module-p-1559315.html?rmmds=myorder&cur_warehouse=CN 4,10€/3 = 1.4€)
 - MS5837-30ba pressure sensor.
-  * technical sheet: https://www.te.com/commerce/DocumentDelivery/DDEController?Action=showdoc&DocId=Data+Sheet%7FMS5837-30BA%7FB1%7Fpdf%7FEnglish%7FENG_DS_MS5837-30BA_B1.pdf%7FCAT-BLPS0017
-  * can be obtained in a "bulky" form from Blue Robotics: https://bluerobotics.com/store/sensors-sonars-cameras/sensors/bar30-sensor-r1/
-  * AliExpress/Bangood CLAIM to sell them: e.g. https://nl.aliexpress.com/item/4000090014349.html?spm=a2g0o.productlist.0.0.49e11238R9cSl5&algo_pvid=3aee48c0-6f59-4f51-a77a-bed15220024e&algo_expid=3aee48c0-6f59-4f51-a77a-bed15220024e-1&btsid=0bb0624316048668410076729e0762&ws_ab_test=searchweb0_0,searchweb201602_,searchweb201603_
-(14 €) BUT beware even when it says 30BA it is in fact the 02BA (max depth 12 meter)
-  * I ordered the correct standalone sensor from: https://www.digikey.be/ordering/shoppingcart 7,15 € and replaced the sensor on the aliexpress/banggood board with the right one (very fine soldering for a beginner like me!)
+  * After several failures in getting the right version from Ali Express (I always got the 2 bar version instead of the 30 bar even when it clearly stated that it was the 30 bar version)
+    I ordered the following sensor from Ali Express after reading the tips from Damien Siviero on Facebook (CCR custom builders)
+    This is the correct version
+    Tips for young players:
+    1. Be super gentle, flat push insert only. Twist and you break the sensor.
+    2. The tiny orings are common for watch crown seals, 3.6x1.7x0.8mm fits nicely. … Meer weergeven
+    US $10.75 8% OFF|1pcs GY MS5837 02BA 30BA High Precision Gas Liquid Waterproof Pressure Sensor Module|Integrated Circuits| - AliExpress
+    https://l.facebook.com/l.php?u=https%3A%2F%2Fwww.aliexpress.com%2Fitem%2F33053533496.html%3Fspm%3Da2g0o.productlist.0.0.1e526f11lvHxKL%26algo_pvid%3Dcf88aa25-5d39-4089-a435-d474402eaa22%26algo_expid%3Dcf88aa25-5d39-4089-a435-d474402eaa22-9%26btsid%3D0b0a555c16072441409755296e1b72%26ws_ab_test%3Dsearchweb0_0%252Csearchweb201602_%252Csearchweb201603_%26fbclid%3DIwAR2_En5OnTAFz1-E-Kj1jDiq46TaQEaeLJBpWRg_znSUolYqYtpPiXtMK9I&h=AT3I5KasDn15Y9scs_qPzXhQdkdxlQuTLAxG3Q8PxK9cfM9YXb-7-NuFdJS9rY6cxD-7hHLRtmm4TJLzl3v5uRim8Qjo5eEcSwk9tqqXfxsLf18sc7H7mBhSuaZkxwtd8peLffEBdqSdRT6rwnChu71I3PXW2Q&__tn__=R]-R&c[0]=AT2xw-07sfkdsU6QnTeylD063FRV6I4EIfuiJqon8zmGhtNPT0we9DXLuNJUjltbBPkKZWOH7NtJewQsWjFgFZ0OXDL7Ob6LEg0UNiJxzdUNHZBBqSmxlhYF3tedTndu27qqV0NRZYkgrutUC278FpABH0bcIDyIqkJpTGLGksjSvi3qJMHQhmfxFZtSkOcabRKEkVVS9AASBrLQlw
+
+  * technical sheet of this sensor: https://www.te.com/commerce/DocumentDelivery/DDEController?Action=showdoc&DocId=Data+Sheet%7FMS5837-30BA%7FB1%7Fpdf%7FEnglish%7FENG_DS_MS5837-30BA_B1.pdf%7FCAT-BLPS0017
+  * can also be obtained in a "bulky" form from Blue Robotics: https://bluerobotics.com/store/sensors-sonars-cameras/sensors/bar30-sensor-r1/
+  * The sensor can also be ordered without PCB (beware it is very small!) from: https://www.digikey.be/ordering/shoppingcart 7,15 € and replaced the sensor on the aliexpress/banggood board with the right one (very fine soldering for a beginner like me!)
 
 Total price of the parts is therefore just shy of 100 $/€
 
@@ -60,7 +67,3 @@ https://thetheoreticaldiver.org/wordpress/index.php/2018/07/23/can-we-calculate-
 
 
 The Bluetooth app (Android) was forked from: https://github.com/adafruit/Bluefruit_LE_Connect_Android_V2/find/master
-
-TODO! Check for potential memory leaks:
-- Starting a new dive -> old dive dangling? -> make dive a singleton instead
-- Calculating deco plan -> previous plan dangling? -> make deco plan a singleton instead

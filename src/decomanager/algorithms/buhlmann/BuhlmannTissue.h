@@ -48,9 +48,6 @@ private:
     double _heAValue;
     double _heBValue;
 
-    // initial value before any gas loading
-    double _initial_pN2;
-
     // temp storage while calculating decompressionplan/NDL/...
     double _pN2AtSimulationStart;
     double _pHeAtSimulationStart;

@@ -1,7 +1,6 @@
 #ifndef DIVEC_DECOMANAGER_H
 #define DIVEC_DECOMANAGER_H
 
-#include <time/Time.h>
 #include <gasmanager/GasManager.h>
 #include <decomanager/algorithms/DiveAlgorithm.h>
 #include <decomanager/algorithms/buhlmann/BuhlmannAlgorithm.h>

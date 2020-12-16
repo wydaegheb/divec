@@ -19,6 +19,10 @@ void GasManager::clear() {
 }
 
 void GasManager::addOcGas(Gas *divegas) {
+    if (_currentOcGas == nullptr) {
+        _currentOcGas = divegas;
+        _currentOcGas->setActive(true);
+    }
     _ocGasses.push_back(divegas);
 }
 
@@ -42,6 +46,10 @@ Gas *GasManager::setCurrentOcGas(Gas *currentOcGas) {
 
 
 void GasManager::addCcGas(Gas *divegas) {
+    if (_currentCcGas == nullptr) {
+        _currentCcGas = divegas;
+        _currentCcGas->setActive(true);
+    }
     _ccGasses.push_back(divegas);
 }
 

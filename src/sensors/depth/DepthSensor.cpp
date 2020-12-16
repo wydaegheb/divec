@@ -45,11 +45,15 @@ void DepthSensor::read() {
             //Check for sensor error - difference has to be less than 20 meters (otherwise keep previous pressure) -> copied from DiveIno.ino)
             if (abs(_currentPressure - _depthSensor.pressure()) < 20000.0) {
                 _currentPressure = _depthSensor.pressure();
+                Serial.print(F(" - reading depth sensor: currentPressure:"));
+                Serial.println(_currentPressure);
             }
 
             //Check for sensor error - difference has to be less than 20 degrees celcius (otherwise keep previous temp)
             if (abs(_currentTemp - _depthSensor.temperature()) < 2000.0) {
                 _currentTemp = _depthSensor.temperature();
+                Serial.print(F(" - reading depth sensor: currentPressure:"));
+                Serial.println(_currentTemp);
             }
         }
         _lastUpdatedInMillis = millis();

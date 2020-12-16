@@ -1,4 +1,3 @@
-#include <tests/TestDive.h>
 #include "Arduino.h"
 #include "DiveController.h"
 
@@ -13,28 +12,10 @@ void setup() {
 
     diveController.setup();
 
-    Settings::MIN_STOP_TIME = 1;
-
-    Serial.println(F("Dive to 30m - 16 min bottom"));
-    DecoManager decoManager = diveController.getDecoManager();
-    auto *d1 = new TestDive(&decoManager);
-    d1->setGF(30, 85);
-    d1->addGas(&GasManager::AIR);
-    d1->addDiveLeg(30, 16);
-    d1->getDecoPlan()->log(decoManager.getDive());
-
-    Serial.println(F("Dive to 30m - 50 min bottom"));
-    auto *d2 = new TestDive(&decoManager);
-    d2->setGF(30, 85);
-    d2->addGas(&GasManager::AIR);
-    d2->addDiveLeg(30, 50);
-    d2->getDecoPlan()->log(decoManager.getDive());
-
-
 }
 
 void loop() {
-    //diveController.step();
+    diveController.step();
 }
 
 

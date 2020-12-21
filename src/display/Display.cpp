@@ -73,10 +73,6 @@ void Display::drawBigValueString(char const *value, uint16_t leftX, uint16_t bot
 }
 
 void Display::drawEditableDigit(uint8_t currentValue, uint8_t numberOfDigits, uint16_t leftX, uint16_t bottomY, uint16_t width, uint16_t height, bool selected) {
-    Serial.print("numberOfDigits:");
-    Serial.print(numberOfDigits);
-    Serial.print(" currentValue:");
-    Serial.println(currentValue);
     char valueStr[numberOfDigits + 1];
     if (numberOfDigits == 2) {
         snprintf(valueStr, numberOfDigits + 1, "%02d", currentValue);
@@ -85,8 +81,6 @@ void Display::drawEditableDigit(uint8_t currentValue, uint8_t numberOfDigits, ui
     } else {
         snprintf(valueStr, numberOfDigits + 1, "%d", currentValue);
     }
-    Serial.print(" currentValueStr:");
-    Serial.println(valueStr);
     _tft.setFont(_smallValueFont);
     _tft.setTextColor(Settings::VALUE_COLOR);
     uint16_t adjustedBottomY = bottomY - 5; // -5 to leave room for the underline for selected values

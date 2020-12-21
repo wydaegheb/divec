@@ -1,8 +1,7 @@
 #include "Constants.h"
 
 // N2HalfTime, N2AValue, N2BValue, HeHalfTime, HeAValue, HeBValue
-double Constants::BUHLMANN_ZHL16_A_TABLE[17][6] = {
-        {4.0,   1.2599, 0.5050, 1.51,   1.7424, 0.4245},
+double Constants::BUHLMANN_ZHL16_A_TABLE[16][6] = {
         {5.0,   1.2599, 0.5050, 1.88,   1.6189, 0.4770},
         {8.0,   1.0000, 0.6514, 3.02,   1.3830, 0.5747},
         {12.5,  0.8618, 0.7222, 4.72,   1.1919, 0.6527},
@@ -22,8 +21,7 @@ double Constants::BUHLMANN_ZHL16_A_TABLE[17][6] = {
 };
 
 // N2HalfTime, N2AValue, N2BValue, HeHalfTime, HeAValue, HeBValue
-double Constants::BUHLMANN_ZHL16_B_TABLE[17][6] = {
-        {4.0,   1.2599, 0.5050, 1.51,   1.7424, 0.4245},
+double Constants::BUHLMANN_ZHL16_B_TABLE[16][6] = {
         {5.0,   1.2599, 0.5050, 1.88,   1.6189, 0.4770},
         {8.0,   1.0000, 0.6514, 3.02,   1.3830, 0.5747},
         {12.5,  0.8618, 0.7222, 4.72,   1.1919, 0.6527},
@@ -43,8 +41,7 @@ double Constants::BUHLMANN_ZHL16_B_TABLE[17][6] = {
 };
 
 // N2HalfTime, N2AValue, N2BValue, HeHalfTime, HeAValue, HeBValue
-double Constants::BUHLMANN_ZHL16_C_TABLE[17][6] = {
-        {4.0,   1.2599, 0.5050, 1.51,   1.7424, 0.4245},
+double Constants::BUHLMANN_ZHL16_C_TABLE[16][6] = {
         {5.0,   1.2599, 0.5050, 1.88,   1.6189, 0.4770},
         {8.0,   1.0000, 0.6514, 3.02,   1.3830, 0.5747},
         {12.5,  0.8618, 0.7222, 4.72,   1.1919, 0.6527},

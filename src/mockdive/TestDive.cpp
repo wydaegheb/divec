@@ -13,7 +13,7 @@ void TestDive::setGF(uint8_t lowGF, uint8_t highGF) {
 
 void TestDive::addGas(Gas *gas) {
     gas->setActive(true);
-    _decoManager->getGasManager()->addOcGas(gas);
+    _decoManager->getGasManager()->addGas(gas);
 }
 
 void TestDive::addDiveLeg(uint16_t deptInMeter, uint16_t durationInMinutes) {

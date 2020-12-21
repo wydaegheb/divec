@@ -15,45 +15,35 @@ void Dive::init() {
     _started = false;
     _ended = false;
     _surfaced = false;
-    clearEntries();
-}
-
-
-void Dive::clearEntries() {
-    for (DiveStep *entry:_steps) {
-        delete entry;
-    }
-    _steps.clear();
-}
-
-void Dive::addStep(DiveStep *diveStep) {
-    _steps.emplace_back(diveStep);
+    _nrOfSteps = 0;
+    _surfacedTimeInSeconds = 0;
+    _currentDepthInMeter = 0.0;
+    _avgDepthInMeter = 0.0;
+    _maxDepthInMeter = 0.0;
+    _minTemperatureInCelsius = 100;
+    _maxTemperatureInCelsius = 0;
 }
 
 void Dive::start(uint32_t startTime) {
     init();
-    _started = true;
     _startTime = startTime;
+    _lastTimeStamp = startTime;
 }
 
 void Dive::end() {
     _ended = true;
 }
 
-DiveStep *Dive::update(uint32_t time, Gas *gas, double pressureInBar, double tempInCelsius) {
+void *Dive::update(uint32_t time, Gas *gas, double pressureInBar, double tempInCelsius) {
     // add dive step, log it and update last time stamp
-    auto *step = new DiveStep(time, gas, pressureInBar, tempInCelsius);
-    if (!isSurfaced()) {
-        addStep(step);
-    }
     _lastTimeStamp = time;
 
     // update maxDepth, avgDepth, maxTemp, minTemp
-    double currentDepth = DiveEquations::barToDepthInMeters(pressureInBar);
-    if (_maxDepthInMeter < currentDepth) {
-        _maxDepthInMeter = currentDepth;
+    _currentDepthInMeter = DiveEquations::barToDepthInMeters(pressureInBar);
+    if (_maxDepthInMeter < _currentDepthInMeter) {
+        _maxDepthInMeter = _currentDepthInMeter;
     }
-    _avgDepthInMeter = _avgDepthInMeter + (currentDepth - _avgDepthInMeter) / _steps.size();
+    _avgDepthInMeter = _avgDepthInMeter + (_currentDepthInMeter - _avgDepthInMeter) / _nrOfSteps;
     if (_maxTemperatureInCelsius < tempInCelsius) {
         _maxTemperatureInCelsius = tempInCelsius;
     }
@@ -77,7 +67,6 @@ DiveStep *Dive::update(uint32_t time, Gas *gas, double pressureInBar, double tem
         Serial.println(F(" - diving (not on surface) "));
         _surfaced = false;
     }
-    return step;
 }
 
 bool Dive::isStarted() const {
@@ -97,10 +86,7 @@ bool Dive::isInProgress() const {
 }
 
 double Dive::getCurrentDepthInMeters() {
-    if (_steps.empty()) {
-        return Settings::SURFACE_PRESSURE;
-    }
-    return DiveEquations::barToDepthInMeters(_steps.back()->getPressureInBar());
+    return _currentDepthInMeter;
 }
 
 uint32_t Dive::getDiveTimeInSeconds() const {
@@ -112,10 +98,6 @@ uint32_t Dive::getDiveTimeInSeconds() const {
 
 uint32_t Dive::getStartTime() const {
     return _startTime;
-}
-
-std::list<DiveStep *> Dive::getSteps() {
-    return _steps;
 }
 
 uint32_t Dive::getLastTimeStamp() const {
@@ -139,32 +121,18 @@ int8_t Dive::getMaxTemperatureInCelsius() const {
 }
 
 JsonObject Dive::serializeObject(JsonObject &doc) {
-    compressSteps(); // compress steps before saving (avoid going out of memory) - TODO: refactor to be able to stream the steps
-
     doc["start_time"] = _startTime;
     doc["end_time"] = _lastTimeStamp;
     doc["avg_depth"] = _avgDepthInMeter;
     doc["max_depth"] = _maxDepthInMeter;
     doc["min_temp"] = _minTemperatureInCelsius;
     doc["max_temp"] = _maxTemperatureInCelsius;
-    doc["nr_of_steps"] = _steps.size();
-
-    JsonArray stepJson = doc.createNestedArray("steps");
-    uint16_t i = 0;
-    for (auto step:_steps) {
-        JsonObject stepJsonObject = stepJson[i].createNestedObject();
-        stepJson[i] = step->serializeObject(stepJsonObject);
-        i++;
-    }
 
     return doc;
 }
 
 void Dive::deserializeObject(JsonObject &doc) {
-    _started = false;
-    _ended = true;
-    _surfaced = true;
-    clearEntries();
+    init();
 
     _startTime = doc["start_time"];
     _lastTimeStamp = doc["end_time"];
@@ -172,20 +140,10 @@ void Dive::deserializeObject(JsonObject &doc) {
     _maxDepthInMeter = doc["max_depth"];
     _minTemperatureInCelsius = doc["min_temp"];
     _maxTemperatureInCelsius = doc["max_temp"];
-    uint16_t nrOfSteps = doc["nr_of_steps"];
-
-    JsonArray stepJson = doc["steps"];
-    for (uint16_t i; i < nrOfSteps; i++) {
-        auto *step = new DiveStep();
-        JsonObject stepJsonObject = stepJson.getElement(i);
-        step->deserializeObject(stepJsonObject);
-        addStep(step);
-    }
 }
 
 size_t Dive::getJsonSize() {
-    return JSON_OBJECT_SIZE(8) + // 7 properties + 1 array
-           JSON_ARRAY_SIZE(MAX_NR_OF_STEPS) + MAX_NR_OF_STEPS * JSON_OBJECT_SIZE(4); // steps array contains MAX_NR_OF_STEPS elements and each element has 4 properties
+    return JSON_OBJECT_SIZE(7); // 7 properties
 }
 
 void Dive::log() {
@@ -198,11 +156,6 @@ void Dive::log(Print *print) {
     print->print(DateTime(_startTime).timestamp(DateTime::TIMESTAMP_DATE));
     print->print(" - ");
     print->println(DateTime(_startTime).timestamp(DateTime::TIMESTAMP_TIME));
-    print->println(F("=============================================="));
-    print->println(F("Time\t\t\tDepth\t\tMix\t\tTemp"));
-    for (DiveStep *step:_steps) {
-        step->log(print);
-    }
     print->println(F("=============================================="));
     print->print(F("Dive time: "));
     TimeSpan timeSpan = TimeSpan(getDiveTimeInSeconds());
@@ -221,54 +174,6 @@ void Dive::log(Print *print) {
     print->println(_maxTemperatureInCelsius);
     print->println(F("=============================================="));
 }
-
-// every step contains the end time and the end pressure
-// therefore we can just delete all even numbered steps without breaking something.
-// e.g.
-// step 1: endTime: 3 sec, endPressure: 0.5 bar
-// step 2: endTime: 6 sec, endPressure: 1.0 bar
-// step 3: endTime: 9 sec, endPressure: 1.5 bar
-// step 4: endTime: 12 sec, endPressure: 2.0 bar
-// step 5: endTime: 15 sec, endPressure: 2.5 bar
-// step 6: endTime: 18 sec, endPressure: 2.5 bar
-// step 7: endTime: 21 sec, endPressure: 2.0 bar
-// step 8: endTime: 24 sec, endPressure: 1.5 bar
-// step 9: endTime: 27 sec, endPressure: 1.0 bar
-// step 10: endTime: 30 sec, endPressure: 0.5 bar
-// step 11: endTime: 33 sec, endPressure: 0 bar
-//
-// becomes
-//
-// step 1: endTime: 3 sec, endPressure: 0.5 bar
-// step 3: endTime: 9 sec, endPressure: 1.5 bar
-// step 5: endTime: 15 sec, endPressure: 2.5 bar
-// step 7: endTime: 21 sec, endPressure: 2.0 bar
-// step 9: endTime: 27 sec, endPressure: 1.0 bar
-// step 11: endTime: 33 sec, endPressure: 0 bar
-//
-// which is a less accurate but still correct description of the dive. Only "resolution" is lost.
-void Dive::compressSteps() {
-    // steps size small enough -> do nothing
-    // otherwise remove every even step
-    while (_steps.size() > MAX_NR_OF_STEPS) {
-        Serial.println(F(" - Compressing steps."));
-        // remove every even step
-        bool evenStep = false;
-
-        auto it = _steps.begin();
-        while (it != _steps.end()) {
-            if (evenStep) {
-                it = _steps.erase(it);
-            }
-            evenStep = !evenStep;
-        }
-    }
-}
-
-
-
-
-
 
 
 

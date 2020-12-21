@@ -17,27 +17,25 @@ public:
 
     void init();
 
-    void addStop(Gas *gas, uint32_t timeInSeconds, uint16_t depthInMeter);
+    void addStop(Gas *gas, uint32_t timeInSeconds, double depthInMeter);
 
-    void addDecoDepthChange(Gas *gas, uint32_t timeInSeconds, uint16_t startDepth, uint16_t endDepth);
-
-    DecompressionStep *getFirstStop();
-
-    std::list<DecompressionStep *> getStops();
+    void addDecoDepthChange(Gas *gas, uint32_t timeInSeconds, double startDepth, double endDepth);
 
     uint32_t getTtsInSeconds();
 
-    void log();
+    DecompressionStep *getFirstStop();
 
-    void log(Dive *dive);
+    void log(uint32_t planTime);
 
-    void log(Print *print, Dive *dive);
+    void log(Print *print, uint32_t planTime);
 
 
 private:
-    std::list<DecompressionStep *> _stops;
+    DecompressionStep *_stops[150]; // max 150 deco stops (stop every 3 m -> max depth = 450 m)
 
     DecompressionPlan();
+
+    uint8_t _nrOfStops;
 
 };
 

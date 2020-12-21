@@ -30,13 +30,13 @@ public:
     // 0.493 msw = 0.0493 bar (Schreiner value - respiratory quotient 0.8)
     // 0.567 msw = 0.0567 bar (U.S. Navy value - respiratory quotient 0.9)
     // 0.627 msw = 0.0627 bar (Bühlmann value - respiratory quotient 1.0)
-    constexpr static const double WATER_VAPOR = 0.0567; // bar. water vapor pressure (U.S. Navy value - at 35.5 Celsius temp in lungs);
+    constexpr static const double WATER_VAPOR = 0.0627; // bar. water vapor pressure (U.S. Navy value - at 35.5 Celsius temp in lungs);
     constexpr static const double FRESH_WATER_PRESSURE = 0.0980665; // bar/m
     constexpr static const double SALT_WATER_PRESSURE = 0.1010084; // bar/m
 
-    static double BUHLMANN_ZHL16_A_TABLE[17][6];
-    static double BUHLMANN_ZHL16_B_TABLE[17][6];
-    static double BUHLMANN_ZHL16_C_TABLE[17][6];
+    static double BUHLMANN_ZHL16_A_TABLE[16][6];
+    static double BUHLMANN_ZHL16_B_TABLE[16][6];
+    static double BUHLMANN_ZHL16_C_TABLE[16][6];
 };
 
 

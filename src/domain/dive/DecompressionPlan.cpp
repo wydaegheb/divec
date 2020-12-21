@@ -1,5 +1,7 @@
 #include "DecompressionPlan.h"
 
+// Singleton to avoid having many of these floating around when calculating many of these.
+// No need to have multiple instances of these in a dive computer
 DecompressionPlan &DecompressionPlan::getInstance() {
     static DecompressionPlan instance; // Guaranteed to be destroyed.
     // Instantiated on first use.
@@ -13,113 +15,70 @@ DecompressionPlan::DecompressionPlan() {
 void DecompressionPlan::init() {
     for (DecompressionStep *stop:_stops) {
         delete stop;
+        stop = nullptr;
     }
-    _stops.clear();
+    _nrOfStops = 0;
 }
 
-void DecompressionPlan::addStop(Gas *gas, uint32_t timeInSeconds, uint16_t depthInMeter) {
-/*    Serial.print(F(" - Adding deco stop - duration:"));
-    Serial.print(timeInSeconds);
-    Serial.print(F(" sec - depth: "));
-    Serial.print(depthInMeter);
-    Serial.print(F(" m - gas:"));
-    Serial.println(gas->getName());*/
-
-    DecompressionStep *last = _stops.back();
-    if (last->isFlat() && (last->getEndDepthInMeters() == depthInMeter)) { // collapse flat segments on the same depth
+void DecompressionPlan::addStop(Gas *gas, uint32_t timeInSeconds, double depthInMeter) {
+    DecompressionStep *last = nullptr;
+    if (_nrOfStops > 0) {
+        last = _stops[_nrOfStops - 1];
+    }
+    if (last && last->isFlat() && (last->getEndDepthInMeters() == depthInMeter)) { // collapse flat segments on the same depth
         last->setDurationInSeconds(last->getDurationInSeconds() + timeInSeconds);
-/*        Serial.print(F(" collapse. new time is:"));
-        Serial.println(last->getDurationInSeconds() + timeInSeconds);*/
-
     } else {
-        _stops.emplace_back(new DecompressionStep(gas, timeInSeconds, depthInMeter, depthInMeter));
+        _stops[_nrOfStops] = new DecompressionStep(gas, timeInSeconds, depthInMeter, depthInMeter);
+        _nrOfStops++;
     }
 }
 
-void DecompressionPlan::addDecoDepthChange(Gas *gas, uint32_t timeInSeconds, uint16_t startDepthInMeter, uint16_t endDepthInMeter) {
-/*    Serial.print(F(" - Adding deco ascent - duration:"));
-    Serial.print(timeInSeconds);
-    Serial.print(F(" sec - from depth: "));
-    Serial.print(startDepthInMeter);
-    Serial.print(F(" m to depth: "));
-    Serial.println(endDepthInMeter);*/
-    _stops.emplace_back(new DecompressionStep(gas, timeInSeconds, startDepthInMeter, endDepthInMeter));
+void DecompressionPlan::addDecoDepthChange(Gas *gas, uint32_t timeInSeconds, double startDepthInMeter, double endDepthInMeter) {
+    _stops[_nrOfStops] = new DecompressionStep(gas, timeInSeconds, startDepthInMeter, endDepthInMeter);
+    _nrOfStops++;
 }
 
 uint32_t DecompressionPlan::getTtsInSeconds() {
     double time = 0.0;
-    for (DecompressionStep *stop:_stops) {
-        time += stop->getDurationInSeconds();
+    for (uint8_t i = 0; i < _nrOfStops; i++) {
+        time += _stops[i]->getDurationInSeconds();
     }
     return time;
 }
 
-std::list<DecompressionStep *> DecompressionPlan::getStops() {
-    return _stops;
-}
-
-void DecompressionPlan::log() {
-    log(nullptr);
-}
-
-void DecompressionPlan::log(Dive *dive) {
-    log(&Serial, dive);
-}
-
-void DecompressionPlan::log(Print *print, Dive *dive) {
-    uint32_t planTime = 0;
-    print->println(F("\n=============================================="));
-    print->print(F("Decompression Plan"));
-    print->print(" (GF:");
-    print->print(round(Settings::GF_LOW * 100));
-    print->print(F("/"));
-    print->print(round(Settings::GF_HIGH * 100));
-    print->println(F(")"));
-    print->println(F("=============================================="));
-    print->println(F("Depth\t\tStop\t\tRun\t\tMix"));
-
-    if (dive != nullptr) {
-        uint32_t startTimeDiveInSeconds = dive->getStartTime();
-        uint32_t previousStepTimeInSeconds = startTimeDiveInSeconds;
-        int16_t previousDepthInMeters = 0;
-        for (DiveStep *step:dive->getSteps()) {
-            double stepEndDepthInMeters = DiveEquations::barToDepthInMeters(step->getPressureInBar());
-            print->print(stepEndDepthInMeters);
-            print->print(F("\t\t"));
-            if (previousDepthInMeters == stepEndDepthInMeters) {
-                char timeStr[9] = "";
-                print->print(Formatter::formatTime(timeStr, step->getEndTime() - previousStepTimeInSeconds, true));
-                print->print(F("\t\t"));
-            } else {
-                print->print(F(" - "));
-                print->print(F("\t\t\t"));
-            }
-            char timeStr[6] = "";
-            print->print(Formatter::formatTimeInMinutes(timeStr, step->getEndTime() - startTimeDiveInSeconds, Settings::MIN_STOP_TIME >= 60));
-            print->print(F("\t\t"));
-            print->println(step->getGasName());
-            previousStepTimeInSeconds = step->getEndTime();
-            previousDepthInMeters = stepEndDepthInMeters;
-        }
-        print->println();
-        planTime = dive->getDiveTimeInSeconds();
-    }
-
-    for (DecompressionStep *stop:_stops) {
-        planTime = stop->log(print, planTime);
-    }
-    print->println(F("=============================================="));
-}
-
 DecompressionStep *DecompressionPlan::getFirstStop() {
     // return first "real" stop as the plan also contains the ascents between stops
-    for (DecompressionStep *stop:_stops) {
-        if (stop->isFlat()) {
-            return stop;
+    for (uint8_t i = 0; i < _nrOfStops; i++) {
+        if (_stops[i]->isFlat()) {
+            return _stops[i];
         }
     }
     return nullptr;
 }
+
+void DecompressionPlan::log(uint32_t planTime) {
+    log(&Serial, planTime);
+}
+
+void DecompressionPlan::log(Print *print, uint32_t planTime) {
+
+    print->println(F("\n=============================================="));
+    print->print(F("Decompression Plan"));
+    print->print(" (GF:");
+    print->print(lround(Settings::GF_LOW * 100));
+    print->print(F("/"));
+    print->print(lround(Settings::GF_HIGH * 100));
+    print->println(F(")"));
+    print->println(F("=============================================="));
+    print->println(F("Depth\tStop\tRun\tMix"));
+
+    for (uint8_t i = 0; i < _nrOfStops; i++) {
+        planTime = _stops[i]->log(planTime);
+    }
+    print->println(F("=============================================="));
+}
+
+
 
 
 

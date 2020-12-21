@@ -17,7 +17,6 @@ public:
     // buhlmann settings
     static double GF_LOW;                     // gradient factor low
     static double GF_HIGH;                    // gradient factor high
-    static bool BUHLMANN_USE_1B;              // set to false to use tissue 1 iso 1b (not recommended)
 
     // deco settings
     static uint8_t MIN_STOP_TIME;             // minimum stop time intervals in seconds

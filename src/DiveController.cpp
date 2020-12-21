@@ -49,7 +49,6 @@ void DiveController::step() {
 
     // only add a step every STEP_INTERVAL seconds
     if ((currentTimeInSeconds - _lastUpdateTimeInSeconds) >= Settings::STEP_INTERVAL) {
-        Serial.println(F("Step"));
 
         // update deco manager (dive, tissues, gasses, ...)
         _decoManager.update(currentTimeInSeconds, _depthSensor.pressureInBar(), _depthSensor.tempInCelsius(), _wetContact.isActivated());

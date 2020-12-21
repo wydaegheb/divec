@@ -8,17 +8,20 @@
 #include <filesystem/FileSystem.h>
 #include <domain/logbook/LogBook.h>
 
+#define BUHLMANN_B_GF 0
+#define BUHLMANN_C_GF 1
+
 class DecoManager final : public JsonSerializable {
 public:
 
     void init(FileSystem *fileSystem, uint32_t currentTimeInSeconds);
 
+    // deco (tissues changing methods)
     void update(uint32_t currentTimeInSeconds, double currentPressureInBar, double tempInCelsius, bool wetContactActivated);
 
     DecompressionPlan *getDecoPlan();
 
-    // reset all - CLEARS tissues!
-    void reset(uint32_t currentTimeInSeconds);
+    void reset(uint32_t currentTimeInSeconds); // reset all - CLEARS tissues!
 
 
     // dive
@@ -34,11 +37,9 @@ public:
 
 
     // algorithm
-    void setCurrentAlgorithm(char const *namename);
+    void setCurrentAlgorithmIndex(uint8_t currentAlgorithmIndex);
 
     DiveAlgorithm *getCurrentAlgorithm();
-
-    void addAlgorithm(DiveAlgorithm *diveAlgorithm);
 
 
     // gas
@@ -50,15 +51,11 @@ public:
     // state
     uint32_t getNdlInSeconds();
 
+    uint32_t getSurfaceIntervalInSeconds() const;
+
     uint32_t getPreviousUpdateTime() const;
 
     double getPreviousPressureInBar() const;
-
-
-    // surface interval
-    void addSurfaceInterval(uint32_t beginTime, uint32_t endTime);
-
-    uint32_t getSurfaceIntervalInSeconds();
 
 
     // persistence
@@ -74,12 +71,18 @@ private:
     LogBook *_logBook;
 
     Dive *_dive;
-    DiveAlgorithm *_currentAlgorithm;
-    std::list<DiveAlgorithm *> _algorithms;
+    uint8_t _currentAlgorithmIndex;
+    DiveAlgorithm *_algorithms[2]; // extend this if new algorithms are added
+
     GasManager *_gasManager;
 
     uint32_t _previousUpdateTimeInSeconds;
+    uint32_t _lastDiveEndTimeInSeconds;
+
     double _previousPressureInBar;
+
+    // surface interval
+    void applySurfaceInterval(uint32_t currentTime);
 
 };
 

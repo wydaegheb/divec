@@ -3,9 +3,7 @@
 
 #include <list>
 #include <time/Time.h>
-#include <domain/dive/DiveStep.h>
-
-#define MAX_NR_OF_STEPS 240 // used for arduino json allocation
+#include "Gas.h"
 
 class Dive final : public JsonSerializable {
 public:
@@ -15,11 +13,9 @@ public:
 
     void operator=(Dive const &) = delete;
 
-    DiveStep *update(uint32_t time, Gas *gas, double pressureInBar, double tempInCelsius);
-
     void init();
 
-    void addStep(DiveStep *diveStep);
+    void *update(uint32_t time, Gas *gas, double pressureInBar, double tempInCelsius);
 
     void start(uint32_t startTime);
 
@@ -49,8 +45,6 @@ public:
 
     int8_t getMaxTemperatureInCelsius() const;
 
-    std::list<DiveStep *> getSteps();
-
     JsonObject serializeObject(JsonObject &doc) final;
 
     void deserializeObject(JsonObject &doc) final;
@@ -71,20 +65,18 @@ private:
     uint32_t _lastTimeStamp;
     uint32_t _surfacedTimeInSeconds; // time when we surfaced after the dive (i.e. surface time as seconds since Jan 1 1970)
 
+    double _currentDepthInMeter = 0.0;
     double _avgDepthInMeter = 0.0;
     double _maxDepthInMeter = 0.0; // we should at least get in the water
     int8_t _minTemperatureInCelsius = 100; // diving in boiling water seems somewhat extreme
     int8_t _maxTemperatureInCelsius = 0; // water temp will (in practice) always be above 0C (otherwise it would be ice which makes it somewhat hard to dive)
 
-    std::list<DiveStep *> _steps;
+    int8_t _nrOfSteps = 0; // only needed to calculate average depth
 
+    // NOTE: No need to keep a list of dive steps!
+    // every step is logged to the sd card immediately and we don't need the individual steps for deco calculation
 
     Dive();
-
-    void clearEntries();
-
-    void compressSteps();
-
 
 };
 

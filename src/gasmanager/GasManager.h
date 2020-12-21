@@ -2,16 +2,11 @@
 #define DIVEC_GASMANAGER_H
 
 
-#include "Arduino.h"
-
-#include <list>
 #include <domain/dive/Gas.h>
-#include <filesystem/FileSystem.h>
 
-#define MAX_OC_GASSES 30 // not a real limit - used to allocate json documents - increase if more are needed
-#define MAX_CC_GASSES 30 // not a real limit - used to allocate json documents - increase if more are needed
+#define MAX_GASSES 30 // not a real limit - used to allocate json documents - increase if more are needed
 
-class GasManager final : public JsonSerializable {
+class GasManager : public JsonSerializable {
 public:
     // default gasses
     static Gas AIR;
@@ -25,30 +20,15 @@ public:
 
     void init(FileSystem *fileSystem);
 
-    void addOcGas(Gas *divegas);
+    void addGas(Gas *divegas);
 
-    Gas *getCurrentOcGas();
+    Gas *getCurrentGas();
 
-    Gas *setCurrentOcGas(Gas *currentOcGas);
+    Gas *setCurrentGas(Gas *currentOcGas);
 
-    Gas *getBestOcGas(uint16_t depthInMeters);
+    Gas *getBestGas(uint16_t depthInMeters);
 
-    Gas *getOcGas(char const* name);
-
-    std::list<Gas *> getOcGasses();
-
-
-    void addCcGas(Gas *divegas);
-
-    Gas *getCurrentCcGas();
-
-    Gas *setCurrentCcGas(Gas *currentOcGas);
-
-    Gas *getBestCcGas(uint16_t depthInMeters);
-
-    Gas *getCcGas(char const* name);
-
-    std::list<Gas *> getCcGasses();
+    Gas *getGas(char const *name);
 
 
     JsonObject serializeObject(JsonObject &doc) final;
@@ -58,15 +38,10 @@ public:
     size_t getJsonSize() final;
 
 private:
-    Gas *_currentOcGas;
-    Gas *_currentCcGas;
+    Gas *_currentGas;
 
-    std::list<Gas *> _ocGasses;
-    std::list<Gas *> _ccGasses;
-
-    Gas *getGas(char const *name, std::list<Gas *> *gasList);
-
-    Gas *getBestGas(double pressureInBars, std::list<Gas *> *gasList);
+    Gas *_gasses[MAX_GASSES];
+    uint8_t _nrOfGasses;
 
     void loadDefaultGasses();
 

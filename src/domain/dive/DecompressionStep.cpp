@@ -61,23 +61,33 @@ uint32_t DecompressionStep::log(uint32_t time) {
 }
 
 uint32_t DecompressionStep::log(Print *print, uint32_t time) {
-    print->print(getEndDepthInMeters());
-    print->print(F("\t\t"));
     if (isFlat()) {
-        char timeStr[9] = "";
-        print->print(Formatter::formatTime(timeStr, getDurationInSeconds(), true));
-        print->print(F("\t\t"));
-    } else {
-        print->print(F(" - "));
-        print->print(F("\t\t\t"));
+        print->print(F("\t\t\t\t\t"));
     }
-    char timeStr[6] = "";
-    print->print(Formatter::formatTimeInMinutes(timeStr, time + getDurationInSeconds(), Settings::MIN_STOP_TIME >= 60));
-    print->print(F("\t\t"));
+
+    //depth
+    print->print(getEndDepthInMeters());
+    print->print(F("\t"));
+
+
+    // ascend duration/stop
+    if (isFlat()) {
+        print->print(lround((getDurationInSeconds() + 30.0) / 60.0));
+    } else {
+        print->print(getDurationInSeconds() / 60.0);
+    }
+
+    print->print(F("\t"));
+
+    // runtime
+    uint16_t runtime = time + getDurationInSeconds();
+    print->print(runtime / 60.0);
+    print->print(F("\t"));
+
+    // gas
     print->println((getDiveGas()->getName()));
 
-    return (time + getDurationInSeconds());
-
+    return runtime;
 }
 
 

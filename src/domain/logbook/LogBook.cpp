@@ -16,8 +16,15 @@ void LogBook::initTmpDiveLog() {
 }
 
 
-void LogBook::addDiveStep(DiveStep *step) {
-    _fileSystem->writeTmpDiveLogStep(step);
+void LogBook::addDiveStep(uint32_t endTimeInSeconds, double pressureInBar, double temperatureInCelsius, const char *gasName) {
+    DynamicJsonDocument doc(JSON_OBJECT_SIZE(4) + 50);
+    doc["end_time"] = endTimeInSeconds;
+    doc["pres"] = pressureInBar;
+    doc["temp"] = temperatureInCelsius;
+    doc["gas"] = gasName;
+    JsonObject docObject = doc.to<JsonObject>();
+
+    _fileSystem->saveDiveLogStep(docObject);
 }
 
 uint16_t LogBook::getNumberOfDives() const {

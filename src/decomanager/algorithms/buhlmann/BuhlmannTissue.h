@@ -4,24 +4,27 @@
 #include <decomanager/algorithms/equations/DiveEquations.h>
 #include <decomanager/algorithms/buhlmann/BuhlmannTable.h>
 
+// ln(2)
+#define LOG2 0.69315
+
 class BuhlmannTissue {
 public:
 
     BuhlmannTissue(BuhlmannTable buhlmannTable, int compartment);
 
-    void update(uint32_t beginTimeInSeconds, uint32_t endTimeInSeconds, double beginPressureInBar, double endPressureInBar, double gasN2Fraction, double gasHeFraction);
+    void update(double durationInMinutes, double beginPressureInBar, double endPressureInBar, double gasN2Fraction, double gasHeFraction);
 
-    void addConstantDepthDiveStep(double pressureInBar, double gasN2Fraction, double gasHeFraction, uint16_t durationInSeconds);
+    void addConstantDepthDiveStep(double pressureInBar, double gasN2Fraction, double gasHeFraction, double durationInMinutes);
 
-    void addDepthChangingDiveStep(double endDepth, double speedInBar, double gasN2Fraction, double gasHeFraction, uint16_t durationInSeconds);
+    void addDepthChangingDiveStep(double endDepth, double speedInBar, double gasN2Fraction, double gasHeFraction, double durationInMinutes);
 
     double calculateCeilingInMeter(double gradientFactor) const;
 
     void resetTissue();
 
-    void startSimulation();
+    void startDecoCalculation();
 
-    void undoSimulation();
+    void stopDecoCalculation();
 
     double getPN2() const;
 
@@ -49,9 +52,9 @@ private:
     double _heBValue;
 
     // temp storage while calculating decompressionplan/NDL/...
-    double _pN2AtSimulationStart;
-    double _pHeAtSimulationStart;
-    double _pTotalAtSimulationStart;
+    double _pN2AtDecoCalcStart;
+    double _pHeAtDecoCalcStart;
+    double _pTotalAtDecoCalcStart;
 
 };
 

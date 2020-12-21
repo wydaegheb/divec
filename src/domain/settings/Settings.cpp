@@ -3,7 +3,6 @@
 // buhlmann settings
 double Settings::GF_LOW = 1.0;                      // gradient factor low
 double Settings::GF_HIGH = 1.0;                     // gradient factor high
-bool Settings::BUHLMANN_USE_1B = true;              // set to false to use tissue 1 iso 1b (not recommended)
 
 // deco settings
 uint8_t Settings::MIN_STOP_TIME = 60;               // minimum stop time intervals in seconds
@@ -46,7 +45,6 @@ double Settings::getWaterPressure() { // bar/m
 JsonObject Settings::serializeObject(JsonObject &doc) {
     doc["gf_low"] = GF_LOW;
     doc["gf_high"] = GF_HIGH;
-    doc["buhlmann_use_1b"] = BUHLMANN_USE_1B;
     doc["deco_step_size"] = DECO_STEP_SIZE;
     doc["last_stop"] = LAST_STOP;
     doc["salinity"] = SALINITY;
@@ -72,7 +70,6 @@ JsonObject Settings::serializeObject(JsonObject &doc) {
 void Settings::deserializeObject(JsonObject &doc) {
     GF_LOW = doc["gf_low"];
     GF_HIGH = doc["gf_high"];
-    BUHLMANN_USE_1B = doc["buhlmann_use_1b"];
     DECO_STEP_SIZE = doc["deco_step_size"];
     LAST_STOP = doc["last_stop"];
     SALINITY = doc["salinity"];
@@ -91,6 +88,10 @@ void Settings::deserializeObject(JsonObject &doc) {
     //logSettings();
 }
 
+size_t Settings::getJsonSize() {
+    return JSON_OBJECT_SIZE(16);
+}
+
 void Settings::logSettings() {
     logSettings(&Serial);
 }
@@ -102,8 +103,6 @@ void Settings::logSettings(Print *print) {
     print->println(GF_LOW);
     print->print(F("GF_HIGH: \t\t\t\t"));
     print->println(GF_HIGH);
-    print->print(F("BUHLMANN_USE_1B: \t\t"));
-    print->println(BUHLMANN_USE_1B);
     print->print(F("DECO_STEP_SIZE: \t\t"));
     print->println(DECO_STEP_SIZE);
     print->print(F("LAST_STOP: \t\t\t\t"));
@@ -135,9 +134,7 @@ void Settings::logSettings(Print *print) {
     print->println(F("======================================"));
 }
 
-size_t Settings::getJsonSize() {
-    return JSON_OBJECT_SIZE(17);
-}
+
 
 
 

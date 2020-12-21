@@ -66,10 +66,34 @@ void FileSystem::saveDiveLog(JsonSerializable *dive, uint16_t diveNr) {
         _diveLogFile.remove();
     }
     saveToJsonFile(fileName, dive);
+    snprintf(fileName, 100, "pr_%d.jsn", diveNr);
+    if (!_sdFat.rename(TMP_LOG_FILE, fileName)) {
+        Serial.println(F("Rename tmp log dive steps failed!"));
+    }
 }
 
-void FileSystem::writeTmpDiveLogStep(JsonSerializable *diveLogStep) {
-    saveToJsonFile(TMP_LOG_FILE, diveLogStep, true);
+void FileSystem::saveDiveLogStep(JsonObject diveStep) {
+    Serial.print(F(" - saving dive step to:"));
+    Serial.print(TMP_LOG_FILE);
+    Serial.print(F(" - "));
+
+
+    // Open file for writing
+    File file = _sdFat.open(TMP_LOG_FILE, FILE_WRITE);
+
+    // if the filesystem opened okay, write to it:
+    if (file) {
+        // Serialize JSON to file
+        if (serializeJson(diveStep, file) == 0) {
+            Serial.println(F("FAILED (0 bytes written)."));
+        } else {
+            file.write("\n");
+            Serial.println(F("Success"));
+        }
+        file.close();
+    } else {
+        Serial.println(F("FAILED."));
+    }
 }
 
 void FileSystem::clearTmpDiveLog() {
@@ -114,12 +138,6 @@ bool FileSystem::saveToJsonFile(const char *fileName, JsonSerializable *jsonSeri
     Serial.print(fileName);
     Serial.print(F(" - "));
 
-
-    if (!append) {
-        // Not appending. deleting existing file (if it exists)
-        _sdFat.remove(fileName);
-    }
-
     // Open file for writing
     File file = _sdFat.open(fileName, FILE_WRITE);
 
@@ -129,9 +147,6 @@ bool FileSystem::saveToJsonFile(const char *fileName, JsonSerializable *jsonSeri
         if (jsonSerializable->save(&file) == 0) {
             Serial.println(F("FAILED (0 bytes written)."));
         } else {
-            if (append) {
-                file.write("\n");
-            }
             Serial.println(F("Success"));
             result = true;
         }

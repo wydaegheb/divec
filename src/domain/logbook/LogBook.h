@@ -17,7 +17,7 @@ public:
 
     void initTmpDiveLog();
 
-    void addDiveStep(DiveStep *diveStep);
+    void addDiveStep(uint32_t endTimeInSeconds, double pressureInBar, double temperatureInCelsius, const char *gasName);
 
 
     // accessors

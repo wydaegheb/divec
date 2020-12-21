@@ -40,8 +40,8 @@ public:
 
     void saveDiveLog(JsonSerializable *dive, uint16_t diveNr);
 
-    // during the dive every step is written to a tmp file. if the dive finishes "normally" we write a proper dive log and delete this file
-    void writeTmpDiveLogStep(JsonSerializable *diveLogStep);
+    // during the dive every step is written to a tmp file. Only if the dive finishes "normally" we rename this file to pr_<divenr>.jsn
+    void saveDiveLogStep(JsonObject diveStep);
 
     void clearTmpDiveLog();
 

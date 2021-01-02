@@ -22,9 +22,6 @@ protected:
 
     void redraw() final;
 
-    uint8_t handleRightButtonPress() final;
-
-
 private:
     NumberValueWidget *_currentDepth;
     NumberValueWidget *_diveTime;

@@ -1,5 +1,6 @@
 #include "DecoManager.h"
 
+
 void DecoManager::init(FileSystem *fileSystem, uint32_t currentTimeInSeconds) {
     Serial.println(F("Initializing deco manager."));
 

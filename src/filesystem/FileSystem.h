@@ -18,7 +18,9 @@
 class FileSystem {
 public:
 
-    void init();
+    FileSystem() = default;
+
+    void init(); // this code would normally go into the constructor but then Serial.begin() is not yet called -> program locks up when doing Serial.print in constructor
 
     void loadSettings(JsonSerializable *settings);
 
@@ -43,7 +45,7 @@ public:
     // during the dive every step is written to a tmp file. Only if the dive finishes "normally" we rename this file to pr_<divenr>.jsn
     void saveDiveLogStep(JsonObject diveStep);
 
-    void clearTmpDiveLog();
+    void removeTmpDiveLog();
 
 private:
     bool loadFromJsonFile(char const *fileName, JsonSerializable *jsonSerializable);

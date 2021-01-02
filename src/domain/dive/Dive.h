@@ -15,7 +15,7 @@ public:
 
     void init();
 
-    void *update(uint32_t time, Gas *gas, double pressureInBar, double tempInCelsius);
+    void update(uint32_t time, Gas *gas, double pressureInBar, double tempInCelsius);
 
     void start(uint32_t startTime);
 

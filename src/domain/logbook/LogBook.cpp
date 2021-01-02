@@ -12,7 +12,7 @@ Dive *LogBook::loadDive(uint16_t diveNr) {
 }
 
 void LogBook::initTmpDiveLog() {
-    _fileSystem->clearTmpDiveLog();
+    _fileSystem->removeTmpDiveLog();
 }
 
 
@@ -72,8 +72,8 @@ void LogBook::saveDive(Dive *dive) {
     // save dive
     _fileSystem->saveDiveLog(dive, _numberOfDives);
 
-    // clear tmp log
-    _fileSystem->clearTmpDiveLog();
+    // clear tmp log (not needed? as we just renamed it it should not exist anymore.)
+    _fileSystem->removeTmpDiveLog();
 
 }
 

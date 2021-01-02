@@ -50,10 +50,9 @@ DecompressionPlan *BuhlmannGasLoading::getDecoPlan(GasManager *gasManager, uint3
     startDecoCalculation();
 
     // ASCENT TILL FIRST DECOSTOP
-    // Ascent in DECO_STEP_SIZE intervals - note: these are no deco stops - just coming up until we hit the ceiling.
+    // Ascent in DECO_STEP_SIZE (3m) intervals - note: these are no deco stops - just coming up until we hit the ceiling.
     // we cannot come up directly to the ceiling we just calculated as in very rare cases the ceiling comes further down during our ascent to this ceiling
-    // due to further on-gassing in the way up. (EC Baker "Note: this situation is a possibility when ascending from extremely deep
-    // dives or due to an unusual gas mix selection.")
+    // due to further on-gassing in the way up. (EC Baker "Note: this situation is a possibility when ascending from extremely deep dives or due to an unusual gas mix selection.")
     double ceilingInMeter = getCeilingInMeters(Settings::GF_LOW);
     double nextDepthInDecoStepSize = floor((currentDepthInMeters / Settings::DECO_STEP_SIZE) - 0.5) * Settings::DECO_STEP_SIZE;
     Gas *currentGas = gasManager->getCurrentGas();
@@ -61,11 +60,11 @@ DecompressionPlan *BuhlmannGasLoading::getDecoPlan(GasManager *gasManager, uint3
         runtimeInSeconds += addDecoDepthChange(currentDepthInMeters, nextDepthInDecoStepSize, currentGas, decoPlan);
         currentDepthInMeters = nextDepthInDecoStepSize;
         nextDepthInDecoStepSize = currentDepthInMeters - Settings::DECO_STEP_SIZE;
-        ceilingInMeter = getCeilingInMeters(Settings::GF_LOW); // recalc ceiling as this typically raises a bit in our way up
+        ceilingInMeter = getCeilingInMeters(Settings::GF_LOW);
     }
 
     // START DECO STOPS
-    // do stops every DECO_STEP_SIZE till we reach the surface
+    // do stops every DECO_STEP_SIZE (3m) till we reach the surface
     double decoStopDepth = currentDepthInMeters;
     double nextDecoStopDepth = nextDepthInDecoStepSize;
     double gfChangePerMeter = (Settings::GF_HIGH - Settings::GF_LOW) / -decoStopDepth;// Calculate Gradient factor slope (note GF_LOW is applied starting at the first deco stop and not from the bottom)
@@ -74,11 +73,11 @@ DecompressionPlan *BuhlmannGasLoading::getDecoPlan(GasManager *gasManager, uint3
         gradientFactor = Settings::GF_HIGH + (gfChangePerMeter * nextDecoStopDepth);
 
         while (ceilingInMeter > nextDecoStopDepth) {
-            // Settings::MIN_STOP_TIME - secondsAboveMinDecoStopTimeMutliple(runtimeInSeconds) -> rounds runtime to next decostepsize (this seems to be for "cosmetic purposes" but as ECBaker does it, it is needed to get the exact same results)
+            // The part "Settings::MIN_STOP_TIME - secondsAboveMinDecoStopTimeMutliple(runtimeInSeconds)" rounds the runtime to next decostepsize (this seems to be for "cosmetic purposes" but as ECBaker does it, it is needed to get the exact same results)
             // this means that the first stop is NOT a multiple of Settings::MIN_STOP_TIME (stop can be smaller than Settings::MIN_STOP_TIME). By rounding up when printing the result this is "hidden" (a stop of 1.5 min becomes 2 min) but
             // if you look closely you'll see that the runtime doesn't match the rounded decostops.
             runtimeInSeconds += addDecoStop(decoStopDepth, Settings::MIN_STOP_TIME - secondsAboveMinDecoStopTimeMultiple(runtimeInSeconds), currentGas, decoPlan);
-            ceilingInMeter = getCeilingInMeters(gradientFactor); // recalculate the ceiling (should go up the longer we wait making it possible to go to the next stop)
+            ceilingInMeter = getCeilingInMeters(gradientFactor); // recalculate the ceiling (once the ceiling becomes higher than the next decostop we ascend to the next decostop.)
         }
         runtimeInSeconds += addDecoDepthChange(decoStopDepth, nextDecoStopDepth, currentGas, decoPlan); // add ascent to next decostop
 

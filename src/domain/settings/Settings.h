@@ -5,14 +5,20 @@
 #include <Arduino.h>
 #include <domain/settings/Constants.h>
 
-#define SALT 1
-#define FRESH 2
+#define SALT 0
+#define FRESH 1
+
+#define BUHLMANN_B_GF 0
+#define BUHLMANN_C_GF 1
 
 class Settings final : public JsonSerializable {
 public:
 
     // init
     void init(FileSystem *fileSystem);
+
+    // algorithm selection
+    static uint8_t ALGORITHM;                 // BUHLMANN_ZHL16B_GF (0)/ BUHLMANN_ZHL16C_GF (1)
 
     // buhlmann settings
     static double GF_LOW;                     // gradient factor low

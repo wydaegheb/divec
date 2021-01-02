@@ -20,17 +20,12 @@ public:
 
     virtual void redraw() = 0;
 
-    virtual uint8_t handleLeftButtonPress();
-
-    virtual uint8_t handleRightButtonPress();
-
 protected:
     virtual void clear();
 
     uint8_t _pageNr;
     Display *_display;
     DecoManager *_decoManager;
-    GasManager *_gasManager;
     Dive *_dive;
 };
 

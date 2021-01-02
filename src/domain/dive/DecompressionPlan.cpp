@@ -3,8 +3,7 @@
 // Singleton to avoid having many of these floating around when calculating many of these.
 // No need to have multiple instances of these in a dive computer
 DecompressionPlan &DecompressionPlan::getInstance() {
-    static DecompressionPlan instance; // Guaranteed to be destroyed.
-    // Instantiated on first use.
+    static DecompressionPlan instance;
     return instance;
 }
 

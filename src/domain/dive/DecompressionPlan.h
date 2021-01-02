@@ -4,8 +4,6 @@
 #include <list>
 #include <domain/dive/DecompressionStep.h>
 #include <domain/dive/Dive.h>
-#include <display/utils/Formatter.h>
-
 
 class DecompressionPlan {
 public:

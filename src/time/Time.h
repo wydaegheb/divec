@@ -4,6 +4,10 @@
 #include <Arduino.h>
 #include <RTClib.h>
 
+// define date year range for editing
+#define MIN_DATE_YEAR 2020
+#define MAX_DATE_YEAR 2050
+
 class Time {
 public:
     static bool init(bool isMocked);
@@ -13,6 +17,10 @@ public:
 
     // in seconds
     static void incMockTime();
+
+    static void setDate(uint16_t year, uint8_t month, uint8_t day);
+
+    static void setTime(uint8_t hours, uint8_t minutes, uint8_t seconds);
 
 private:
     static boolean _mocked;

@@ -1,8 +1,6 @@
 #include "DiveController.h"
 
 WetContact DiveController::_wetContact;
-PiezoButton DiveController::_leftButton;
-PiezoButton DiveController::_rightButton;
 
 void DiveController::setup() {
     Serial.println(F("Initiating DiveController."));
@@ -22,29 +20,27 @@ void DiveController::setup() {
     // init wet contact
     _wetContact.init(WET_CONTACT_PIN, &onWetContactChanged);
 
-    // init buttons
-    _leftButton.init(LEFT_BUTTON_PIN, &onLeftButtonClicked);
-    _rightButton.init(RIGHT_BUTTON_PIN, &onRightButtonClicked);
-
     // init display
-    _display.init(&_fileSystem);
+    _display.init();
 
     //init deco manager
     _decoManager.init(&_fileSystem, Time::getTime());
 
-    // init menu
-    _menu.init(&_display, &_decoManager);
-
     // init bluetooth
     _bluetooth.init();
 
-    // reset last update time stamp (needs to happen after loading the decomanager to avoid errors in surface interval calculations)
+    // reset last update time stamp
     _lastUpdateTimeInSeconds = Time::getTime();
+
+    // init menu
+    _menu.init(&_display, &_decoManager);
 
     Serial.println(F("DiveController ready"));
 }
 
 void DiveController::step() {
+    taskManager.runLoop();
+
     uint32_t currentTimeInSeconds = Time::getTime();
 
     // only add a step every STEP_INTERVAL seconds
@@ -52,9 +48,6 @@ void DiveController::step() {
 
         // update deco manager (dive, tissues, gasses, ...)
         _decoManager.update(currentTimeInSeconds, _depthSensor.pressureInBar(), _depthSensor.tempInCelsius(), _wetContact.isActivated());
-
-        // update menu
-        _menu.update();
 
         _lastUpdateTimeInSeconds = currentTimeInSeconds;
     }
@@ -70,30 +63,9 @@ void DiveController::step() {
         _depthSensor.decreaseMockDepth();
     }
 
-
     if (_depthSensor.isMocked() && bleCommand == BLE_DESCENT_ONE_METER) {
         _depthSensor.increaseMockDepth();
     }
-
-
-    // handle button presses - don't wait for interval or a button press takes 5 seconds to be handled
-    if (_leftButton.isPressed() || bleCommand == BLE_PRESS_LEFT_BUTTON) {
-        Serial.println(F("Left Button pressed "));
-        _menu.handleLeftButtonPress();
-    }
-    if (_rightButton.isPressed() || bleCommand == BLE_PRESS_RIGHT_BUTTON) {
-        Serial.println(F("Right Button pressed "));
-        _menu.handleRightButtonPress();
-    }
-
-}
-
-void DiveController::onLeftButtonClicked() {
-    _leftButton.onButtonClicked();
-}
-
-void DiveController::onRightButtonClicked() {
-    _rightButton.onButtonClicked();
 }
 
 void DiveController::onWetContactChanged() {

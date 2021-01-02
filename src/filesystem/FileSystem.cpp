@@ -1,5 +1,6 @@
 #include "FileSystem.h"
 
+
 void FileSystem::init() {
     // SD Card initialization
     Serial.println(F("Initializing file system."));
@@ -10,6 +11,7 @@ void FileSystem::init() {
         exit(0);
     }
 }
+
 
 void FileSystem::loadSettings(JsonSerializable *settings) {
     if (!loadFromJsonFile(SETTINGS_FILE, settings)) {
@@ -61,7 +63,7 @@ void FileSystem::loadDiveLog(JsonSerializable *dive, uint16_t diveNr) {
 void FileSystem::saveDiveLog(JsonSerializable *dive, uint16_t diveNr) {
     char fileName[100];
     snprintf(fileName, 100, "dv_%d.jsn", diveNr);
-    if (_diveLogFile) { // if a log exists -> close it first.
+    if (_diveLogFile) { // if a log exists -> remove it first.
         Serial.println(F("This should not be possible! Log for this dive already exists! - Removing previous file."));
         _diveLogFile.remove();
     }
@@ -96,7 +98,7 @@ void FileSystem::saveDiveLogStep(JsonObject diveStep) {
     }
 }
 
-void FileSystem::clearTmpDiveLog() {
+void FileSystem::removeTmpDiveLog() {
     _sdFat.remove(TMP_LOG_FILE);
 }
 
@@ -156,6 +158,8 @@ bool FileSystem::saveToJsonFile(const char *fileName, JsonSerializable *jsonSeri
     }
     return result;
 }
+
+
 
 
 

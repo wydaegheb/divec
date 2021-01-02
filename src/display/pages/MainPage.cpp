@@ -1,19 +1,12 @@
 #include "MainPage.h"
 
 MainPage::MainPage(Display *display, DecoManager *decoManager) : Page(MAIN_PAGE, display, decoManager) {
-    Serial.println(F(" - Initializing main page."));
     _currentDepth = new NumberValueWidget(_display, "DEPTH", 0, 5, TOP_ROW_Y, 80, 65);
-    Serial.println(F("   - _currentDepth"));
     _diveTime = new NumberValueWidget(_display, "TIME", 0, 95, TOP_ROW_Y, 60, 65);
-    Serial.println(F("   - _diveTime"));
     _battery = new BatteryWidget(_display, 160, TOP_ROW_Y + 20, 15, 50);
-    Serial.println(F("   - _battery"));
     _surfaceInterval = new NumberValueWidget(_display, "SURFACE", 0, 180, TOP_ROW_Y, 140, 65);
-    Serial.println(F("   - _surfaceInterval"));
     _decoStopDepth = new NumberValueWidget(_display, "STOP", 0, 180, TOP_ROW_Y, 65, 65, ALIGN_RIGHT, true);
-    Serial.println(F("   - _decoStopDepth"));
     _decoStopTime = new NumberValueWidget(_display, "TIME", 0, 250, TOP_ROW_Y, 60, 65, ALIGN_RIGHT, true);
-    Serial.println(F("   - _decoStopTime"));
 
     _gasPO2 = new NumberValueWidget(_display, "GasPO2", 2, 120, MIDDLE_ROW_Y, 90, 65, ALIGN_CENTER);
 
@@ -103,8 +96,5 @@ void MainPage::update() {
     _tts->updateValue(plan->getTtsInSeconds() / 60.0);
 }
 
-uint8_t MainPage::handleRightButtonPress() {
-    return SETTINGS_PAGE;
-}
 
 

@@ -2,7 +2,6 @@
 #define DIVEC_DECOMPRESSIONSTEP_H
 
 #include <time/Time.h>
-#include <display/utils/Formatter.h>
 #include <domain/dive/Gas.h>
 
 class DecompressionStep {

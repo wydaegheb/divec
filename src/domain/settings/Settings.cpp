@@ -1,5 +1,8 @@
 #include "Settings.h"
 
+// algorithm selection
+uint8_t Settings::ALGORITHM = BUHLMANN_C_GF;        // BUHLMANN_ZHL16B_GF (0)/ BUHLMANN_ZHL16C_GF (1)
+
 // buhlmann settings
 double Settings::GF_LOW = 1.0;                      // gradient factor low
 double Settings::GF_HIGH = 1.0;                     // gradient factor high

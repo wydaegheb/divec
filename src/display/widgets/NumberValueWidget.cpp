@@ -1,8 +1,7 @@
 #include "NumberValueWidget.h"
 
-NumberValueWidget::NumberValueWidget(Display *display, char const* title, uint8_t numberOfDecimals, uint16_t leftX, uint16_t topY, uint16_t width, uint16_t height, uint8_t align,
-                                     bool hidden)
-        : Widget(display, leftX, topY, width, height, hidden) {
+NumberValueWidget::NumberValueWidget(Display *display, char const *title, uint8_t numberOfDecimals, uint16_t leftX, uint16_t topY, uint16_t width, uint16_t height, uint8_t align, bool hidden) :
+        Widget(display, leftX, topY, width, height, hidden) {
     _title = title;
     _numberOfDecimals = numberOfDecimals;
     _value = 0.0;

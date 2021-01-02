@@ -2,8 +2,7 @@
 #include "Dive.h"
 
 Dive &Dive::getInstance() {
-    static Dive instance; // Guaranteed to be destroyed.
-    // Instantiated on first use.
+    static Dive instance;
     return instance;
 }
 
@@ -34,7 +33,7 @@ void Dive::end() {
     _ended = true;
 }
 
-void *Dive::update(uint32_t time, Gas *gas, double pressureInBar, double tempInCelsius) {
+void Dive::update(uint32_t time, Gas *gas, double pressureInBar, double tempInCelsius) {
     // add dive step, log it and update last time stamp
     _lastTimeStamp = time;
 

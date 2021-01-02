@@ -8,18 +8,17 @@
 #include <filesystem/FileSystem.h>
 #include <domain/logbook/LogBook.h>
 
-#define BUHLMANN_B_GF 0
-#define BUHLMANN_C_GF 1
-
 class DecoManager final : public JsonSerializable {
 public:
+    DecoManager() = default;
 
-    void init(FileSystem *fileSystem, uint32_t currentTimeInSeconds);
+    void init(FileSystem *fileSystem, uint32_t currentTimeInSeconds); // this code would normally go into the constructor but then Serial.begin() is not yet called -> program locks up when doing Serial.print in constructor
+
+    // return a list of decompression stops (or an empty list if there are none)
+    DecompressionPlan *getDecoPlan();
 
     // deco (tissues changing methods)
     void update(uint32_t currentTimeInSeconds, double currentPressureInBar, double tempInCelsius, bool wetContactActivated);
-
-    DecompressionPlan *getDecoPlan();
 
     void reset(uint32_t currentTimeInSeconds); // reset all - CLEARS tissues!
 
@@ -48,7 +47,7 @@ public:
     Gas *getCurrentGas();
 
 
-    // state
+    // decompression state
     uint32_t getNdlInSeconds();
 
     uint32_t getSurfaceIntervalInSeconds() const;
@@ -71,6 +70,7 @@ private:
     LogBook *_logBook;
 
     Dive *_dive;
+
     uint8_t _currentAlgorithmIndex;
     DiveAlgorithm *_algorithms[2]; // extend this if new algorithms are added
 

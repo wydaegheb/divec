@@ -8,18 +8,19 @@
 class WetContact {
 public:
 
-    void init(uint8_t wetContactPin, void (*interrupt)());
+    WetContact() = default;
+
+    void init(uint8_t wetContactPin, void (*interrupt)()); // this code would normally go into the constructor but then Serial.begin() is not yet called -> program locks up when doing Serial.print in constructor
 
     bool isActivated() const;
 
     void onChange();
 
-
 private:
     uint8_t _wetContactPin;
-    uint32_t _lastActive;
-    bool _activated;
-    int _previousValue;
+    volatile uint32_t _lastActive; // used in interrupt -> mark as volatile
+    volatile bool _activated;      // used in interrupt -> mark as volatile
+    volatile int _previousValue;   // used in interrupt -> mark as volatile
 };
 
 

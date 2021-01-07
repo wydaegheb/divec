@@ -30,6 +30,10 @@ public:
 
     Gas *getGas(char const *name);
 
+    Gas *getGas(int index);
+
+    uint8_t getNrOfGasses() const;
+
 
     JsonObject serializeObject(JsonObject &doc) final;
 
@@ -41,7 +45,10 @@ private:
     Gas *_currentGas;
 
     Gas *_gasses[MAX_GASSES];
+
     uint8_t _nrOfGasses;
+
+private:
 
     void loadDefaultGasses();
 

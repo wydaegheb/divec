@@ -11,11 +11,13 @@ StringValueWidget::StringValueWidget(Display *display, char const *title, uint16
 
 
 void StringValueWidget::updateValue(char const *value) {
+    bool changed = (strcmp(_value, value) != 0);
+    if (changed) {
+        strcpy(_value, value);
+    }
     if (_hidden) {
-        strcpy(_value, value);
         show();
-    } else if (strcmp(_value, value) != 0) { // only update display if something changed
-        strcpy(_value, value);
+    } else if (changed) { // only update display if something changed
         update();
     }
 }

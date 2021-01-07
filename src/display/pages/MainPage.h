@@ -5,6 +5,7 @@
 
 #include <display/widgets/NumberValueWidget.h>
 #include <display/widgets/StringValueWidget.h>
+#include <display/widgets/BottomMenuWidget.h>
 #include <display/widgets/BatteryWidget.h>
 
 #define TOP_ROW_Y 1
@@ -17,10 +18,13 @@ public:
 
     ~MainPage() final;
 
-protected:
     void update() final;
 
     void redraw() final;
+
+    void setBottomMenuItem(char const *text);
+
+    void clearBottomMenuItem();
 
 private:
     NumberValueWidget *_currentDepth;
@@ -37,6 +41,12 @@ private:
     NumberValueWidget *_tts;
 
     BatteryWidget *_battery;
+
+    BottomMenuWidget *_bottomMenuItem;
+
+    bool _showBottomMenuItem;
+    char const *_bottomMenuItemText;
+
 };
 
 

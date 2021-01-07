@@ -1,7 +1,7 @@
 #include "DecoManager.h"
 
 
-void DecoManager::init(FileSystem *fileSystem, uint32_t currentTimeInSeconds) {
+void DecoManager::init(FileSystem *fileSystem) {
     Serial.println(F("Initializing deco manager."));
 
     _fileSystem = fileSystem;
@@ -30,7 +30,7 @@ void DecoManager::init(FileSystem *fileSystem, uint32_t currentTimeInSeconds) {
     Serial.println(F(" - gasses initialized."));
 
     _previousPressureInBar = Settings::SURFACE_PRESSURE;
-    _previousUpdateTimeInSeconds = currentTimeInSeconds;
+    _previousUpdateTimeInSeconds = Time::getTime();
     Serial.println(F(" - deco manager initialized."));
 }
 

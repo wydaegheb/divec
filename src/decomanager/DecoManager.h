@@ -12,7 +12,7 @@ class DecoManager final : public JsonSerializable {
 public:
     DecoManager() = default;
 
-    void init(FileSystem *fileSystem, uint32_t currentTimeInSeconds); // this code would normally go into the constructor but then Serial.begin() is not yet called -> program locks up when doing Serial.print in constructor
+    void init(FileSystem *fileSystem); // this code would normally go into the constructor but then Serial.begin() is not yet called -> program locks up when doing Serial.print in constructor
 
     // return a list of decompression stops (or an empty list if there are none)
     DecompressionPlan *getDecoPlan();

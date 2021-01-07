@@ -16,7 +16,7 @@
 
 #define WET_CONTACT_PIN 11
 
-#define USE_MOCK_DEPTH_SENSOR false
+#define USE_MOCK_DEPTH_SENSOR true
 #define USE_MOCK_TIME false
 
 // defines the app info to the linker.

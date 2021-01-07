@@ -7,6 +7,9 @@
 Display::Display(uint8_t bufferSize) : BaseMenuRenderer(bufferSize) {
     _config = new DisplayConfig();
     _tft = new Adafruit_ILI9341(TFT_CS, TFT_DC);
+    _buttonHintLeft = BUTTON_HINT_NONE;
+    _buttonHintRight = BUTTON_HINT_NONE;
+    _hintsChanged = false;
 }
 
 Display::~Display() = default;
@@ -25,6 +28,13 @@ void Display::init() {
     Serial.println(F(" - display initialized."));
 }
 
+void Display::drawSystemError(const char *error) {
+    clear();
+    Settings::TITLE_COLOR = WHITE;
+    drawTitleString("!!! SYSTEM ERROR !!!", 0, DISPLAY_HEIGHT / 2 - 20, DISPLAY_WIDTH, ALIGN_CENTER);
+    drawTitleString(error, 0, DISPLAY_HEIGHT / 2 + 20, DISPLAY_WIDTH, ALIGN_CENTER);
+}
+
 void Display::clear() {
     fillWithBackground(0, 0, DISPLAY_WIDTH, DISPLAY_HEIGHT);
 }
@@ -38,6 +48,20 @@ void Display::fillWithBackground(uint16_t leftX, uint16_t topY, uint16_t width, 
     for (uint16_t y = topY; y < (topY + height); y++) {
         for (uint16_t x = leftX; x < (leftX + width); x++) {
             _tft->SPI_WRITE16(pgm_read_word(jellyFishBitmap + x + y * DISPLAY_WIDTH));
+        }
+    }
+    _tft->endWrite();
+}
+
+void Display::fillWithColor(uint16_t leftX, uint16_t topY, uint16_t width, uint16_t height, uint16_t color) {
+    // based on void Adafruit_GFX::drawRGBBitmap(int16_t x, int16_t y, uint16_t *bitmap, int16_t w, int16_t h)
+    // BUT this is nearly 40 times! faster than calling writePixel for every pixel. Reduces "flickering" drastically!
+    // background image is stored in progmem (see display/bgimage/jellyfish.h) to avoid out of memory issues
+    _tft->startWrite();
+    _tft->setAddrWindow(leftX, topY, width, height);
+    for (uint16_t y = topY; y < (topY + height); y++) {
+        for (uint16_t x = leftX; x < (leftX + width); x++) {
+            _tft->SPI_WRITE16(color);
         }
     }
     _tft->endWrite();
@@ -77,6 +101,12 @@ void Display::drawBigValueString(char const *value, uint16_t leftX, uint16_t bot
     drawAlignedString(value, leftX, bottomY, width, align);
 }
 
+void Display::drawBottomMenuString(char const *value, uint16_t leftX, uint16_t bottomY, uint16_t width, uint8_t align) {
+    _tft->setFont(_config->bigValueFont);
+    _tft->setTextColor(WHITE);
+    drawAlignedString(value, leftX, bottomY, width, align);
+}
+
 void Display::drawAlignedString(char const *s, uint16_t leftX, uint16_t bottomY, uint16_t width, uint16_t align) {
     uint16_t calculatedLeft;
     uint16_t calculatedBottom = bottomY - 2; // keep 2px margins
@@ -109,6 +139,38 @@ void Display::drawRectangle(uint16_t leftX, uint16_t topY, uint16_t width, uint1
     _tft->drawRect(leftX, topY, width, height, Settings::TITLE_COLOR);
 }
 
+void Display::drawButtonHints() {
+    if (_hintsChanged) {
+        _tft->fillRect(0, DISPLAY_HEIGHT - 20, _tft->width(), 20, BLACK);
+        _tft->setFont(_config->itemFont);
+        _tft->setTextColor(_config->fgItemColor);
+        if (_buttonHintLeft == BUTTON_HINT_EDIT) {
+            drawAlignedString(BUTTON_EDIT_TEXT, 0, DISPLAY_HEIGHT, DISPLAY_WIDTH, ALIGN_LEFT);
+        } else if (_buttonHintLeft == BUTTON_HINT_OK) {
+            drawAlignedString(BUTTON_OK_TEXT, 0, DISPLAY_HEIGHT, DISPLAY_WIDTH, ALIGN_LEFT);
+        } else if (_buttonHintLeft == BUTTON_HINT_NEXT) {
+            drawAlignedString(BUTTON_NEXT_TEXT, 0, DISPLAY_HEIGHT, DISPLAY_WIDTH, ALIGN_LEFT);
+        } else if (_buttonHintLeft == BUTTON_HINT_CHANGE) {
+            drawAlignedString(BUTTON_CHANGE_TEXT, 0, DISPLAY_HEIGHT, DISPLAY_WIDTH, ALIGN_LEFT);
+        } else if (_buttonHintLeft == BUTTON_HINT_SAVE) {
+            drawAlignedString(BUTTON_SAVE_TEXT, 0, DISPLAY_HEIGHT, DISPLAY_WIDTH, ALIGN_LEFT);
+        }
+
+        if (_buttonHintRight == BUTTON_HINT_EDIT) {
+            drawAlignedString(BUTTON_EDIT_TEXT, 0, DISPLAY_HEIGHT, DISPLAY_WIDTH, ALIGN_RIGHT);
+        } else if (_buttonHintRight == BUTTON_HINT_OK) {
+            drawAlignedString(BUTTON_OK_TEXT, 0, DISPLAY_HEIGHT, DISPLAY_WIDTH, ALIGN_RIGHT);
+        } else if (_buttonHintRight == BUTTON_HINT_NEXT) {
+            drawAlignedString(BUTTON_NEXT_TEXT, 0, DISPLAY_HEIGHT, DISPLAY_WIDTH, ALIGN_RIGHT);
+        } else if (_buttonHintRight == BUTTON_HINT_CHANGE) {
+            drawAlignedString(BUTTON_CHANGE_TEXT, 0, DISPLAY_HEIGHT, DISPLAY_WIDTH, ALIGN_RIGHT);
+        } else if (_buttonHintRight == BUTTON_HINT_SAVE) {
+            drawAlignedString(BUTTON_SAVE_TEXT, 0, DISPLAY_HEIGHT, DISPLAY_WIDTH, ALIGN_RIGHT);
+        }
+        _hintsChanged = false;
+    }
+}
+
 
 // tc menu functions
 
@@ -124,7 +186,11 @@ BaseDialog *Display::getDialog() {
 }
 
 void Display::renderTitleArea() {
-    if (menuMgr.getCurrentMenu() == menuMgr.getRoot()) {
+    if (_rootMenu == 1) {
+        safeProgCpy(buffer, SETTINGS_TEXT, bufferSize);
+    } else if (_rootMenu == 2) {
+        safeProgCpy(buffer, DEFINE_GASSES_TEXT, bufferSize);
+    } else if (menuMgr.getCurrentMenu() == menuMgr.getRoot()) {
         safeProgCpy(buffer, SETTINGS_TEXT, bufferSize);
     } else {
         menuMgr.getCurrentMenu()->copyNameToBuffer(buffer, bufferSize);
@@ -229,7 +295,7 @@ void Display::render() {
 
     _tft->setFont(_config->itemFont);
     _tft->setTextSize(_config->itemFontMagnification);
-    int maxItemsY = ((_tft->height() - titleHeight) / itemHeight);
+    int maxItemsY = ((_tft->height() - titleHeight) / itemHeight) - 1; // subtract 1 to make room for button hints
 
     if (menuMgr.getCurrentMenu()->getMenuType() == MENUTYPE_RUNTIME_LIST) {
         if (menuMgr.getCurrentMenu()->isChanged() || locRedrawMode != MENUDRAW_NO_CHANGE) {
@@ -255,8 +321,12 @@ void Display::render() {
         }
 
         // and then we start drawing items until we run out of screen or items
+        bool isEditing = false;
         int ypos = titleHeight;
-        while (item && (ypos + itemHeight) <= _tft->height()) {
+        while (item && (ypos + itemHeight) <= _tft->height() - itemHeight) {
+            if (item->isEditing()) {
+                isEditing = true;
+            }
             if (item->isVisible()) {
                 if (locRedrawMode != MENUDRAW_NO_CHANGE || item->isChanged()) {
                     taskManager.yieldForMicros(0);
@@ -266,7 +336,15 @@ void Display::render() {
             }
             item = item->getNext();
         }
+        if (isEditing) {
+            setLeft(BUTTON_HINT_CHANGE); // using setters as they update the changed flag (otherwise hints keep redrawing themselves)
+            setRight(BUTTON_HINT_SAVE);
+        } else {
+            setLeft(BUTTON_HINT_NEXT);
+            setRight(BUTTON_HINT_EDIT);
+        }
     }
+    drawButtonHints();
 }
 
 void Display::renderMenuItem(int yPos, int menuHeight, MenuItem *item) {
@@ -327,13 +405,14 @@ void Display::renderMenuItem(int yPos, int menuHeight, MenuItem *item) {
 
 
 void Display::prepareConfig() {
+
     makePadding(_config->titlePadding, 5, 5, 20, 5);
-    makePadding(_config->itemPadding, 5, 5, 6, 5);
+    makePadding(_config->itemPadding, 2, 15, 10, 5);
     makePadding(_config->widgetPadding, 5, 10, 0, 5);
 
     _config->bgTitleColor = RGB(255, 255, 255);
     _config->fgTitleColor = RGB(0, 0, 0);
-    _config->titleFont = &NotoSans_Condensed14pt7b;
+    _config->titleFont = &FreeSans12pt7b;
     _config->titleBottomMargin = 10;
 
     _config->bgItemColor = RGB(0, 0, 0);
@@ -369,8 +448,32 @@ Coord Display::textExtents(const char *text, int16_t x, int16_t y) {
     return Coord(w, h);
 }
 
+void Display::setLeft(ButtonHint left) {
+    if (_buttonHintLeft != left) {
+        _hintsChanged = true;
+        _buttonHintLeft = left;
+    }
+}
+
+void Display::setRight(ButtonHint right) {
+    if (_buttonHintRight != right) {
+        _hintsChanged = true;
+        _buttonHintRight = right;
+    }
+}
+
+void Display::setHintsChanged(bool hintsChanged) {
+    _hintsChanged = hintsChanged;
+}
+
+void Display::setRootMenu(uint8_t rootMenu) {
+    _rootMenu = rootMenu;
+}
+
+
+
 ////////////////////////////////////////////////////////
-// DIALOG
+// DIVEC DIALOG
 ////////////////////////////////////////////////////////
 
 

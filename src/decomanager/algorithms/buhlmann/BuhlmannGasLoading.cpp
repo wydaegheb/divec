@@ -17,7 +17,7 @@ void BuhlmannGasLoading::resetTissues() {
 }
 
 void BuhlmannGasLoading::applySurfaceInterval(uint32_t durationInSeconds) {
-    update(0, durationInSeconds, Settings::SURFACE_PRESSURE, Settings::SURFACE_PRESSURE, GasManager::AIR.getN2(), GasManager::AIR.getHe());
+    update(0, durationInSeconds, Settings::SURFACE_PRESSURE, Settings::SURFACE_PRESSURE, GasManager::AIR.getN2frac(), GasManager::AIR.getHefrac());
 }
 
 void BuhlmannGasLoading::update(uint32_t beginTimeInSeconds, uint32_t endTimeInSeconds, double beginPressureInBar, double endPressureInBar, double gasN2Fraction, double gasHeFraction) {
@@ -113,7 +113,7 @@ uint32_t BuhlmannGasLoading::getNdlInSeconds(GasManager *gasManager) {
     while (ceilingInMeter <= 0.0 && ndlStopTimeInSeconds < MAX_NDL) {
         // simulate adding gas loading on current depth and current gas for Settings::MIN_STOP_TIME
         for (auto _tissue : _tissues) {
-            _tissue->addConstantDepthDiveStep(_lastPressureInBar, gasManager->getCurrentGas()->getN2(), gasManager->getCurrentGas()->getHe(), Settings::MIN_STOP_TIME);
+            _tissue->addConstantDepthDiveStep(_lastPressureInBar, gasManager->getCurrentGas()->getN2frac(), gasManager->getCurrentGas()->getHefrac(), Settings::MIN_STOP_TIME);
         }
         ndlStopTimeInSeconds += Settings::MIN_STOP_TIME;
         ceilingInMeter = getCeilingInMeters(Settings::GF_LOW); // check ceiling again
@@ -130,7 +130,7 @@ uint16_t BuhlmannGasLoading::addDecoStop(double depthInMeter, uint32_t durationI
     decompressionPlan->addStop(diveGas, durationInSeconds, depthInMeter);
     // update tissues
     for (auto tissue : _tissues) {
-        tissue->addConstantDepthDiveStep(DiveEquations::depthInMetersToBars(depthInMeter), diveGas->getN2(), diveGas->getHe(), durationInSeconds);
+        tissue->addConstantDepthDiveStep(DiveEquations::depthInMetersToBars(depthInMeter), diveGas->getN2frac(), diveGas->getHefrac(), durationInSeconds);
     }
     return durationInSeconds;
 }
@@ -145,8 +145,8 @@ uint16_t BuhlmannGasLoading::addDecoDepthChange(double fromDepthInMeter, double 
 
     // update tissues
     for (auto tissue: _tissues) {
-        tissue->addDepthChangingDiveStep(DiveEquations::depthInMetersToBars(fromDepthInMeter), DiveEquations::depthInMetersToBars(toDepthInMeter), diveGas->getN2(),
-                                         diveGas->getHe(), durationInSeconds);
+        tissue->addDepthChangingDiveStep(DiveEquations::depthInMetersToBars(fromDepthInMeter), DiveEquations::depthInMetersToBars(toDepthInMeter), diveGas->getN2frac(),
+                                         diveGas->getHefrac(), durationInSeconds);
     }
     return durationInSeconds;
 }

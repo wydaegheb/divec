@@ -14,6 +14,8 @@ MainPage::MainPage(Display *display, DecoManager *decoManager) : Page(MAIN_PAGE,
     _gasMix = new StringValueWidget(_display, "O2/HE", 90, BOTTOM_ROW_Y, 75, 65);
     _ndl = new NumberValueWidget(_display, "NDL", 0, 190, BOTTOM_ROW_Y, 50, 65);
     _tts = new NumberValueWidget(_display, "TTS", 0, 250, BOTTOM_ROW_Y, 70, 65);
+
+    _bottomMenuItem = new BottomMenuWidget(_display, BOTTOM_ROW_Y);
 }
 
 MainPage::~MainPage() {
@@ -60,6 +62,8 @@ void MainPage::redraw() {
     _gasMix->redraw();
     _ndl->redraw();
     _tts->redraw();
+
+    _bottomMenuItem->redraw();
 }
 
 void MainPage::update() {
@@ -87,13 +91,34 @@ void MainPage::update() {
     }
 
     // middle row
-    _gasPO2->updateValue(DiveEquations::gasPressureInBars(DiveEquations::depthInMetersToBars(_dive->getCurrentDepthInMeters()), _decoManager->getCurrentGas()->getO2()));
+    _gasPO2->updateValue(DiveEquations::gasPressureInBars(DiveEquations::depthInMetersToBars(_dive->getCurrentDepthInMeters()), _decoManager->getCurrentGas()->getO2frac()));
 
     // bottom row
-    _mode->updateValue("OC");
-    _gasMix->updateValue(_decoManager->getCurrentGas()->getName());
-    _ndl->updateValue(_decoManager->getNdlInSeconds() / 60.0);
-    _tts->updateValue(plan->getTtsInSeconds() / 60.0);
+    if (_showBottomMenuItem) {
+        _mode->hide();
+        _gasMix->hide();
+        _ndl->hide();
+        _tts->hide();
+        _bottomMenuItem->setText(_bottomMenuItemText);
+    } else {
+        _bottomMenuItem->hide();
+        _mode->updateValue("OC");
+        _gasMix->updateValue(_decoManager->getCurrentGas()->getName());
+        _ndl->updateValue(_decoManager->getNdlInSeconds() / 60.0);
+        _tts->updateValue(plan->getTtsInSeconds() / 60.0);
+    }
+
+}
+
+void MainPage::clearBottomMenuItem() {
+    _showBottomMenuItem = false;
+    update();
+}
+
+void MainPage::setBottomMenuItem(char const *text) {
+    _showBottomMenuItem = true;
+    _bottomMenuItemText = text;
+    update();
 }
 
 

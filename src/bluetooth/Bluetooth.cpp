@@ -35,6 +35,7 @@ int8_t Bluetooth::receive() const {
     int8_t bleCommand = -1;
     if (_bleSpiFriend->available()) {
         bleCommand = _bleSpiFriend->read();
+        bleCommand -= 48;
         if (bleCommand > 0 && (bleCommand < 5 || bleCommand > 9)) {
             Serial.print(F("Unknown bluetooth command received! command: "));
             Serial.println(bleCommand);

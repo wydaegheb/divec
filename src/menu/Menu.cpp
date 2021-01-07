@@ -1,95 +1,36 @@
 #include "Menu.h"
 
-ListRuntimeMenuItem menuGasses(13, 0, &Menu::fnGassesRtCall, nullptr);
+const AnyMenuInfo PROGMEM minfoExit = {"[..]", 5, 0xFFFF, 0, &Menu::onExit};
 
 const char enumStrDensity_0[] PROGMEM = "Salt";
 const char enumStrDensity_1[] PROGMEM = "Fresh";
 const char *const enumStrDensity[] PROGMEM = {enumStrDensity_0, enumStrDensity_1};
-const EnumMenuInfo PROGMEM minfoDensity = {"Density", 3, 0xFFFF, 1, &Menu::onWaterDensity, enumStrDensity};
-EnumMenuItem menuDensity(&minfoDensity, 0, &menuGasses);
+const EnumMenuInfo PROGMEM minfoDensity = {"Salinity", 3, 0xFFFF, 1, &Menu::onWaterDensity, enumStrDensity};
+
+const char enumStrAlgorithm_0[] PROGMEM = "GF ZHL16B";
+const char enumStrAlgorithm_1[] PROGMEM = "GF ZHL16C";
+const char *const enumStrAlgorithm[] PROGMEM = {enumStrAlgorithm_0, enumStrAlgorithm_1};
+const EnumMenuInfo PROGMEM minfoAlgorithm = {"Algorithm", 4, 0xFFFF, 1, &Menu::onAlgorithm, enumStrAlgorithm};
 
 const char enumStrLastStop_0[] PROGMEM = "3 m";
 const char enumStrLastStop_1[] PROGMEM = "6 m";
 const char *const enumStrLastStop[] PROGMEM = {enumStrLastStop_0, enumStrLastStop_1};
 const EnumMenuInfo PROGMEM minfoLastStop = {"Last Stop", 11, 0xFFFF, 1, &Menu::onLastStop, enumStrLastStop};
-EnumMenuItem menuLastStop(&minfoLastStop, 0, &menuDensity);
 
 const char enumStrDecoStepSize_0[] PROGMEM = "3 m";
 const char enumStrDecoStepSize_1[] PROGMEM = "6 m";
 const char *const enumStrDecoStepSize[] PROGMEM = {enumStrDecoStepSize_0, enumStrDecoStepSize_1};
 const EnumMenuInfo PROGMEM minfoDecoStepSize = {"Deco Step Size", 10, 0xFFFF, 1, &Menu::onDecoStepSize, enumStrDecoStepSize};
-EnumMenuItem menuDecoStepSize(&minfoDecoStepSize, 0, &menuLastStop);
-
-const char enumStrGFHigh_0[] PROGMEM = "100";
-const char enumStrGFHigh_1[] PROGMEM = "95";
-const char enumStrGFHigh_2[] PROGMEM = "90";
-const char enumStrGFHigh_3[] PROGMEM = "85";
-const char enumStrGFHigh_4[] PROGMEM = "80";
-const char enumStrGFHigh_5[] PROGMEM = "75";
-const char enumStrGFHigh_6[] PROGMEM = "70";
-const char enumStrGFHigh_7[] PROGMEM = "65";
-const char enumStrGFHigh_8[] PROGMEM = "60";
-const char enumStrGFHigh_9[] PROGMEM = "55";
-const char enumStrGFHigh_10[] PROGMEM = "50";
-const char enumStrGFHigh_11[] PROGMEM = "45";
-const char enumStrGFHigh_12[] PROGMEM = "40";
-const char enumStrGFHigh_13[] PROGMEM = "35";
-const char enumStrGFHigh_14[] PROGMEM = "30";
-const char enumStrGFHigh_15[] PROGMEM = "25";
-const char enumStrGFHigh_16[] PROGMEM = "20";
-const char enumStrGFHigh_17[] PROGMEM = "15";
-const char enumStrGFHigh_18[] PROGMEM = "10";
-const char enumStrGFHigh_19[] PROGMEM = "5";
-const char *const enumStrGFHigh[] PROGMEM = {enumStrGFHigh_0, enumStrGFHigh_1, enumStrGFHigh_2, enumStrGFHigh_3, enumStrGFHigh_4, enumStrGFHigh_5, enumStrGFHigh_6, enumStrGFHigh_7, enumStrGFHigh_8, enumStrGFHigh_9, enumStrGFHigh_10,
-                                             enumStrGFHigh_11, enumStrGFHigh_12, enumStrGFHigh_13, enumStrGFHigh_14, enumStrGFHigh_15, enumStrGFHigh_16, enumStrGFHigh_17, enumStrGFHigh_18, enumStrGFHigh_19};
-const EnumMenuInfo PROGMEM minfoGFHigh = {"GF High", 9, 0xFFFF, 19, &Menu::onGfHigh, enumStrGFHigh};
-EnumMenuItem menuGFHigh(&minfoGFHigh, 0, &menuDecoStepSize);
-
-const char enumStrGFLow_0[] PROGMEM = "5";
-const char enumStrGFLow_1[] PROGMEM = "10";
-const char enumStrGFLow_2[] PROGMEM = "15";
-const char enumStrGFLow_3[] PROGMEM = "20";
-const char enumStrGFLow_4[] PROGMEM = "25";
-const char enumStrGFLow_5[] PROGMEM = "30";
-const char enumStrGFLow_6[] PROGMEM = "35";
-const char enumStrGFLow_7[] PROGMEM = "40";
-const char enumStrGFLow_8[] PROGMEM = "45";
-const char enumStrGFLow_9[] PROGMEM = "50";
-const char enumStrGFLow_10[] PROGMEM = "55";
-const char enumStrGFLow_11[] PROGMEM = "60";
-const char enumStrGFLow_12[] PROGMEM = "65";
-const char enumStrGFLow_13[] PROGMEM = "70";
-const char enumStrGFLow_14[] PROGMEM = "75";
-const char enumStrGFLow_15[] PROGMEM = "80";
-const char enumStrGFLow_16[] PROGMEM = "85";
-const char enumStrGFLow_17[] PROGMEM = "90";
-const char enumStrGFLow_18[] PROGMEM = "95";
-const char enumStrGFLow_19[] PROGMEM = "100";
-const char *const enumStrGFLow[] PROGMEM = {enumStrGFLow_0, enumStrGFLow_1, enumStrGFLow_2, enumStrGFLow_3, enumStrGFLow_4, enumStrGFLow_5, enumStrGFLow_6, enumStrGFLow_7, enumStrGFLow_8, enumStrGFLow_9, enumStrGFLow_10, enumStrGFLow_11,
-                                            enumStrGFLow_12, enumStrGFLow_13, enumStrGFLow_14, enumStrGFLow_15, enumStrGFLow_16, enumStrGFLow_17, enumStrGFLow_18, enumStrGFLow_19};
-const EnumMenuInfo PROGMEM minfoGFLow = {"GF Low", 8, 0xFFFF, 19, &Menu::onGfLow, enumStrGFLow};
-EnumMenuItem menuGFLow(&minfoGFLow, 0, &menuGFHigh);
-
-const char enumStrAlgorithm_0[] PROGMEM = "ZHL16B";
-const char enumStrAlgorithm_1[] PROGMEM = "ZHL16C";
-const char *const enumStrAlgorithm[] PROGMEM = {enumStrAlgorithm_0, enumStrAlgorithm_1};
-const EnumMenuInfo PROGMEM minfoAlgorithm = {"Algorithm", 4, 0xFFFF, 1, &Menu::onAlgorithm, enumStrAlgorithm};
-EnumMenuItem menuAlgorithm(&minfoAlgorithm, 0, &menuGFLow);
-
-RENDERING_CALLBACK_NAME_INVOKE(fnTimeRtCall, timeItemRenderFn, "Time", -1, &Menu::onTime)
-
-TimeFormattedMenuItem menuTime(fnTimeRtCall, 2, (MultiEditWireType) EDITMODE_TIME_24H, &menuAlgorithm);
-
-RENDERING_CALLBACK_NAME_INVOKE(fnDateRtCall, dateItemRenderFn, "Date", -1, &Menu::onDate)
-
-DateFormattedMenuItem menuDate(fnDateRtCall, 1, &menuTime);
-
-const AnyMenuInfo PROGMEM minfoExit = {"..", 5, 0xFFFF, 0, &Menu::onExit};
-ActionMenuItem menuExit(&minfoExit, &menuDate);
 
 // define statics
 Display *Menu::_display;
 DecoManager *Menu::_decoManager;
+EnumMenuItem *Menu::_salinityMenuItem;
+EnumMenuItem *Menu::_lastStopMenuItem;
+EnumMenuItem *Menu::_decoStepSizeMenuItem;
+EnumMenuItem *Menu::_algorithmMenuItem;
+ActionMenuItem *Menu::_returnToMainMenuItem;
+
 
 void Menu::init(Display *display, DecoManager *decoManager) {
     Serial.println(F("Initializing main menu."));
@@ -97,26 +38,35 @@ void Menu::init(Display *display, DecoManager *decoManager) {
     _currentPage = new MainPage(display, decoManager);
     _display = display;
     _lastUpdateTimeInSeconds = Time::getTime();
+    update();
 
-    // register custom drawing handler (before starting tcmenu!)
+
+    // initialise back item
+    _returnToMainMenuItem = new ActionMenuItem(&minfoExit, nullptr);
+
+    // initialise "define gasses" menu
+    uint8_t lastGasIdx = _decoManager->getGasManager()->getNrOfGasses() - 1;
+    _gasFormattedMenuItems[lastGasIdx] = new GasFormattedMenuItem(_decoManager->getGasManager()->getGas(lastGasIdx), lastGasIdx, _returnToMainMenuItem);
+    for (int i = lastGasIdx - 1; i >= 0; i--) {
+        _gasFormattedMenuItems[i] = new GasFormattedMenuItem(_decoManager->getGasManager()->getGas(i), i, _gasFormattedMenuItems[i + 1]);
+    }
+
+    // initialise "settings" menu
+    _decoStepSizeMenuItem = new EnumMenuItem(&minfoDecoStepSize, 0, _returnToMainMenuItem);
+    _lastStopMenuItem = new EnumMenuItem(&minfoLastStop, 0, _decoStepSizeMenuItem);
+    _salinityMenuItem = new EnumMenuItem(&minfoDensity, 0, _lastStopMenuItem);
+    _gradientFactorsFormattedMenuItem = new GradientFactorsFormattedMenuItem(101, _salinityMenuItem);
+    _algorithmMenuItem = new EnumMenuItem(&minfoAlgorithm, 0, _gradientFactorsFormattedMenuItem);
+    _dateTimeFormattedMenuItem = new DateTimeFormattedMenuItem(100, _algorithmMenuItem);
+
+    // register custom drawing handler (before starting tcMenu!)
     _display->setCustomDrawingHandler(this);
 
-    // start tcmenu
-    DateTime now = DateTime(Time::getTime());
-    menuDate.setDate(DateStorage(now.day(), now.month(), now.year()));
-    menuTime.setTime(TimeStorage(now.hour(), now.minute(), now.second()));
-    menuDensity.setCurrentValue(Settings::SALINITY, true);
-    menuAlgorithm.setCurrentValue(Settings::ALGORITHM, true);
-    menuGFLow.setCurrentValue(Settings::GF_LOW * 100);
-    menuGFHigh.setCurrentValue(Settings::GF_HIGH * 100);
-    menuDecoStepSize.setCurrentValue(Settings::DECO_STEP_SIZE);
-    menuLastStop.setCurrentValue(Settings::LAST_STOP);
+    // initialise custom rotary encoder (button handler) with "wrap around"
+    EncoderNextOkButton::setupNextOkButtonEncoder(NEXT_BUTTON_PIN, OK_BUTTON_PIN, this);
 
-    EncoderNextOkButton::setupNextOkButtonEncoder(NEXT_BUTTON_PIN, OK_BUTTON_PIN);
-    EncoderNextOkButton::setMinYear(MIN_DATE_YEAR);
-    EncoderNextOkButton::setMaxYear(MAX_DATE_YEAR);
-    menuMgr.initWithoutInput(_display, &menuExit);
-
+    // start menu
+    menuMgr.initWithoutInput(_display, _dateTimeFormattedMenuItem);
 
     Serial.println(F(" - main menu initialized."));
 }
@@ -127,25 +77,54 @@ void Menu::update() {
 
 void Menu::reset() {
     // if we get here the display has been reset because of a timeout of the user interface -> takeover display from tcMenu
-    Serial.println(F(" - tcmenu - reset"));
+    Serial.println(F(" Tcmenu timeout - we take the screen back"));
     _display->takeOverDisplay();
 }
 
 void Menu::started(BaseMenuRenderer *currentRenderer) {
     // take over display has just been called -> clear screen and redraw our current custom page
-    Serial.println(F(" - tcmenu - started"));
+    Serial.println(F("Display transferred to us again. clear bottom menu, clear the display and redraw our custom page"));
+    _displayOwner = true;
+    _rootMenuItem = 0;
     _display->clear();
+    _currentPage->clearBottomMenuItem();
     _currentPage->redraw();
 }
 
-void Menu::renderLoop(unsigned int currentValue, RenderPressMode userClick) {
-    if (userClick) {
-        Menu::getDisplay()->giveBackDisplay();  // Enter menu system
-    } else {
-        // only update screen every second
+void Menu::renderLoop(unsigned int currentValue, RenderPressMode okButtonClicked) { // only called when tc menu doesn't own the display (i.e. if we can render custom screens)
+    if (okButtonClicked && _rootMenuItem > 0) { // we own the display but a menu is selected and the ok button is pressed -> switch to the selected menu and give control to tc menu
+
+        _displayOwner = false;
+        if (_rootMenuItem == 1) {
+            Serial.println(F("Settings menu selected"));
+            menuMgr.setRootMenu(_dateTimeFormattedMenuItem);
+        } else if (_rootMenuItem == 2) {
+            Serial.println(F("Define gasses menu selected"));
+            menuMgr.setRootMenu(_gasFormattedMenuItems[0]);
+        }
+        Serial.println(F("Display transferred to tc menu"));
+        Menu::getDisplay()->setHintsChanged(true);
+        Menu::getDisplay()->giveBackDisplay();  // Enter menu system (give display back to tc menu)
+
+    } else { // update our own custom screen (only once every second)
         if ((Time::getTime() - _lastUpdateTimeInSeconds) >= 1000) {
             update();
             _lastUpdateTimeInSeconds = Time::getTime();
+        }
+    }
+}
+
+void Menu::nextButtonClicked(bool held) {
+    if (_displayOwner) {
+        _rootMenuItem++;
+        _display->setRootMenu(_rootMenuItem);
+        if (_rootMenuItem == 1) {
+            _currentPage->setBottomMenuItem("Settings");
+        } else if (_rootMenuItem == 2) {
+            _currentPage->setBottomMenuItem("Define Gasses");
+        } else {
+            _currentPage->clearBottomMenuItem();
+            _rootMenuItem = 0;
         }
     }
 }
@@ -164,70 +143,30 @@ void CALLBACK_FUNCTION Menu::onExit(int id) {
     Menu::getDisplay()->takeOverDisplay();
 }
 
-void CALLBACK_FUNCTION Menu::onDate(int id) {
-    Serial.println(F("onDate"));
-    DateStorage dateStorage = menuDate.getDate();
-    Time::setDate(dateStorage.year, dateStorage.month, dateStorage.day);
-}
-
-void CALLBACK_FUNCTION Menu::onTime(int id) {
-    Serial.println(F("onTime"));
-    TimeStorage timeStorage = menuTime.getTime();
-    Time::setTime(timeStorage.hours, timeStorage.minutes, timeStorage.seconds);
-}
-
 void CALLBACK_FUNCTION Menu::onWaterDensity(int id) {
     Serial.println(F("onWaterDensity"));
-    Settings::SALINITY = menuDensity.getCurrentValue();
+    Settings::SALINITY = _salinityMenuItem->getCurrentValue();
 }
 
 void CALLBACK_FUNCTION Menu::onAlgorithm(int id) {
     Serial.println(F("onAlgorithm"));
-    Settings::ALGORITHM = menuAlgorithm.getCurrentValue();
-    Menu::getDecoManager()->setCurrentAlgorithmIndex(menuAlgorithm.getCurrentValue());
+    Settings::ALGORITHM = _algorithmMenuItem->getCurrentValue();
+    Menu::getDecoManager()->setCurrentAlgorithmIndex(_algorithmMenuItem->getCurrentValue());
 }
 
 void CALLBACK_FUNCTION Menu::onLastStop(int id) {
     Serial.println(F("onLastStop"));
-    Settings::LAST_STOP = menuLastStop.getCurrentValue();
+    Settings::LAST_STOP = _lastStopMenuItem->getCurrentValue();
 }
 
 void CALLBACK_FUNCTION Menu::onDecoStepSize(int id) {
     Serial.println(F("onDecoStepSize"));
-    Settings::DECO_STEP_SIZE = menuDecoStepSize.getCurrentValue();
+    Settings::DECO_STEP_SIZE = _decoStepSizeMenuItem->getCurrentValue();
 }
 
-void CALLBACK_FUNCTION Menu::onGfLow(int id) {
-    Serial.println(F("onGfLow"));
-    Settings::GF_LOW = menuGFLow.getCurrentValue();
-}
 
-void CALLBACK_FUNCTION Menu::onGfHigh(int id) {
-    Serial.println(F("onGfHigh"));
-    Settings::GF_HIGH = menuGFHigh.getCurrentValue();
-}
 
-int CALLBACK_FUNCTION Menu::fnGassesRtCall(RuntimeMenuItem *item, uint8_t row, RenderFnMode mode, char *buffer, int bufferSize) {
-    switch (mode) {
-        case RENDERFN_INVOKE:
-            // TODO - your code to invoke goes here - row is the index of the item
-            return true;
-        case RENDERFN_NAME:
-            // TODO - each row has it's own name (for list items row==LIST_PARENT_ITEMPOS is back)
-            ltoaClrBuff(buffer, row, 3, NOT_PADDED, bufferSize);
-            return true;
-        case RENDERFN_VALUE:
-            // TODO - return a value for the row (for list items row==LIST_PARENT_ITEMPOS is back)
-            buffer[0] = 'V';
-            buffer[1] = 0;
-            fastltoa(buffer, row, 3, NOT_PADDED, bufferSize);
-            return true;
-        case RENDERFN_EEPROM_POS:
-            return 0xFFFF; // lists are generally not saved to EEPROM
-        default:
-            return false;
-    }
-}
+
 
 
 

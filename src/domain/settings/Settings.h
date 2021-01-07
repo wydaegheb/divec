@@ -11,6 +11,10 @@
 #define BUHLMANN_B_GF 0
 #define BUHLMANN_C_GF 1
 
+const char SPACER_15[] PROGMEM = "               ";
+const char SPACER_10[] PROGMEM = "          ";
+const char SPACER_2[]  PROGMEM = "  ";
+
 class Settings final : public JsonSerializable {
 public:
 

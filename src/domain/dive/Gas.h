@@ -3,34 +3,48 @@
 
 #include <decomanager/algorithms/equations/DiveEquations.h>
 
+enum GasType : uint8_t {
+    GAS_TYPE_OC = 0,  // also used for bailout
+    GAS_TYPE_CC = 1
+};
 
 class Gas final : public JsonSerializable {
 public:
     Gas() = default;
 
-    Gas(double o2, char const *name);
+    explicit Gas(uint8_t o2, GasType gasType = GAS_TYPE_OC);
 
-    Gas(double o2, double he, char const *name);
+    Gas(uint8_t o2, uint8_t he, GasType gasType = GAS_TYPE_OC);
 
-    Gas(double o2, double he, char const *name, bool active);
+    Gas(uint8_t o2, uint8_t he, bool active, GasType gasType = GAS_TYPE_OC);
+
+    GasType getGasType() const;
+
+    void setGasType(GasType gasType);
 
     bool isActive() const;
 
     void setActive(bool active);
 
-    char const* getName();
+    char const *getName();
 
-    double getO2() const;
+    double getO2frac() const;
 
-    void setO2(double o2);
+    uint8_t getO2() const;
 
-    double getN2() const;
+    void setO2(uint8_t o2);
 
-    void setN2(double n2);
+    double getN2frac() const;
 
-    double getHe() const;
+    uint8_t getN2() const;
 
-    void setHe(double he);
+    void setN2(uint8_t n2);
+
+    double getHefrac() const;
+
+    uint8_t getHe() const;
+
+    void setHe(uint8_t he);
 
     bool isUsable(double pressureInBars) const;
 
@@ -45,17 +59,16 @@ public:
     size_t getJsonSize() final;
 
 private:
+    GasType _gasType;
+
     bool _active;
 
-    char const *_name;
-    char _mix[8];
+    // stored as integers (e.g. 20% o2 -> _o2 = 20). Total must be 100.
+    uint8_t _o2;
+    uint8_t _n2;
+    uint8_t _he;
 
-    // stored as fractions (e.g. 20% o2 -> _o2 = 0.2). Total must be 1.
-    double _o2;
-    double _n2;
-    double _he;
-
-    void resolveName();
+    char _name[10] = {0};
 
 };
 

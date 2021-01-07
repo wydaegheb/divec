@@ -1,15 +1,16 @@
 #include "FileSystem.h"
 
 
-void FileSystem::init() {
+bool FileSystem::init() {
     // SD Card initialization
     Serial.println(F("Initializing file system."));
     if (_sdFat.begin(SD_CS, SPI_HALF_SPEED)) {
         Serial.println(F(" - file system initialized."));
     } else {
         Serial.println(F("!!! SYSTEM ERROR !!!\n[Filesystem failed]"));
-        exit(0);
+        return false;
     }
+    return true;
 }
 
 

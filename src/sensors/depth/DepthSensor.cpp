@@ -1,6 +1,6 @@
 #include "DepthSensor.h"
 
-void DepthSensor::init(bool isMocked) {
+bool DepthSensor::init(bool isMocked) {
     Serial.println(F("Initializing depth sensor."));
     _mocked = isMocked;
     if (isMocked) {
@@ -11,7 +11,7 @@ void DepthSensor::init(bool isMocked) {
         Wire.begin();
         if (!_depthSensor.init()) {
             Serial.println(F("!!! SYSTEM ERROR !!!\n[Depth sensor failed]"));
-            exit(0);
+            return false;
         } else {
             //_depthSensor.setModel(DIVEC_MS5837::MS5837_02BA);
             _depthSensor.setModel(DIVEC_MS5837::MS5837_30BA);
@@ -24,6 +24,7 @@ void DepthSensor::init(bool isMocked) {
         _currentTemp = _depthSensor.temperature();
     }
     _lastUpdatedInMillis = millis();
+    return true;
 }
 
 double DepthSensor::pressureInBar() {

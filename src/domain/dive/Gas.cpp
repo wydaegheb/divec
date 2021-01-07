@@ -1,38 +1,37 @@
 #include "Gas.h"
 
-#include <utility>
-
-
 // Note to self: do not ever, ever put Serial.print in static constructors!!!!
 // Gets called before Serial is initialised -> crashes the board and takes ages to deduce what happened
-Gas::Gas(double o2, char const *name) {
+Gas::Gas(uint8_t o2, GasType gasType) {
     _o2 = o2;
-    _n2 = 1.0 - _o2;
-    _he = 0.0;
-    _name = name;
+    _n2 = 100 - _o2;
+    _he = 0;
     _active = true;
-
-    resolveName();
+    _gasType = gasType;
 }
 
-Gas::Gas(double o2, double he, char const *name) {
+Gas::Gas(uint8_t o2, uint8_t he, GasType gasType) {
     _o2 = o2;
     _he = he;
-    _n2 = 1.0 - _o2 - _he;
-    _name = name;
+    _n2 = 100 - _o2 - _he;
     _active = true;
-
-    resolveName();
+    _gasType = gasType;
 }
 
-Gas::Gas(double o2, double he, char const *name, bool active) {
+Gas::Gas(uint8_t o2, uint8_t he, bool active, GasType gasType) {
     _o2 = o2;
     _he = he;
-    _n2 = 1.0 - _o2 - _he;
-    _name = name;
+    _n2 = 100 - _o2 - _he;
     _active = active;
+    _gasType = gasType;
+}
 
-    resolveName();
+GasType Gas::getGasType() const {
+    return _gasType;
+}
+
+void Gas::setGasType(GasType gasType) {
+    _gasType = gasType;
 }
 
 bool Gas::isActive() const {
@@ -44,86 +43,94 @@ void Gas::setActive(bool active) {
 }
 
 char const *Gas::getName() {
-    return _name;
+    char o2Str[3];
+    utoa(_o2, o2Str, 10);
+
+    char heStr[3];
+    utoa(_he, heStr, 10);
+
+    _name[0] = 0;
+    strcat(_name, o2Str);
+    strcat(_name, "/");
+    strcat(_name, heStr);
 }
 
-double Gas::getO2() const {
+double Gas::getO2frac() const {
+    return _o2 / 100.0;
+}
+
+uint8_t Gas::getO2() const {
     return _o2;
 }
 
-void Gas::setO2(double o2) {
+void Gas::setO2(uint8_t o2) {
     _o2 = o2;
 }
 
-double Gas::getN2() const {
+double Gas::getN2frac() const {
+    return _n2 / 100.0;
+}
+
+uint8_t Gas::getN2() const {
     return _n2;
 }
 
-void Gas::setN2(double n2) {
+void Gas::setN2(uint8_t n2) {
     _n2 = n2;
 }
 
-double Gas::getHe() const {
+double Gas::getHefrac() const {
+    return _he / 100.0;
+}
+
+uint8_t Gas::getHe() const {
     return _he;
 }
 
-void Gas::setHe(double he) {
+void Gas::setHe(uint8_t he) {
     _he = he;
 }
 
 uint16_t Gas::calcMODInMeters() const { // result is max depth in meters before O2 becomes toxic
-    return DiveEquations::barToDepthInMeters(Settings::MAX_PPO2 / _o2);
+    return DiveEquations::barToDepthInMeters(Settings::MAX_PPO2 / getO2frac());
 }
 
 uint16_t Gas::calcENDInMeters(double pressureInBars) const { // result is equivalent narcotic depth in meters at the given actual pressure (input given in bars)
-    double narcIndex = _n2;
+    double narcIndex = getN2frac();
     if (Settings::O2_NARCOTIC) {
-        narcIndex += _o2;
+        narcIndex += getO2frac();
     }
     return DiveEquations::barToDepthInMeters(pressureInBars * narcIndex);
 }
 
 bool Gas::isUsable(double pressureInBars) const {
-    return (pressureInBars * _o2 < Settings::MAX_PPO2) && (calcENDInMeters(pressureInBars) < Settings::MAX_END);
-}
-
-void Gas::resolveName() {
-    uint8_t num = (uint8_t) (_o2 * 100);
-
-    char o2Str[3];
-    utoa(num, o2Str, 10);
-
-    char heStr[3];
-    utoa(num, heStr, 10);
-
-    strcat(_mix, o2Str);
-    strcat(_mix, "/");
-    strcat(_mix, heStr);
-
-    if (!_name) {
-        _name = _mix;
-    }
+    return (pressureInBars * getO2frac() < Settings::MAX_PPO2) && (calcENDInMeters(pressureInBars) < Settings::MAX_END);
 }
 
 JsonObject Gas::serializeObject(JsonObject &doc) {
-    doc["name"] = getName();
-    doc["o2"] = getO2();
-    doc["he"] = getHe();
+    doc["o2"] = _o2;
+    doc["he"] = _he;
+    doc["type"] = getGasType();
     doc["active"] = isActive();
     return doc;
 }
 
 void Gas::deserializeObject(JsonObject &doc) {
-    _name = doc["name"];
     _o2 = doc["o2"];
     _he = doc["he"];
+    _gasType = doc["type"];
     _active = doc["active"];
-    resolveName();
 }
 
 size_t Gas::getJsonSize() {
     return JSON_OBJECT_SIZE(4); // 4 properties
 }
+
+
+
+
+
+
 
 
 

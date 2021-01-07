@@ -5,35 +5,47 @@ WetContact DiveController::_wetContact;
 void DiveController::setup() {
     Serial.println(F("Initiating DiveController."));
 
-    // init file system (have to do this first as other initialisations are using it)
-    _fileSystem.init();
+    // init display
+    _display.init();
+
+    // init file system
+    if (!_fileSystem.init()) {
+        _display.drawSystemError("[Filesystem failed]");
+        exit(1);
+    }
 
     // init settings
     _settings.init(&_fileSystem);
 
     // init time
-    Time::init(USE_MOCK_TIME);
+    if (!Time::init(USE_MOCK_TIME)) {
+        _display.drawSystemError("[Real Time Clock not found]");
+        exit(1);
+    }
 
     // init depth sensor
-    _depthSensor.init(USE_MOCK_DEPTH_SENSOR);
+    if (!_depthSensor.init(USE_MOCK_DEPTH_SENSOR)) {
+        _display.drawSystemError("[Depth sensor failed]");
+        exit(1);
+    }
+
+    // init bluetooth
+    if (!_bluetooth.init()) {
+        _display.drawSystemError("[Bluetooth failed]");
+        exit(1);
+    }
 
     // init wet contact
     _wetContact.init(WET_CONTACT_PIN, &onWetContactChanged);
 
-    // init display
-    _display.init();
-
     //init deco manager
-    _decoManager.init(&_fileSystem, Time::getTime());
-
-    // init bluetooth
-    _bluetooth.init();
-
-    // reset last update time stamp
-    _lastUpdateTimeInSeconds = Time::getTime();
+    _decoManager.init(&_fileSystem);
 
     // init menu
     _menu.init(&_display, &_decoManager);
+
+    // reset last update time stamp
+    _lastUpdateTimeInSeconds = Time::getTime();
 
     Serial.println(F("DiveController ready"));
 }
@@ -56,7 +68,7 @@ void DiveController::step() {
     int8_t bleCommand = _bluetooth.receive();
 
     if (_depthSensor.isMocked() && bleCommand == BLE_INC_TIME_ONE_MIN) {
-        Time::incMockTime();
+        Time::incOneMinute();
     }
 
     if (_depthSensor.isMocked() && bleCommand == BLE_ASCENT_ONE_METER) {

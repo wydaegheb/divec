@@ -2,24 +2,24 @@
 #define DIVEC_MENU_H
 
 #include <tcMenu.h>
-#include <RuntimeMenuItem.h>
-#include <SwitchInput.h>
 
 #include <decomanager/DecoManager.h>
 #include <display/Display.h>
 #include <display/pages/Page.h>
 #include <display/pages/MainPage.h>
-#include "EncoderNextOkButton.h"
+#include <menu/encoder/EncoderNextOkButton.h>
+#include <menu/menuitems/GasFormattedMenuItem.h>
+#include <menu/menuitems/DateTimeFormattedMenuItem.h>
+#include <menu/menuitems/GradientFactorsFormattedMenuItem.h>
+
 
 #define NEXT_BUTTON_PIN A2
 #define OK_BUTTON_PIN A3
 
-
-
 // tcMenus callback functions must always include CALLBACK_FUNCTION after the return type
 #define CALLBACK_FUNCTION
 
-class Menu : public CustomDrawing {
+class Menu : public CustomDrawing, EncoderNextButtonListener {
 public:
     ~Menu() override = default;
 
@@ -31,7 +31,9 @@ public:
 
     void started(BaseMenuRenderer *currentRenderer) override;
 
-    void renderLoop(unsigned int currentValue, RenderPressMode userClick) override;
+    void renderLoop(unsigned int currentValue, RenderPressMode okButtonClicked) override;
+
+    void nextButtonClicked(bool held) override;
 
     static DecoManager *getDecoManager();
 
@@ -41,37 +43,33 @@ public:
 
     static void CALLBACK_FUNCTION onDecoStepSize(int id);
 
-    static void CALLBACK_FUNCTION onGfLow(int id);
-
-    static void CALLBACK_FUNCTION onGfHigh(int id);
-
     static void CALLBACK_FUNCTION onExit(int id);
 
     static void CALLBACK_FUNCTION onAlgorithm(int id);
 
     static void CALLBACK_FUNCTION onWaterDensity(int id);
 
-    static void CALLBACK_FUNCTION onTime(int id);
-
-    static void CALLBACK_FUNCTION onDate(int id);
-
-    static int CALLBACK_FUNCTION fnGassesRtCall(RuntimeMenuItem *item, uint8_t row, RenderFnMode mode, char *buffer, int bufferSize);
-
-
 private:
     static DecoManager *_decoManager;
     static Display *_display;
 
-    Page *_currentPage;
+    DateTimeFormattedMenuItem *_dateTimeFormattedMenuItem;
+    GradientFactorsFormattedMenuItem *_gradientFactorsFormattedMenuItem;
+    static EnumMenuItem *_algorithmMenuItem;
+    static EnumMenuItem *_salinityMenuItem;
+    static EnumMenuItem *_lastStopMenuItem;
+    static EnumMenuItem *_decoStepSizeMenuItem;
+
+    GasFormattedMenuItem *_gasFormattedMenuItems[MAX_GASSES];
+
+    static ActionMenuItem *_returnToMainMenuItem;
+
+    MainPage *_currentPage;
     uint32_t _lastUpdateTimeInSeconds;
 
-    static uint8_t getMaxMenuItemIndex(MenuItem *root);
+    uint8_t _rootMenuItem = 0;
+    bool _displayOwner = true;
 
-    static void onOkButtonPress(pinid_t key, bool heldDown);
-
-    static void onNextButtonPress(pinid_t key, bool heldDown);
-
-    static void onValueChanged(int value);
 };
 
 

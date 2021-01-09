@@ -15,6 +15,8 @@
 
 
 #define WET_CONTACT_PIN 11
+#define NEXT_BUTTON_PIN A2
+#define OK_BUTTON_PIN A3
 
 #define USE_MOCK_DEPTH_SENSOR true
 #define USE_MOCK_TIME false

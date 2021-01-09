@@ -32,7 +32,7 @@ EnumMenuItem *Menu::_algorithmMenuItem;
 ActionMenuItem *Menu::_returnToMainMenuItem;
 
 
-void Menu::init(Display *display, DecoManager *decoManager) {
+void Menu::init(uint8_t okButtonPin, uint8_t nextButtonPin, Display *display, DecoManager *decoManager) {
     Serial.println(F("Initializing main menu."));
     _decoManager = decoManager;
     _currentPage = new MainPage(display, decoManager);
@@ -63,7 +63,7 @@ void Menu::init(Display *display, DecoManager *decoManager) {
     _display->setCustomDrawingHandler(this);
 
     // initialise custom rotary encoder (button handler) with "wrap around"
-    EncoderNextOkButton::setupNextOkButtonEncoder(NEXT_BUTTON_PIN, OK_BUTTON_PIN, this);
+    EncoderNextOkButton::setupNextOkButtonEncoder(nextButtonPin, okButtonPin, this);
 
     // start menu
     menuMgr.initWithoutInput(_display, _dateTimeFormattedMenuItem);

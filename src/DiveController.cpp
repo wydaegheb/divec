@@ -42,7 +42,7 @@ void DiveController::setup() {
     _decoManager.init(&_fileSystem);
 
     // init menu
-    _menu.init(&_display, &_decoManager);
+    _menu.init(OK_BUTTON_PIN, NEXT_BUTTON_PIN, &_display, &_decoManager);
 
     // reset last update time stamp
     _lastUpdateTimeInSeconds = Time::getTime();

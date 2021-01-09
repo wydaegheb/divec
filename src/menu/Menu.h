@@ -12,10 +12,6 @@
 #include <menu/menuitems/DateTimeFormattedMenuItem.h>
 #include <menu/menuitems/GradientFactorsFormattedMenuItem.h>
 
-
-#define NEXT_BUTTON_PIN A2
-#define OK_BUTTON_PIN A3
-
 // tcMenus callback functions must always include CALLBACK_FUNCTION after the return type
 #define CALLBACK_FUNCTION
 
@@ -23,7 +19,7 @@ class Menu : public CustomDrawing, EncoderNextButtonListener {
 public:
     ~Menu() override = default;
 
-    void init(Display *display, DecoManager *decoManager);
+    void init(uint8_t okButtonPin, uint8_t nextButtonPin, Display *display, DecoManager *decoManager);
 
     void update();
 

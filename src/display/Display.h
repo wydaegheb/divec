@@ -11,16 +11,12 @@
 #include <display/bgimage/jellyfish.h>
 #include <domain/settings/Settings.h>
 
-#include <display/fonts/NotoSans_Condensed12pt7b.h>
-/*
-#include <display/fonts/NotoSans_Condensed14pt7b.h>
-*/
-#include <display/fonts/NotoSans_Condensed24pt7b.h>
-
-
-/*#include <display/fonts/FreeSans9pt7b.h>
-#include <display/fonts/FreeSans12pt7b.h>*/
+//#include <display/fonts/NotoSans_Condensed14pt7b.h>
+//#include <display/fonts/FreeSans9pt7b.h>
+//#include <display/fonts/FreeSans12pt7b.h>
 #include <display/fonts/FreeSans12pt7b.h>
+#include <display/fonts/NotoSans_Condensed12pt7b.h>
+#include <display/fonts/NotoSans_Condensed24pt7b.h>
 
 #define DISPLAY_HEIGHT 240
 #define DISPLAY_WIDTH 320
@@ -31,7 +27,6 @@
 #define ALIGN_LEFT 1
 #define ALIGN_CENTER 2
 #define ALIGN_RIGHT 3
-
 
 const char MENU_BACK_TEXT[] PROGMEM = "[..]";
 const char SETTINGS_TEXT[] PROGMEM = "SETTINGS";

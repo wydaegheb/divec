@@ -20,7 +20,8 @@ void BuhlmannTissue::resetTissue() {
     _pTotal = _pN2 + _pHe;
 }
 
-void BuhlmannTissue::update(double durationInMinutes, double beginPressureInBar, double endPressureInBar, double gasN2Fraction, double gasHeFraction) {
+void BuhlmannTissue::update(double durationInMinutes, double beginPressureInBar, double endPressureInBar,
+                            double gasN2Fraction, double gasHeFraction) {
     if (endPressureInBar == beginPressureInBar) { // flat
         addConstantDepthDiveStep(endPressureInBar, gasN2Fraction, gasHeFraction, durationInMinutes);
     } else { // Ascent or Descent
@@ -28,29 +29,38 @@ void BuhlmannTissue::update(double durationInMinutes, double beginPressureInBar,
     }
 }
 
-void BuhlmannTissue::addConstantDepthDiveStep(double pressureInBar, double gasN2Fraction, double gasHeFraction, double durationInMinutes) {
+void BuhlmannTissue::addConstantDepthDiveStep(double pressureInBar, double gasN2Fraction, double gasHeFraction,
+                                              double durationInMinutes) {
     //Calculate nitrogen loading
-    double ppN2Inspired = DiveEquations::gasPressureBreathingInBars(pressureInBar, gasN2Fraction); // current ambient N2 pressure
+    double ppN2Inspired = DiveEquations::gasPressureBreathingInBars(pressureInBar,
+                                                                    gasN2Fraction); // current ambient N2 pressure
     _pN2 = DiveEquations::instantaneousEquation(_pN2, ppN2Inspired, durationInMinutes, _n2TimeConstant);
 
     //Calculate helium Loading
-    double ppHeInspired = DiveEquations::gasPressureBreathingInBars(pressureInBar, gasHeFraction); // current ambient He pressure
+    double ppHeInspired = DiveEquations::gasPressureBreathingInBars(pressureInBar,
+                                                                    gasHeFraction); // current ambient He pressure
     _pHe = DiveEquations::instantaneousEquation(_pHe, ppHeInspired, durationInMinutes, _heTimeConstant);
 
     //Calculate total loading
     _pTotal = _pN2 + _pHe;
 }
 
-void BuhlmannTissue::addDepthChangingDiveStep(double startPressureInBars, double endPressureInBars, double gasN2Fraction, double gasHeFraction, double durationInMinutes) {
+void
+BuhlmannTissue::addDepthChangingDiveStep(double startPressureInBars, double endPressureInBars, double gasN2Fraction,
+                                         double gasHeFraction, double durationInMinutes) {
     //Calculate nitrogen loading
-    double gasRateN2 = DiveEquations::gasRateInBarsPerMinute(startPressureInBars, endPressureInBars, durationInMinutes, gasN2Fraction);
-    double ppN2Inspired = DiveEquations::gasPressureBreathingInBars(startPressureInBars, gasN2Fraction); // ambient N2 pressure at start
+    double gasRateN2 = DiveEquations::gasRateInBarsPerMinute(startPressureInBars, endPressureInBars, durationInMinutes,
+                                                             gasN2Fraction);
+    double ppN2Inspired = DiveEquations::gasPressureBreathingInBars(startPressureInBars,
+                                                                    gasN2Fraction); // ambient N2 pressure at start
 
     _pN2 = DiveEquations::schreinerEquation(_pN2, ppN2Inspired, durationInMinutes, _n2TimeConstant, gasRateN2);
 
     //Calculate helium Loading
-    double gasRateHe = DiveEquations::gasRateInBarsPerMinute(startPressureInBars, endPressureInBars, durationInMinutes, gasHeFraction);
-    double ppHeInspired = DiveEquations::gasPressureBreathingInBars(startPressureInBars, gasHeFraction); // ambient He pressure at start
+    double gasRateHe = DiveEquations::gasRateInBarsPerMinute(startPressureInBars, endPressureInBars, durationInMinutes,
+                                                             gasHeFraction);
+    double ppHeInspired = DiveEquations::gasPressureBreathingInBars(startPressureInBars,
+                                                                    gasHeFraction); // ambient He pressure at start
 
     _pHe = DiveEquations::schreinerEquation(_pHe, ppHeInspired, durationInMinutes, _heTimeConstant, gasRateHe);
 

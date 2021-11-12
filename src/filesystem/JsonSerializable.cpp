@@ -11,6 +11,8 @@ DeserializationError JsonSerializable::load(File *file) {
 
     DeserializationError error = deserializeJson(doc, *file);
     if (error) { // stop deserializing if json parse failed
+        Serial.print(F("Loading failed - abstract: error:"));
+        Serial.println(error.f_str());
         return error;
     }
 

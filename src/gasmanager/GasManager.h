@@ -8,13 +8,8 @@
 
 class GasManager : public JsonSerializable {
 public:
-    // default gasses
+    // default gass AIR
     static Gas AIR;
-    static Gas NX32;
-    static Gas NX36;
-    static Gas NX40;
-    static Gas NX50;
-    static Gas TX18_35;
 
     void clear();
 

@@ -2,11 +2,6 @@
 
 
 Gas GasManager::AIR = Gas(21);
-Gas GasManager::NX32 = Gas(32);
-Gas GasManager::NX36 = Gas(36);
-Gas GasManager::NX40 = Gas(40);
-Gas GasManager::NX50 = Gas(50);
-Gas GasManager::TX18_35 = Gas(18, 35);
 
 void GasManager::init(FileSystem *fileSystem) {
     loadDefaultGasses(); // initialise with default gasses
@@ -21,6 +16,8 @@ void GasManager::clear() {
     }
     _nrOfGasses = 0;
     _currentGas = nullptr;
+    Serial.println(F("clear gasses done"));
+
 }
 
 void GasManager::addGas(Gas *divegas) {
@@ -75,14 +72,15 @@ uint8_t GasManager::getNrOfGasses() const {
 void GasManager::loadDefaultGasses() {
     clear();
 
-    addGas(&GasManager::AIR);
-    addGas(&GasManager::NX32);
-    addGas(&GasManager::NX36);
-    addGas(&GasManager::NX40);
-    addGas(&GasManager::NX50);
-    addGas(&GasManager::TX18_35);
+    Gas *AIR = new Gas(21);
+    addGas(AIR);
+    addGas(new Gas(32));
+    addGas(new Gas(36));
+    addGas(new Gas(40));
+    addGas(new Gas(50));
+    addGas(new Gas(18, 35));
 
-    _currentGas = &AIR;
+    _currentGas = AIR;
 }
 
 JsonObject GasManager::serializeObject(JsonObject &doc) {
@@ -114,7 +112,8 @@ void GasManager::deserializeObject(JsonObject &doc) {
 
 size_t GasManager::getJsonSize() {
     return JSON_OBJECT_SIZE(4) + // 1 properties (nrOf oc gasses) + 1 array
-           JSON_ARRAY_SIZE(MAX_GASSES) + MAX_GASSES * JSON_OBJECT_SIZE(4); // gasses array contains MAX_GASSES elements and each element has 4 properties
+           JSON_ARRAY_SIZE(MAX_GASSES) + MAX_GASSES * JSON_OBJECT_SIZE(
+            4); // gasses array contains MAX_GASSES elements and each element has 4 properties
 }
 
 

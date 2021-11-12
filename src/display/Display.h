@@ -2,7 +2,7 @@
 #define DIVEC_DIVE_DISPLAY_H
 
 #include <Adafruit_GFX.h>  // Core graphics library
-#include <Adafruit_ILI9341.h> // Hardware-specific library for ILI9341
+#include <Adafruit_ST7789.h> // Hardware-specific library for ST7789
 
 #include <BaseRenderers.h>
 #include <BaseDialog.h>
@@ -11,18 +11,12 @@
 #include <display/bgimage/jellyfish.h>
 #include <domain/settings/Settings.h>
 
-//#include <display/fonts/NotoSans_Condensed14pt7b.h>
-//#include <display/fonts/FreeSans9pt7b.h>
-//#include <display/fonts/FreeSans12pt7b.h>
 #include <display/fonts/FreeSans12pt7b.h>
 #include <display/fonts/NotoSans_Condensed12pt7b.h>
 #include <display/fonts/NotoSans_Condensed24pt7b.h>
 
 #define DISPLAY_HEIGHT 240
 #define DISPLAY_WIDTH 320
-
-#define TFT_CS 9
-#define TFT_DC 10
 
 #define ALIGN_LEFT 1
 #define ALIGN_CENTER 2
@@ -47,7 +41,33 @@ enum ButtonHint : uint8_t {
 };
 
 // display menu config
-typedef struct ColorGfxMenuConfig<const GFXfont *> DisplayConfig;
+struct DisplayConfig {
+    uint32_t bgTitleColor;
+    uint32_t fgTitleColor;
+    MenuPadding titlePadding;
+    const GFXfont *titleFont;
+
+    uint32_t bgItemColor;
+    uint32_t fgItemColor;
+    MenuPadding itemPadding;
+    const GFXfont *itemFont;
+
+    const GFXfont *bigValueFont;
+
+    uint32_t bgSelectColor;
+    uint32_t fgSelectColor;
+    uint32_t widgetColor;
+    MenuPadding widgetPadding;
+
+    const uint8_t *activeIcon;
+    const uint8_t *editIcon;
+    uint8_t editIconWidth;
+    uint8_t editIconHeight;
+
+    uint8_t titleBottomMargin;
+    uint8_t titleFontMagnification;
+    uint8_t itemFontMagnification;
+};
 
 class Display : public BaseMenuRenderer {
 public:
@@ -71,7 +91,8 @@ public:
 
     void drawBigValueNumber(double value, uint8_t numberOfDecimals, uint16_t leftX, uint16_t bottomY, uint16_t width);
 
-    void drawBigValueNumber(double value, uint8_t numberOfDecimals, uint16_t leftX, uint16_t bottomY, uint16_t width, uint8_t align);
+    void drawBigValueNumber(double value, uint8_t numberOfDecimals, uint16_t leftX, uint16_t bottomY, uint16_t width,
+                            uint8_t align);
 
     void drawBattery(uint8_t percentage, uint16_t leftX, uint16_t topY, uint16_t width, uint16_t height);
 
@@ -119,7 +140,7 @@ private:
     void prepareConfig();
 
 
-    Adafruit_ILI9341 *_tft;
+    Adafruit_ST7789 *_tft;
     DisplayConfig *_config;
 
     int16_t titleHeight;

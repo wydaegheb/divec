@@ -15,7 +15,8 @@ public:
      * @param gasRate Rate of descent/ascent in bar times the fraction of inert gas.
      * @return The end compartment inert gas pressure in bar.
      */
-    static double schreinerEquation(double pBegin, double pGas, double durationInMinutes, double timeConstant, double gasRate);
+    static double
+    schreinerEquation(double pBegin, double pGas, double durationInMinutes, double timeConstant, double gasRate);
 
 
     /**
@@ -56,7 +57,8 @@ public:
      * @param fGas The fraction of gas to calculate for
      * @return The gas loading rate in bars times the fraction of inert gas.
      */
-    static double gasRateInBarsPerMinute(double startPressureInBars, double endPressureInBars, double durationInMinutes, double fGas);
+    static double
+    gasRateInBarsPerMinute(double startPressureInBars, double endPressureInBars, double durationInMinutes, double fGas);
 
     /**
      * Calculates the absolute pressure (in bars) for 1 cubic meter of water for the given depth (meters).
@@ -86,7 +88,9 @@ public:
     */
     static double gasCcrPressureBreathingInBars(double depthInMeters, double fGas, double fO2, double setPoint);
 
-    static double ccrSchreinerEquation(double pBegin, double inertFraction, double o2Fraction, double halfTime, double duration, double beginDepth, double endDepth, double setPoint);
+    static double
+    ccrSchreinerEquation(double pBegin, double inertFraction, double o2Fraction, double halfTime, double duration,
+                         double beginDepth, double endDepth, double setPoint);
 
 };
 

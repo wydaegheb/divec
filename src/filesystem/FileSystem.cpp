@@ -4,7 +4,7 @@
 bool FileSystem::init() {
     // SD Card initialization
     Serial.println(F("Initializing file system."));
-    if (_sdFat.begin(SD_CS, SPI_HALF_SPEED)) {
+    if (SD.begin(TF_CS)) {
         Serial.println(F(" - file system initialized."));
     } else {
         Serial.println(F("!!! SYSTEM ERROR !!!\n[Filesystem failed]"));
@@ -66,13 +66,24 @@ void FileSystem::saveDiveLog(JsonSerializable *dive, uint16_t diveNr) {
     snprintf(fileName, 100, "dv_%d.jsn", diveNr);
     if (_diveLogFile) { // if a log exists -> remove it first.
         Serial.println(F("This should not be possible! Log for this dive already exists! - Removing previous file."));
-        _diveLogFile.remove();
+        SD.remove(fileName);
     }
     saveToJsonFile(fileName, dive);
     snprintf(fileName, 100, "pr_%d.jsn", diveNr);
-    if (!_sdFat.rename(TMP_LOG_FILE, fileName)) {
+
+    size_t n;
+    uint8_t buf[64];
+    File tmpFile = SD.open(TMP_LOG_FILE);
+    File finalLogFile = SD.open(fileName);
+    if (!tmpFile && !finalLogFile) {
         Serial.println(F("Rename tmp log dive steps failed!"));
+    } else {
+        while ((n = tmpFile.read(buf, sizeof(buf))) > 0) {
+            finalLogFile.write(buf, n);
+        }
     }
+    tmpFile.close();
+    finalLogFile.close();
 }
 
 void FileSystem::saveDiveLogStep(JsonObject diveStep) {
@@ -82,7 +93,7 @@ void FileSystem::saveDiveLogStep(JsonObject diveStep) {
 
 
     // Open file for writing
-    File file = _sdFat.open(TMP_LOG_FILE, FILE_WRITE);
+    File file = SD.open(TMP_LOG_FILE, FILE_WRITE);
 
     // if the filesystem opened okay, write to it:
     if (file) {
@@ -100,7 +111,7 @@ void FileSystem::saveDiveLogStep(JsonObject diveStep) {
 }
 
 void FileSystem::removeTmpDiveLog() {
-    _sdFat.remove(TMP_LOG_FILE);
+    SD.remove(TMP_LOG_FILE);
 }
 
 
@@ -111,7 +122,7 @@ bool FileSystem::loadFromJsonFile(char const *fileName, JsonSerializable *jsonSe
     Serial.print(F(" - "));
 
     // open the file for reading
-    File file = _sdFat.open(fileName);
+    File file = SD.open(fileName);
 
     // if the file opened okay, load from it:
     if (file && file.size() > 10) {
@@ -142,7 +153,7 @@ bool FileSystem::saveToJsonFile(const char *fileName, JsonSerializable *jsonSeri
     Serial.print(F(" - "));
 
     // Open file for writing
-    File file = _sdFat.open(fileName, FILE_WRITE);
+    File file = SD.open(fileName, FILE_WRITE);
 
     // if the filesystem opened okay, write to it:
     if (file) {

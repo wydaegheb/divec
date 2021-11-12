@@ -17,8 +17,11 @@ void BuhlmannAlgorithm::applySurfaceInterval(uint32_t duration) {
     _buhlmannGasLoading->applySurfaceInterval(duration);
 }
 
-void BuhlmannAlgorithm::update(uint32_t beginTimeInSeconds, uint32_t endTimeInSeconds, Gas *gas, double beginPressureInBar, double endPressureInBar) {
-    _buhlmannGasLoading->update(beginTimeInSeconds, endTimeInSeconds, beginPressureInBar, endPressureInBar, gas->getN2frac(), gas->getHefrac());
+void
+BuhlmannAlgorithm::update(uint32_t beginTimeInSeconds, uint32_t endTimeInSeconds, Gas *gas, double beginPressureInBar,
+                          double endPressureInBar) {
+    _buhlmannGasLoading->update(beginTimeInSeconds, endTimeInSeconds, beginPressureInBar, endPressureInBar,
+                                gas->getN2frac(), gas->getHefrac());
 }
 
 DecompressionPlan *BuhlmannAlgorithm::getDecoPlan(GasManager *gasManager, uint32_t runtimeInSeconds) {

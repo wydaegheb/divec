@@ -9,7 +9,8 @@ class DepthSensor {
 public:
     DepthSensor() = default;
 
-    bool init(bool isMocked); // this code would normally go into the constructor but then Serial.begin() is not yet called -> program locks up when doing Serial.print in constructor
+    bool
+    init(bool isMocked); // this code would normally go into the constructor but then Serial.begin() is not yet called -> program locks up when doing Serial.print in constructor
 
     void read();
 

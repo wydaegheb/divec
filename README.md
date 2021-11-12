@@ -13,7 +13,7 @@ Software for my own dive computer using Buhlmann ZHL A/B/C algorithm with Gradie
   * After several failures in getting the right version from Ali Express (I always got the 2 bar version instead of the 30 bar even when it clearly stated that it was the 30 bar version)
     I ordered the following sensor from Ali Express after reading the tips from Damien Siviero on Facebook (CCR custom builders)
     This is the correct version
-    Tips for young players:
+    Tips:
     1. Be super gentle, flat push insert only. Twist and you break the sensor.
     2. The tiny orings are common for watch crown seals, 3.6x1.7x0.8mm fits nicely. … Meer weergeven
     US $10.75 8% OFF|1pcs GY MS5837 02BA 30BA High Precision Gas Liquid Waterproof Pressure Sensor Module|Integrated Circuits| - AliExpress

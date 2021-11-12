@@ -15,7 +15,7 @@
 // tcMenus callback functions must always include CALLBACK_FUNCTION after the return type
 #define CALLBACK_FUNCTION
 
-class Menu : public CustomDrawing, EncoderNextButtonListener {
+class Menu : public CustomDrawing, EncoderNextButtonListener, EncoderOkButtonListener {
 public:
     ~Menu() override = default;
 
@@ -30,6 +30,8 @@ public:
     void renderLoop(unsigned int currentValue, RenderPressMode okButtonClicked) override;
 
     void nextButtonClicked(bool held) override;
+
+    void okButtonClicked(bool held) override;
 
     static DecoManager *getDecoManager();
 

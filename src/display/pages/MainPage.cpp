@@ -91,7 +91,9 @@ void MainPage::update() {
     }
 
     // middle row
-    _gasPO2->updateValue(DiveEquations::gasPressureInBars(DiveEquations::depthInMetersToBars(_dive->getCurrentDepthInMeters()), _decoManager->getCurrentGas()->getO2frac()));
+    _gasPO2->updateValue(
+            DiveEquations::gasPressureInBars(DiveEquations::depthInMetersToBars(_dive->getCurrentDepthInMeters()),
+                                             _decoManager->getCurrentGas()->getO2frac()));
 
     // bottom row
     if (_showBottomMenuItem) {

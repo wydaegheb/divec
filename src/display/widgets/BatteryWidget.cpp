@@ -1,13 +1,14 @@
 #include "BatteryWidget.h"
 
-BatteryWidget::BatteryWidget(Display *display, uint16_t leftX, uint16_t topY, uint16_t width, uint16_t height) : Widget(display, leftX, topY, width, height) {
+BatteryWidget::BatteryWidget(Display *display, uint16_t leftX, uint16_t topY, uint16_t width, uint16_t height) : Widget(
+        display, leftX, topY, width, height) {
     readBattery();
     updateValue();
 }
 
 void BatteryWidget::readBattery() {
     _measuredvbat = analogRead(BATTERY_PIN);
-    _measuredvbat *= 2.0;    // we divided by 2 (double 100K resitor built in), so multiply back
+    _measuredvbat *= 2.0;    // we divided by 2 (double 100K resistor built in), so multiply back
     _measuredvbat *= 3.3;    // Multiply by 3.3V, our reference voltage
     _measuredvbat /= 1024.0; // convert to voltage
 

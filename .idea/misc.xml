@@ -3,13 +3,8 @@
   <component name="CMakeWorkspace" PROJECT_DIR="$PROJECT_DIR$" />
   <component name="CidrRootsConfiguration">
     <sourceRoots>
+      <file path="$PROJECT_DIR$/.pio/libdeps/lolin_d32_pro" />
       <file path="$PROJECT_DIR$/src" />
-      <file path="$PROJECT_DIR$/src/mockdive" />
-      <file path="$PROJECT_DIR$/test" />
     </sourceRoots>
   </component>
-  <component name="JavaScriptSettings">
-    <option name="languageLevel" value="ES6" />
-  </component>
-  <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.7 (divec)" project-jdk-type="Python SDK" />
 </project>

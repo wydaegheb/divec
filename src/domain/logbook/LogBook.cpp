@@ -16,7 +16,8 @@ void LogBook::initTmpDiveLog() {
 }
 
 
-void LogBook::addDiveStep(uint32_t endTimeInSeconds, double pressureInBar, double temperatureInCelsius, const char *gasName) {
+void LogBook::addDiveStep(uint32_t endTimeInSeconds, double pressureInBar, double temperatureInCelsius,
+                          const char *gasName) {
     DynamicJsonDocument doc(JSON_OBJECT_SIZE(4) + 50);
     doc["end_time"] = endTimeInSeconds;
     doc["pres"] = pressureInBar;

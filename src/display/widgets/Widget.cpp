@@ -1,6 +1,6 @@
 #include "Widget.h"
 
-Widget::Widget(Display *display, uint16_t leftX, uint16_t topY, uint16_t width, uint16_t height,bool hidden) {
+Widget::Widget(Display *display, uint16_t leftX, uint16_t topY, uint16_t width, uint16_t height, bool hidden) {
     _display = display;
     _leftX = leftX;
     _topY = topY;

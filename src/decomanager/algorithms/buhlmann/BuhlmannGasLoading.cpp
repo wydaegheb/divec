@@ -17,10 +17,12 @@ void BuhlmannGasLoading::resetTissues() {
 }
 
 void BuhlmannGasLoading::applySurfaceInterval(uint32_t durationInSeconds) {
-    update(0, durationInSeconds, Settings::SURFACE_PRESSURE, Settings::SURFACE_PRESSURE, GasManager::AIR.getN2frac(), GasManager::AIR.getHefrac());
+    update(0, durationInSeconds, Settings::SURFACE_PRESSURE, Settings::SURFACE_PRESSURE, GasManager::AIR.getN2frac(),
+           GasManager::AIR.getHefrac());
 }
 
-void BuhlmannGasLoading::update(uint32_t beginTimeInSeconds, uint32_t endTimeInSeconds, double beginPressureInBar, double endPressureInBar, double gasN2Fraction, double gasHeFraction) {
+void BuhlmannGasLoading::update(uint32_t beginTimeInSeconds, uint32_t endTimeInSeconds, double beginPressureInBar,
+                                double endPressureInBar, double gasN2Fraction, double gasHeFraction) {
     double durationInMinutes = (endTimeInSeconds - beginTimeInSeconds) / 60.0;
     for (auto &_tissue : _tissues) {
         _tissue->update(durationInMinutes, beginPressureInBar, endPressureInBar, gasN2Fraction, gasHeFraction);
@@ -54,7 +56,8 @@ DecompressionPlan *BuhlmannGasLoading::getDecoPlan(GasManager *gasManager, uint3
     // we cannot come up directly to the ceiling we just calculated as in very rare cases the ceiling comes further down during our ascent to this ceiling
     // due to further on-gassing in the way up. (EC Baker "Note: this situation is a possibility when ascending from extremely deep dives or due to an unusual gas mix selection.")
     double ceilingInMeter = getCeilingInMeters(Settings::GF_LOW);
-    double nextDepthInDecoStepSize = floor((currentDepthInMeters / Settings::DECO_STEP_SIZE) - 0.5) * Settings::DECO_STEP_SIZE;
+    double nextDepthInDecoStepSize =
+            floor((currentDepthInMeters / Settings::DECO_STEP_SIZE) - 0.5) * Settings::DECO_STEP_SIZE;
     Gas *currentGas = gasManager->getCurrentGas();
     while (nextDepthInDecoStepSize > ceilingInMeter) {
         runtimeInSeconds += addDecoDepthChange(currentDepthInMeters, nextDepthInDecoStepSize, currentGas, decoPlan);
@@ -67,7 +70,8 @@ DecompressionPlan *BuhlmannGasLoading::getDecoPlan(GasManager *gasManager, uint3
     // do stops every DECO_STEP_SIZE (3m) till we reach the surface
     double decoStopDepth = currentDepthInMeters;
     double nextDecoStopDepth = nextDepthInDecoStepSize;
-    double gfChangePerMeter = (Settings::GF_HIGH - Settings::GF_LOW) / -decoStopDepth;// Calculate Gradient factor slope (note GF_LOW is applied starting at the first deco stop and not from the bottom)
+    double gfChangePerMeter = (Settings::GF_HIGH - Settings::GF_LOW) /
+                              -decoStopDepth;// Calculate Gradient factor slope (note GF_LOW is applied starting at the first deco stop and not from the bottom)
     double gradientFactor;
     while (decoStopDepth > 0) {
         gradientFactor = Settings::GF_HIGH + (gfChangePerMeter * nextDecoStopDepth);
@@ -76,10 +80,14 @@ DecompressionPlan *BuhlmannGasLoading::getDecoPlan(GasManager *gasManager, uint3
             // The part "Settings::MIN_STOP_TIME - secondsAboveMinDecoStopTimeMutliple(runtimeInSeconds)" rounds the runtime to next decostepsize (this seems to be for "cosmetic purposes" but as ECBaker does it, it is needed to get the exact same results)
             // this means that the first stop is NOT a multiple of Settings::MIN_STOP_TIME (stop can be smaller than Settings::MIN_STOP_TIME). By rounding up when printing the result this is "hidden" (a stop of 1.5 min becomes 2 min) but
             // if you look closely you'll see that the runtime doesn't match the rounded decostops.
-            runtimeInSeconds += addDecoStop(decoStopDepth, Settings::MIN_STOP_TIME - secondsAboveMinDecoStopTimeMultiple(runtimeInSeconds), currentGas, decoPlan);
-            ceilingInMeter = getCeilingInMeters(gradientFactor); // recalculate the ceiling (once the ceiling becomes higher than the next decostop we ascend to the next decostop.)
+            runtimeInSeconds += addDecoStop(decoStopDepth, Settings::MIN_STOP_TIME -
+                                                           secondsAboveMinDecoStopTimeMultiple(runtimeInSeconds),
+                                            currentGas, decoPlan);
+            ceilingInMeter = getCeilingInMeters(
+                    gradientFactor); // recalculate the ceiling (once the ceiling becomes higher than the next decostop we ascend to the next decostop.)
         }
-        runtimeInSeconds += addDecoDepthChange(decoStopDepth, nextDecoStopDepth, currentGas, decoPlan); // add ascent to next decostop
+        runtimeInSeconds += addDecoDepthChange(decoStopDepth, nextDecoStopDepth, currentGas,
+                                               decoPlan); // add ascent to next decostop
 
         // update stop and next stop
         decoStopDepth = nextDecoStopDepth;
@@ -113,7 +121,8 @@ uint32_t BuhlmannGasLoading::getNdlInSeconds(GasManager *gasManager) {
     while (ceilingInMeter <= 0.0 && ndlStopTimeInSeconds < MAX_NDL) {
         // simulate adding gas loading on current depth and current gas for Settings::MIN_STOP_TIME
         for (auto _tissue : _tissues) {
-            _tissue->addConstantDepthDiveStep(_lastPressureInBar, gasManager->getCurrentGas()->getN2frac(), gasManager->getCurrentGas()->getHefrac(), Settings::MIN_STOP_TIME);
+            _tissue->addConstantDepthDiveStep(_lastPressureInBar, gasManager->getCurrentGas()->getN2frac(),
+                                              gasManager->getCurrentGas()->getHefrac(), Settings::MIN_STOP_TIME);
         }
         ndlStopTimeInSeconds += Settings::MIN_STOP_TIME;
         ceilingInMeter = getCeilingInMeters(Settings::GF_LOW); // check ceiling again
@@ -126,26 +135,31 @@ uint32_t BuhlmannGasLoading::getNdlInSeconds(GasManager *gasManager) {
 
 // private methods
 
-uint16_t BuhlmannGasLoading::addDecoStop(double depthInMeter, uint32_t durationInSeconds, Gas *diveGas, DecompressionPlan *decompressionPlan) {
+uint16_t BuhlmannGasLoading::addDecoStop(double depthInMeter, uint32_t durationInSeconds, Gas *diveGas,
+                                         DecompressionPlan *decompressionPlan) {
     decompressionPlan->addStop(diveGas, durationInSeconds, depthInMeter);
     // update tissues
     for (auto tissue : _tissues) {
-        tissue->addConstantDepthDiveStep(DiveEquations::depthInMetersToBars(depthInMeter), diveGas->getN2frac(), diveGas->getHefrac(), durationInSeconds);
+        tissue->addConstantDepthDiveStep(DiveEquations::depthInMetersToBars(depthInMeter), diveGas->getN2frac(),
+                                         diveGas->getHefrac(), durationInSeconds);
     }
     return durationInSeconds;
 }
 
-uint16_t BuhlmannGasLoading::addDecoDepthChange(double fromDepthInMeter, double toDepthInMeter, Gas *diveGas, DecompressionPlan *decompressionPlan) {
+uint16_t BuhlmannGasLoading::addDecoDepthChange(double fromDepthInMeter, double toDepthInMeter, Gas *diveGas,
+                                                DecompressionPlan *decompressionPlan) {
 
     // take us to the next step depth at the fastest ascent rate possible.
-    double durationInSeconds = ((fromDepthInMeter - toDepthInMeter) / getAscentRateInMeterPerMinute(fromDepthInMeter, diveGas)) * 60.0;
+    double durationInSeconds =
+            ((fromDepthInMeter - toDepthInMeter) / getAscentRateInMeterPerMinute(fromDepthInMeter, diveGas)) * 60.0;
 
     // add to plan
     decompressionPlan->addDecoDepthChange(diveGas, durationInSeconds, fromDepthInMeter, toDepthInMeter);
 
     // update tissues
     for (auto tissue: _tissues) {
-        tissue->addDepthChangingDiveStep(DiveEquations::depthInMetersToBars(fromDepthInMeter), DiveEquations::depthInMetersToBars(toDepthInMeter), diveGas->getN2frac(),
+        tissue->addDepthChangingDiveStep(DiveEquations::depthInMetersToBars(fromDepthInMeter),
+                                         DiveEquations::depthInMetersToBars(toDepthInMeter), diveGas->getN2frac(),
                                          diveGas->getHefrac(), durationInSeconds);
     }
     return durationInSeconds;

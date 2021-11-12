@@ -10,7 +10,8 @@ public:
 
     WetContact() = default;
 
-    void init(uint8_t wetContactPin, void (*interrupt)()); // this code would normally go into the constructor but then Serial.begin() is not yet called -> program locks up when doing Serial.print in constructor
+    void init(uint8_t wetContactPin,
+              void (*interrupt)()); // this code would normally go into the constructor but then Serial.begin() is not yet called -> program locks up when doing Serial.print in constructor
 
     bool isActivated() const;
 

@@ -13,6 +13,7 @@ public:
     void update();
 
     virtual void hide();
+
     virtual void show();
 
     virtual void redraw();

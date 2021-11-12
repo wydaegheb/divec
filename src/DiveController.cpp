@@ -5,6 +5,9 @@ WetContact DiveController::_wetContact;
 void DiveController::setup() {
     Serial.println(F("Initiating DiveController."));
 
+    // Start SPI
+    SPI.begin(SPI_SCK, SPI_MISO, SPI_MOSI);
+
     // init display
     _display.init();
 
@@ -30,10 +33,10 @@ void DiveController::setup() {
     }
 
     // init bluetooth
-    if (!_bluetooth.init()) {
+/*    if (!_bluetooth.init()) {
         _display.drawSystemError("[Bluetooth failed]");
         exit(1);
-    }
+    }*/
 
     // init wet contact
     _wetContact.init(WET_CONTACT_PIN, &onWetContactChanged);
@@ -59,15 +62,16 @@ void DiveController::step() {
     if ((currentTimeInSeconds - _lastUpdateTimeInSeconds) >= Settings::STEP_INTERVAL) {
 
         // update deco manager (dive, tissues, gasses, ...)
-        _decoManager.update(currentTimeInSeconds, _depthSensor.pressureInBar(), _depthSensor.tempInCelsius(), _wetContact.isActivated());
+        _decoManager.update(currentTimeInSeconds, _depthSensor.pressureInBar(), _depthSensor.tempInCelsius(),
+                            _wetContact.isActivated());
 
         _lastUpdateTimeInSeconds = currentTimeInSeconds;
     }
 
     // check bluetooth - don't wait for interval or a bluetooth command takes 5 seconds to be handled
-    int8_t bleCommand = _bluetooth.receive();
+    //int8_t bleCommand = _bluetooth.receive();
 
-    if (_depthSensor.isMocked() && bleCommand == BLE_INC_TIME_ONE_MIN) {
+/*    if (_depthSensor.isMocked() && bleCommand == BLE_INC_TIME_ONE_MIN) {
         Time::incOneMinute();
     }
 
@@ -77,7 +81,7 @@ void DiveController::step() {
 
     if (_depthSensor.isMocked() && bleCommand == BLE_DESCENT_ONE_METER) {
         _depthSensor.increaseMockDepth();
-    }
+    }*/
 }
 
 void DiveController::onWetContactChanged() {

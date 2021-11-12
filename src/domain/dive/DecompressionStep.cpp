@@ -8,7 +8,8 @@ DecompressionStep::DecompressionStep(Gas *diveGas, uint16_t durationInSeconds, u
 }
 
 
-DecompressionStep::DecompressionStep(Gas *diveGas, uint16_t durationInSeconds, uint16_t startDepthInMeters, uint16_t endDepthInMeters) {
+DecompressionStep::DecompressionStep(Gas *diveGas, uint16_t durationInSeconds, uint16_t startDepthInMeters,
+                                     uint16_t endDepthInMeters) {
     setDiveGas(diveGas);
     setDurationInSeconds(durationInSeconds);
     setStartDepthInMeters(startDepthInMeters);

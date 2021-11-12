@@ -1,6 +1,7 @@
 #include "NumberValueWidget.h"
 
-NumberValueWidget::NumberValueWidget(Display *display, char const *title, uint8_t numberOfDecimals, uint16_t leftX, uint16_t topY, uint16_t width, uint16_t height, uint8_t align, bool hidden) :
+NumberValueWidget::NumberValueWidget(Display *display, char const *title, uint8_t numberOfDecimals, uint16_t leftX,
+                                     uint16_t topY, uint16_t width, uint16_t height, uint8_t align, bool hidden) :
         Widget(display, leftX, topY, width, height, hidden) {
     _title = title;
     _numberOfDecimals = numberOfDecimals;
@@ -27,7 +28,8 @@ void NumberValueWidget::updateValue(double value) {
 }
 
 void NumberValueWidget::hideValue() {
-    _display->fillWithBackground(_leftX, _topY + 20, _width, (_height - 20)); // clear background for the value only as it is the only part that is redrawn
+    _display->fillWithBackground(_leftX, _topY + 20, _width, (_height -
+                                                              20)); // clear background for the value only as it is the only part that is redrawn
 }
 
 void NumberValueWidget::show() {
@@ -41,7 +43,7 @@ void NumberValueWidget::draw() {
         _drawTitle = false;
     }
 
-    _display->fillWithBackground(_leftX, _topY + 20, _width, (_height - 20)); // clear background for the value only as it is the only part that is redrawn
+    hideValue(); // clear background for the value only as it is the only part that is redrawn
     _display->drawBigValueNumber(_value, _numberOfDecimals, _leftX, _topY + _height, _width, _align);
     //_display->drawRectangle(_leftX,_topY,_width, _height); // shows bounding box for debugging
 }

@@ -6,7 +6,6 @@
 
 Display::Display(uint8_t bufferSize) : BaseMenuRenderer(bufferSize) {
     _config = new DisplayConfig();
-    _tft = new Adafruit_ILI9341(TFT_CS, TFT_DC);
     _buttonHintLeft = BUTTON_HINT_NONE;
     _buttonHintRight = BUTTON_HINT_NONE;
     _hintsChanged = false;
@@ -17,9 +16,27 @@ Display::~Display() = default;
 void Display::init() {
     Serial.println(F("Initializing display."));
 
-    _tft->begin();
+    pinMode(TFT_CS, OUTPUT);
+    digitalWrite(TFT_CS, HIGH);
+    pinMode(TF_CS, OUTPUT);
+    digitalWrite(TF_CS, HIGH); // IMPORTANT
+
+    _tft = new Adafruit_ST7789(TFT_CS, TFT_DC, TFT_RST);
+
+    pinMode(TFT_DC, OUTPUT);
+    pinMode(TFT_CS, OUTPUT);
+    pinMode(TFT_RST, OUTPUT);
+    pinMode(TFT_LED, OUTPUT); // turns on the light
+    digitalWrite(TFT_LED, HIGH);
+
+    _tft->init(240, 320);  // Init ST7789 320x240 (calls begin() internally)
     _tft->setRotation(1);
     _tft->fillScreen(BLACK);
+
+    pinMode(TFT_LED, OUTPUT);
+    digitalWrite(TFT_LED, HIGH); // Backlight on
+
+
 
     prepareConfig();
 
@@ -77,11 +94,14 @@ void Display::drawTitleString(char const *title, uint16_t leftX, uint16_t bottom
     drawAlignedString(title, leftX, bottomY, width, align);
 }
 
-void Display::drawBigValueNumber(double value, uint8_t numberOfDecimals, uint16_t leftX, uint16_t bottomY, uint16_t width) {
+void
+Display::drawBigValueNumber(double value, uint8_t numberOfDecimals, uint16_t leftX, uint16_t bottomY, uint16_t width) {
     drawBigValueNumber(value, numberOfDecimals, leftX, bottomY, width, ALIGN_RIGHT);
 }
 
-void Display::drawBigValueNumber(double value, uint8_t numberOfDecimals, uint16_t leftX, uint16_t bottomY, uint16_t width, uint8_t align) {
+void
+Display::drawBigValueNumber(double value, uint8_t numberOfDecimals, uint16_t leftX, uint16_t bottomY, uint16_t width,
+                            uint8_t align) {
     _tft->setFont(_config->bigValueFont);
     _tft->setTextColor(Settings::VALUE_COLOR);
 
@@ -108,7 +128,7 @@ void Display::drawBottomMenuString(char const *value, uint16_t leftX, uint16_t b
 }
 
 void Display::drawAlignedString(char const *s, uint16_t leftX, uint16_t bottomY, uint16_t width, uint16_t align) {
-    uint16_t calculatedLeft;
+    uint16_t calculatedLeft = leftX;
     uint16_t calculatedBottom = bottomY - 2; // keep 2px margins
     if (align == ALIGN_LEFT) {
         calculatedLeft = leftX + 2; // keep 2px margins
@@ -229,9 +249,11 @@ bool Display::renderWidgets(bool forceDraw) {
 
             serdebugF3("Drawing widget pos,icon: ", xPos, widget->getCurrentState());
 
-            _tft->fillRect(xPos, _config->widgetPadding.top, widget->getWidth(), widget->getHeight(), _config->bgTitleColor);
+            _tft->fillRect(xPos, _config->widgetPadding.top, widget->getWidth(), widget->getHeight(),
+                           _config->bgTitleColor);
 
-            _tft->drawXBitmap(xPos, _config->widgetPadding.top, widget->getCurrentIcon(), widget->getWidth(), widget->getHeight(),
+            _tft->drawXBitmap(xPos, _config->widgetPadding.top, widget->getCurrentIcon(), widget->getWidth(),
+                              widget->getHeight(),
                               _config->widgetColor);
         }
 
@@ -356,13 +378,15 @@ void Display::renderMenuItem(int yPos, int menuHeight, MenuItem *item) {
     int imgMiddleY = yPos + ((menuHeight - icoHei) / 2);
     if (item->isEditing()) {
         _tft->fillRect(0, yPos, _tft->width(), menuHeight, _config->bgSelectColor);
-        _tft->drawXBitmap(_config->itemPadding.left, imgMiddleY, _config->editIcon, icoWid, icoHei, _config->fgSelectColor);
+        _tft->drawXBitmap(_config->itemPadding.left, imgMiddleY, _config->editIcon, icoWid, icoHei,
+                          _config->fgSelectColor);
         _tft->setTextColor(_config->fgSelectColor);
         serdebugF("Item Editing");
     } else if (item->isActive()) {
         _tft->setTextColor(_config->fgSelectColor);
         _tft->fillRect(0, yPos, _tft->width(), menuHeight, _config->bgSelectColor);
-        _tft->drawXBitmap(_config->itemPadding.left, imgMiddleY, _config->activeIcon, icoWid, icoHei, _config->fgSelectColor);
+        _tft->drawXBitmap(_config->itemPadding.left, imgMiddleY, _config->activeIcon, icoWid, icoHei,
+                          _config->fgSelectColor);
         serdebugF("Item Active");
     } else {
         _tft->fillRect(0, yPos, _tft->width(), menuHeight, _config->bgItemColor);

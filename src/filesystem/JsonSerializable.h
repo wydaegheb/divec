@@ -2,7 +2,8 @@
 #define DIVEC_JSONSERIALIZABLE_H
 
 #include <ArduinoJson.h>
-#include <FatLib/ArduinoFiles.h>
+#include <SD.h>
+//#include <FatLib/ArduinoFiles.h>
 
 #define BUFFER_FOR_STRINGS_DUPLICATION 500
 

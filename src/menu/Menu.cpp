@@ -1,6 +1,6 @@
 #include "Menu.h"
 
-const AnyMenuInfo PROGMEM minfoExit = {"[..]", 5, 0xFFFF, 0, &Menu::onExit};
+const AnyMenuInfo PROGMEM minfoExit = {"[Exit]", 5, 0xFFFF, 0, &Menu::onExit};
 
 const char enumStrDensity_0[] PROGMEM = "Salt";
 const char enumStrDensity_1[] PROGMEM = "Fresh";
@@ -20,7 +20,8 @@ const EnumMenuInfo PROGMEM minfoLastStop = {"Last Stop", 11, 0xFFFF, 1, &Menu::o
 const char enumStrDecoStepSize_0[] PROGMEM = "3 m";
 const char enumStrDecoStepSize_1[] PROGMEM = "6 m";
 const char *const enumStrDecoStepSize[] PROGMEM = {enumStrDecoStepSize_0, enumStrDecoStepSize_1};
-const EnumMenuInfo PROGMEM minfoDecoStepSize = {"Deco Step Size", 10, 0xFFFF, 1, &Menu::onDecoStepSize, enumStrDecoStepSize};
+const EnumMenuInfo PROGMEM minfoDecoStepSize = {"Deco Step Size", 10, 0xFFFF, 1, &Menu::onDecoStepSize,
+                                                enumStrDecoStepSize};
 
 // define statics
 Display *Menu::_display;
@@ -46,9 +47,11 @@ void Menu::init(uint8_t okButtonPin, uint8_t nextButtonPin, Display *display, De
 
     // initialise "define gasses" menu
     uint8_t lastGasIdx = _decoManager->getGasManager()->getNrOfGasses() - 1;
-    _gasFormattedMenuItems[lastGasIdx] = new GasFormattedMenuItem(_decoManager->getGasManager()->getGas(lastGasIdx), lastGasIdx, _returnToMainMenuItem);
+    _gasFormattedMenuItems[lastGasIdx] = new GasFormattedMenuItem(_decoManager->getGasManager()->getGas(lastGasIdx),
+                                                                  lastGasIdx, _returnToMainMenuItem);
     for (int i = lastGasIdx - 1; i >= 0; i--) {
-        _gasFormattedMenuItems[i] = new GasFormattedMenuItem(_decoManager->getGasManager()->getGas(i), i, _gasFormattedMenuItems[i + 1]);
+        _gasFormattedMenuItems[i] = new GasFormattedMenuItem(_decoManager->getGasManager()->getGas(i), i,
+                                                             _gasFormattedMenuItems[i + 1]);
     }
 
     // initialise "settings" menu
@@ -83,7 +86,8 @@ void Menu::reset() {
 
 void Menu::started(BaseMenuRenderer *currentRenderer) {
     // take over display has just been called -> clear screen and redraw our current custom page
-    Serial.println(F("Display transferred to us again. clear bottom menu, clear the display and redraw our custom page"));
+    Serial.println(
+            F("Display transferred to us again. clear bottom menu, clear the display and redraw our custom page"));
     _displayOwner = true;
     _rootMenuItem = 0;
     _display->clear();
@@ -91,8 +95,14 @@ void Menu::started(BaseMenuRenderer *currentRenderer) {
     _currentPage->redraw();
 }
 
-void Menu::renderLoop(unsigned int currentValue, RenderPressMode okButtonClicked) { // only called when tc menu doesn't own the display (i.e. if we can render custom screens)
-    if (okButtonClicked && _rootMenuItem > 0) { // we own the display but a menu is selected and the ok button is pressed -> switch to the selected menu and give control to tc menu
+void Menu::renderLoop(unsigned int currentValue,
+                      RenderPressMode okButtonClicked) { // only called when tc menu doesn't own the display (i.e. if we can render custom screens)
+    if (okButtonClicked) {
+        Serial.println(F("renderloop - Ok button clicked"));
+    }
+    if (okButtonClicked && _rootMenuItem >
+                           0) { // we own the display but a menu is selected and the ok button is pressed -> switch to the selected menu and give control to tc menu
+        Serial.println(F("renderloop - menu selected"));
 
         _displayOwner = false;
         if (_rootMenuItem == 1) {
@@ -107,6 +117,7 @@ void Menu::renderLoop(unsigned int currentValue, RenderPressMode okButtonClicked
         Menu::getDisplay()->giveBackDisplay();  // Enter menu system (give display back to tc menu)
 
     } else { // update our own custom screen (only once every second)
+        Serial.println(F("renderloop - no menu selected"));
         if ((Time::getTime() - _lastUpdateTimeInSeconds) >= 1000) {
             update();
             _lastUpdateTimeInSeconds = Time::getTime();
@@ -126,6 +137,15 @@ void Menu::nextButtonClicked(bool held) {
             _currentPage->clearBottomMenuItem();
             _rootMenuItem = 0;
         }
+    }
+}
+
+void Menu::okButtonClicked(bool held) {
+    Serial.println(F("Ok button clicked"));
+    if (_displayOwner) {
+        Serial.println(F("We are owner do something"));
+    } else {
+        Serial.println(F("We are not owner ignore"));
     }
 }
 

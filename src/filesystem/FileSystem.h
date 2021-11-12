@@ -1,18 +1,16 @@
 #ifndef DIVEC_FILESYSTEM_H
 #define DIVEC_FILESYSTEM_H
 
-#include <SdFat.h>
+#include <SD.h>
 #include <filesystem/JsonSerializable.h>
 
-#define SD_CS  5 // SD card select pin
 
 // SD card FAT filenames -> must use the 8.3 format
-#define SETTINGS_FILE "settings.jsn"
-#define GASSES_FILE "gasses.jsn"
-#define DECO_STATE_FILE "decost.jsn"
-#define LOGBOOK_FILE "logbook.jsn"
-#define TMP_LOG_FILE "tmplog.jsn"
-
+#define SETTINGS_FILE "SETTINGS.JSN"
+#define GASSES_FILE "GASSES.JSN"
+#define DECO_STATE_FILE "DECOST.JSN"
+#define LOGBOOK_FILE "LOGBOOK.JSN"
+#define TMP_LOG_FILE "TMPLOG.JSN"
 
 
 class FileSystem {
@@ -20,7 +18,8 @@ public:
 
     FileSystem() = default;
 
-    bool init(); // this code would normally go into the constructor but then Serial.begin() is not yet called -> program locks up when doing Serial.print in constructor
+    bool
+    init(); // this code would normally go into the constructor but then Serial.begin() is not yet called -> program locks up when doing Serial.print in constructor
 
     void loadSettings(JsonSerializable *settings);
 
@@ -55,7 +54,6 @@ private:
     bool saveToJsonFile(char const *fileName, JsonSerializable *jsonSerializable, bool append);
 
     File _diveLogFile;
-    SdFat _sdFat;
 };
 
 

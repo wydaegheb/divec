@@ -52,7 +52,8 @@ public:
 
     }
 
-    static int gradientFactorsItemRenderFn(RuntimeMenuItem *item, uint8_t row, RenderFnMode mode, char *buffer, int bufferSize) {
+    static int
+    gradientFactorsItemRenderFn(RuntimeMenuItem *item, uint8_t row, RenderFnMode mode, char *buffer, int bufferSize) {
         if (item->getMenuType() != MENUTYPE_TEXT_VALUE) return 0;
         auto gradientFactorsItem = reinterpret_cast<GradientFactorsFormattedMenuItem *>(item);
         auto idx = row - 1;

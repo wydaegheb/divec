@@ -90,7 +90,8 @@ public:
 
         if (idx == 0) { // days have 2 digits but need an offset of 1 (day 0 doesn't exist)
             fastltoa(buffer, val + 1, 2, '0', bufferSize);
-        } else if (idx == 6 || idx == 7) { // hours,minutes have 2 digits but can be zero (00h00 exists -> no offset needed)
+        } else if (idx == 6 ||
+                   idx == 7) { // hours,minutes have 2 digits but can be zero (00h00 exists -> no offset needed)
             fastltoa(buffer, val, 2, '0', bufferSize);
         } else if (idx == 1) { // map month on label
             if (val == Jan) {
@@ -135,7 +136,8 @@ public:
         } else return 31;
     }
 
-    static int dateTimeItemRenderFn(RuntimeMenuItem *item, uint8_t row, RenderFnMode mode, char *buffer, int bufferSize) {
+    static int
+    dateTimeItemRenderFn(RuntimeMenuItem *item, uint8_t row, RenderFnMode mode, char *buffer, int bufferSize) {
         if (item->getMenuType() != MENUTYPE_TEXT_VALUE) return 0;
         auto dateTimeItem = reinterpret_cast<DateTimeFormattedMenuItem *>(item);
         auto idx = row - 1;
@@ -173,7 +175,8 @@ public:
             case RENDERFN_GETRANGE: {
                 Serial.println(F("RENDERFN_GETRANGE"));
                 if (idx == 0) { // day
-                    uint16_t year = dateTimeStorage->yearThousands * 1000 + dateTimeStorage->yearHundreds * 100 + dateTimeStorage->yearTens * 10 + dateTimeStorage->yearUnit;
+                    uint16_t year = dateTimeStorage->yearThousands * 1000 + dateTimeStorage->yearHundreds * 100 +
+                                    dateTimeStorage->yearTens * 10 + dateTimeStorage->yearUnit;
                     return daysForMonth(dateTimeStorage->month + 1, year) - 1; // zero based
                 } else if (idx == 1) { // month
                     return 11; // 0 based

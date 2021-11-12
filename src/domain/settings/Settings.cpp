@@ -29,7 +29,7 @@ uint16_t Settings::VALUE_COLOR = WHITE;
 uint16_t Settings::ERROR_COLOR = RED;
 uint16_t Settings::WARNING_COLOR = ORANGE;
 
-void Settings::init(FileSystem* fileSystem) {
+void Settings::init(FileSystem *fileSystem) {
     Serial.println(F("Initializing settings."));
     fileSystem->loadSettings(this);
 }

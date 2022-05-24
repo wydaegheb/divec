@@ -14,103 +14,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b9a669e5-c94b-441e-902a-3c89bb4023e4" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/include/README" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/README" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/platformio.ini" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/DiveController.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/DiveController.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/decomanager/DecoManager.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/decomanager/DecoManager.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/decomanager/algorithms/DiveAlgorithm.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/decomanager/algorithms/buhlmann/BuhlmannAlgorithm.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/decomanager/algorithms/buhlmann/BuhlmannAlgorithm.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/decomanager/algorithms/buhlmann/BuhlmannGasLoading.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/decomanager/algorithms/buhlmann/BuhlmannGasLoading.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/decomanager/algorithms/buhlmann/BuhlmannTable.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/decomanager/algorithms/buhlmann/BuhlmannTable.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/decomanager/algorithms/buhlmann/BuhlmannTissue.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/decomanager/algorithms/buhlmann/BuhlmannTissue.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/decomanager/algorithms/equations/DiveEquations.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/decomanager/algorithms/equations/DiveEquations.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/display/Display.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/display/Display.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/display/bgimage/jellyfish.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/display/fonts/FreeMono12pt7b.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/display/fonts/FreeMono18pt7b.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/display/fonts/FreeMono24pt7b.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/display/fonts/FreeMono9pt7b.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/display/fonts/FreeSans12pt7b.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/display/fonts/FreeSans18pt7b.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/display/fonts/FreeSans9pt7b.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/display/fonts/FreeSansBold12pt7b.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/display/fonts/FreeSansBold24pt7b.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/display/fonts/JetBrainsMono_Regular16pt7b.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/display/fonts/NotoSans_Condensed12pt7b.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/display/fonts/NotoSans_Condensed14pt7b.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/display/fonts/NotoSans_Condensed16pt7b.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/display/fonts/NotoSans_Condensed18pt7b.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/display/fonts/NotoSans_Condensed24pt7b.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/display/fonts/NotoSans_Condensed9pt7b.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/display/fonts/arialnb12pt7.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/display/pages/MainPage.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/display/pages/MainPage.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/display/pages/Page.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/display/pages/Page.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/display/widgets/BatteryWidget.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/display/widgets/BatteryWidget.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/display/widgets/BottomMenuWidget.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/display/widgets/BottomMenuWidget.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/display/widgets/NumberValueWidget.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/display/widgets/NumberValueWidget.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/display/widgets/StringValueWidget.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/display/widgets/StringValueWidget.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/display/widgets/Widget.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/display/widgets/Widget.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/domain/dive/DecompressionPlan.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/domain/dive/DecompressionPlan.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/domain/dive/DecompressionStep.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/domain/dive/DecompressionStep.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/domain/dive/Dive.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/domain/dive/Dive.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/domain/dive/Gas.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/domain/dive/Gas.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/domain/logbook/LogBook.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/domain/logbook/LogBook.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/domain/settings/Constants.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/domain/settings/Constants.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/domain/settings/Settings.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/domain/settings/Settings.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/filesystem/FileSystem.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/filesystem/FileSystem.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/filesystem/JsonSerializable.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/filesystem/JsonSerializable.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/gasmanager/GasManager.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/gasmanager/GasManager.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/menu/Menu.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/menu/Menu.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/menu/encoder/EncoderNextButtonListener.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/menu/encoder/EncoderNextOkButton.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/menu/encoder/EncoderNextOkButton.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/menu/encoder/EncoderOkButtonListener.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/menu/menuitems/DateTimeFormattedMenuItem.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/menu/menuitems/GasFormattedMenuItem.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/menu/menuitems/GradientFactorsFormattedMenuItem.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/mockdive/TestDive.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/mockdive/TestDive.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/sensors/depth/DIVEC_MS5837.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/sensors/depth/DIVEC_MS5837.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/sensors/depth/DepthSensor.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/sensors/depth/DepthSensor.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/sensors/wetcontact/WetContact.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/sensors/wetcontact/WetContact.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/time/Time.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/time/Time.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/tst.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/README" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeListsPrivate.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeListsPrivate.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/platformio.ini" beforeDir="false" afterPath="$PROJECT_DIR$/platformio.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DiveController.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/DiveController.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/filesystem/FileSystem.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/filesystem/FileSystem.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/filesystem/FileSystem.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/filesystem/FileSystem.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -122,6 +32,11 @@
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:lolin_d32_pro" />
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="lolin-esp32" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="UPDATE_TYPE" value="MERGE" />
   </component>
@@ -144,10 +59,11 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="cf.first.check.clang-format" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+    <property name="ignore.virus.scanning.warn.message" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../kippenkot/kk" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
-  <component name="RunManager" selected="CMake Application.Z_DUMMY_TARGET">
+  <component name="RunManager" selected="PlatformIO.PlatformIO Upload">
     <configuration name="Z_DUMMY_TARGET" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="divec" TARGET_NAME="Z_DUMMY_TARGET" CONFIG_NAME="lolin_d32_pro" RUN_TARGET_PROJECT_NAME="divec" RUN_TARGET_NAME="Z_DUMMY_TARGET">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
@@ -195,52 +111,71 @@
       <workItem from="1636716071565" duration="1391000" />
       <workItem from="1636718167958" duration="190000" />
       <workItem from="1636718371059" duration="878000" />
+      <workItem from="1636999927142" duration="189000" />
+      <workItem from="1637002731419" duration="2083000" />
+      <workItem from="1637096389949" duration="1291000" />
+      <workItem from="1637259881123" duration="1084000" />
+      <workItem from="1637332394962" duration="404000" />
+      <workItem from="1637347209029" duration="48000" />
+      <workItem from="1640643227050" duration="2703000" />
+      <workItem from="1640646041511" duration="53000" />
+      <workItem from="1640648331475" duration="244000" />
+      <workItem from="1641155785321" duration="1295000" />
+      <workItem from="1644939706092" duration="658000" />
+      <workItem from="1653333682616" duration="5927000" />
+      <workItem from="1653341092440" duration="7607000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ORDER">
+      <list>
+        <option value="0" />
+        <option value="2" />
+        <option value="3" />
+        <option value="1" />
+      </list>
+    </option>
+  </component>
   <component name="WindowStateProjectService">
-    <state x="1312" y="361" key="#Plugins" timestamp="1636718358609">
+    <state x="1174" y="358" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1653342696552">
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
-    <state x="1312" y="361" key="#Plugins/0.0.3440.1400@0.0.3440.1400" timestamp="1636718358609" />
-    <state x="1500" y="444" key="FileChooserDialogImpl" timestamp="1636716557780">
+    <state x="1174" y="358" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.3440.1400@0.0.3440.1400" timestamp="1653342696552" />
+    <state x="1500" y="444" key="FileChooserDialogImpl" timestamp="1644939804260">
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
-    <state x="1500" y="444" key="FileChooserDialogImpl/0.0.3440.1400@0.0.3440.1400" timestamp="1636716557780" />
-    <state width="3397" height="393" key="GridCell.Tab.0.bottom" timestamp="1636757207917">
+    <state x="1500" y="444" key="FileChooserDialogImpl/0.0.3440.1400@0.0.3440.1400" timestamp="1644939804260" />
+    <state width="3397" height="387" key="GridCell.Tab.0.bottom" timestamp="1653417869017">
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
-    <state width="3397" height="393" key="GridCell.Tab.0.bottom/0.0.3440.1400@0.0.3440.1400" timestamp="1636757207917" />
-    <state width="3397" height="393" key="GridCell.Tab.0.center" timestamp="1636757207917">
+    <state width="3397" height="387" key="GridCell.Tab.0.bottom/0.0.3440.1400@0.0.3440.1400" timestamp="1653417869017" />
+    <state width="3397" height="387" key="GridCell.Tab.0.center" timestamp="1653417869017">
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
-    <state width="3397" height="393" key="GridCell.Tab.0.center/0.0.3440.1400@0.0.3440.1400" timestamp="1636757207917" />
-    <state width="3397" height="393" key="GridCell.Tab.0.left" timestamp="1636757207917">
+    <state width="3397" height="387" key="GridCell.Tab.0.center/0.0.3440.1400@0.0.3440.1400" timestamp="1653417869017" />
+    <state width="3397" height="387" key="GridCell.Tab.0.left" timestamp="1653417869017">
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
-    <state width="3397" height="393" key="GridCell.Tab.0.left/0.0.3440.1400@0.0.3440.1400" timestamp="1636757207917" />
-    <state width="3397" height="393" key="GridCell.Tab.0.right" timestamp="1636757207917">
+    <state width="3397" height="387" key="GridCell.Tab.0.left/0.0.3440.1400@0.0.3440.1400" timestamp="1653417869017" />
+    <state width="3397" height="387" key="GridCell.Tab.0.right" timestamp="1653417869017">
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
-    <state width="3397" height="393" key="GridCell.Tab.0.right/0.0.3440.1400@0.0.3440.1400" timestamp="1636757207917" />
-    <state x="1223" y="345" key="SettingsEditor" timestamp="1636717727488">
+    <state width="3397" height="387" key="GridCell.Tab.0.right/0.0.3440.1400@0.0.3440.1400" timestamp="1653417869017" />
+    <state x="1223" y="345" key="SettingsEditor" timestamp="1644939998842">
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
-    <state x="1223" y="345" key="SettingsEditor/0.0.3440.1400@0.0.3440.1400" timestamp="1636717727488" />
-    <state x="1428" y="527" key="com.intellij.ide.util.TipDialog" timestamp="1636758705618">
+    <state x="1223" y="345" key="SettingsEditor/0.0.3440.1400@0.0.3440.1400" timestamp="1644939998842" />
+    <state x="1501" y="416" key="git4idea.branch.GitSmartOperationDialog" timestamp="1653417864602">
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
-    <state x="1428" y="527" key="com.intellij.ide.util.TipDialog/0.0.3440.1400@0.0.3440.1400" timestamp="1636758705618" />
-    <state x="1531" y="619" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1636717637210">
+    <state x="1501" y="416" key="git4idea.branch.GitSmartOperationDialog/0.0.3440.1400@0.0.3440.1400" timestamp="1653417864602" />
+    <state x="1376" y="330" key="run.anything.popup" timestamp="1653339343170">
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
-    <state x="1531" y="619" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.3440.1400@0.0.3440.1400" timestamp="1636717637210" />
-    <state x="1383" y="315" width="672" height="678" key="search.everywhere.popup" timestamp="1636718345937">
-      <screen x="0" y="0" width="3440" height="1400" />
-    </state>
-    <state x="1383" y="315" width="672" height="678" key="search.everywhere.popup/0.0.3440.1400@0.0.3440.1400" timestamp="1636718345937" />
+    <state x="1376" y="330" key="run.anything.popup/0.0.3440.1400@0.0.3440.1400" timestamp="1653339343170" />
   </component>
 </project>

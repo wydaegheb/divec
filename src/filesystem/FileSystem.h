@@ -1,6 +1,14 @@
 #ifndef DIVEC_FILESYSTEM_H
 #define DIVEC_FILESYSTEM_H
 
+#define SPI_MISO 19
+#define SPI_MOSI 23
+#define SPI_SCK 18
+#define SS_PIN TF_CS
+#define MOSI_PIN SPI_MOSI
+#define MISO_PIN SPI_MISO
+#define SCK_PIN SPI_SCK
+
 #include <SD.h>
 #include <filesystem/JsonSerializable.h>
 

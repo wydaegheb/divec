@@ -101,7 +101,7 @@ void FileSystem::saveDiveLogStep(JsonObject diveStep) {
         if (serializeJson(diveStep, file) == 0) {
             Serial.println(F("FAILED (0 bytes written)."));
         } else {
-            file.write("\n");
+            file.write('\n');
             Serial.println(F("Success"));
         }
         file.close();

@@ -12,14 +12,11 @@ public:
 
     BuhlmannTissue(BuhlmannTable buhlmannTable, int compartment);
 
-    void update(double durationInMinutes, double beginPressureInBar, double endPressureInBar, double gasN2Fraction,
-                double gasHeFraction);
+    void update(double durationInMinutes, double beginPressureInBar, double endPressureInBar, double gasN2Fraction, double gasHeFraction);
 
-    void addConstantDepthDiveStep(double pressureInBar, double gasN2Fraction, double gasHeFraction,
-                                  double durationInMinutes);
+    void addConstantDepthDiveStep(double pressureInBar, double gasN2Fraction, double gasHeFraction, double durationInMinutes);
 
-    void addDepthChangingDiveStep(double endDepth, double speedInBar, double gasN2Fraction, double gasHeFraction,
-                                  double durationInMinutes);
+    void addDepthChangingDiveStep(double endDepth, double speedInBar, double gasN2Fraction, double gasHeFraction, double durationInMinutes);
 
     double calculateCeilingInMeter(double gradientFactor) const;
 

@@ -1,7 +1,6 @@
 #include "DecompressionPlan.h"
 
-// Singleton to avoid having many of these floating around when calculating many of these.
-// No need to have multiple instances of these in a dive computer
+// Singleton. No need to have multiple instances of these in a dive computer. Just always recalculate and reuse this instance
 DecompressionPlan &DecompressionPlan::getInstance() {
     static DecompressionPlan instance;
     return instance;
@@ -24,8 +23,7 @@ void DecompressionPlan::addStop(Gas *gas, uint32_t timeInSeconds, double depthIn
     if (_nrOfStops > 0) {
         last = _stops[_nrOfStops - 1];
     }
-    if (last && last->isFlat() &&
-        (last->getEndDepthInMeters() == depthInMeter)) { // collapse flat segments on the same depth
+    if (last && last->isFlat() && (last->getEndDepthInMeters() == depthInMeter)) { // collapse flat segments on the same depth
         last->setDurationInSeconds(last->getDurationInSeconds() + timeInSeconds);
     } else {
         _stops[_nrOfStops] = new DecompressionStep(gas, timeInSeconds, depthInMeter, depthInMeter);
@@ -33,8 +31,7 @@ void DecompressionPlan::addStop(Gas *gas, uint32_t timeInSeconds, double depthIn
     }
 }
 
-void DecompressionPlan::addDecoDepthChange(Gas *gas, uint32_t timeInSeconds, double startDepthInMeter,
-                                           double endDepthInMeter) {
+void DecompressionPlan::addDecoDepthChange(Gas *gas, uint32_t timeInSeconds, double startDepthInMeter, double endDepthInMeter) {
     _stops[_nrOfStops] = new DecompressionStep(gas, timeInSeconds, startDepthInMeter, endDepthInMeter);
     _nrOfStops++;
 }

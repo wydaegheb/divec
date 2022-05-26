@@ -7,7 +7,7 @@ class DiveEquations {
 public:
 
     /**
-     * Execute the schreiner equation
+     * Calculate the schreiner equation result
      *
      * @param pBegin Initial compartment inert gas pressure (bar)
      * @param pGas Initial ambient pressure minus water vapor pressure (bar)
@@ -15,12 +15,11 @@ public:
      * @param gasRate Rate of descent/ascent in bar times the fraction of inert gas.
      * @return The end compartment inert gas pressure in bar.
      */
-    static double
-    schreinerEquation(double pBegin, double pGas, double durationInMinutes, double timeConstant, double gasRate);
+    static double schreinerEquation(double pBegin, double pGas, double durationInMinutes, double timeConstant, double gasRate);
 
 
     /**
-     * Execute the instantaneous equation
+     * Calculate the instantaneous equation result
      *
      * @param pBegin Initial compartment inert gas pressure (bar)
      * @param pGas Initial ambient pressure minus water vapor pressure (bar)
@@ -88,9 +87,7 @@ public:
     */
     static double gasCcrPressureBreathingInBars(double depthInMeters, double fGas, double fO2, double setPoint);
 
-    static double
-    ccrSchreinerEquation(double pBegin, double inertFraction, double o2Fraction, double halfTime, double duration,
-                         double beginDepth, double endDepth, double setPoint);
+    static double ccrSchreinerEquation(double pBegin, double inertFraction, double o2Fraction, double halfTime, double duration, double beginDepth, double endDepth, double setPoint);
 
 };
 

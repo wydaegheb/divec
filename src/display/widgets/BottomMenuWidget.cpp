@@ -26,8 +26,7 @@ void BottomMenuWidget::show() {
 void BottomMenuWidget::draw() {
     _display->fillWithBackground(_leftX, _topY, _width, _height); // clear background
     //_display->fillWithColor(_leftX, _topY + 20, _width, _height - 20, WHITE); // clear background
-    _display->drawBottomMenuString(_text, _leftX + 5, _topY + _height - 12, _width,
-                                   _align); // need to stay a bit above the bottom as some characters "stick out through the bottom" (e.g. the character g)
+    _display->drawBottomMenuString(_text, _leftX + 5, _topY + _height - 12, _width, _align); // need to stay a bit above the bottom as some characters "stick out through the bottom" (e.g. the character g)
 }
 
 

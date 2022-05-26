@@ -8,8 +8,7 @@
 class DiveAlgorithm : public JsonSerializable {
 public:
 
-    virtual void update(uint32_t beginTimeInSeconds, uint32_t endTimeInSeconds, Gas *gas, double beginPressureInBar,
-                        double endPressureInBar) = 0;
+    virtual void update(uint32_t beginTimeInSeconds, uint32_t endTimeInSeconds, Gas *gas, double beginPressureInBar, double endPressureInBar) = 0;
 
     virtual DecompressionPlan *getDecoPlan(GasManager *gasManager, uint32_t runtimeInSeconds) = 0;
 

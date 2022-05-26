@@ -14,9 +14,7 @@ class EncoderNextOkButton : public RotaryEncoder {
 public:
 
     // registering an okKeyListener is not really needed while using a CustomDrawing as the renderloop allready contains the status of this button.
-    static void
-    setupNextOkButtonEncoder(pinid_t pinNext, pinid_t pinOk, EncoderNextButtonListener *nextKeyListener = nullptr,
-                             EncoderOkButtonListener *okKeyListener = nullptr);
+    static void setupNextOkButtonEncoder(pinid_t pinNext, pinid_t pinOk, EncoderNextButtonListener *nextKeyListener = nullptr, EncoderOkButtonListener *okKeyListener = nullptr);
 
 private:
     EncoderNextOkButton(pinid_t pinNext, pinid_t pinOk, EncoderNextButtonListener *nextKeyCallback,

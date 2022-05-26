@@ -86,8 +86,7 @@ void Menu::reset() {
 
 void Menu::started(BaseMenuRenderer *currentRenderer) {
     // take over display has just been called -> clear screen and redraw our current custom page
-    Serial.println(
-            F("Display transferred to us again. clear bottom menu, clear the display and redraw our custom page"));
+    Serial.println(F("Display transferred to us again. clear bottom menu, clear the display and redraw our custom page"));
     _displayOwner = true;
     _rootMenuItem = 0;
     _display->clear();
@@ -95,13 +94,11 @@ void Menu::started(BaseMenuRenderer *currentRenderer) {
     _currentPage->redraw();
 }
 
-void Menu::renderLoop(unsigned int currentValue,
-                      RenderPressMode okButtonClicked) { // only called when tc menu doesn't own the display (i.e. if we can render custom screens)
+void Menu::renderLoop(unsigned int currentValue, RenderPressMode okButtonClicked) { // only called when tc menu doesn't own the display (i.e. if we can render custom screens)
     if (okButtonClicked) {
         Serial.println(F("renderloop - Ok button clicked"));
     }
-    if (okButtonClicked && _rootMenuItem >
-                           0) { // we own the display but a menu is selected and the ok button is pressed -> switch to the selected menu and give control to tc menu
+    if (okButtonClicked && _rootMenuItem > 0) { // we own the display but a menu is selected and the ok button is pressed -> switch to the selected menu and give control to tc menu
         Serial.println(F("renderloop - menu selected"));
 
         _displayOwner = false;
@@ -126,7 +123,9 @@ void Menu::renderLoop(unsigned int currentValue,
 }
 
 void Menu::nextButtonClicked(bool held) {
+    Serial.println(F("Next button clicked"));
     if (_displayOwner) {
+        Serial.println(F("We are owner increase root menu"));
         _rootMenuItem++;
         _display->setRootMenu(_rootMenuItem);
         if (_rootMenuItem == 1) {
@@ -137,6 +136,8 @@ void Menu::nextButtonClicked(bool held) {
             _currentPage->clearBottomMenuItem();
             _rootMenuItem = 0;
         }
+    } else {
+        Serial.println(F("We are not owner ignore"));
     }
 }
 

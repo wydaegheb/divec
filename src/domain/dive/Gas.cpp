@@ -96,8 +96,7 @@ uint16_t Gas::calcMODInMeters() const { // result is max depth in meters before 
     return DiveEquations::barToDepthInMeters(Settings::MAX_PPO2 / getO2frac());
 }
 
-uint16_t Gas::calcENDInMeters(
-        double pressureInBars) const { // result is equivalent narcotic depth in meters at the given actual pressure (input given in bars)
+uint16_t Gas::calcENDInMeters(double pressureInBars) const { // result is equivalent narcotic depth in meters at the given actual pressure (input given in bars)
     double narcIndex = getN2frac();
     if (Settings::O2_NARCOTIC) {
         narcIndex += getO2frac();

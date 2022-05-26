@@ -19,9 +19,7 @@ public:
 
     void applySurfaceInterval(uint32_t duration);
 
-    void
-    update(uint32_t beginTimeInSeconds, uint32_t endTimeInSeconds, double beginPressureInBar, double endPressureInBar,
-           double gasN2Fraction, double gasHeFraction);
+    void update(uint32_t beginTimeInSeconds, uint32_t endTimeInSeconds, double beginPressureInBar, double endPressureInBar, double gasN2Fraction, double gasHeFraction);
 
     double getCeilingInMeters(double gradientFactor);
 
@@ -42,8 +40,7 @@ private:
     uint16_t
     addDecoStop(double depthInMeter, uint32_t durationInSeconds, Gas *diveGas, DecompressionPlan *decompressionPlan);
 
-    uint16_t addDecoDepthChange(double fromDepthInMeter, double toDepthInMeter, Gas *diveGas,
-                                DecompressionPlan *decompressionPlan);
+    uint16_t addDecoDepthChange(double fromDepthInMeter, double toDepthInMeter, Gas *diveGas, DecompressionPlan *decompressionPlan);
 
     double getAscentRateInMeterPerMinute(double depthInMeter, Gas *diveGas);
 
@@ -52,7 +49,6 @@ private:
     void stopDecoCalculation();
 
     uint16_t secondsAboveMinDecoStopTimeMultiple(uint32_t time);
-
 
 };
 

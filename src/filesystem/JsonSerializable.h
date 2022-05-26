@@ -3,7 +3,6 @@
 
 #include <ArduinoJson.h>
 #include <SD.h>
-//#include <FatLib/ArduinoFiles.h>
 
 #define BUFFER_FOR_STRINGS_DUPLICATION 500
 
@@ -14,13 +13,11 @@ public:
 
     DeserializationError load(File *file);
 
-
     virtual JsonObject serializeObject(JsonObject &doc) = 0;
 
     virtual void deserializeObject(JsonObject &doc) = 0;
 
     virtual size_t getJsonSize() = 0;
-
 
 };
 

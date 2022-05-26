@@ -49,18 +49,14 @@ void
 BuhlmannTissue::addDepthChangingDiveStep(double startPressureInBars, double endPressureInBars, double gasN2Fraction,
                                          double gasHeFraction, double durationInMinutes) {
     //Calculate nitrogen loading
-    double gasRateN2 = DiveEquations::gasRateInBarsPerMinute(startPressureInBars, endPressureInBars, durationInMinutes,
-                                                             gasN2Fraction);
-    double ppN2Inspired = DiveEquations::gasPressureBreathingInBars(startPressureInBars,
-                                                                    gasN2Fraction); // ambient N2 pressure at start
+    double gasRateN2 = DiveEquations::gasRateInBarsPerMinute(startPressureInBars, endPressureInBars, durationInMinutes, gasN2Fraction);
+    double ppN2Inspired = DiveEquations::gasPressureBreathingInBars(startPressureInBars, gasN2Fraction); // ambient N2 pressure at start
 
     _pN2 = DiveEquations::schreinerEquation(_pN2, ppN2Inspired, durationInMinutes, _n2TimeConstant, gasRateN2);
 
     //Calculate helium Loading
-    double gasRateHe = DiveEquations::gasRateInBarsPerMinute(startPressureInBars, endPressureInBars, durationInMinutes,
-                                                             gasHeFraction);
-    double ppHeInspired = DiveEquations::gasPressureBreathingInBars(startPressureInBars,
-                                                                    gasHeFraction); // ambient He pressure at start
+    double gasRateHe = DiveEquations::gasRateInBarsPerMinute(startPressureInBars, endPressureInBars, durationInMinutes, gasHeFraction);
+    double ppHeInspired = DiveEquations::gasPressureBreathingInBars(startPressureInBars, gasHeFraction); // ambient He pressure at start
 
     _pHe = DiveEquations::schreinerEquation(_pHe, ppHeInspired, durationInMinutes, _heTimeConstant, gasRateHe);
 

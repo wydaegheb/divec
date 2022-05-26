@@ -112,8 +112,7 @@ void GasManager::deserializeObject(JsonObject &doc) {
 
 size_t GasManager::getJsonSize() {
     return JSON_OBJECT_SIZE(4) + // 1 properties (nrOf oc gasses) + 1 array
-           JSON_ARRAY_SIZE(MAX_GASSES) + MAX_GASSES * JSON_OBJECT_SIZE(
-            4); // gasses array contains MAX_GASSES elements and each element has 4 properties
+           JSON_ARRAY_SIZE(MAX_GASSES) + MAX_GASSES * JSON_OBJECT_SIZE(4); // gasses array contains MAX_GASSES elements and each element has 4 properties
 }
 
 

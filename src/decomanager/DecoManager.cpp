@@ -13,8 +13,7 @@ void DecoManager::init(FileSystem *fileSystem) {
     Serial.println(F(" - algorithms initialized."));
 
     // init deco state and gasses
-    fileSystem->loadDecoState(
-            this); // load last deco state -> current algorithm, all algorithms state, _previousUpdateTimeInSeconds, _noFlyTimeInMinutes
+    fileSystem->loadDecoState(this); // load last deco state -> current algorithm, all algorithms state, _previousUpdateTimeInSeconds, _noFlyTimeInMinutes
     Serial.println(F(" - decostate initialized."));
 
     // load logbook
@@ -65,8 +64,7 @@ void DecoManager::update(uint32_t currentTimeInSeconds, double currentPressureIn
     Serial.println(wetContactActivated);*/
 
     // auto start dive on activation of the wet contact or if we are below our dive pressure threshold
-    if (!_dive->isStarted() && (wetContactActivated || (currentPressureInBar > (Settings::SURFACE_PRESSURE +
-                                                                                Settings::START_OF_DIVE_PRESSURE)))) {
+    if (!_dive->isStarted() && (wetContactActivated || (currentPressureInBar > (Settings::SURFACE_PRESSURE + Settings::START_OF_DIVE_PRESSURE)))) {
         startDive(currentTimeInSeconds);
         Serial.println(F(" -> dive started!"));
     }
@@ -77,13 +75,11 @@ void DecoManager::update(uint32_t currentTimeInSeconds, double currentPressureIn
         _dive->update(currentTimeInSeconds, _gasManager->getCurrentGas(), currentPressureInBar, tempInCelsius);
 
         // update logbook
-        _logBook->addDiveStep(currentTimeInSeconds, currentPressureInBar, tempInCelsius,
-                              _gasManager->getCurrentGas()->getName());
+        _logBook->addDiveStep(currentTimeInSeconds, currentPressureInBar, tempInCelsius, _gasManager->getCurrentGas()->getName());
 
         // update algorithms (all of them (not just the current one) or else we can't switch algorithms while tissues are still loaded)
         for (DiveAlgorithm *diveAlgorithm:_algorithms) {
-            diveAlgorithm->update(_previousUpdateTimeInSeconds, currentTimeInSeconds, _gasManager->getCurrentGas(),
-                                  _previousPressureInBar, currentPressureInBar);
+            diveAlgorithm->update(_previousUpdateTimeInSeconds, currentTimeInSeconds, _gasManager->getCurrentGas(), _previousPressureInBar, currentPressureInBar);
         }
 
         // dive has just ended

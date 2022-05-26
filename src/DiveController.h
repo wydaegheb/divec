@@ -12,7 +12,7 @@
 
 
 
-#define WET_CONTACT_PIN 11
+#define WET_CONTACT_PIN 0
 #define NEXT_BUTTON_PIN 2
 #define OK_BUTTON_PIN 15
 

@@ -15,8 +15,7 @@ public:
 
     void applySurfaceInterval(uint32_t duration) final;
 
-    void update(uint32_t beginTimeInSeconds, uint32_t endTimeInSeconds, Gas *gas, double beginPressureInBar,
-                double endPressureInBar) final;
+    void update(uint32_t beginTimeInSeconds, uint32_t endTimeInSeconds, Gas *gas, double beginPressureInBar, double endPressureInBar) final;
 
     DecompressionPlan *getDecoPlan(GasManager *gasManager, uint32_t runtimeInSeconds) final;
 

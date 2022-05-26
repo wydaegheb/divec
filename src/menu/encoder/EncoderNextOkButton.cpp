@@ -1,18 +1,12 @@
 #include "EncoderNextOkButton.h"
 
-void EncoderNextOkButton::setupNextOkButtonEncoder(pinid_t pinNext, pinid_t pinOk,
-                                                   EncoderNextButtonListener *nextKeyListener,
-                                                   EncoderOkButtonListener *okKeyListener) {
+void EncoderNextOkButton::setupNextOkButtonEncoder(pinid_t pinNext, pinid_t pinOk, EncoderNextButtonListener *nextKeyListener, EncoderOkButtonListener *okKeyListener) {
     switches.setEncoder(new EncoderNextOkButton(pinNext, pinOk,
-                                                (nextKeyListener == nullptr ? new EncoderNextButtonListener()
-                                                                            : nextKeyListener),
-                                                (okKeyListener == nullptr ? new EncoderOkButtonListener()
-                                                                          : okKeyListener)));
+                                                (nextKeyListener == nullptr ? new EncoderNextButtonListener() : nextKeyListener),
+                                                (okKeyListener == nullptr ? new EncoderOkButtonListener() : okKeyListener)));
 }
 
-EncoderNextOkButton::EncoderNextOkButton(pinid_t pinNext, pinid_t pinOk, EncoderNextButtonListener *nextKeyListener,
-                                         EncoderOkButtonListener *okKeyListener) : RotaryEncoder(
-        &EncoderNextOkButton::onValueChanged) {
+EncoderNextOkButton::EncoderNextOkButton(pinid_t pinNext, pinid_t pinOk, EncoderNextButtonListener *nextKeyListener, EncoderOkButtonListener *okKeyListener) : RotaryEncoder(&EncoderNextOkButton::onValueChanged) {
     switches.initialiseInterrupt(internalDigitalIo(), true);
     switches.addSwitchListener(pinOk, okKeyListener);
     switches.addSwitchListener(pinNext, nextKeyListener);
@@ -24,8 +18,7 @@ void EncoderNextOkButton::onValueChanged(int value) { // implements "wrap around
     int maxValue;
     MenuItem *currentEditedMenuItem = menuMgr.getCurrentEditor();
     if (currentEditedMenuItem) {
-        if (isMenuRuntimeMultiEdit(
-                currentEditedMenuItem)) { // multi part edit -> get max from the range currently being edited
+        if (isMenuRuntimeMultiEdit(currentEditedMenuItem)) { // multi part edit -> get max from the range currently being edited
             maxValue = reinterpret_cast<EditableMultiPartMenuItem<void *> *>(currentEditedMenuItem)->getCurrentRange();
         } else {  // simple edit -> get max from the item
             maxValue = currentEditedMenuItem->getMaximumValue();

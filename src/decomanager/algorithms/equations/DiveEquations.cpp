@@ -1,10 +1,8 @@
 #include "DiveEquations.h"
 
 
-double DiveEquations::schreinerEquation(double pBegin, double pGas, double durationInMinutes, double timeConstant,
-                                        double gasRate) {
-    return pGas + gasRate * (durationInMinutes - 1.0 / timeConstant) -
-           (pGas - pBegin - gasRate / timeConstant) * exp(-timeConstant * durationInMinutes);
+double DiveEquations::schreinerEquation(double pBegin, double pGas, double durationInMinutes, double timeConstant, double gasRate) {
+    return pGas + gasRate * (durationInMinutes - 1.0 / timeConstant) - (pGas - pBegin - gasRate / timeConstant) * exp(-timeConstant * durationInMinutes);
 }
 
 double DiveEquations::instantaneousEquation(double pBegin, double pGas, double durationInMinutes, double timeConstant) {
@@ -24,8 +22,7 @@ double DiveEquations::gasCcrPressureBreathingInBars(double depth, double fGas, d
 }
 
 double
-DiveEquations::gasRateInBarsPerMinute(double startPressureInBars, double endPressureInBars, double durationInMinutes,
-                                      double fGas) {
+DiveEquations::gasRateInBarsPerMinute(double startPressureInBars, double endPressureInBars, double durationInMinutes, double fGas) {
     double speed = (endPressureInBars - startPressureInBars) / durationInMinutes;
     return speed * fGas;
 }
@@ -44,12 +41,9 @@ double DiveEquations::barToDepthInMeters(double presureInBars) {
     return (presureInBars - Settings::SURFACE_PRESSURE) / Settings::getWaterPressure();
 }
 
-double DiveEquations::ccrSchreinerEquation(double pBegin, double pGas, double inertFraction, double o2Fraction,
-                                           double halfTimeInMinutes, double durationInMinutes, double gasRate,
-                                           double setPoint) {
+double DiveEquations::ccrSchreinerEquation(double pBegin, double pGas, double inertFraction, double o2Fraction, double halfTimeInMinutes, double durationInMinutes, double gasRate, double setPoint) {
     double timeConstant = log(2.0) / halfTimeInMinutes;
     double ekt = pow(2, -durationInMinutes / halfTimeInMinutes);
     double inertRatio = inertFraction / (1 - o2Fraction);
-    return inertRatio * (ekt - 1.0) * (setPoint + (gasRate / timeConstant)) + (ekt * (pBegin - inertRatio * pBegin)) +
-           inertRatio * pGas;
+    return inertRatio * (ekt - 1.0) * (setPoint + (gasRate / timeConstant)) + (ekt * (pBegin - inertRatio * pBegin)) + inertRatio * pGas;
 }

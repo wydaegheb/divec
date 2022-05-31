@@ -4,7 +4,7 @@
 DiveController diveController;
 
 void setup() {
-    //Serial.begin(115200);
+    Wire.begin();
     Serial.begin(9600);
     unsigned long t = millis();
     while (!Serial.available() && ((millis() - t) < 5000)); // wait max 5 seconds

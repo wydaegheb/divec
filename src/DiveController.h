@@ -26,7 +26,6 @@
 #include <gasmanager/GasManager.h>
 #include <sensors/depth/DepthSensor.h>
 #include <sensors/wetcontact/WetContact.h>
-//#include <bluetooth/Bluetooth.h>
 #include <decomanager/DecoManager.h>
 #include <display/Display.h>
 #include <display/pages/MainPage.h>
@@ -34,8 +33,7 @@
 
 
 // defines the app info to the linker.
-const PROGMEM ConnectorLocalInfo
-applicationInfo = {"DiveC", "3ae2524b-d15c-4736-9c50-64aa6679f66b"};
+const PROGMEM ConnectorLocalInfo applicationInfo = {"DiveC", "3ae2524b-d15c-4736-9c50-64aa6679f66b"};
 
 class DiveController {
 public:
@@ -54,8 +52,6 @@ private:
     Settings _settings;
 
     DepthSensor _depthSensor;
-
-    //Bluetooth _bluetooth;
 
     Display _display;
 

@@ -30,8 +30,14 @@ bool Time::init(bool isMocked) {
 
     Serial.println(F(" - using real clock."));
 
-    if (!_rtc.begin()) {
-        Serial.println(F(" - ERROR: Couldn't find Time Module!"));
+    u_int8_t retries = 0;
+    while (!_rtc.begin() && retries < 4)
+    {
+        Serial.println(F(" - WARN: Couldn't start Time Module!"));
+    }
+    if (retries == 4)
+    {
+        Serial.println(F(" - ERROR: Couldn't start Time Module!"));
         return false;
     }
     Serial.println(F(" - time module started."));
@@ -39,9 +45,9 @@ bool Time::init(bool isMocked) {
     if (_rtc.lostPower()) {
         Serial.println(F("WARNING: Real Time Clock lost power. Reset time to 1 jan 2020!"));
         _rtc.adjust(DateTime(2020, 1, 1, 12, 0, 0));
-    }
+     //_rtc.adjust(DateTime(__DATE__, __TIME__));
+   }
 
-    //_rtc.adjust(DateTime(__DATE__, __TIME__));
 
     Serial.print(F(" - clock initialized: "));
     Serial.println(DateTime(getTime()).timestamp());

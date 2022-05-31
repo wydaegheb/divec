@@ -32,12 +32,6 @@ void DiveController::setup() {
         exit(1);
     }
 
-    // init bluetooth
-/*    if (!_bluetooth.init()) {
-        _display.drawSystemError("[Bluetooth failed]");
-        exit(1);
-    }*/
-
     // init wet contact
     _wetContact.init(WET_CONTACT_PIN, &onWetContactChanged);
 
@@ -67,21 +61,6 @@ void DiveController::step() {
 
         _lastUpdateTimeInSeconds = currentTimeInSeconds;
     }
-
-    // check bluetooth - don't wait for interval or a bluetooth command takes 5 seconds to be handled
-    //int8_t bleCommand = _bluetooth.receive();
-
-/*    if (_depthSensor.isMocked() && bleCommand == BLE_INC_TIME_ONE_MIN) {
-        Time::incOneMinute();
-    }
-
-    if (_depthSensor.isMocked() && bleCommand == BLE_ASCENT_ONE_METER) {
-        _depthSensor.decreaseMockDepth();
-    }
-
-    if (_depthSensor.isMocked() && bleCommand == BLE_DESCENT_ONE_METER) {
-        _depthSensor.increaseMockDepth();
-    }*/
 }
 
 void DiveController::onWetContactChanged() {

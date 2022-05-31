@@ -95,9 +95,6 @@ void Menu::started(BaseMenuRenderer *currentRenderer) {
 }
 
 void Menu::renderLoop(unsigned int currentValue, RenderPressMode okButtonClicked) { // only called when tc menu doesn't own the display (i.e. if we can render custom screens)
-    if (okButtonClicked) {
-        Serial.println(F("renderloop - Ok button clicked"));
-    }
     if (okButtonClicked && _rootMenuItem > 0) { // we own the display but a menu is selected and the ok button is pressed -> switch to the selected menu and give control to tc menu
         Serial.println(F("renderloop - menu selected"));
 
@@ -109,12 +106,10 @@ void Menu::renderLoop(unsigned int currentValue, RenderPressMode okButtonClicked
             Serial.println(F("Define gasses menu selected"));
             menuMgr.setRootMenu(_gasFormattedMenuItems[0]);
         }
-        Serial.println(F("Display transferred to tc menu"));
         Menu::getDisplay()->setHintsChanged(true);
         Menu::getDisplay()->giveBackDisplay();  // Enter menu system (give display back to tc menu)
 
     } else { // update our own custom screen (only once every second)
-        Serial.println(F("renderloop - no menu selected"));
         if ((Time::getTime() - _lastUpdateTimeInSeconds) >= 1000) {
             update();
             _lastUpdateTimeInSeconds = Time::getTime();
@@ -123,9 +118,7 @@ void Menu::renderLoop(unsigned int currentValue, RenderPressMode okButtonClicked
 }
 
 void Menu::nextButtonClicked(bool held) {
-    Serial.println(F("Next button clicked"));
     if (_displayOwner) {
-        Serial.println(F("We are owner increase root menu"));
         _rootMenuItem++;
         _display->setRootMenu(_rootMenuItem);
         if (_rootMenuItem == 1) {
@@ -136,18 +129,11 @@ void Menu::nextButtonClicked(bool held) {
             _currentPage->clearBottomMenuItem();
             _rootMenuItem = 0;
         }
-    } else {
-        Serial.println(F("We are not owner ignore"));
-    }
+    } 
 }
 
 void Menu::okButtonClicked(bool held) {
-    Serial.println(F("Ok button clicked"));
-    if (_displayOwner) {
-        Serial.println(F("We are owner do something"));
-    } else {
-        Serial.println(F("We are not owner ignore"));
-    }
+    Serial.println(F("Ok button clicked -ignore for the moment"));
 }
 
 DecoManager *Menu::getDecoManager() {
